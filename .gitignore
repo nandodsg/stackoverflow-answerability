@@ -7,3 +7,8 @@ logs/
 profiles.yml
 .env
 *.json.key
+
+# Private local notes and tool config (never published)
+CLAUDE.local.md
+.local/
+.claude/
