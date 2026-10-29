@@ -49,3 +49,4 @@ Out of scope unless time remains (Tier 3): CI, storytelling site (Evidence / Tab
 | 2026-10-29 | dbt-bigquery against the public dataset; no local extract | Reviewers already need a Google login; same warehouse family as the team |
 | 2026-10-29 | Repo private while in progress, public at submission | Brief allows public or allow-list; no half-done work in public |
 | 2026-10-29 | "Current year" = 2022 (latest year in the data, partial) | Data ends 2022-09-25 — see `specs/001` |
+| 2026-10-29 | D1: rank tags and pairs with a ≥ 385-question floor + Wilson bounds (lower for highest, upper for lowest); raw rate and empirical Bayes as robustness checks | Floor from a ±5 pt precision target, since group size is far from normal; EDA in `eda/d1_sample_size` — see `specs/001` |

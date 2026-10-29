@@ -28,18 +28,19 @@ total; `title` and `body` are never read. Results are cached in `output/`, so a 
    202,689. Mean ± 3 sd is −4,538 … 4,717, so a cutoff of "3 sd below the mean" is negative and removes nothing.
    On a log scale the shape is closer to normal, but with a spike at n = 1 and a heavier right tail
    (`01_tag_size_histograms.png`). Tag pairs are even more skewed: median 1, skewness 182.
-2. **A few big tags hold most of the questions.** 897 tags (2.1%) have ≥ 500 questions and hold 73% of all
-   question–tag links; ≥ 100 keeps 3,442 tags and 87%. For pairs, ≥ 100 keeps 5,046 pairs and 42%
-   (`03`, `04`).
+2. **A few big tags hold most of the questions.** 1,162 tags (2.7%) have ≥ 385 questions and hold 76% of all
+   question–tag links; ≥ 100 keeps 3,442 tags and 87%. For pairs, ≥ 385 keeps 1,026 pairs and 27% of pair links;
+   ≥ 100 keeps 5,046 pairs and 42% (`03`, `04`).
 3. **Unfiltered rankings are pure noise.** The top 10 and bottom 10 tags by raw accepted rate all have 1–2 questions
    (rates of exactly 100% and 0%).
 4. **Tags really do differ.** In the funnel plot (`05_tag_funnel.png`), 82% of tags with ≥ 2,000 questions fall
    outside the 99.8% limits around the pooled rate (30.2%); about 0.2% would if all tags shared one rate. Below 30
    questions, only 6.7% fall outside the 95% limits (about 5% expected by chance): at that size, signal and noise
    can't be told apart.
-5. **With a 500-question floor, the method barely matters.** Top 10 by raw rate vs Wilson lower bound: 9 of 10 tags
-   in common; raw vs empirical Bayes: 10 of 10. Without a floor, Wilson and empirical Bayes both produce sensible
-   lists that include mid-size tags (e.g. `google-query-language`, 277 questions, 90% accepted). The fitted
-   empirical-Bayes prior is weak (18 "virtual questions"), because real differences between tags are large.
+5. **With a floor, the method barely matters.** At ≥ 385 questions, the raw-rate (A) and empirical-Bayes (C) top and
+   bottom 10 tags share 9–10 of 10 with the Wilson lists; for pairs, 9–10 at the top and 8 at the bottom. The
+   fitted empirical-Bayes prior is weak (18 "virtual questions"), because real differences between tags are large.
 
-Decision: pending — see `specs/001`.
+**Decision (D1, `specs/001`):** rank tags and pairs with ≥ 385 questions (±5 pt worst-case margin of error), by the
+Wilson lower bound for "highest" and the upper bound for "lowest"; methods A and C are robustness checks.
+`output/summary.md` shows the resulting 2022 lists for accepted rate.
