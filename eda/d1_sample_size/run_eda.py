@@ -61,7 +61,8 @@ def query(client, name, year, refresh, **int_params):
     """Run sql/<name>.sql with @year (and any extra INT64 params), caching the result as a CSV."""
     path = OUT_DIR / f"{name}_{year}.csv"
     if path.exists() and not refresh:
-        return pd.read_csv(path)
+        # keep_default_na=False: "null", "nan" and "na" are real tags, not missing values.
+        return pd.read_csv(path, keep_default_na=False)
 
     sql = (SQL_DIR / f"{name}.sql").read_text(encoding="utf-8")
     params = [bigquery.ScalarQueryParameter("year", "INT64", year)]

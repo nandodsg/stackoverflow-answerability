@@ -16,7 +16,11 @@ Status: **draft**
 
 - **Question-to-answer ratio** = questions / answers (literal reading). Answers per question shown alongside, since it
   reads more naturally. YoY change as absolute and relative difference.
-- **Accepted rate** per cohort year, YoY change in percentage points.
+- **Accepted rate** (out of all questions, see `000`, D2) per cohort year, YoY change in percentage points. Answer
+  rate and accepted rate among answered shown beside it: they split a change into "fewer questions answered" vs
+  "askers accepting less". 2022 EDA ([`eda/d2_denominator`](../eda/d2_denominator/README.md)): python-only accepted
+  rate falls 43% → 35% from 2021 to 2022, but accepted among answered only 51% → 48%; most of the drop is 2022
+  questions not yet answered when the data stops (censoring), which the narrative must say.
 
 ## The dbt problem (state it, don't hide it)
 

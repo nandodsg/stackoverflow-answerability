@@ -7,7 +7,10 @@ Status: **draft**
 
 ## Outcomes
 
-Answer rate and accepted rate (see `000`), ideally within a fixed window to limit censoring.
+Answer rate and accepted rate (out of all questions, see `000`, D2), ideally within a fixed window to limit censoring.
+Accepted rate among answered is reported beside them, so each feature's link to acceptance can be split into "helps
+the question get answered" and "helps the asker accept". It is never the only outcome: it looks at answered questions
+only, so a quality that helps a question get answered at all cannot show up in it.
 
 ## Candidate features (known at posting time)
 

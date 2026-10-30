@@ -1,6 +1,6 @@
 # 001 — Tag answerability (prompt 1)
 
-Status: **draft** — ranking rules (D1) decided
+Status: **draft** — ranking rules (D1) and accepted-rate denominator (D2) decided
 
 > What tags on a Stack Overflow question lead to the most answers and the highest rate of approved answers for the
 > current year? What tags lead to the least? How about combinations of tags?
@@ -13,7 +13,11 @@ Status: **draft** — ranking rules (D1) decided
 ## Metrics
 
 - **Most answers**: answers per question (primary) — total answers is mostly a volume effect, shown for context only.
-- **Approved answers**: accepted rate (see `000`).
+- **Approved answers**: accepted rate out of all questions (see `000`, D2). Answer rate and accepted rate among
+  answered are shown as columns beside it, so each row reads as "few people answer" or "askers rarely accept". 2022
+  EDA ([`eda/d2_denominator`](../eda/d2_denominator/README.md)): the lowest tags by accepted rate are mostly rarely
+  answered (magento2: 41% answered × 21% accepted among answered = 9%), while some tags are answered about half the
+  time but rarely accepted (installation, salesforce).
 - Censoring: 2022 questions created after ~2022-08-25 had < 30 days to collect answers. Report the plain metric and a
   30-day-window version on the cohort that had the full window.
 
@@ -38,7 +42,8 @@ accepted rate all have 1–2 questions (rates of exactly 100% and 0%).
     measured.
   - "Lowest" lists sort by the **upper** bound, ascending: a tag ranks low only if its rate is low and well measured.
   - Every row shows n, the raw rate and both bounds; the bound is the sort key, not the reported rate.
-  - Applies to answer rate and accepted rate. Answers per question is a mean, not a proportion, so Wilson does not
+  - Applies to answer rate and accepted rate, each with its n = questions. Accepted rate among answered is shown, not
+    ranked. Answers per question is a mean, not a proportion, so Wilson does not
     apply: same floor, sorted by mean − 1.96·SE (highest) / mean + 1.96·SE (lowest). *Proposed, to confirm.*
 - **Robustness checks** (reported in one line each; a disagreement is listed, not hidden):
   - Method A — raw rate with the same floor.
@@ -64,3 +69,4 @@ accepted rate all have 1–2 questions (rates of exactly 100% and 0%).
 - AC-1.6 "Highest" lists sort by the Wilson lower bound and "lowest" lists by the upper bound.
 - AC-1.7 Raw-rate (A) and empirical-Bayes (C) rankings produced with the same floor; overlap with the Wilson top and
   bottom 10 is reported.
+- AC-1.8 Every accepted-rate row also shows answer rate and accepted rate among answered (AC-0.5 holds per row).
