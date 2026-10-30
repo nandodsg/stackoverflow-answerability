@@ -53,6 +53,10 @@ per answer is the inverted interval (1 / upper, 1 / lower).
   within 30 days) need the answer's `creation_date`. The acceptance *time* is not in the data, only which answer was
   accepted; the accepted answer's creation date is a proxy.
 - **Current-state attributes**: `users.reputation`, `score`, `view_count` reflect the snapshot date, not posting time.
+- **Survivorship**: deleted questions are absent. Stack Overflow deletes inactive questions automatically, mainly
+  unanswered, low-score ones ([help/deleted-questions](https://stackoverflow.com/help/deleted-questions)), and askers
+  cannot delete a question with an accepted or upvoted answer. So answer and accepted rates are biased upward, more for
+  older cohorts, which have had longer to be cleaned up; the P2 trend narrative states this.
 - **Edited questions (D4)**: `posts_questions` keeps only the latest title, body and tags; 45% of 2022 questions were
   edited (13.5% tags, 40% title/body; 9% had their title/body first edited after the first answer). Edited questions do
   better (2022 accepted rate 34% vs 28% never edited), so filtering to never-edited questions is biased and is used

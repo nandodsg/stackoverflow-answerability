@@ -34,8 +34,8 @@ Out of scope unless time remains (Tier 3): CI, storytelling site (Evidence / Tab
 
 | Day | Milestone |
 |---|---|
-| Thu 10-29 | Repo, plan, spec drafts |
-| Fri 10-30 | dbt env, sources + staging, data profile (`specs/000`), first tests |
+| Thu 10-29 | Repo, plan, spec drafts; spec decision D1 with its EDA |
+| Fri 10-30 | Spec decisions D2–D4 with EDA (done); leakage KPI definition; then dbt env, sources + staging, data profile (`specs/000`), first tests |
 | Sat 10-31 | Q1 + Q2 marts, tests, numbers |
 | Sun 11-01 | Q3 features + semantic layer |
 | Mon 11-02 | README narrative, compiled `queries/`, self-review |

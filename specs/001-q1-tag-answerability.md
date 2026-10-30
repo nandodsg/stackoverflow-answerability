@@ -14,6 +14,8 @@ Status: **draft** — ranking rules (D1) and accepted-rate denominator (D2) deci
 ## Metrics
 
 - **Most answers**: answers per question (primary) — total answers is mostly a volume effect, shown for context only.
+- **Baseline for the README**: the 2022 accepted rate over questions is 30.5%; the 30.2% in the D1 EDA is over
+  question–tag links (a question with 3 tags counts 3 times). The README quotes 30.5%.
 - **Approved answers**: accepted rate out of all questions (see `000`, D2). Answer rate and accepted rate among
   answered are shown as columns beside it, so each row reads as "few people answer" or "askers rarely accept". 2022
   EDA ([`eda/d2_denominator`](../eda/d2_denominator/README.md)): the lowest tags by accepted rate are mostly rarely
