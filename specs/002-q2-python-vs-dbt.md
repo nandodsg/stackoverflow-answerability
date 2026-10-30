@@ -14,8 +14,17 @@ Status: **draft**
 
 ## Metrics
 
-- **Question-to-answer ratio** = questions / answers (literal reading). Answers per question shown alongside, since it
-  reads more naturally. YoY change as absolute and relative difference.
+- **Question-to-answer ratio (D3)**: shown as **answers per question** (see `000`), with a 95% interval
+  (mean ± 1.96 × SE). The literal questions per answer is shown once, with the sentence "Q÷A = 1 / this" in the
+  README and the presentation, and is never charted.
+  - Why: higher = more answers reads naturally; it is the same metric as P1's "most answers", so one definition serves
+    both prompts; and it splits like accepted rate does (answer rate × answers per answered question).
+  - YoY change: absolute difference (e.g. −0.26 answers per question) as the main number, relative difference beside
+    it. Relative changes do not flip cleanly under inversion (python 2021 → 2022: −17% here, +21% as questions per
+    answer), so the README states which one it uses.
+  - 2022 EDA ([`eda/d3_ratio`](../eda/d3_ratio/README.md)): python-only falls 2.31 → 1.52 → 1.26 answers per question
+    (2013 / 2021 / 2022); about ¾ of the 2022 drop comes from the lower answer rate (questions not answered yet when
+    the data stops). dbt-only: 1.39 / 1.14 / 1.06 (2020–2022), intervals overlapping year to year.
 - **Accepted rate** (out of all questions, see `000`, D2) per cohort year, YoY change in percentage points. Answer
   rate and accepted rate among answered shown beside it: they split a change into "fewer questions answered" vs
   "askers accepting less". 2022 EDA ([`eda/d2_denominator`](../eda/d2_denominator/README.md)): python-only accepted
@@ -35,3 +44,5 @@ Status: **draft**
 - AC-2.2 One row per (tag, year) for 2013–2022; years with zero dbt questions shown as zero / not applicable, not dropped.
 - AC-2.3 Every dbt rate is shown with n and an interval.
 - AC-2.4 2022 marked partial in output.
+- AC-2.5 Answers per question is the charted ratio; questions per answer appears once with "Q÷A = 1 / this"; each YoY
+  change states whether it is absolute or relative.

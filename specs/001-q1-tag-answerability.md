@@ -44,7 +44,8 @@ accepted rate all have 1–2 questions (rates of exactly 100% and 0%).
   - Every row shows n, the raw rate and both bounds; the bound is the sort key, not the reported rate.
   - Applies to answer rate and accepted rate, each with its n = questions. Accepted rate among answered is shown, not
     ranked. Answers per question is a mean, not a proportion, so Wilson does not
-    apply: same floor, sorted by mean − 1.96·SE (highest) / mean + 1.96·SE (lowest). *Proposed, to confirm.*
+    apply: its interval is mean ± 1.96 × SE (decided with D3, see `000`). Ranking: same floor, sorted by the lower
+    bound (highest) / upper bound (lowest). *Ranking part proposed, to confirm.*
 - **Robustness checks** (reported in one line each; a disagreement is listed, not hidden):
   - Method A — raw rate with the same floor.
   - Method C — empirical-Bayes rate, `(k + m·p₀) / (n + m)`, with m fitted by method of moments on tags with ≥ 30

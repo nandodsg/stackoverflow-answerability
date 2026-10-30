@@ -18,7 +18,9 @@ question created 2022-09-25 05:56 UTC.
 | Answer rate | answered questions / questions | |
 | Accepted rate | questions with an accepted answer / questions | The headline and ranking metric (D2). Denominator = **all** questions, the literal reading of "rate of approved answers on questions" |
 | Accepted rate among answered | questions with an accepted answer / answered questions | Shown beside accepted rate, never ranked (D2) |
-| Answers per question | answers / questions | |
+| Answers per question | total answers / total questions, for the group | The headline for "question-to-answer ratio" (P2, D3) and for "most answers" (P1). A ratio of the group's totals, never an average of per-question ratios (undefined for unanswered questions). Null only when the group has 0 questions |
+| Questions per answer | total questions / total answers = 1 / answers per question | The literal reading of P2's "question-to-answer ratio". Shown once, with the sentence "Q÷A = 1 / this", never charted (D3). Null when the group has 0 answers |
+| Tag set | `tags` split on `\|` | Questions only; answers carry no tags |
 
 **How the three rates fit together (D2).** A question goes through two steps: someone answers it (or not), then the
 asker accepts an answer (or not). So **accepted rate = answer rate × accepted rate among answered**. Example: 100
@@ -26,7 +28,15 @@ questions, 60 answered, 30 accepted → 30% = 60% × 50%. Every table that shows
 so a reader can tell "few people answer" apart from "askers rarely accept". Accepted rate among answered is not
 ranked: its n is the number of answered questions, so ranking it would need its own floor, and that floor would
 drop exactly the tags that are hardest to get answered (see `001`).
-| Tag set | `tags` split on `|` | Questions only; answers carry no tags |
+
+**Answers per question splits the same way (D3).** **Answers per question = answer rate × answers per answered
+question.** Example: 100 questions, 60 answered, 150 answers → 1.5 = 60% × 2.5. A change in answers per question can
+then be read as "fewer questions answered" vs "fewer answers on each answered question". It uses all questions as the
+denominator, like accepted rate (D2).
+
+**Uncertainty of answers per question (D3).** It is an average of `answer_count`, so its 95% interval is
+mean ± 1.96 × SE, with SE = SD / √n and the SD measured from the questions in the group. The interval for questions
+per answer is the inverted interval (1 / upper, 1 / lower).
 
 ## Data quality checks to run first (profile → tests)
 
@@ -52,3 +62,5 @@ drop exactly the tags that are hardest to get answered (see `001`).
 - AC-0.4 The `answer_count` vs joined-answers gap is measured and documented; it does not silently change a result.
 - AC-0.5 On every row that shows the three rates, accepted rate = answer rate × accepted rate among answered (to
   rounding), and accepted rate among answered is null when no question was answered.
+- AC-0.6 Answers per question is computed as total answers / total questions per group; questions per answer equals
+  its inverse (unit test); answers per question = answer rate × answers per answered question per row (to rounding).
