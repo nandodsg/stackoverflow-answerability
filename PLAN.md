@@ -15,7 +15,7 @@ scope, schedule and decisions.
 | Piece | What | Serves |
 |---|---|---|
 | Specs | `specs/00N-*.md`: definitions, grain, assumptions, acceptance criteria — written before SQL | all prompts |
-| dbt project | `dbt-bigquery`; public dataset as sources; staging → intermediate → marts in project `so-answerability` | all prompts |
+| dbt project | `dbt-bigquery`; public dataset as sources; staging → intermediate → marts in project `so-answerability`. A clone sets one env var for its own GCP project (tracked `profiles.example.yml`); the one-time `post_history` text-scan model is tagged and left out of default builds | all prompts |
 | Testing strategy | `TESTING.md` + generic, unit, singular/reconciliation tests, source freshness, model contracts; each acceptance criterion maps to a test | data quality grading criterion |
 | Semantic layer | MetricFlow semantic models + metrics defined once; README numbers reproduced with `mf query` | metric consistency across prompts |
 | Executable queries | `queries/q1.sql`, `q2.sql`, `q3.sql`: compiled, commented, run as-is in the BigQuery console (no dbt needed) | submission item 3 |
@@ -36,7 +36,7 @@ Out of scope unless time remains (Tier 3): CI, storytelling site (Evidence / Tab
 |---|---|
 | Thu 10-29 | Repo, plan, spec drafts; spec decision D1 with its EDA |
 | Fri 10-30 | Spec decisions D2–D4 with EDA and the leakage KPI definition (done); then dbt env, sources + staging, data profile (`specs/000`), first tests |
-| Sat 10-31 | Q1 + Q2 marts, tests, numbers |
+| Sat 10-31 | One-time `post_history` text scan (original tags and text, needed by the leakage checks); Q1 + Q2 marts, tests, numbers |
 | Sun 11-01 | Q3 features + semantic layer |
 | Mon 11-02 | README narrative, compiled `queries/`, self-review (incl. `AGENTS.md` / `CLAUDE.md`, tested from a clean clone) |
 | Tue 11-03 | Freeze, make the repo public, email the link |
