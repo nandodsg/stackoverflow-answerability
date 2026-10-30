@@ -23,6 +23,10 @@ _TBD — spec: [`specs/002`](specs/002-q2-python-vs-dbt.md)_
 
 _TBD — spec: [`specs/003`](specs/003-q3-post-qualities.md)_
 
+## How this was built
+
+_TBD — spec-first, with an AI coding agent; decisions in [`PLAN.md`](PLAN.md)._
+
 ## How this repo is organized
 
 - `specs/` — definitions and acceptance criteria, written before the SQL
