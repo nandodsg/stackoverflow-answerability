@@ -43,3 +43,81 @@ Questions counted as edited by post_history minus those with a last_edit_date, s
 | python-only | 2020 | 16,256 | 0.853 | 0.902 | 0.457 | 0.454 | 0.455 |
 | python-only | 2021 | 15,811 | 0.816 | 0.875 | 0.427 | 0.433 | 0.430 |
 | python-only | 2022 | 12,809 | 0.682 | 0.784 | 0.344 | 0.364 | 0.354 |
+
+## Leakage exposure by tag (2022, 1,162 tags with ≥ 385 questions)
+
+"Exposed" = the first edit of that kind came after the first answer. Pooled over question–tag links: tags 0.050, text 0.095.
+
+| quantile | share_tag_exposed | share_text_exposed |
+|---|---|---|
+| p0 | 0.002 | 0.012 |
+| p10 | 0.015 | 0.042 |
+| p25 | 0.023 | 0.056 |
+| p50 | 0.037 | 0.076 |
+| p75 | 0.059 | 0.107 |
+| p90 | 0.101 | 0.137 |
+| p100 | 0.624 | 0.440 |
+
+Highest tag exposure:
+
+| tag | n_questions | share_tag_exposed | share_text_exposed |
+|---|---|---|---|
+| webdriverwait | 386 | 0.624 | 0.440 |
+| java-stream | 820 | 0.371 | 0.316 |
+| mod-rewrite | 579 | 0.345 | 0.245 |
+| hook-woocommerce | 448 | 0.328 | 0.308 |
+| office-addins | 617 | 0.319 | 0.071 |
+| css-selectors | 904 | 0.316 | 0.277 |
+| outlook | 1,473 | 0.312 | 0.141 |
+| vlookup | 444 | 0.311 | 0.128 |
+| prolog | 496 | 0.266 | 0.139 |
+| web3js | 640 | 0.264 | 0.153 |
+
+Lowest tag exposure:
+
+| tag | n_questions | share_tag_exposed | share_text_exposed |
+|---|---|---|---|
+| flutter-test | 530 | 0.006 | 0.068 |
+| kibana | 711 | 0.006 | 0.037 |
+| ckeditor | 414 | 0.005 | 0.012 |
+| bluetooth-lowenergy | 639 | 0.005 | 0.028 |
+| cloudflare | 428 | 0.005 | 0.037 |
+| jira | 441 | 0.005 | 0.025 |
+| passport.js | 471 | 0.004 | 0.038 |
+| appium | 588 | 0.003 | 0.032 |
+| cordova | 703 | 0.003 | 0.034 |
+| tableau-desktop | 404 | 0.002 | 0.032 |
+
+## Leakage exposure vs the P1 accepted-rate ranking (2022, D1 rule)
+
+Accepted rates from the D1 EDA (`../d1_sample_size/output/tag_stats_2022.csv`), ranked by the Wilson bound. Rank correlation with accepted rate: tag exposure 0.67, tag exposure among answered questions 0.49 (unanswered questions cannot be edited after an answer), text exposure 0.83.
+
+Top 10 by accepted rate (Wilson lower bound):
+
+| tag | n_questions | answer_rate | accepted_rate | share_tag_exposed | share_text_exposed |
+|---|---|---|---|---|---|
+| jq | 824 | 0.973 | 0.676 | 0.192 | 0.217 |
+| awk | 1,266 | 0.953 | 0.660 | 0.145 | 0.212 |
+| data.table | 696 | 0.875 | 0.665 | 0.096 | 0.188 |
+| dplyr | 4,093 | 0.898 | 0.642 | 0.103 | 0.182 |
+| tidyr | 412 | 0.876 | 0.665 | 0.146 | 0.184 |
+| tidyverse | 1,409 | 0.851 | 0.617 | 0.069 | 0.153 |
+| pandas-groupby | 997 | 0.850 | 0.621 | 0.168 | 0.234 |
+| data-manipulation | 476 | 0.855 | 0.634 | 0.130 | 0.158 |
+| sed | 1,085 | 0.936 | 0.618 | 0.164 | 0.229 |
+| regex | 7,394 | 0.874 | 0.585 | 0.112 | 0.169 |
+
+Bottom 10 by accepted rate (Wilson upper bound):
+
+| tag | n_questions | answer_rate | accepted_rate | share_tag_exposed | share_text_exposed |
+|---|---|---|---|---|---|
+| magento2 | 488 | 0.412 | 0.086 | 0.006 | 0.018 |
+| appium | 588 | 0.405 | 0.095 | 0.003 | 0.032 |
+| facebook | 962 | 0.272 | 0.102 | 0.007 | 0.029 |
+| ckeditor | 414 | 0.278 | 0.094 | 0.005 | 0.012 |
+| elementor | 557 | 0.472 | 0.101 | 0.016 | 0.056 |
+| facebook-graph-api | 548 | 0.268 | 0.104 | 0.013 | 0.026 |
+| cpanel | 422 | 0.372 | 0.102 | 0.026 | 0.047 |
+| usb | 387 | 0.357 | 0.103 | 0.018 | 0.031 |
+| object-detection | 618 | 0.366 | 0.112 | 0.031 | 0.040 |
+| tableau-desktop | 404 | 0.428 | 0.109 | 0.002 | 0.032 |

@@ -41,6 +41,9 @@ after the fact", never as a quality of the post.
 - Optional: logistic regression (BigQuery ML) to see effects net of each other. Correlation language only.
 - Sensitivity (D4): each feature's effect is also computed from the current text and on two subsets, never-edited
   questions and questions not edited after their first answer; a finding that changes direction is labeled.
+- Leakage KPI (see `000`): text exposure (title/body first edited after the first answer) per year, and for each
+  feature the share of questions whose value differs between the original and current text (e.g. "has code block").
+  It shows how much reading the current text would have misled.
 
 ## Acceptance criteria
 
@@ -50,3 +53,5 @@ after the fact", never as a quality of the post.
 - AC-3.4 Title/body features are computed from the original version in `post_history`; the `post_history` text is
   scanned once into a feature table, and its scan size is stated in the README.
 - AC-3.5 Each effect is also reported on current text, never-edited and not-edited-after-first-answer subsets.
+- AC-3.6 Text exposure and, per feature, the share of questions whose value changed between original and current text
+  are reported; a direction change raises an AC-0.10 warning.

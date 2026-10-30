@@ -57,6 +57,25 @@ def add_shares(df):
     return df
 
 
+def wilson(k, n, z=1.96):
+    """95% Wilson score interval for k successes out of n (same rule as D1)."""
+    p = k / n
+    center = p + z * z / (2 * n)
+    half = z * np.sqrt(p * (1 - p) / n + z * z / (4 * n * n))
+    return (center - half) / (1 + z * z / n), (center + half) / (1 + z * z / n)
+
+
+def rank_with_exposure(tags):
+    """2022 tag rates from the D1 EDA joined to the leakage exposure, with the Wilson bounds D1 ranks by."""
+    stats = pd.read_csv(HERE.parent / "d1_sample_size" / "output" / "tag_stats_2022.csv", keep_default_na=False)
+    df = stats.merge(tags, on=["tag", "n_questions"])
+    df["answer_rate"] = df["n_answered"] / df["n_questions"]
+    df["accepted_rate"] = df["n_accepted"] / df["n_questions"]
+    df["share_tag_exposed_answered"] = df["n_tag_exposed"] / df["n_answered"]
+    df["wilson_lower"], df["wilson_upper"] = wilson(df["n_accepted"], df["n_questions"])
+    return df
+
+
 # --- Markdown ------------------------------------------------------------------------------------------------
 
 def fmt(value):
@@ -103,6 +122,37 @@ def main():
             "answer_rate_never_edited", "answer_rate_edited",
             "accepted_rate_never_edited", "accepted_rate_edited", "accepted_rate_all",
         ]]),
+    ]
+
+    tags = query(client, "leakage_by_tag", args.refresh)
+    for kind in ["tag", "text"]:
+        tags[f"share_{kind}_exposed"] = tags[f"n_{kind}_exposed"] / tags["n_questions"]
+    quantiles = tags[["share_tag_exposed", "share_text_exposed"]].quantile([0, 0.1, 0.25, 0.5, 0.75, 0.9, 1])
+    quantiles.index = [f"p{round(q * 100)}" for q in quantiles.index]
+    pooled = tags[["n_tag_exposed", "n_text_exposed"]].sum() / tags["n_questions"].sum()
+    by_tag = tags.sort_values("share_tag_exposed", ascending=False)
+    ranked = rank_with_exposure(tags)
+    rank_corr = lambda a, b: ranked[a].rank().corr(ranked[b].rank())
+    ranked_cols = ["tag", "n_questions", "answer_rate", "accepted_rate", "share_tag_exposed", "share_text_exposed"]
+    summary += [
+        f"## Leakage exposure by tag (2022, {len(tags):,} tags with ≥ 385 questions)",
+        "\"Exposed\" = the first edit of that kind came after the first answer. Pooled over question–tag links: "
+        f"tags {pooled['n_tag_exposed']:.3f}, text {pooled['n_text_exposed']:.3f}.",
+        md_table(quantiles.reset_index().rename(columns={"index": "quantile"})),
+        "Highest tag exposure:",
+        md_table(by_tag.head(10)[["tag", "n_questions", "share_tag_exposed", "share_text_exposed"]]),
+        "Lowest tag exposure:",
+        md_table(by_tag.tail(10)[["tag", "n_questions", "share_tag_exposed", "share_text_exposed"]]),
+        "## Leakage exposure vs the P1 accepted-rate ranking (2022, D1 rule)",
+        "Accepted rates from the D1 EDA (`../d1_sample_size/output/tag_stats_2022.csv`), ranked by the Wilson bound. "
+        "Rank correlation with accepted rate: tag exposure "
+        f"{rank_corr('share_tag_exposed', 'accepted_rate'):.2f}, tag exposure among answered questions "
+        f"{rank_corr('share_tag_exposed_answered', 'accepted_rate'):.2f} (unanswered questions cannot be edited after "
+        f"an answer), text exposure {rank_corr('share_text_exposed', 'accepted_rate'):.2f}.",
+        "Top 10 by accepted rate (Wilson lower bound):",
+        md_table(ranked.sort_values("wilson_lower", ascending=False).head(10)[ranked_cols]),
+        "Bottom 10 by accepted rate (Wilson upper bound):",
+        md_table(ranked.sort_values("wilson_upper").head(10)[ranked_cols]),
     ]
     (OUT_DIR / "summary.md").write_text("\n\n".join(summary) + "\n", encoding="utf-8")
     print(f"wrote {OUT_DIR / 'summary.md'}")

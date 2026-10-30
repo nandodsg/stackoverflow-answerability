@@ -63,10 +63,45 @@ per answer is the inverted interval (1 / upper, 1 / lower).
   only as a robustness check. `post_history` keeps every version (types 1/2/3 = original title/body/tags); reading its
   text scans ~110 GB once. Rules: P1/P2 use current tags (the prompt's "are tagged"), with a check that drops
   tag-edited questions; P3 features come from the original title/body. EDA: [`eda/d4_edits`](../eda/d4_edits/README.md).
-- **Leakage KPI (D4)**: share of questions whose title/body (or tags) were first edited after the first answer, per
-  creation year, plus the share whose P3 features differ between the original and current version. Defined once in
-  the semantic layer and tracked beside the answers, so the size of the problem is visible, not just described.
-  *Exact definition and thresholds to detail with Nando.*
+- **Leakage**: an edit made after a question was answered can be caused by the answer, so a tag or a text feature
+  read from the current version may be an effect of the outcome rather than a quality of the question. Measured by
+  the leakage KPI below.
+
+## Leakage KPI (D4)
+
+Tracked beside the answers so the size of the edit problem is visible, not just described. Two layers:
+
+**Exposure** (every row of every result table). Share of the group's questions whose relevant field was first edited
+after the question's first answer:
+
+| Prompt | Relevant field | `post_history` types |
+|---|---|---|
+| P1, P2 | tags (group membership) | 6, 9 (tags edited, rolled back) |
+| P3 | title or body (features) | 4, 5, 7, 8 (title/body edited, rolled back) |
+
+- Reference event: the **first answer's** `creation_date`, the earliest moment an answer can influence an edit. The
+  acceptance time is not in the data (see right-censoring).
+- Any editor counts, the asker included: an asker adding "EDIT: solved" after an answer is leakage too.
+- Denominator: all questions in the group, like every rate here (D2). An unanswered question cannot be exposed, so
+  exposure is partly tied to answer rate; the README says so.
+- Exposure on current tags misses questions that **left** a group after the answer (e.g. posted as `python`,
+  retagged `python|pandas`), which is why the impact layer uses the original tags.
+
+**Impact** (one check per prompt). The headline recomputed on the original version from `post_history` (type 3 for
+tags, types 1/2 for title/body, read in the same one-time text scan as AC-3.4) and compared with the current version.
+Thresholds are dbt tests with `severity: warn`: they print a warning in `dbt build` without failing it, and every
+warning is reported in the README.
+
+| Prompt | Impact check | Threshold (warn) |
+|---|---|---|
+| P1 | rankings on original vs current tags | any tag or pair entering or leaving a top / bottom 10; any ranked row whose accepted rate moves > 2.5 points (half the ±5-point precision target behind the D1 floor) |
+| P2 | answers per question and accepted rate per year, original vs current tags | the YoY change switches direction, or moves by more than the half-width of its 95% interval (D3) |
+| P3 | each feature's effect, original vs current text; share of questions whose feature value differs between the two | the effect changes direction (labeled "leakage-sensitive", AC-3.5) |
+
+2022 EDA ([`eda/d4_edits`](../eda/d4_edits/README.md)): tag exposure is 3.7% for the median ranked tag but rises with
+accepted rate (rank correlation 0.67; 0.49 among answered questions). 8 of the 2022 top 10 tags by accepted rate are
+above 10% (jq 19%), the whole bottom 10 below 3%, and `webdriverwait` reaches 62% (a tag answerers add). The leakage
+sits where P1's headline is, so the impact check matters most there.
 
 ## Acceptance criteria
 
@@ -80,4 +115,10 @@ per answer is the inverted interval (1 / upper, 1 / lower).
   its inverse (unit test); answers per question = answer rate × answers per answered question per row (to rounding).
 - AC-0.7 `last_edit_date IS NULL` agrees with "no title/body/tag edit in `post_history`" (2022 EDA: 32 differences out
   of ~638K edited questions); the difference is reported.
-- AC-0.8 The leakage KPI is produced per creation year for every population used in P1–P3.
+- AC-0.8 Leakage exposure is produced per creation year for every population used in P1–P3 and shown on every result
+  row, with all questions in the group as denominator.
+- AC-0.9 Exposure counts an edit only when its `post_history` type matches the prompt's field and its time is after
+  the first answer (unit test: an edit before the first answer, a tag edit for P3, and a never-answered question are
+  not exposed; a rollback after the first answer is).
+- AC-0.10 Each impact check of P1–P3 runs as a `severity: warn` dbt test with the thresholds above, and every warning
+  is listed in the README.

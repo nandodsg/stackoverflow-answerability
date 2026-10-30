@@ -10,6 +10,10 @@ Status: **draft** — ranking rules (D1) and accepted-rate denominator (D2) deci
 - **"Current year" = 2022**, the latest year in the snapshot (2022-01-01 → 2022-09-25). The README states this up front.
 - Robustness check: the same ranking on full-year 2021. A tag whose rank flips between the two is flagged.
 - **Current tags** (D4, see `000`): 13.5% of 2022 questions had a tag edit; a robustness view drops them.
+- **Leakage KPI** (see `000`): every ranked row shows its tag exposure (share of questions whose tags were first
+  edited after the first answer). Impact check: the rankings are recomputed on the original tags; a tag or pair that
+  enters or leaves a top / bottom 10, or a row whose accepted rate moves > 2.5 points, is listed. This matters most
+  here: in 2022, 8 of the top 10 tags by accepted rate have > 10% exposure (median ranked tag: 3.7%).
 
 ## Metrics
 
@@ -74,3 +78,5 @@ accepted rate all have 1–2 questions (rates of exactly 100% and 0%).
 - AC-1.7 Raw-rate (A) and empirical-Bayes (C) rankings produced with the same floor; overlap with the Wilson top and
   bottom 10 is reported.
 - AC-1.8 Every accepted-rate row also shows answer rate and accepted rate among answered (AC-0.5 holds per row).
+- AC-1.9 Every ranked row shows its tag exposure; the original-tags ranking is produced and its warnings (AC-0.10)
+  are listed in the README.

@@ -13,6 +13,10 @@ Status: **draft**
 - Cohort by **question creation year**; answers are attributed to their question's year.
 - **Current tags** (D4, see `000`): "posts which are tagged" is read as the tags today. 6–9% of python-only questions
   had a tag edit (dbt-only: 1 in 2020–2022); a robustness view drops tag-edited questions.
+- **Leakage KPI** (see `000`): each (tag, year) row shows its tag exposure (python-only 3.8–5.1% per year). Impact
+  check: the populations rebuilt from the original tags, which also catches questions that left them after an answer
+  (posted as `python`, retagged `python|pandas`); a YoY change that switches direction or moves by more than its
+  interval half-width is flagged.
 
 ## Metrics
 
@@ -48,3 +52,5 @@ Status: **draft**
 - AC-2.4 2022 marked partial in output.
 - AC-2.5 Answers per question is the charted ratio; questions per answer appears once with "Q÷A = 1 / this"; each YoY
   change states whether it is absolute or relative.
+- AC-2.6 Every row shows its tag exposure; the original-tags populations are produced and their warnings (AC-0.10) are
+  listed in the README.
