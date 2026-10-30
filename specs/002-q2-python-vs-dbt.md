@@ -11,6 +11,8 @@ Status: **draft**
 - **Only `python`**: `tags = 'python'` exactly. **Only `dbt`**: `tags = 'dbt'` exactly. Read literally: one tag, no others.
 - **Last 10 years**: 2013 → 2022 (2022 partial, ends 09-25; flagged in every chart and table).
 - Cohort by **question creation year**; answers are attributed to their question's year.
+- **Current tags** (D4, see `000`): "posts which are tagged" is read as the tags today. 6–9% of python-only questions
+  had a tag edit (dbt-only: 1 in 2020–2022); a robustness view drops tag-edited questions.
 
 ## Metrics
 

@@ -14,11 +14,15 @@ only, so a quality that helps a question get answered at all cannot show up in i
 
 ## Candidate features (known at posting time)
 
+Title and body features come from the **original** version in `post_history` (types 1 and 2), not from the edited
+text in `posts_questions` (D4, see `000`): 40% of 2022 questions had title/body edits and 9% were first edited after
+the first answer, so features measured on the current text can be caused by the answer.
+
 | Feature | From | Leakage risk |
 |---|---|---|
-| Title length, title ends with "?" | `title` | none |
-| Body length, has code block, has image, link count | `body` (scanned once, then dropped) | none |
-| Number of tags | `tags` | none |
+| Title length, title ends with "?" | original `title` (`post_history` type 1) | low once original text is used; current text would leak (edits after answers) |
+| Body length, has code block, has image, link count | original `body` (`post_history` type 2, scanned once into a feature table, then dropped) | low once original text is used; current text would leak |
+| Number of tags | original tags (`post_history` type 3) | low; current tags change after posting (13.5% of 2022 questions) |
 | Hour of day / day of week posted (UTC) | `creation_date` | none |
 | Asker's account age at posting | `users.creation_date` | none |
 | Asker's prior questions count | history of `posts_questions` | none |
@@ -35,9 +39,14 @@ after the fact", never as a quality of the post.
 - Control for era and topic: compare within year cohorts and within large tags, so "code blocks help" is not just
   "Python questions have code".
 - Optional: logistic regression (BigQuery ML) to see effects net of each other. Correlation language only.
+- Sensitivity (D4): each feature's effect is also computed from the current text and on two subsets, never-edited
+  questions and questions not edited after their first answer; a finding that changes direction is labeled.
 
 ## Acceptance criteria
 
 - AC-3.1 Every feature is computable from data available at posting time.
 - AC-3.2 `body` is scanned once into a feature table; no downstream model reads `body`.
 - AC-3.3 Each reported effect holds (same direction) in at least two year cohorts, or is labeled unstable.
+- AC-3.4 Title/body features are computed from the original version in `post_history`; the `post_history` text is
+  scanned once into a feature table, and its scan size is stated in the README.
+- AC-3.5 Each effect is also reported on current text, never-edited and not-edited-after-first-answer subsets.

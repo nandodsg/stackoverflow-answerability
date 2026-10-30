@@ -9,6 +9,7 @@ Status: **draft** — ranking rules (D1) and accepted-rate denominator (D2) deci
 
 - **"Current year" = 2022**, the latest year in the snapshot (2022-01-01 → 2022-09-25). The README states this up front.
 - Robustness check: the same ranking on full-year 2021. A tag whose rank flips between the two is flagged.
+- **Current tags** (D4, see `000`): 13.5% of 2022 questions had a tag edit; a robustness view drops them.
 
 ## Metrics
 

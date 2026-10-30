@@ -53,6 +53,16 @@ per answer is the inverted interval (1 / upper, 1 / lower).
   within 30 days) need the answer's `creation_date`. The acceptance *time* is not in the data, only which answer was
   accepted; the accepted answer's creation date is a proxy.
 - **Current-state attributes**: `users.reputation`, `score`, `view_count` reflect the snapshot date, not posting time.
+- **Edited questions (D4)**: `posts_questions` keeps only the latest title, body and tags; 45% of 2022 questions were
+  edited (13.5% tags, 40% title/body; 9% had their title/body first edited after the first answer). Edited questions do
+  better (2022 accepted rate 34% vs 28% never edited), so filtering to never-edited questions is biased and is used
+  only as a robustness check. `post_history` keeps every version (types 1/2/3 = original title/body/tags); reading its
+  text scans ~110 GB once. Rules: P1/P2 use current tags (the prompt's "are tagged"), with a check that drops
+  tag-edited questions; P3 features come from the original title/body. EDA: [`eda/d4_edits`](../eda/d4_edits/README.md).
+- **Leakage KPI (D4)**: share of questions whose title/body (or tags) were first edited after the first answer, per
+  creation year, plus the share whose P3 features differ between the original and current version. Defined once in
+  the semantic layer and tracked beside the answers, so the size of the problem is visible, not just described.
+  *Exact definition and thresholds to detail with Nando.*
 
 ## Acceptance criteria
 
@@ -64,3 +74,6 @@ per answer is the inverted interval (1 / upper, 1 / lower).
   rounding), and accepted rate among answered is null when no question was answered.
 - AC-0.6 Answers per question is computed as total answers / total questions per group; questions per answer equals
   its inverse (unit test); answers per question = answer rate × answers per answered question per row (to rounding).
+- AC-0.7 `last_edit_date IS NULL` agrees with "no title/body/tag edit in `post_history`" (2022 EDA: 32 differences out
+  of ~638K edited questions); the difference is reported.
+- AC-0.8 The leakage KPI is produced per creation year for every population used in P1–P3.
