@@ -12,6 +12,11 @@ seed-paths: ["seeds"]
 
 clean-targets: ["target", "dbt_packages"]
 
+# Folder defaults live here; a model that differs says so in an inline config(). Every model's first line is a
+# comment naming its materialization and where it is set (this file or the inline config()).
 models:
   so_answerability:
     +materialized: table
+    staging:
+      # Views store nothing; the BigQuery sandbox has 10 GB of storage.
+      +materialized: view

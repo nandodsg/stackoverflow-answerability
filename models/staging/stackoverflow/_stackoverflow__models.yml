@@ -1,0 +1,70 @@
+version: 2
+
+# Staging: one view per source table, renamed and trimmed, no joins. Views store nothing (the sandbox has 10 GB of
+# storage) and BigQuery reads only the columns a downstream query uses. `meta.ac` links a test to its acceptance
+# criterion in specs/.
+
+models:
+  - name: stg_stackoverflow__questions
+    description: One row per question (current title and tags; no body).
+    columns:
+      - name: question_id
+        data_tests:
+          - unique:
+              config: {meta: {ac: AC-0.1}}
+          - not_null:
+              config: {meta: {ac: AC-0.1}}
+      - name: created_at
+        data_tests: [not_null]
+      - name: creation_year
+        description: UTC year of `created_at`; the cohort every prompt groups by.
+      - name: tags
+        description: Current tags, `|`-separated (e.g. `python|pandas`). Real tags include the strings `null` and `nan`.
+        data_tests: [not_null]
+      - name: answer_count
+        description: Answers on the question; equals the answers present in `posts_answers` (AC-0.4).
+        data_tests: [not_null]
+      - name: accepted_answer_id
+        description: Null when no answer was accepted. 292 legacy values (2008–2012) do not resolve (AC-0.3).
+      - name: last_edited_at
+        description: Last edit of title, body or tags; null when never edited.
+
+  - name: stg_stackoverflow__answers
+    description: One row per answer (no body).
+    columns:
+      - name: answer_id
+        data_tests: [unique, not_null]
+      - name: question_id
+        description: The question this answer belongs to (`parent_id` in the source).
+        data_tests:
+          - not_null:
+              config: {meta: {ac: AC-0.2}}
+          - relationships:
+              arguments:
+                to: ref('stg_stackoverflow__questions')
+                field: question_id
+              config: {meta: {ac: AC-0.2}}
+      - name: created_at
+        data_tests: [not_null]
+
+  - name: stg_stackoverflow__post_history
+    description: >
+      One row per revision of a question or an answer, metadata only (no `text`). Types used by the project:
+      1/2/3 original title/body/tags, 4/5/6 edits, 7/8/9 rollbacks.
+    columns:
+      - name: post_history_id
+        data_tests: [unique, not_null]
+      - name: post_id
+        data_tests: [not_null]
+      - name: post_history_type_id
+        data_tests: [not_null]
+      - name: created_at
+        data_tests: [not_null]
+
+  - name: stg_stackoverflow__users
+    description: One row per user account.
+    columns:
+      - name: user_id
+        data_tests: [unique, not_null]
+      - name: reputation
+        description: At snapshot time, not posting time; never used as a quality of a question.

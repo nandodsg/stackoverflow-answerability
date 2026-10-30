@@ -1,0 +1,22 @@
+version: 2
+
+sources:
+  - name: stackoverflow
+    description: >
+      Google's public Stack Overflow snapshot, read in place (no extract). Frozen: the last question is from
+      2022-09-25. dbt source freshness is not used, since it would fail on every run of a frozen snapshot; the
+      singular test `assert_snapshot_unchanged` checks instead that the snapshot is still the one the README
+      numbers come from.
+    database: bigquery-public-data
+    schema: stackoverflow
+    tables:
+      - name: posts_questions
+        description: One row per question, current version. `body` (36 GB) is never read outside the full-scan models.
+      - name: posts_answers
+        description: One row per answer present in the snapshot (deleted answers are absent).
+      - name: post_history
+        description: >
+          One row per revision of a question or an answer. `text` (108 GB) is never read outside the full-scan
+          models.
+      - name: users
+        description: One row per user account, current state.

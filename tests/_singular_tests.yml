@@ -1,0 +1,11 @@
+version: 2
+
+data_tests:
+  - name: assert_accepted_answer_belongs_to_question
+    description: AC-0.3. Warns on the 292 known legacy exceptions (2008–2012); fails if there are more.
+  - name: assert_answer_count_matches_joined_answers
+    description: AC-0.4. `answer_count` equals the answers present in `posts_answers`, for every question.
+  - name: assert_snapshot_unchanged
+    description: >
+      Stands in for source freshness on a frozen snapshot: warns if the row count or the newest creation time of
+      questions or answers differs from the 2022-09-25 snapshot the README numbers come from.

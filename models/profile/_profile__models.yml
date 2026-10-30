@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: profile_by_year
+    description: >
+      Data profile of the snapshot, one row per year (2008–2022). Questions are counted by their creation year,
+      answers by theirs. The numbers are quoted in specs/000.
+    columns:
+      - name: year
+        data_tests: [unique, not_null]
+      - name: n_answer_count_gap_questions
+        description: Questions whose `answer_count` differs from the answers in `posts_answers` (AC-0.4; 0 everywhere).
+      - name: n_accepted_answer_exceptions
+        description: Questions whose `accepted_answer_id` does not resolve to one of their answers (AC-0.3).
+      - name: n_orphan_answers
+        description: Answers whose question is not in `posts_questions` (AC-0.2; 0 everywhere).

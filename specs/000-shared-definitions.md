@@ -4,8 +4,8 @@ Status: **draft**
 
 ## Source
 
-`bigquery-public-data.stackoverflow` — `posts_questions`, `posts_answers`, `users`, `tags`. Static snapshot, last
-question created 2022-09-25 05:56 UTC.
+`bigquery-public-data.stackoverflow` — `posts_questions`, `posts_answers`, `post_history`, `users` (and `tags` for the
+profile). Static snapshot, last question created 2022-09-25 05:56 UTC.
 
 ## Definitions (used by every prompt)
 
@@ -38,13 +38,34 @@ denominator, like accepted rate (D2).
 mean ± 1.96 × SE, with SE = SD / √n and the SD measured from the questions in the group. The interval for questions
 per answer is the inverted interval (1 / upper, 1 / lower).
 
-## Data quality checks to run first (profile → tests)
+## Data profile (2022-09 snapshot)
 
-- Date range and row counts per table; volume per year.
-- `answer_count` on the question vs answers actually joined from `posts_answers` — size and direction of the gap.
-- `accepted_answer_id` points to an answer that exists and whose `parent_id` is that question.
-- Null / empty `tags`; tag strings with odd delimiters or casing.
-- Duplicate `id`s.
+Built by the dbt model `profile_by_year` (one row per year) and enforced by the tests listed with each AC below. Only
+metadata columns are read; `body` and `post_history.text` never are.
+
+| Table | Rows | First / last `creation_date` (UTC) | Notes |
+|---|---|---|---|
+| `posts_questions` | 23,020,127 | 2008-07-31 → 2022-09-25 05:56 | 1,268,788 in 2022 (partial year) |
+| `posts_answers` | 34,024,119 | 2008-07-31 → 2022-09-25 05:56 | |
+| `post_history` | 152,435,941 | 2008-07-31 → 2022-09-25 07:36 | Revisions of questions **and** answers: join to questions before counting question edits |
+| `users` | 18,712,212 | 2008-07-31 → 2022-09-25 05:52 | |
+
+- **`answer_count` vs joined answers (AC-0.4): no gap.** For every question, `answer_count` equals the answers present
+  in `posts_answers` (0 questions differ, in every year), so answered/unanswered never depends on which one is used.
+  The snapshot appears to count only the answers it contains; deleted answers are absent from both.
+  Metrics use `answer_count`.
+- **Orphan answers (AC-0.2): none.** Every answer's `parent_id` is a question; none is null.
+- **Accepted answers (AC-0.3): 292 exceptions out of 11.8M**, all on questions created 2008–2012: 229 point to an
+  answer missing from the snapshot, 62 to an answer now under another question (likely merged questions), 1 to a
+  question id. No prompt uses those years (P1: 2021–2022; P2: 2013–2022), so they are kept as accepted, as the
+  definition says, and listed by a warning test.
+- **Keys (AC-0.1)**: `id` is unique and non-null in all four tables; no id is both a question and an answer.
+- **Tags**: never null or empty, always lower-case, no empty segments or duplicate tags within a question; all 63,591
+  distinct tags exist in the `tags` table. 119 old questions carry 6 tags (the current limit is 5).
+- **Baseline check**: 2022 accepted rate = 386,683 / 1,268,788 = 30.5%, the figure quoted in `001`.
+- **Frozen snapshot**: dbt source freshness compares the newest row with today, so it would fail on every run.
+  Instead a test warns if the row count or newest `creation_date` of questions or answers ever differs from the
+  values above, which would mean the README numbers are stale.
 
 ## Known limitations
 
