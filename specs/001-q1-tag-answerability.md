@@ -51,8 +51,13 @@ accepted rate all have 1–2 questions (rates of exactly 100% and 0%).
   - Every row shows n, the raw rate and both bounds; the bound is the sort key, not the reported rate.
   - Applies to answer rate and accepted rate, each with its n = questions. Accepted rate among answered is shown, not
     ranked. Answers per question is a mean, not a proportion, so Wilson does not
-    apply: its interval is mean ± 1.96 × SE (decided with D3, see `000`). Ranking: same floor, sorted by the lower
-    bound (highest) / upper bound (lowest). *Ranking part proposed, to confirm.*
+    apply: its interval is mean ± 1.96 × SE (decided with D3, see `000`). Ranking (decided 2026-10-30): same floor,
+    sorted by the lower bound (highest) / upper bound (lowest), so every P1 metric follows one rule. 2022 EDA
+    ([`eda/d1_answers_ranking`](../eda/d1_answers_ranking/README.md)): a bootstrap interval, the raw mean and the
+    empirical-Bayes mean give the same top / bottom 10 (9–10 of 10), and a bootstrap would need a 5.8B-row SQL model
+    or a Dataproc Python model (not in the sandbox) to change nothing. `answer_count` is skewed, so each ranked row
+    carries a flag for Cochran's rule (n > 25 × skewness²); in 2022 it fails for 6 tags and 8 pairs, all mid-table,
+    whose intervals still cover 92–94% instead of 95% in simulation.
 - **Robustness checks** (reported in one line each; a disagreement is listed, not hidden):
   - Method A — raw rate with the same floor.
   - Method C — empirical-Bayes rate, `(k + m·p₀) / (n + m)`, with m fitted by method of moments on tags with ≥ 30
@@ -80,3 +85,6 @@ accepted rate all have 1–2 questions (rates of exactly 100% and 0%).
 - AC-1.8 Every accepted-rate row also shows answer rate and accepted rate among answered (AC-0.5 holds per row).
 - AC-1.9 Every ranked row shows its tag exposure; the original-tags ranking is produced and its warnings (AC-0.10)
   are listed in the README.
+- AC-1.10 Answers-per-question lists sort by the lower / upper bound of mean ± 1.96 × SE (unit test on a hand-computed
+  group); every ranked row carries the Cochran flag, and a flagged row in a top or bottom 10 is labeled "interval
+  approximate".
