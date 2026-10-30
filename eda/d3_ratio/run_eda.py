@@ -8,6 +8,8 @@ is dry-run first, so the bytes it scans are printed before it runs.
 """
 
 import argparse
+import math
+import sys
 from pathlib import Path
 
 import numpy as np
@@ -21,7 +23,7 @@ OUT_DIR = HERE / "output"
 Z95 = 1.96
 
 
-def query(client, name, refresh):
+def query(client, name, refresh, max_gb):
     """Run sql/<name>.sql, caching the result as a CSV."""
     path = OUT_DIR / f"{name}.csv"
     if path.exists() and not refresh:
@@ -29,9 +31,14 @@ def query(client, name, refresh):
 
     sql = (SQL_DIR / f"{name}.sql").read_text(encoding="utf-8")
     dry_run = client.query(sql, job_config=bigquery.QueryJobConfig(dry_run=True, use_query_cache=False))
-    print(f"{name}: scans {dry_run.total_bytes_processed / 1e9:.2f} GB")
+    gb = dry_run.total_bytes_processed / 1e9
+    print(f"{name}: scans {gb:.2f} GB")
+    if gb > max_gb:
+        sys.exit(f"{name}: stopped, {gb:.2f} GB is over the {max_gb:g} GB limit; rerun with --allow-gb {math.ceil(gb)}")
+    max_bytes = int(max_gb * 1e9)  # BigQuery itself refuses the real run past this
 
-    df = client.query(sql).to_dataframe(create_bqstorage_client=False)
+    job_config = bigquery.QueryJobConfig(maximum_bytes_billed=max_bytes)
+    df = client.query(sql, job_config=job_config).to_dataframe(create_bqstorage_client=False)
     df.to_csv(path, index=False)
     return df
 
@@ -84,11 +91,12 @@ def md_table(df):
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--refresh", action="store_true", help="requery BigQuery instead of using the cached CSV")
+    parser.add_argument("--allow-gb", type=float, default=10, help="largest dry-run estimate a query may scan, in GB")
     args = parser.parse_args()
 
     OUT_DIR.mkdir(exist_ok=True)
     client = bigquery.Client(project=PROJECT)
-    df = add_ratios(query(client, "answers_by_year", args.refresh))
+    df = add_ratios(query(client, "answers_by_year", args.refresh, args.allow_gb))
     df["creation_year"] = df["creation_year"].astype(str)  # no thousands separator in the tables
 
     keys = ["tag", "creation_year", "n_questions"]

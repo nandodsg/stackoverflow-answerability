@@ -17,6 +17,8 @@ plus the empirical-Bayes mean that D1 keeps as a robustness check, on what they 
 """
 
 import argparse
+import math
+import sys
 import time
 from pathlib import Path
 
@@ -40,7 +42,7 @@ SEED = 2022
 
 # --- BigQuery ------------------------------------------------------------------------------------------------
 
-def query(client, name, year, refresh, min_questions):
+def query(client, name, year, refresh, min_questions, max_gb):
     """Run sql/<name>.sql with @year and @min_questions, caching the result as a CSV."""
     path = OUT_DIR / f"{name}_{year}.csv"
     if path.exists() and not refresh:
@@ -55,11 +57,14 @@ def query(client, name, year, refresh, min_questions):
     dry_run = client.query(
         sql, job_config=bigquery.QueryJobConfig(query_parameters=params, dry_run=True, use_query_cache=False)
     )
-    print(f"{name}: scans {dry_run.total_bytes_processed / 1e9:.2f} GB")
+    gb = dry_run.total_bytes_processed / 1e9
+    print(f"{name}: scans {gb:.2f} GB")
+    if gb > max_gb:
+        sys.exit(f"{name}: stopped, {gb:.2f} GB is over the {max_gb:g} GB limit; rerun with --allow-gb {math.ceil(gb)}")
+    max_bytes = int(max_gb * 1e9)  # BigQuery itself refuses the real run past this
 
-    df = client.query(sql, job_config=bigquery.QueryJobConfig(query_parameters=params)).to_dataframe(
-        create_bqstorage_client=False
-    )
+    job_config = bigquery.QueryJobConfig(query_parameters=params, maximum_bytes_billed=max_bytes)
+    df = client.query(sql, job_config=job_config).to_dataframe(create_bqstorage_client=False)
     df.to_csv(path, index=False)
     return df
 
@@ -288,6 +293,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--year", type=int, default=2022)
     parser.add_argument("--refresh", action="store_true", help="requery BigQuery instead of using cached CSVs")
+    parser.add_argument("--allow-gb", type=float, default=10, help="largest dry-run estimate a query may scan, in GB")
     args = parser.parse_args()
     OUT_DIR.mkdir(exist_ok=True)
 
@@ -295,11 +301,11 @@ def main():
     rng = np.random.default_rng(SEED)
 
     tags, tag_strength = add_mean_columns(
-        query(client, "tag_answer_moments", args.year, args.refresh, MIN_QUESTIONS))
-    tag_dist = query(client, "tag_answer_distribution", args.year, args.refresh, RANKING_CUTOFF)
+        query(client, "tag_answer_moments", args.year, args.refresh, MIN_QUESTIONS, args.allow_gb))
+    tag_dist = query(client, "tag_answer_distribution", args.year, args.refresh, RANKING_CUTOFF, args.allow_gb)
 
-    pairs = query(client, "tag_pair_answer_moments", args.year, args.refresh, MIN_QUESTIONS)
-    pair_dist = query(client, "tag_pair_answer_distribution", args.year, args.refresh, RANKING_CUTOFF)
+    pairs = query(client, "tag_pair_answer_moments", args.year, args.refresh, MIN_QUESTIONS, args.allow_gb)
+    pair_dist = query(client, "tag_pair_answer_distribution", args.year, args.refresh, RANKING_CUTOFF, args.allow_gb)
     for df in (pairs, pair_dist):
         df["pair"] = df["tag_a"] + " + " + df["tag_b"]
     pairs, pair_strength = add_mean_columns(pairs)

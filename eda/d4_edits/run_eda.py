@@ -10,6 +10,8 @@ printed before it runs.
 """
 
 import argparse
+import math
+import sys
 from pathlib import Path
 
 import numpy as np
@@ -22,7 +24,7 @@ SQL_DIR = HERE / "sql"
 OUT_DIR = HERE / "output"
 
 
-def query(client, name, refresh):
+def query(client, name, refresh, max_gb):
     """Run sql/<name>.sql, caching the result as a CSV."""
     path = OUT_DIR / f"{name}.csv"
     if path.exists() and not refresh:
@@ -30,9 +32,14 @@ def query(client, name, refresh):
 
     sql = (SQL_DIR / f"{name}.sql").read_text(encoding="utf-8")
     dry_run = client.query(sql, job_config=bigquery.QueryJobConfig(dry_run=True, use_query_cache=False))
-    print(f"{name}: scans {dry_run.total_bytes_processed / 1e9:.2f} GB")
+    gb = dry_run.total_bytes_processed / 1e9
+    print(f"{name}: scans {gb:.2f} GB")
+    if gb > max_gb:
+        sys.exit(f"{name}: stopped, {gb:.2f} GB is over the {max_gb:g} GB limit; rerun with --allow-gb {math.ceil(gb)}")
+    max_bytes = int(max_gb * 1e9)  # BigQuery itself refuses the real run past this
 
-    df = client.query(sql).to_dataframe(create_bqstorage_client=False)
+    job_config = bigquery.QueryJobConfig(maximum_bytes_billed=max_bytes)
+    df = client.query(sql, job_config=job_config).to_dataframe(create_bqstorage_client=False)
     df.to_csv(path, index=False)
     return df
 
@@ -95,11 +102,12 @@ def md_table(df):
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--refresh", action="store_true", help="requery BigQuery instead of using the cached CSV")
+    parser.add_argument("--allow-gb", type=float, default=10, help="largest dry-run estimate a query may scan, in GB")
     args = parser.parse_args()
 
     OUT_DIR.mkdir(exist_ok=True)
     client = bigquery.Client(project=PROJECT)
-    df = add_shares(query(client, "edit_profile", args.refresh))
+    df = add_shares(query(client, "edit_profile", args.refresh, args.allow_gb))
 
     keys = ["segment", "creation_year", "n_questions"]
     mismatch = int((df["n_edited"] - df["n_last_edit_date"]).abs().sum())
@@ -124,7 +132,7 @@ def main():
         ]]),
     ]
 
-    tags = query(client, "leakage_by_tag", args.refresh)
+    tags = query(client, "leakage_by_tag", args.refresh, args.allow_gb)
     for kind in ["tag", "text"]:
         tags[f"share_{kind}_exposed"] = tags[f"n_{kind}_exposed"] / tags["n_questions"]
     quantiles = tags[["share_tag_exposed", "share_text_exposed"]].quantile([0, 0.1, 0.25, 0.5, 0.75, 0.9, 1])

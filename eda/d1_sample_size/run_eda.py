@@ -8,6 +8,8 @@ output/summary.md. Each query is dry-run first, so the bytes it scans are printe
 """
 
 import argparse
+import math
+import sys
 from pathlib import Path
 
 import matplotlib
@@ -57,7 +59,7 @@ plt.rcParams.update({
 
 # --- BigQuery ------------------------------------------------------------------------------------------------
 
-def query(client, name, year, refresh, **int_params):
+def query(client, name, year, refresh, max_gb, **int_params):
     """Run sql/<name>.sql with @year (and any extra INT64 params), caching the result as a CSV."""
     path = OUT_DIR / f"{name}_{year}.csv"
     if path.exists() and not refresh:
@@ -71,9 +73,14 @@ def query(client, name, year, refresh, **int_params):
     dry_run = client.query(
         sql, job_config=bigquery.QueryJobConfig(query_parameters=params, dry_run=True, use_query_cache=False)
     )
-    print(f"{name}: scans {dry_run.total_bytes_processed / 1e9:.2f} GB")
+    gb = dry_run.total_bytes_processed / 1e9
+    print(f"{name}: scans {gb:.2f} GB")
+    if gb > max_gb:
+        sys.exit(f"{name}: stopped, {gb:.2f} GB is over the {max_gb:g} GB limit; rerun with --allow-gb {math.ceil(gb)}")
+    max_bytes = int(max_gb * 1e9)  # BigQuery itself refuses the real run past this
 
-    job = client.query(sql, job_config=bigquery.QueryJobConfig(query_parameters=params))
+    job_config = bigquery.QueryJobConfig(query_parameters=params, maximum_bytes_billed=max_bytes)
+    job = client.query(sql, job_config=job_config)
     df = job.to_dataframe(create_bqstorage_client=False)
     df.to_csv(path, index=False)
     return df
@@ -336,13 +343,14 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--year", type=int, default=2022)
     parser.add_argument("--refresh", action="store_true", help="requery BigQuery instead of using cached CSVs")
+    parser.add_argument("--allow-gb", type=float, default=10, help="largest dry-run estimate a query may scan, in GB")
     args = parser.parse_args()
     OUT_DIR.mkdir(exist_ok=True)
 
     client = bigquery.Client(project=PROJECT)
-    tags = query(client, "tag_stats", args.year, args.refresh)
-    pair_freq = query(client, "tag_pair_size_distribution", args.year, args.refresh)
-    pairs = query(client, "tag_pair_stats", args.year, args.refresh, min_questions=MIN_PAIR_QUESTIONS)
+    tags = query(client, "tag_stats", args.year, args.refresh, args.allow_gb)
+    pair_freq = query(client, "tag_pair_size_distribution", args.year, args.refresh, args.allow_gb)
+    pairs = query(client, "tag_pair_stats", args.year, args.refresh, args.allow_gb, min_questions=MIN_PAIR_QUESTIONS)
 
     pair_freq = pair_freq.rename(columns={"n_pairs": "n_groups"})
     pairs["pair"] = pairs["tag_a"] + " + " + pairs["tag_b"]
