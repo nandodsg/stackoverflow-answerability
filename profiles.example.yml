@@ -1,0 +1,31 @@
+# Copy this file to ~/.dbt/profiles.yml (or point DBT_PROFILES_DIR at a folder holding a copy),
+# then set one variable to your own GCP project and run `dbt build`:
+#
+#   export GCP_PROJECT=your-gcp-project-id     (PowerShell: $env:GCP_PROJECT = "your-gcp-project-id")
+#
+# Login: `gcloud auth application-default login` (OAuth, no key file). The free BigQuery sandbox is enough.
+#
+# Cost guard: every query dbt sends is refused by BigQuery, before scanning anything, if it would process more
+# than `maximum_bytes_billed`. The cap is a per-target setting (not per model). The default target allows 20 GiB
+# per query; the heavy text-scan models are tagged out of default builds and run only with `--target full_scan`.
+so_answerability:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: oauth
+      project: "{{ env_var('GCP_PROJECT') }}"   # where dbt creates tables and runs jobs (and is billed)
+      dataset: so_answerability                 # dbt creates it if missing
+      location: US                              # must match the public Stack Overflow dataset
+      threads: 4
+      job_execution_timeout_seconds: 600
+      maximum_bytes_billed: 21474836480         # 20 GiB per query
+    full_scan:
+      type: bigquery
+      method: oauth
+      project: "{{ env_var('GCP_PROJECT') }}"
+      dataset: so_answerability
+      location: US
+      threads: 4
+      job_execution_timeout_seconds: 1800
+      maximum_bytes_billed: 128849018880        # 120 GiB per query: post_history.text is ~109 GB (101.8 GiB)

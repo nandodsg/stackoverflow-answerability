@@ -1,0 +1,17 @@
+name: so_answerability
+version: "1.0.0"
+config-version: 2
+
+# Connection settings live in a profile named like this one: see profiles.example.yml.
+profile: so_answerability
+
+model-paths: ["models"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+seed-paths: ["seeds"]
+
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  so_answerability:
+    +materialized: table
