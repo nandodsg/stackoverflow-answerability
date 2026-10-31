@@ -104,4 +104,47 @@ metrics:
     type: ratio
     type_params: {numerator: by_pair_tag_exposed_questions, denominator: by_pair_questions}
 
+  # --- 30-day-window variant (same four definitions; see the semantic models for what changes) -------------------------
+  - name: by_tag_30d_answer_rate
+    label: Answer rate, by tag, 30-day window
+    description: Answer rate within 30 days of the question, over questions that had the full window.
+    type: ratio
+    type_params: {numerator: by_tag_30d_answered_questions, denominator: by_tag_30d_questions}
+  - name: by_tag_30d_accepted_rate
+    label: Accepted rate, by tag, 30-day window
+    description: Accepted rate within 30 days of the question, over questions that had the full window.
+    type: ratio
+    type_params: {numerator: by_tag_30d_accepted_questions, denominator: by_tag_30d_questions}
+  - name: by_tag_30d_accepted_rate_among_answered
+    label: Accepted rate among answered, by tag, 30-day window
+    description: Accepted rate among answered within 30 days of the question, over questions that had the full window.
+    type: ratio
+    type_params: {numerator: by_tag_30d_accepted_questions, denominator: by_tag_30d_answered_questions}
+  - name: by_tag_30d_answers_per_question
+    label: Answers per question, by tag, 30-day window
+    description: Answers per question within 30 days of the question, over questions that had the full window.
+    type: ratio
+    type_params: {numerator: by_tag_30d_answers, denominator: by_tag_30d_questions}
+
+  - name: by_pair_30d_answer_rate
+    label: Answer rate, by tag pair, 30-day window
+    description: Answer rate within 30 days of the question, over questions that had the full window.
+    type: ratio
+    type_params: {numerator: by_pair_30d_answered_questions, denominator: by_pair_30d_questions}
+  - name: by_pair_30d_accepted_rate
+    label: Accepted rate, by tag pair, 30-day window
+    description: Accepted rate within 30 days of the question, over questions that had the full window.
+    type: ratio
+    type_params: {numerator: by_pair_30d_accepted_questions, denominator: by_pair_30d_questions}
+  - name: by_pair_30d_accepted_rate_among_answered
+    label: Accepted rate among answered, by tag pair, 30-day window
+    description: Accepted rate among answered within 30 days of the question, over questions that had the full window.
+    type: ratio
+    type_params: {numerator: by_pair_30d_accepted_questions, denominator: by_pair_30d_answered_questions}
+  - name: by_pair_30d_answers_per_question
+    label: Answers per question, by tag pair, 30-day window
+    description: Answers per question within 30 days of the question, over questions that had the full window.
+    type: ratio
+    type_params: {numerator: by_pair_30d_answers, denominator: by_pair_30d_questions}
+
   # --- P3 (Item 6): add the P3 metrics below this line -------------------------------------------------------------

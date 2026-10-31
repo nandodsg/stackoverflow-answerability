@@ -91,6 +91,44 @@ for label, metric, group_by, expected_count in (
     check("AC-1.2", f"2022 ranked {label} (>= {MIN_QUESTIONS} questions) = {expected_count}", ranked == expected_count,
           f"({ranked}; fetched {len(rows)})")
 
+# 4. 30-day-window variant (specs/001 "Metrics", censoring). The expected numbers were read once from the marts
+#    mart_p1_tags_30d / mart_p1_pairs_30d (rank 1 of the accepted-rate "top" and "bottom" lists and the number of ranked
+#    groups, per year); the semantic layer must rebuild them from the question rows. Counts (not rounded rates) are
+#    compared: if the four counts of a group match, every ratio metric of that group matches too.
+#    family, year: ranked groups, then (group, questions, answered, accepted, answers) of the top and the bottom group.
+WINDOW_30D = {
+    ("tags", 2022): (1020, ("jq", 737, 707, 506, 1057), ("magento2", 425, 160, 37, 181)),
+    ("tags", 2021): (1414, ("purrr", 596, 542, 447, 887), ("facebook", 1154, 457, 164, 506)),
+    ("pairs", 2022): (884, ("dataframe|dplyr", 569, 539, 413, 985), ("android|webview", 442, 134, 43, 152)),
+    ("pairs", 2021): (1450, ("r|regex", 583, 565, 477, 1073), ("google-chrome|google-chrome-extension", 588, 225, 94, 244)),
+}
+for (label, year), (expected_ranked, *groups) in WINDOW_30D.items():
+    prefix, family = ("by_tag_30d_", "question_tag_30d") if label == "tags" else ("by_pair_30d_", "question_pair_30d")
+    keys = [f"{family}__tag"] if label == "tags" else [f"{family}__tag_a", f"{family}__tag_b"]
+    rows = mf_query(
+        "--metrics", prefix + "questions",
+        "--group-by", ",".join(keys),
+        "--where", f"{dim(family + '__creation_year')} = {year}",
+        "--order", f"-{prefix}questions",
+        "--limit", "3000",
+    )
+    ranked = sum(1 for r in rows if int(float(r[prefix + "questions"])) >= MIN_QUESTIONS)
+    check("AC-1.2", f"30-day window {year} ranked {label} (>= {MIN_QUESTIONS} questions) = {expected_ranked}",
+          ranked == expected_ranked, f"({ranked}; fetched {len(rows)})")
+    for position, (group, *expected_counts) in zip(("top", "bottom"), groups):
+        parts = group.split("|")
+        where = " AND ".join(f"{dim(key)} = '{part}'" for key, part in zip(keys, parts))
+        where += f" AND {dim(family + '__creation_year')} = {year}"
+        row = mf_query(
+            "--metrics", ",".join(prefix + m for m in ("questions", "answered_questions", "accepted_questions", "answers")),
+            "--where", where,
+        )[0]
+        got = [int(float(row[prefix + m])) for m in ("questions", "answered_questions", "accepted_questions", "answers")]
+        check("AC-1.2", f"30-day window {year} {label} {position} accepted-rate group {group}: counts match the mart",
+              got == expected_counts, f"({got} vs {expected_counts})")
+        accepted_rate = float(mf_query("--metrics", prefix + "accepted_rate", "--where", where)[0][prefix + "accepted_rate"])
+        check("AC-0.5", f"  its accepted rate = accepted / questions", abs(accepted_rate - expected_counts[2] / expected_counts[0]) < 1e-9)
+
 failed = results.count(False)
 print(f"\n{len(results) - failed} passed, {failed} failed")
 sys.exit(1 if failed else 0)
