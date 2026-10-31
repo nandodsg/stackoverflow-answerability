@@ -79,6 +79,21 @@ separate sets that never mix:
    the chosen model agrees well enough, and the cheapest model that passes labels the rest.
 3. **Analysis** (the rest of the sample): labeled by the chosen model; rates by label, as for every other feature.
 
+**Discovery pass (run 2026-10-31).** The discovery set is the dbt model `int_label_discovery_pairs` (question ids
+only): 200 pairs from the 5% sample, 2018–2021 (2022 is censored), each pair sharing primary tag, year and the
+has-code-block value (so the model looks past the rule we already have), with an accepted answer written by someone
+other than the asker on one side (self-accepted questions are left out) and no answer on the other; 50 pairs per year,
+at most 3 per (tag, year), drawn in a fixed pseudo-random order; 87 tags in the result. A singular test re-checks every
+pair against the source tables. `labels/discover_labels.py` runs two stages with Claude Opus 5.5:
+**blind** (batches of 20 pairs, outcome hidden, A/B order shuffled: guess which question got the accepted answer and
+list the differences) and **reveal** (all notes with the true outcomes: propose labels from the differences that
+actually separated the outcomes). Hiding the outcome keeps the model from turning noise into reasons. The blind guess
+was right on 144 of 200 pairs (72%; 15 of 16 when confident), an upper bound on what writing explains, since many
+right guesses rested on topic. Ten candidates came back (`labels/output/discovery/candidate_labels.md`); effort shown,
+links to research, polished prose, structure and tone were mixed or favored the unanswered side. Cost: US$ 3.35 of
+API credit (`labels/spend_log.csv`; one call dropped mid-stream and was billed, US$ 0.49, read from the credit balance). The free `count` mode of the
+script gives the exact input tokens before any paid run.
+
 Rule-based features and quality labels are not competing methods. Rule-based features cover every question and
 are reproducible in `queries/q3.sql`; labels cover the sample and are stored as a table. They meet in two checks: a
 label should agree with its rule-based neighbour where one exists (a "reproducible example" mostly has a code

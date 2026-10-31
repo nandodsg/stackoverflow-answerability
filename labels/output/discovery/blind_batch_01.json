@@ -1,0 +1,667 @@
+{
+  "model": "claude-opus-5-5",
+  "usage": {
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "inference_geo": "global",
+    "input_tokens": 26513,
+    "iterations": [
+      {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "input_tokens": 26513,
+        "model": null,
+        "output_tokens": 6148,
+        "type": "message"
+      }
+    ],
+    "output_tokens": 6148,
+    "output_tokens_details": {
+      "thinking_tokens": 1506
+    },
+    "service_tier": "standard",
+    "speed": "standard"
+  },
+  "usd": 0.229,
+  "result": {
+    "pairs": [
+      {
+        "pair_id": "2018-01",
+        "guess": "B",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Context and constraints stated",
+            "kind": "writing",
+            "a": "brief scenario, repeated sentences",
+            "b": "current workflow, config setup, desired behavior",
+            "favors": "B"
+          },
+          {
+            "quality": "Prior attempts described",
+            "kind": "writing",
+            "a": "none",
+            "b": "apache equivalent, read-only error noted",
+            "favors": "B"
+          },
+          {
+            "quality": "Explicit bolded question",
+            "kind": "writing",
+            "a": "question restated loosely",
+            "b": "single bolded core question",
+            "favors": "B"
+          },
+          {
+            "quality": "Domain fit",
+            "kind": "topic",
+            "a": "Unity animator under c# tag",
+            "b": "ASP.NET config",
+            "favors": "neither"
+          }
+        ],
+        "deciding_reason": "B lays out the setup, the goal and what failed, giving an answerer a precise target."
+      },
+      {
+        "pair_id": "2018-02",
+        "guess": "B",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Problem/expected behavior structure",
+            "kind": "writing",
+            "a": "code dump then vague error ask",
+            "b": "numbered background, problem, question",
+            "favors": "B"
+          },
+          {
+            "quality": "Error location identified",
+            "kind": "writing",
+            "a": "type mismatch, line not specified",
+            "b": "behavior described clearly (one column per click)",
+            "favors": "B"
+          },
+          {
+            "quality": "Code relevance",
+            "kind": "writing",
+            "a": "includes unrelated delete/TextToColumns code",
+            "b": "code focused on the loop",
+            "favors": "B"
+          },
+          {
+            "quality": "Recognizable classic bug",
+            "kind": "topic",
+            "a": "less obvious cause",
+            "b": "deleting while looping forward",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B describes a well-known, clearly characterized bug with focused code."
+      },
+      {
+        "pair_id": "2018-03",
+        "guess": "B",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Input/expected vs actual output",
+            "kind": "writing",
+            "a": "only 'bad request' error",
+            "b": "tables of input, actual and expected result",
+            "favors": "B"
+          },
+          {
+            "quality": "Niche technology",
+            "kind": "topic",
+            "a": "WCF MTOM raw MIME request",
+            "b": "common LINQ group-by",
+            "favors": "B"
+          },
+          {
+            "quality": "Length of code",
+            "kind": "measured",
+            "a": "long service, config and client code",
+            "b": "short loop",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B gives concrete input and expected output for a common LINQ task, while A is a niche, opaque error."
+      },
+      {
+        "pair_id": "2018-04",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Working vs failing case contrast",
+            "kind": "writing",
+            "a": "shows query that works and one that fails",
+            "b": "no contrast",
+            "favors": "A"
+          },
+          {
+            "quality": "Error quoted",
+            "kind": "writing",
+            "a": "exact GraphQL error quoted",
+            "b": "vague 'not proper response'",
+            "favors": "A"
+          },
+          {
+            "quality": "Code quality",
+            "kind": "writing",
+            "a": "small focused snippets",
+            "b": "syntax-broken large callback code",
+            "favors": "A"
+          },
+          {
+            "quality": "Debug evidence",
+            "kind": "writing",
+            "a": "logged db output included",
+            "b": "none",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A isolates the failure with working/failing queries, an exact error and logged data."
+      },
+      {
+        "pair_id": "2018-05",
+        "guess": "B",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Error points to cause",
+            "kind": "writing",
+            "a": "generic 400 on recon endpoints",
+            "b": "error names the unexpected key",
+            "favors": "B"
+          },
+          {
+            "quality": "Request payload shown",
+            "kind": "writing",
+            "a": "command output only",
+            "b": "full payload and URL",
+            "favors": "B"
+          },
+          {
+            "quality": "Specific ask",
+            "kind": "writing",
+            "a": "'what does this mean' open-ended",
+            "b": "'where am I going wrong' with a working comparison",
+            "favors": "B"
+          },
+          {
+            "quality": "Niche ops tool",
+            "kind": "topic",
+            "a": "swift-recon config",
+            "b": "neutron API",
+            "favors": "neither"
+          }
+        ],
+        "deciding_reason": "B's payload and error message make the fix nearly obvious to an answerer."
+      },
+      {
+        "pair_id": "2018-06",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Cause visible in code",
+            "kind": "writing",
+            "a": "camera move in onLocationChanged is visible",
+            "b": "layout xml, needs manifest knowledge",
+            "favors": "A"
+          },
+          {
+            "quality": "Visual evidence",
+            "kind": "measured",
+            "a": "no image",
+            "b": "screenshot",
+            "favors": "B"
+          },
+          {
+            "quality": "Explicit question",
+            "kind": "writing",
+            "a": "implied by title only",
+            "b": "clear question stated",
+            "favors": "B"
+          },
+          {
+            "quality": "Self-disclosed beginner",
+            "kind": "writing",
+            "a": "mentions school project",
+            "b": "none",
+            "favors": "neither"
+          }
+        ],
+        "deciding_reason": "A's bug is directly readable in the posted code, making it a quick answer."
+      },
+      {
+        "pair_id": "2018-07",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Specific technical goal",
+            "kind": "writing",
+            "a": "merge two named fields into one",
+            "b": "broad pipeline from email to DB",
+            "favors": "A"
+          },
+          {
+            "quality": "Recommendation request",
+            "kind": "topic",
+            "a": "how-to",
+            "b": "asks for free tools/suggestions",
+            "favors": "A"
+          },
+          {
+            "quality": "Context describes current state",
+            "kind": "writing",
+            "a": "existing working fields described",
+            "b": "personal background, tools tried",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A is a narrow how-to in an active niche, while B is a broad tool recommendation."
+      },
+      {
+        "pair_id": "2018-08",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Effort and detail",
+            "kind": "writing",
+            "a": "one-line body",
+            "b": "full class and stack trace",
+            "favors": "B"
+          },
+          {
+            "quality": "Reproducibility",
+            "kind": "writing",
+            "a": "factual lookup",
+            "b": "intermittent crash not reproducible",
+            "favors": "A"
+          },
+          {
+            "quality": "Code formatting",
+            "kind": "writing",
+            "a": "none",
+            "b": "code not in code block, hard to read",
+            "favors": "A"
+          },
+          {
+            "quality": "Problem difficulty",
+            "kind": "topic",
+            "a": "simple reference fact",
+            "b": "lifecycle race condition",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A has a trivially answerable factual question, while B is a hard non-reproducible crash."
+      },
+      {
+        "pair_id": "2018-09",
+        "guess": "B",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Input and expected output",
+            "kind": "writing",
+            "a": "symptom 'won't load' without errors",
+            "b": "before and after arrays shown",
+            "favors": "B"
+          },
+          {
+            "quality": "Error details",
+            "kind": "writing",
+            "a": "no log or error text",
+            "b": "n/a",
+            "favors": "B"
+          },
+          {
+            "quality": "Scope",
+            "kind": "topic",
+            "a": "server/SSL environment debugging",
+            "b": "basic language operation",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B is a tiny self-contained task with an explicit expected result."
+      },
+      {
+        "pair_id": "2018-10",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Shows attempt",
+            "kind": "writing",
+            "a": "working analog and failed attempt SQL",
+            "b": "query plus screenshots",
+            "favors": "A"
+          },
+          {
+            "quality": "Niche dataset",
+            "kind": "topic",
+            "a": "generic SQL",
+            "b": "WordNet schema semantics",
+            "favors": "A"
+          },
+          {
+            "quality": "Images instead of text",
+            "kind": "measured",
+            "a": "none",
+            "b": "four screenshots",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A asks a general SQL pattern with a clear attempt, whereas B depends on niche WordNet knowledge."
+      },
+      {
+        "pair_id": "2018-11",
+        "guess": "B",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Ruled-out solutions",
+            "kind": "writing",
+            "a": "none",
+            "b": "notes rake -q is not the answer",
+            "favors": "B"
+          },
+          {
+            "quality": "Contrast of behaviors",
+            "kind": "writing",
+            "a": "observed vs expected label",
+            "b": "direct ruby run vs rake test",
+            "favors": "B"
+          },
+          {
+            "quality": "Tone",
+            "kind": "writing",
+            "a": "neutral",
+            "b": "complains about others' code",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "B precisely contrasts two run modes and excludes a wrong answer, narrowing the solution."
+      },
+      {
+        "pair_id": "2018-12",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Narrow factual question",
+            "kind": "writing",
+            "a": "single fact, link given",
+            "b": "workflow plus tool request",
+            "favors": "A"
+          },
+          {
+            "quality": "Tool recommendation",
+            "kind": "topic",
+            "a": "no",
+            "b": "asks for a tool",
+            "favors": "A"
+          },
+          {
+            "quality": "Stated assumption",
+            "kind": "writing",
+            "a": "guesses which API it belongs to",
+            "b": "states assumed workflow",
+            "favors": "neither"
+          }
+        ],
+        "deciding_reason": "A has a short factual answer, B drifts into tool recommendation."
+      },
+      {
+        "pair_id": "2018-13",
+        "guess": "B",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Minimal reproducible example",
+            "kind": "writing",
+            "a": "huge generated HTML dump",
+            "b": "short runnable snippet",
+            "favors": "B"
+          },
+          {
+            "quality": "Expected vs actual stated",
+            "kind": "writing",
+            "a": "screenshot of misalignment",
+            "b": "explains columns split vs desired",
+            "favors": "B"
+          },
+          {
+            "quality": "Extra stack layers",
+            "kind": "topic",
+            "a": "haml, simple_form, cocoon",
+            "b": "plain bootstrap",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B's runnable minimal snippet makes it easy to fix in seconds."
+      },
+      {
+        "pair_id": "2018-14",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Exact error shown",
+            "kind": "writing",
+            "a": "full ENOENT path revealing bug",
+            "b": "console output only",
+            "favors": "A"
+          },
+          {
+            "quality": "Cause readable from evidence",
+            "kind": "writing",
+            "a": "missing slash visible in path",
+            "b": "cause not evident from code",
+            "favors": "A"
+          },
+          {
+            "quality": "Research shown",
+            "kind": "writing",
+            "a": "none",
+            "b": "linked related question",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "A's quoted error path directly exposes the fix."
+      },
+      {
+        "pair_id": "2018-15",
+        "guess": "B",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Concise problem statement",
+            "kind": "writing",
+            "a": "rambling, pleading",
+            "b": "short, states which part works",
+            "favors": "B"
+          },
+          {
+            "quality": "Code formatting",
+            "kind": "writing",
+            "a": "fragmented, broken blocks",
+            "b": "one clean block",
+            "favors": "B"
+          },
+          {
+            "quality": "Observation of symptom",
+            "kind": "writing",
+            "a": "general 'still shows'",
+            "b": "notes style attribute is changed",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B is compact with a clear symptom pointing to setStyle overwriting."
+      },
+      {
+        "pair_id": "2018-16",
+        "guess": "B",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Scope",
+            "kind": "writing",
+            "a": "broad conceptual, several sub-problems",
+            "b": "single concrete task",
+            "favors": "B"
+          },
+          {
+            "quality": "Effort shown",
+            "kind": "writing",
+            "a": "describes reasoning",
+            "b": "none, asks for code",
+            "favors": "A"
+          },
+          {
+            "quality": "Example data",
+            "kind": "writing",
+            "a": "none",
+            "b": "file name example image",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B's narrow concrete task is easy to answer even though it is a code request."
+      },
+      {
+        "pair_id": "2018-17",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Runnable example",
+            "kind": "writing",
+            "a": "full timing script",
+            "b": "snippet of component",
+            "favors": "A"
+          },
+          {
+            "quality": "Feasibility",
+            "kind": "topic",
+            "a": "vectorization doable",
+            "b": "possibly unsupported library feature",
+            "favors": "A"
+          },
+          {
+            "quality": "Benchmark context",
+            "kind": "writing",
+            "a": "compares to C timing",
+            "b": "n/a",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A is a reproducible numpy optimization with clear answers, while B may be impossible in Dash."
+      },
+      {
+        "pair_id": "2018-18",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Configuration detail",
+            "kind": "writing",
+            "a": "RUs, size, partition layout",
+            "b": "sparse network config",
+            "favors": "A"
+          },
+          {
+            "quality": "Research shown",
+            "kind": "writing",
+            "a": "cites docs read",
+            "b": "none",
+            "favors": "A"
+          },
+          {
+            "quality": "Multiple questions",
+            "kind": "writing",
+            "a": "two questions",
+            "b": "single error",
+            "favors": "B"
+          },
+          {
+            "quality": "Code/attempt evidence",
+            "kind": "writing",
+            "a": "n/a",
+            "b": "no query or SDK code",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A is well-specified and conceptual, while B lacks the detail to diagnose."
+      },
+      {
+        "pair_id": "2018-19",
+        "guess": "A",
+        "confidence": "high",
+        "differences": [
+          {
+            "quality": "Full error quoted",
+            "kind": "writing",
+            "a": "complete exception and trace",
+            "b": "no error, describes behavior",
+            "favors": "A"
+          },
+          {
+            "quality": "Minimal code",
+            "kind": "writing",
+            "a": "short cell class",
+            "b": "long cellForRow",
+            "favors": "A"
+          },
+          {
+            "quality": "Clarity of problem",
+            "kind": "writing",
+            "a": "clear runtime crash",
+            "b": "confusing reuse description",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A's error and short code make the wrong target immediately obvious."
+      },
+      {
+        "pair_id": "2018-20",
+        "guess": "A",
+        "confidence": "high",
+        "differences": [
+          {
+            "quality": "Expected vs actual output",
+            "kind": "writing",
+            "a": "expected order and actual output",
+            "b": "invalid JSON sample",
+            "favors": "A"
+          },
+          {
+            "quality": "Duplicate notice in body",
+            "kind": "writing",
+            "a": "none",
+            "b": "pasted duplicate text",
+            "favors": "A"
+          },
+          {
+            "quality": "Bug is findable",
+            "kind": "topic",
+            "a": "typo in comparison",
+            "b": "design question",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A provides expected vs actual output and code with a findable typo."
+      }
+    ]
+  }
+}

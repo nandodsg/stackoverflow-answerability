@@ -37,3 +37,8 @@ data_tests:
     description: >
       AC-0.10 / AC-3.6 (severity: warn, needs_full_scan). P3 effects on original vs current text, 2018-2021: lists
       effects whose direction flips where at least one side is clearly not zero.
+  - name: assert_label_discovery_pairs
+    description: >
+      Quality labels, discovery set (needs_full_scan). Re-checks every pair against the source tables: both questions
+      in the 5% sample, same year, primary tag and has-code-block value; one accepted by someone other than the asker,
+      one with no answer; no question in two pairs; 50 pairs per year and at most 3 per (tag, year).

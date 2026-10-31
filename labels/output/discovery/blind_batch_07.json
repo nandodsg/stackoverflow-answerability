@@ -1,0 +1,667 @@
+{
+  "model": "claude-opus-5-5",
+  "usage": {
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "inference_geo": "global",
+    "input_tokens": 26157,
+    "iterations": [
+      {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "input_tokens": 26157,
+        "model": null,
+        "output_tokens": 6474,
+        "type": "message"
+      }
+    ],
+    "output_tokens": 6474,
+    "output_tokens_details": {
+      "thinking_tokens": 1731
+    },
+    "service_tier": "standard",
+    "speed": "standard"
+  },
+  "usd": 0.2341,
+  "result": {
+    "pairs": [
+      {
+        "pair_id": "2020-21",
+        "guess": "B",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Concrete visual target",
+            "kind": "writing",
+            "a": "abstract need, no example",
+            "b": "screenshot shows the UI element wanted",
+            "favors": "B"
+          },
+          {
+            "quality": "Candidate approaches named",
+            "kind": "writing",
+            "a": "mentions adb research only",
+            "b": "names react-navigation and a ScrollView idea",
+            "favors": "B"
+          },
+          {
+            "quality": "Open-ended solicitation",
+            "kind": "writing",
+            "a": "any method or suggestion welcome",
+            "b": "asks which way is best",
+            "favors": "neither"
+          },
+          {
+            "quality": "Image",
+            "kind": "measured",
+            "a": "none",
+            "b": "one screenshot",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B gives a concrete target and two candidate approaches to judge, while A's requirement is vague and unusual."
+      },
+      {
+        "pair_id": "2020-22",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Conceptual vs custom workflow",
+            "kind": "topic",
+            "a": "basic concept: what delimits a play",
+            "b": "custom version-check gate in deployment",
+            "favors": "A"
+          },
+          {
+            "quality": "Narrow, single question",
+            "kind": "writing",
+            "a": "one precise question about delimiters",
+            "b": "broad 'is it possible to put conditions'",
+            "favors": "A"
+          },
+          {
+            "quality": "Context provided",
+            "kind": "writing",
+            "a": "small snippet of play header",
+            "b": "command line and symlink example given",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "A asks a basic, sharply scoped conceptual question that is quick to answer."
+      },
+      {
+        "pair_id": "2020-23",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Problem size",
+            "kind": "writing",
+            "a": "tiny snippet with desired output",
+            "b": "long pasted module plus traceback",
+            "favors": "A"
+          },
+          {
+            "quality": "Expected result stated",
+            "kind": "writing",
+            "a": "explicit desired string",
+            "b": "just asks why the error occurs",
+            "favors": "A"
+          },
+          {
+            "quality": "Reproducibility",
+            "kind": "writing",
+            "a": "self-contained",
+            "b": "depends on unseen parser and input file",
+            "favors": "A"
+          },
+          {
+            "quality": "Error quoted",
+            "kind": "writing",
+            "a": "none",
+            "b": "full traceback",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "A is a tiny self-contained transformation with a stated goal, while B's error depends on code and data not shown."
+      },
+      {
+        "pair_id": "2020-24",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Clarity of question",
+            "kind": "writing",
+            "a": "precise question with pseudocode of desired call",
+            "b": "rambling, apologetic narrative",
+            "favors": "A"
+          },
+          {
+            "quality": "Code formatting",
+            "kind": "writing",
+            "a": "clean blocks",
+            "b": "badly indented, broken formatting",
+            "favors": "A"
+          },
+          {
+            "quality": "Relevant code shown",
+            "kind": "writing",
+            "a": "enough to answer",
+            "b": "omits Insert where the leak likely is",
+            "favors": "A"
+          },
+          {
+            "quality": "Niche library",
+            "kind": "topic",
+            "a": "flatbuffers API",
+            "b": "general C++ memory",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "A asks a focused API question clearly, while B's leak hunt omits key code and is poorly formatted."
+      },
+      {
+        "pair_id": "2020-25",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Error text included",
+            "kind": "writing",
+            "a": "n/a; describes timing measurements",
+            "b": "error only in screenshot, not in text",
+            "favors": "A"
+          },
+          {
+            "quality": "Steps and measurements",
+            "kind": "writing",
+            "a": "numbered steps, quantified slowness vs browser",
+            "b": "vague 'not sure what's causing'",
+            "favors": "A"
+          },
+          {
+            "quality": "Alternative accepted",
+            "kind": "writing",
+            "a": "open to another library",
+            "b": "none",
+            "favors": "A"
+          },
+          {
+            "quality": "Hard performance problem",
+            "kind": "topic",
+            "a": "niche lib performance",
+            "b": "compile error",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "A quantifies the problem and invites alternatives, whereas B hides the actual error in an image."
+      },
+      {
+        "pair_id": "2020-26",
+        "guess": "B",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Structure with headings",
+            "kind": "writing",
+            "a": "narrative with example tables",
+            "b": "Task/Problem/Code/Schema/Output sections",
+            "favors": "B"
+          },
+          {
+            "quality": "Debugging done",
+            "kind": "writing",
+            "a": "states goal and current query",
+            "b": "verified data is logged before insert",
+            "favors": "B"
+          },
+          {
+            "quality": "Common recognizable bug",
+            "kind": "topic",
+            "a": "schema design query",
+            "b": "async resolve before callbacks",
+            "favors": "B"
+          },
+          {
+            "quality": "Illustrative data",
+            "kind": "writing",
+            "a": "before/after tables",
+            "b": "sample record and schema",
+            "favors": "neither"
+          }
+        ],
+        "deciding_reason": "B is well-sectioned and contains a classic async mistake an answerer spots immediately."
+      },
+      {
+        "pair_id": "2020-27",
+        "guess": "A",
+        "confidence": "high",
+        "differences": [
+          {
+            "quality": "Problem detail",
+            "kind": "writing",
+            "a": "files, code, exact compiler error",
+            "b": "one-line error, no setup details",
+            "favors": "A"
+          },
+          {
+            "quality": "Clear goal",
+            "kind": "writing",
+            "a": "wants comments on declarations",
+            "b": "vague, asks for a manual",
+            "favors": "A"
+          },
+          {
+            "quality": "Body length",
+            "kind": "measured",
+            "a": "medium",
+            "b": "very short",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A shows code, goal and exact error, while B gives almost nothing to work with."
+      },
+      {
+        "pair_id": "2020-28",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Setup described",
+            "kind": "writing",
+            "a": "clear description of both networks and goal",
+            "b": "confusing description, relies on picture",
+            "favors": "A"
+          },
+          {
+            "quality": "Constraint stated",
+            "kind": "writing",
+            "a": "won't merge networks",
+            "b": "none",
+            "favors": "A"
+          },
+          {
+            "quality": "Clarity of language",
+            "kind": "writing",
+            "a": "fluent",
+            "b": "hard to parse what happens",
+            "favors": "A"
+          },
+          {
+            "quality": "Image",
+            "kind": "measured",
+            "a": "none",
+            "b": "screenshot",
+            "favors": "neither"
+          }
+        ],
+        "deciding_reason": "A states a clear networking goal and constraint; B is hard to understand."
+      },
+      {
+        "pair_id": "2020-29",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Common language question",
+            "kind": "topic",
+            "a": "break from lambda forEach",
+            "b": "infra tunneling redirect",
+            "favors": "A"
+          },
+          {
+            "quality": "Error quoted",
+            "kind": "writing",
+            "a": "compiler message quoted",
+            "b": "curl output showing http Location",
+            "favors": "neither"
+          },
+          {
+            "quality": "Environment detail",
+            "kind": "writing",
+            "a": "code only",
+            "b": "thorough setup list",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "A is a common Java lambda limitation that many can answer instantly; B's environment-specific issue has fewer qualified answerers."
+      },
+      {
+        "pair_id": "2020-30",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Focused code",
+            "kind": "writing",
+            "a": "single relevant widget",
+            "b": "entire page dumped first",
+            "favors": "A"
+          },
+          {
+            "quality": "Symptom described",
+            "kind": "writing",
+            "a": "inconsistent update, keyboard issue",
+            "b": "vague wish to filter after dialog",
+            "favors": "A"
+          },
+          {
+            "quality": "Question placement",
+            "kind": "writing",
+            "a": "explanation precedes code",
+            "b": "explanation buried after huge code",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A presents a focused widget with a specific symptom; B is a code dump with a vague request."
+      },
+      {
+        "pair_id": "2020-31",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Concrete evidence",
+            "kind": "writing",
+            "a": "call, model class, sample JSON",
+            "b": "three made-up mappings",
+            "favors": "A"
+          },
+          {
+            "quality": "Well-defined problem",
+            "kind": "writing",
+            "a": "extract ids from array response",
+            "b": "conceptual encoding question",
+            "favors": "A"
+          },
+          {
+            "quality": "Topic ambiguity",
+            "kind": "topic",
+            "a": "Java API usage",
+            "b": "ML encoding methodology",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A provides everything needed to show how to iterate the array; B is a vague conceptual ML question."
+      },
+      {
+        "pair_id": "2020-32",
+        "guess": "B",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Concrete task",
+            "kind": "writing",
+            "a": "design/conceptual opinion",
+            "b": "specific aggregation goal",
+            "favors": "B"
+          },
+          {
+            "quality": "Data shown",
+            "kind": "writing",
+            "a": "hypothetical object",
+            "b": "data only in screenshot",
+            "favors": "A"
+          },
+          {
+            "quality": "Known solution pattern",
+            "kind": "topic",
+            "a": "design judgment",
+            "b": "group by two fields",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B maps to a standard group-by-two-fields aggregation, while A invites design discussion."
+      },
+      {
+        "pair_id": "2020-33",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Symptom described",
+            "kind": "writing",
+            "a": "200 OK in Postman but error in subscribe",
+            "b": "schema concatenates instead of overriding",
+            "favors": "neither"
+          },
+          {
+            "quality": "Library niche",
+            "kind": "topic",
+            "a": "Angular HttpClient common issue",
+            "b": "FluentNHibernate niche",
+            "favors": "A"
+          },
+          {
+            "quality": "Both sides shown",
+            "kind": "writing",
+            "a": "client and API code",
+            "b": "config snippet only",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A is a common Angular text-response pitfall with both sides shown; B is niche."
+      },
+      {
+        "pair_id": "2020-34",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Scope",
+            "kind": "writing",
+            "a": "single API replacement question",
+            "b": "environment troubleshooting",
+            "favors": "A"
+          },
+          {
+            "quality": "Evidence",
+            "kind": "writing",
+            "a": "one line of old code",
+            "b": "error plus many screenshots",
+            "favors": "B"
+          },
+          {
+            "quality": "Duplicate-prone",
+            "kind": "topic",
+            "a": "migration question",
+            "b": "widely duplicated emulator error",
+            "favors": "A"
+          },
+          {
+            "quality": "Images",
+            "kind": "measured",
+            "a": "none",
+            "b": "several",
+            "favors": "neither"
+          }
+        ],
+        "deciding_reason": "A has a short definitive answer, while B is environment-specific and duplicate-prone."
+      },
+      {
+        "pair_id": "2020-35",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Complete context",
+            "kind": "writing",
+            "a": "urls, view, test, error",
+            "b": "snippets with contradictory statement",
+            "favors": "A"
+          },
+          {
+            "quality": "Consistency",
+            "kind": "writing",
+            "a": "coherent",
+            "b": "says getlist works yet asks why",
+            "favors": "A"
+          },
+          {
+            "quality": "Error quoted",
+            "kind": "writing",
+            "a": "exact TypeError",
+            "b": "no error, just no results",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A gives all pieces, revealing the login_required cause; B is internally confusing."
+      },
+      {
+        "pair_id": "2020-36",
+        "guess": "B",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Niche library",
+            "kind": "topic",
+            "a": "wxPython RichTextCtrl, unanswered elsewhere",
+            "b": "matplotlib basics",
+            "favors": "B"
+          },
+          {
+            "quality": "Minimal example",
+            "kind": "writing",
+            "a": "full runnable script, long",
+            "b": "short loop snippet",
+            "favors": "neither"
+          },
+          {
+            "quality": "Symptom shown",
+            "kind": "writing",
+            "a": "described steps",
+            "b": "screenshot of overlap",
+            "favors": "neither"
+          }
+        ],
+        "deciding_reason": "B is a common matplotlib figure-reuse mistake easy to diagnose; A is a niche widget quirk."
+      },
+      {
+        "pair_id": "2020-37",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Research shown",
+            "kind": "writing",
+            "a": "quotes both docs and explains confusion",
+            "b": "lists options found",
+            "favors": "A"
+          },
+          {
+            "quality": "Opinion framing",
+            "kind": "writing",
+            "a": "asks for difference",
+            "b": "asks which is best",
+            "favors": "A"
+          },
+          {
+            "quality": "Duplicate-prone",
+            "kind": "topic",
+            "a": "less common",
+            "b": "widely covered",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A articulates a specific doc-based confusion; B asks a 'best' question likely closed as duplicate."
+      },
+      {
+        "pair_id": "2020-38",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Clear requirement",
+            "kind": "writing",
+            "a": "clear desired output format",
+            "b": "vague '80%' relationship",
+            "favors": "A"
+          },
+          {
+            "quality": "Data in text",
+            "kind": "writing",
+            "a": "n/a conceptual",
+            "b": "table only as image",
+            "favors": "A"
+          },
+          {
+            "quality": "Effort shown",
+            "kind": "writing",
+            "a": "knows DATEDIFF, asks for built-in",
+            "b": "no attempt, 'kindly support'",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A states a clear, bounded question; B is vague with data in an image and no attempt."
+      },
+      {
+        "pair_id": "2020-39",
+        "guess": "B",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Single vs multiple questions",
+            "kind": "writing",
+            "a": "four separate questions",
+            "b": "one focused question",
+            "favors": "B"
+          },
+          {
+            "quality": "Attempt shown",
+            "kind": "writing",
+            "a": "broken pseudocode",
+            "b": "working FX code and actual output",
+            "favors": "B"
+          },
+          {
+            "quality": "Domain research",
+            "kind": "writing",
+            "a": "none",
+            "b": "quotes forum formula",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B is a single well-researched question with actual output, while A bundles several beginner questions."
+      },
+      {
+        "pair_id": "2020-40",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Minimal repro",
+            "kind": "writing",
+            "a": "two-line example plus versions",
+            "b": "script line from package.json",
+            "favors": "neither"
+          },
+          {
+            "quality": "Tried section",
+            "kind": "writing",
+            "a": "none",
+            "b": "verified on Mac",
+            "favors": "B"
+          },
+          {
+            "quality": "Duplicate-prone",
+            "kind": "topic",
+            "a": "less common",
+            "b": "widely duplicated env var question",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "Both are easy, but B's is a well-known duplicate likely closed, while A's minimal repro invites a direct answer."
+      }
+    ]
+  }
+}

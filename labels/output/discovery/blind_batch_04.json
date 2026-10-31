@@ -1,0 +1,660 @@
+{
+  "model": "claude-opus-5-5",
+  "usage": {
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "inference_geo": "global",
+    "input_tokens": 27967,
+    "iterations": [
+      {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "input_tokens": 27967,
+        "model": null,
+        "output_tokens": 6612,
+        "type": "message"
+      }
+    ],
+    "output_tokens": 6612,
+    "output_tokens_details": {
+      "thinking_tokens": 1684
+    },
+    "service_tier": "standard",
+    "speed": "standard"
+  },
+  "usd": 0.2441,
+  "result": {
+    "pairs": [
+      {
+        "pair_id": "2019-11",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Expected output shown",
+            "kind": "writing",
+            "a": "sample inputs plus desired printed result",
+            "b": "only the error, no expected behavior",
+            "favors": "A"
+          },
+          {
+            "quality": "Code formatting",
+            "kind": "writing",
+            "a": "code in fenced blocks",
+            "b": "code pasted unformatted, error line run together",
+            "favors": "A"
+          },
+          {
+            "quality": "Attempt shown",
+            "kind": "writing",
+            "a": "shows in_array attempts",
+            "b": "shows entity/form config, no debugging steps",
+            "favors": "A"
+          },
+          {
+            "quality": "Spelling/care",
+            "kind": "writing",
+            "a": "many typos",
+            "b": "fewer typos, ends 'Any help please'",
+            "favors": "neither"
+          }
+        ],
+        "deciding_reason": "A gives concrete inputs and the exact desired output, making the task easy to answer, while B is unformatted framework code."
+      },
+      {
+        "pair_id": "2019-12",
+        "guess": "B",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Question type",
+            "kind": "topic",
+            "a": "asks 'best way' to set up APM tracing, recommendation-like",
+            "b": "concrete conceptual question about a dependency",
+            "favors": "B"
+          },
+          {
+            "quality": "Evidence gathered",
+            "kind": "writing",
+            "a": "vague mention of undocumented dependencies",
+            "b": "cites specific starters that do and don't include it",
+            "favors": "B"
+          },
+          {
+            "quality": "Niche integration",
+            "kind": "topic",
+            "a": "Datadog-specific",
+            "b": "core Spring Boot",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B is a narrow, well-evidenced question about core Spring Boot, while A seeks an open-ended setup recommendation for a niche integration."
+      },
+      {
+        "pair_id": "2019-13",
+        "guess": "B",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Effort/attempt",
+            "kind": "writing",
+            "a": "one sentence and HTML snippet, no attempt",
+            "b": "full code and contrast of working vs failing call",
+            "favors": "B"
+          },
+          {
+            "quality": "Error evidence",
+            "kind": "writing",
+            "a": "none, desired output not stated",
+            "b": "full traceback included",
+            "favors": "B"
+          },
+          {
+            "quality": "Body length",
+            "kind": "measured",
+            "a": "very short",
+            "b": "long",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B gives code, a working vs failing comparison and a full traceback, while A is a bare request with no attempt or expected output."
+      },
+      {
+        "pair_id": "2019-14",
+        "guess": "B",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Error quoted",
+            "kind": "writing",
+            "a": "no error, just goal",
+            "b": "exact parse error message",
+            "favors": "B"
+          },
+          {
+            "quality": "Code shown",
+            "kind": "writing",
+            "a": "no attempt shown",
+            "b": "the one-line failing code shown",
+            "favors": "B"
+          },
+          {
+            "quality": "Trivial fix",
+            "kind": "topic",
+            "a": "needs fpdf-specific formatting",
+            "b": "obvious typo in one line",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B shows a one-line typo with its exact error, which anyone can fix immediately."
+      },
+      {
+        "pair_id": "2019-15",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Problem type",
+            "kind": "topic",
+            "a": "concrete build error",
+            "b": "design/best-practice 'is there a better way'",
+            "favors": "A"
+          },
+          {
+            "quality": "Error quoted",
+            "kind": "writing",
+            "a": "exact resolve error output",
+            "b": "no error, works but 'smells wrong'",
+            "favors": "A"
+          },
+          {
+            "quality": "Context and constraints",
+            "kind": "writing",
+            "a": "minimal context",
+            "b": "detailed goals and constraints",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "A is a concrete error with a small config file, likely quickly answered, whereas B is an open-ended design question."
+      },
+      {
+        "pair_id": "2019-16",
+        "guess": "B",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Difficulty",
+            "kind": "topic",
+            "a": "linked-server Oracle/SQL Server performance with hard constraints",
+            "b": "basic many-to-many GROUP BY",
+            "favors": "B"
+          },
+          {
+            "quality": "Schema given",
+            "kind": "writing",
+            "a": "partial, anonymized names",
+            "b": "table definitions listed",
+            "favors": "B"
+          },
+          {
+            "quality": "Expected vs actual",
+            "kind": "writing",
+            "a": "explains current working but slow",
+            "b": "no actual output described",
+            "favors": "A"
+          },
+          {
+            "quality": "Restrictive constraints",
+            "kind": "writing",
+            "a": "rules out many solutions",
+            "b": "none",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B is a common SQL problem with schema and attempt, while A is a hard, constrained cross-server problem."
+      },
+      {
+        "pair_id": "2019-17",
+        "guess": "B",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Scope",
+            "kind": "writing",
+            "a": "huge config dump across servers",
+            "b": "focused question with listed candidates",
+            "favors": "B"
+          },
+          {
+            "quality": "Code formatting",
+            "kind": "writing",
+            "a": "code not properly formatted",
+            "b": "no code needed",
+            "favors": "B"
+          },
+          {
+            "quality": "Difficulty",
+            "kind": "topic",
+            "a": "complex OAuth2 flow debugging",
+            "b": "common lifecycle question",
+            "favors": "B"
+          },
+          {
+            "quality": "Options considered",
+            "kind": "writing",
+            "a": "none",
+            "b": "enumerates three approaches with reasoning",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B is a focused, commonly answerable question listing candidate approaches, whereas A requires digesting a large, unreduced OAuth configuration."
+      },
+      {
+        "pair_id": "2019-18",
+        "guess": "A",
+        "confidence": "high",
+        "differences": [
+          {
+            "quality": "Clarity of goal",
+            "kind": "writing",
+            "a": "clear goal with example",
+            "b": "garbled, quoted sentences, expected vs actual vague",
+            "favors": "A"
+          },
+          {
+            "quality": "Relevant code",
+            "kind": "writing",
+            "a": "minimal example",
+            "b": "settings only, contains placeholder text",
+            "favors": "A"
+          },
+          {
+            "quality": "Simple answer",
+            "kind": "topic",
+            "a": "raw strings solve it",
+            "b": "debugging deployment config",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A is a clear question with a known short answer, while B is sloppy with no diagnostics."
+      },
+      {
+        "pair_id": "2019-19",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Expected vs actual",
+            "kind": "writing",
+            "a": "explicitly states both",
+            "b": "'not satisfactory' without describing desired plot",
+            "favors": "A"
+          },
+          {
+            "quality": "Reproducible code",
+            "kind": "writing",
+            "a": "complete runnable program",
+            "b": "fragments with inconsistent variable names",
+            "favors": "A"
+          },
+          {
+            "quality": "Hypothesis stated",
+            "kind": "writing",
+            "a": "considers class vs instance variable",
+            "b": "none",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A gives a runnable example and clear expected vs actual behavior, while B's goal is vague."
+      },
+      {
+        "pair_id": "2019-20",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Isolation",
+            "kind": "writing",
+            "a": "minimal test classes with outputs",
+            "b": "whole program dump",
+            "favors": "A"
+          },
+          {
+            "quality": "Expected vs actual",
+            "kind": "writing",
+            "a": "exact printed results vs expected",
+            "b": "images of result",
+            "favors": "A"
+          },
+          {
+            "quality": "Images",
+            "kind": "measured",
+            "a": "none",
+            "b": "two images",
+            "favors": "neither"
+          },
+          {
+            "quality": "Topic difficulty",
+            "kind": "topic",
+            "a": "advanced template metaprogramming",
+            "b": "common texture alignment issue",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "A is carefully reduced with exact outputs, which attracts expert C++ answerers, though B's issue is a well-known one."
+      },
+      {
+        "pair_id": "2019-21",
+        "guess": "B",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Bug locality",
+            "kind": "topic",
+            "a": "build tooling configuration for SSR",
+            "b": "function placed in wrong module, simple fix",
+            "favors": "B"
+          },
+          {
+            "quality": "Error quoted",
+            "kind": "writing",
+            "a": "full stack trace",
+            "b": "error message with line",
+            "favors": "neither"
+          },
+          {
+            "quality": "Tone",
+            "kind": "writing",
+            "a": "frustrated, 'NO StackOverflow answer helped'",
+            "b": "apologetic newbie",
+            "favors": "neither"
+          },
+          {
+            "quality": "Self-contained code",
+            "kind": "writing",
+            "a": "partial configs relying on tutorial",
+            "b": "full code reproduces the issue",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B contains all code needed and the bug is spotted immediately, while A is a tooling config problem tied to an external tutorial."
+      },
+      {
+        "pair_id": "2019-22",
+        "guess": "B",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Evidence in text",
+            "kind": "writing",
+            "a": "only a screenshot, no commands in text",
+            "b": "query written out plus table sizes",
+            "favors": "B"
+          },
+          {
+            "quality": "Structure",
+            "kind": "writing",
+            "a": "single rambling paragraph",
+            "b": "headed explanation and specific questions",
+            "favors": "B"
+          },
+          {
+            "quality": "Specific questions",
+            "kind": "writing",
+            "a": "'tell me where am I wrong'",
+            "b": "asks about spatial index, feasibility",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B states the exact query and asks targeted questions, while A hides all the evidence in a screenshot."
+      },
+      {
+        "pair_id": "2019-23",
+        "guess": "B",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Input/expected output",
+            "kind": "writing",
+            "a": "no expected result example",
+            "b": "before and after arrays given",
+            "favors": "B"
+          },
+          {
+            "quality": "Niche framework",
+            "kind": "topic",
+            "a": "Drupal form API",
+            "b": "generic JS sorting",
+            "favors": "B"
+          },
+          {
+            "quality": "Attempt described",
+            "kind": "writing",
+            "a": "shows working code for other fields",
+            "b": "describes splitting attempt vaguely",
+            "favors": "neither"
+          }
+        ],
+        "deciding_reason": "B is a generic puzzle with clear input and output that many can answer, while A is Drupal-specific."
+      },
+      {
+        "pair_id": "2019-24",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Clear question",
+            "kind": "writing",
+            "a": "two explicit, answerable questions",
+            "b": "'any suggestions' after long narrative",
+            "favors": "A"
+          },
+          {
+            "quality": "Error quoted",
+            "kind": "writing",
+            "a": "exact build error",
+            "b": "paraphrased git message",
+            "favors": "A"
+          },
+          {
+            "quality": "Problem complexity",
+            "kind": "topic",
+            "a": "known Heroku submodule limitation",
+            "b": "environment-specific detached HEAD behavior",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A poses a clear yes/no-style question about a known limitation, whereas B is an environment-specific puzzle with paraphrased evidence."
+      },
+      {
+        "pair_id": "2019-25",
+        "guess": "B",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Error quoted",
+            "kind": "writing",
+            "a": "'returns null', no error",
+            "b": "exact compiler error and line",
+            "favors": "B"
+          },
+          {
+            "quality": "Self-contained",
+            "kind": "writing",
+            "a": "depends on plugin and Xcode setup",
+            "b": "whole class shown",
+            "favors": "B"
+          },
+          {
+            "quality": "Fix simplicity",
+            "kind": "topic",
+            "a": "platform config/permissions",
+            "b": "visible typo",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B shows a small class with an exact error caused by an obvious typo."
+      },
+      {
+        "pair_id": "2019-26",
+        "guess": "B",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Code formatting",
+            "kind": "writing",
+            "a": "inconsistent indentation, mismatched class names",
+            "b": "clean fenced blocks per layer",
+            "favors": "B"
+          },
+          {
+            "quality": "Structure",
+            "kind": "writing",
+            "a": "step-by-step following docs",
+            "b": "labeled frontend/backend/event",
+            "favors": "neither"
+          },
+          {
+            "quality": "Symptom description",
+            "kind": "writing",
+            "a": "request takes over a minute",
+            "b": "receives but doesn't send",
+            "favors": "neither"
+          },
+          {
+            "quality": "Hosting constraints",
+            "kind": "topic",
+            "a": "shared hosting Redis",
+            "b": "none",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B's clean, layered code reveals the likely missing broadcast interface, while A's code has inconsistencies and a shared-hosting wrinkle."
+      },
+      {
+        "pair_id": "2019-27",
+        "guess": "B",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Scope",
+            "kind": "writing",
+            "a": "two broad design questions",
+            "b": "single narrow language question",
+            "favors": "B"
+          },
+          {
+            "quality": "Opinion-seeking",
+            "kind": "topic",
+            "a": "'do you think reliable', design advice",
+            "b": "factual",
+            "favors": "B"
+          },
+          {
+            "quality": "Effort shown",
+            "kind": "writing",
+            "a": "detailed reasoning",
+            "b": "minimal, malformed example",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "B is a quick factual language question, while A is a broad, opinion-laden security design discussion."
+      },
+      {
+        "pair_id": "2019-28",
+        "guess": "B",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Expected output",
+            "kind": "writing",
+            "a": "error only",
+            "b": "sample input and exact desired array",
+            "favors": "B"
+          },
+          {
+            "quality": "Isolation",
+            "kind": "writing",
+            "a": "minimal variant comparison",
+            "b": "attempt code shown",
+            "favors": "A"
+          },
+          {
+            "quality": "Difficulty",
+            "kind": "topic",
+            "a": "Scala scoping subtlety",
+            "b": "simple file parsing",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B is a simple parsing task with clear input and desired output, which tends to get an accepted answer quickly."
+      },
+      {
+        "pair_id": "2019-29",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Error quoted",
+            "kind": "writing",
+            "a": "exact error message",
+            "b": "'won't work', no error",
+            "favors": "A"
+          },
+          {
+            "quality": "Focus",
+            "kind": "writing",
+            "a": "one flow from form to server",
+            "b": "full app dump with unrelated plans",
+            "favors": "A"
+          },
+          {
+            "quality": "Title clarity",
+            "kind": "writing",
+            "a": "clear title",
+            "b": "typo-ridden title",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A pairs focused code with a concrete error, while B gives no error and a vague symptom."
+      },
+      {
+        "pair_id": "2019-30",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Minimal example",
+            "kind": "writing",
+            "a": "the only relevant CSS shown",
+            "b": "form HTML without JS/CSS setup",
+            "favors": "A"
+          },
+          {
+            "quality": "Niche library",
+            "kind": "topic",
+            "a": "plain CSS",
+            "b": "Materialize browser-specific bug",
+            "favors": "A"
+          },
+          {
+            "quality": "Environment details",
+            "kind": "writing",
+            "a": "screenshot of simulator",
+            "b": "exact browser versions",
+            "favors": "neither"
+          }
+        ],
+        "deciding_reason": "A's tiny snippet makes the error visible to any CSS answerer, while B is a library/browser-specific bug that's hard to reproduce."
+      }
+    ]
+  }
+}

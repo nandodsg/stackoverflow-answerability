@@ -1,0 +1,597 @@
+{
+  "model": "claude-opus-5-5",
+  "usage": {
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "inference_geo": "global",
+    "input_tokens": 25324,
+    "iterations": [
+      {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "input_tokens": 25324,
+        "model": null,
+        "output_tokens": 5701,
+        "type": "message"
+      }
+    ],
+    "output_tokens": 5701,
+    "output_tokens_details": {
+      "thinking_tokens": 1292
+    },
+    "service_tier": "standard",
+    "speed": "standard"
+  },
+  "usd": 0.2153,
+  "result": {
+    "pairs": [
+      {
+        "pair_id": "2021-11",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Problem difficulty",
+            "kind": "topic",
+            "a": "common Selenium locator mistake",
+            "b": "niche pmdarima internal NaN",
+            "favors": "A"
+          },
+          {
+            "quality": "Error evidence",
+            "kind": "writing",
+            "a": "error message quoted, failing line marked",
+            "b": "full traceback plus trace output and debugging notes",
+            "favors": "B"
+          },
+          {
+            "quality": "Minimal reproduction",
+            "kind": "writing",
+            "a": "full script",
+            "b": "four-line reproducible snippet with data",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "A has an obvious, quickly answerable fix (h3 is a tag, not a class), while B's library-internal NaN is hard to diagnose."
+      },
+      {
+        "pair_id": "2021-12",
+        "guess": "B",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Answerability",
+            "kind": "topic",
+            "a": "layout issue tied to framework-generated markup",
+            "b": "validator error with an obvious cause (nested anchors)",
+            "favors": "B"
+          },
+          {
+            "quality": "Desired outcome shown",
+            "kind": "writing",
+            "a": "mockup image and reference solution",
+            "b": "exact validator errors listed",
+            "favors": "neither"
+          },
+          {
+            "quality": "Failure description",
+            "kind": "writing",
+            "a": "vague 'doesn't work well'",
+            "b": "concrete error messages",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B's error points directly at a nested <a> that any answerer can spot, while A's failure is vague."
+      },
+      {
+        "pair_id": "2021-13",
+        "guess": "B",
+        "confidence": "high",
+        "differences": [
+          {
+            "quality": "Input and expected output",
+            "kind": "writing",
+            "a": "none, just pasted log",
+            "b": "sample data table and expected output table",
+            "favors": "B"
+          },
+          {
+            "quality": "Explicit question",
+            "kind": "writing",
+            "a": "no stated goal, just 'keep getting this error'",
+            "b": "clear goal with a worked example",
+            "favors": "B"
+          },
+          {
+            "quality": "Topic",
+            "kind": "topic",
+            "a": "plugin/installation issue in user-written command",
+            "b": "standard data manipulation",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B gives a clear, reproducible data task with expected output; A is an unexplained log dump."
+      },
+      {
+        "pair_id": "2021-14",
+        "guess": "B",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Context",
+            "kind": "writing",
+            "a": "one-line snippet, 'something as such'",
+            "b": "explains model and what they want to change",
+            "favors": "B"
+          },
+          {
+            "quality": "Scope",
+            "kind": "writing",
+            "a": "single question",
+            "b": "two unrelated questions",
+            "favors": "A"
+          },
+          {
+            "quality": "Formatting",
+            "kind": "writing",
+            "a": "code not formatted",
+            "b": "output mangled into quotes/table",
+            "favors": "neither"
+          }
+        ],
+        "deciding_reason": "B states a concrete, easily answered need (relevel the factor), while A gives almost no context and likely gets closed as a duplicate."
+      },
+      {
+        "pair_id": "2021-15",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Input and expected output",
+            "kind": "writing",
+            "a": "sample data and worked expected conversion",
+            "b": "error message only",
+            "favors": "A"
+          },
+          {
+            "quality": "Topic",
+            "kind": "topic",
+            "a": "text-processing task",
+            "b": "environment-specific package install",
+            "favors": "A"
+          },
+          {
+            "quality": "Attempt shown",
+            "kind": "writing",
+            "a": "minimal attempt",
+            "b": "steps tried and searches done",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "A is a well-specified transformation task that is easy to solve, while B is an environment/repo problem with no clear fix."
+      },
+      {
+        "pair_id": "2021-16",
+        "guess": "B",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Error relevance",
+            "kind": "writing",
+            "a": "error unrelated to the shown query, no calling code",
+            "b": "error matches the code shown",
+            "favors": "B"
+          },
+          {
+            "quality": "Completeness",
+            "kind": "writing",
+            "a": "only query function",
+            "b": "method, test, and setup all shown",
+            "favors": "B"
+          },
+          {
+            "quality": "Specific question",
+            "kind": "writing",
+            "a": "implied",
+            "b": "explicit 'what am I missing in when()'",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B supplies all relevant pieces and a focused question with a clear answer (a fake is not a mock); A's error comes from code not shown."
+      },
+      {
+        "pair_id": "2021-17",
+        "guess": "B",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Scope",
+            "kind": "writing",
+            "a": "local setup issue shown via screenshot of directory",
+            "b": "one-line, clearly scoped question",
+            "favors": "B"
+          },
+          {
+            "quality": "Reproducibility",
+            "kind": "writing",
+            "a": "depends on file layout seen only in image",
+            "b": "self-contained snippet",
+            "favors": "B"
+          },
+          {
+            "quality": "Detail",
+            "kind": "measured",
+            "a": "longer with image",
+            "b": "very short",
+            "favors": "neither"
+          }
+        ],
+        "deciding_reason": "B is a trivial, self-contained question answerable immediately, while A depends on local file paths seen only in an image."
+      },
+      {
+        "pair_id": "2021-18",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Topic difficulty",
+            "kind": "topic",
+            "a": "basic string concatenation formula",
+            "b": "niche VBA OLEObject lookup",
+            "favors": "A"
+          },
+          {
+            "quality": "Example in title",
+            "kind": "writing",
+            "a": "concrete desired output in title",
+            "b": "concise question with doc link",
+            "favors": "A"
+          },
+          {
+            "quality": "Attempt shown",
+            "kind": "writing",
+            "a": "says tried, no formula shown",
+            "b": "no attempt",
+            "favors": "neither"
+          }
+        ],
+        "deciding_reason": "A asks for a trivial formula with a concrete target, which is very likely to be answered and accepted."
+      },
+      {
+        "pair_id": "2021-19",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Minimal example",
+            "kind": "writing",
+            "a": "small runnable snippet with expected output",
+            "b": "multiple fragments and pasted error frames",
+            "favors": "A"
+          },
+          {
+            "quality": "Clarity of question",
+            "kind": "writing",
+            "a": "clear conceptual question referencing C++",
+            "b": "diffuse, two errors, tutorial-following",
+            "favors": "A"
+          },
+          {
+            "quality": "Data source shown",
+            "kind": "writing",
+            "a": "not applicable",
+            "b": "missing fetch/state code needed to diagnose",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A is a crisp, minimal question with expected output, whereas B is a scattered tutorial-debugging dump."
+      },
+      {
+        "pair_id": "2021-20",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Isolation of cause",
+            "kind": "writing",
+            "a": "pinpointed to double-brace init via class printout",
+            "b": "several attempts, cause not isolated",
+            "favors": "A"
+          },
+          {
+            "quality": "Specific question",
+            "kind": "writing",
+            "a": "precise 'why' question",
+            "b": "general 'what am I missing'",
+            "favors": "A"
+          },
+          {
+            "quality": "Evidence",
+            "kind": "writing",
+            "a": "stack trace and diagnostic output",
+            "b": "symptom description (freeze)",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A has already isolated the cause and asks a crisp conceptual question with a clear textbook answer."
+      },
+      {
+        "pair_id": "2021-21",
+        "guess": "A",
+        "confidence": "high",
+        "differences": [
+          {
+            "quality": "Reproducible example",
+            "kind": "writing",
+            "a": "exact query with input and desired result",
+            "b": "error plus odd string, no code",
+            "favors": "A"
+          },
+          {
+            "quality": "Clarity of goal",
+            "kind": "writing",
+            "a": "replace positions 3-6",
+            "b": "vague 'parse back to normal'",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A is a fully reproducible, simple SQL task; B lacks the code and a clear goal."
+      },
+      {
+        "pair_id": "2021-22",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Error and code",
+            "kind": "writing",
+            "a": "full tasks, template and exact error",
+            "b": "code and exact error",
+            "favors": "neither"
+          },
+          {
+            "quality": "Duplicate risk",
+            "kind": "topic",
+            "a": "specific Ansible register misuse",
+            "b": "classic grid() returns None duplicate",
+            "favors": "A"
+          },
+          {
+            "quality": "Constraints",
+            "kind": "writing",
+            "a": "none",
+            "b": "refuses classes/other ways, asks to fix code",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "Both are easily fixable, but B is a well-known duplicate likely to be closed rather than answered."
+      },
+      {
+        "pair_id": "2021-23",
+        "guess": "B",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Context",
+            "kind": "writing",
+            "a": "compiled error excerpt only",
+            "b": "describes desired behavior with screenshot",
+            "favors": "B"
+          },
+          {
+            "quality": "Reproduction",
+            "kind": "writing",
+            "a": "none",
+            "b": "live sandbox link",
+            "favors": "B"
+          },
+          {
+            "quality": "Explicit question",
+            "kind": "writing",
+            "a": "no question asked",
+            "b": "clear request",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B states the goal and provides a runnable sandbox; A is just an error fragment."
+      },
+      {
+        "pair_id": "2021-24",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Input and expected output",
+            "kind": "writing",
+            "a": "sample input and desired output",
+            "b": "stack trace only",
+            "favors": "A"
+          },
+          {
+            "quality": "Title quality",
+            "kind": "writing",
+            "a": "describes the task",
+            "b": "opinion-style, 'read the title please'",
+            "favors": "A"
+          },
+          {
+            "quality": "Tone",
+            "kind": "writing",
+            "a": "polite, explains attempt",
+            "b": "curt",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A clearly specifies the transformation with examples, while B is a stack-trace dump with a poor title and tone."
+      },
+      {
+        "pair_id": "2021-25",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Topic",
+            "kind": "topic",
+            "a": "common Firebase existence check",
+            "b": "puzzle challenge, failing hidden tests",
+            "favors": "A"
+          },
+          {
+            "quality": "Failure evidence",
+            "kind": "writing",
+            "a": "database screenshot, clear goal",
+            "b": "only '3/5 pass', no failing case",
+            "favors": "A"
+          },
+          {
+            "quality": "Code formatting",
+            "kind": "writing",
+            "a": "well formatted",
+            "b": "badly indented",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A is a standard Firebase question with a known pattern, while B is a contest task with unknown failing cases."
+      },
+      {
+        "pair_id": "2021-26",
+        "guess": "B",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Input and expected output",
+            "kind": "writing",
+            "a": "one line of code, no reproduction",
+            "b": "sample strings with desired extraction",
+            "favors": "B"
+          },
+          {
+            "quality": "Context",
+            "kind": "writing",
+            "a": "no surrounding script",
+            "b": "clear pattern",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B gives concrete input/output for an easy formula, while A lacks enough code to diagnose."
+      },
+      {
+        "pair_id": "2021-27",
+        "guess": "B",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Topic",
+            "kind": "topic",
+            "a": "niche JSS library behavior",
+            "b": "basic language question",
+            "favors": "B"
+          },
+          {
+            "quality": "Reproduction",
+            "kind": "writing",
+            "a": "minimal repro, docs link, expected shape",
+            "b": "source snippet and link",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "B has a quick factual answer ($ is just an identifier character), while A concerns a niche library."
+      },
+      {
+        "pair_id": "2021-28",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Code shown",
+            "kind": "writing",
+            "a": "full component code",
+            "b": "no code",
+            "favors": "A"
+          },
+          {
+            "quality": "Specificity",
+            "kind": "writing",
+            "a": "concrete goal with data field",
+            "b": "vague how-to",
+            "favors": "A"
+          },
+          {
+            "quality": "Topic",
+            "kind": "topic",
+            "a": "React/Redux",
+            "b": "niche Shopify+Vue",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A provides code and a concrete goal; B is vague and niche."
+      },
+      {
+        "pair_id": "2021-29",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Error evidence",
+            "kind": "writing",
+            "a": "exact CMake error and verified path",
+            "b": "symptom only ('does not respond')",
+            "favors": "A"
+          },
+          {
+            "quality": "Isolation",
+            "kind": "writing",
+            "a": "small CMakeLists",
+            "b": "cross-language DLL with custom headers",
+            "favors": "A"
+          },
+          {
+            "quality": "Environment",
+            "kind": "writing",
+            "a": "WSL and IDE stated",
+            "b": "not stated",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A gives a minimal config and exact error, while B only describes a non-response across two languages."
+      },
+      {
+        "pair_id": "2021-30",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Clarity of goal",
+            "kind": "writing",
+            "a": "precise requirement, read from end until pattern",
+            "b": "long narrative about formatting",
+            "favors": "A"
+          },
+          {
+            "quality": "Attempts listed",
+            "kind": "writing",
+            "a": "idea sketched",
+            "b": "many attempts listed",
+            "favors": "B"
+          },
+          {
+            "quality": "Ease of answer",
+            "kind": "topic",
+            "a": "standard tac/sed idiom",
+            "b": "hidden carriage-return debugging",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A is a concise, well-scoped problem with a known idiom; B is long and its cause is uncertain."
+      }
+    ]
+  }
+}

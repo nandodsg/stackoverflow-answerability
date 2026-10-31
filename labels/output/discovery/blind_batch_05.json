@@ -1,0 +1,688 @@
+{
+  "model": "claude-opus-5-5",
+  "usage": {
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "inference_geo": "global",
+    "input_tokens": 24759,
+    "iterations": [
+      {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "input_tokens": 24759,
+        "model": null,
+        "output_tokens": 6515,
+        "type": "message"
+      }
+    ],
+    "output_tokens": 6515,
+    "output_tokens_details": {
+      "thinking_tokens": 1451
+    },
+    "service_tier": "standard",
+    "speed": "standard"
+  },
+  "usd": 0.2293,
+  "result": {
+    "pairs": [
+      {
+        "pair_id": "2019-31",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Error evidence",
+            "kind": "writing",
+            "a": "quotes exact crash message",
+            "b": "no error, only says photo not returned",
+            "favors": "A"
+          },
+          {
+            "quality": "Code completeness",
+            "kind": "writing",
+            "a": "short complete snippet showing the cause",
+            "b": "truncated snippet cut mid-loop",
+            "favors": "A"
+          },
+          {
+            "quality": "Problem diagnosis",
+            "kind": "writing",
+            "a": "identifies root sync as the likely cause",
+            "b": "confuses auth provider data with DB node",
+            "favors": "A"
+          },
+          {
+            "quality": "Typos/clarity",
+            "kind": "writing",
+            "a": "mostly clear",
+            "b": "several typos, muddled goal",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A pinpoints a concrete cause with a quoted error, while B is truncated and confused about where the photo is stored."
+      },
+      {
+        "pair_id": "2019-32",
+        "guess": "B",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Expected vs actual",
+            "kind": "writing",
+            "a": "clearly states expected and actual routing",
+            "b": "describes logs flashing then disappearing",
+            "favors": "neither"
+          },
+          {
+            "quality": "Diagnostic clue for quick answer",
+            "kind": "writing",
+            "a": "subtle router edge case",
+            "b": "symptom points to an obvious form-submit reload",
+            "favors": "B"
+          },
+          {
+            "quality": "Code scope",
+            "kind": "writing",
+            "a": "partial snippet, code removed",
+            "b": "full store and component pasted",
+            "favors": "B"
+          },
+          {
+            "quality": "Thanks/greeting",
+            "kind": "measured",
+            "a": "none",
+            "b": "thanks at end",
+            "favors": "neither"
+          }
+        ],
+        "deciding_reason": "B shows full code containing an easily spotted bug (a button inside a form reloading the page), making a quick accepted answer likely."
+      },
+      {
+        "pair_id": "2019-33",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Question type",
+            "kind": "topic",
+            "a": "conceptual question about a popular library",
+            "b": "debugging a specific third-party CLI tool",
+            "favors": "A"
+          },
+          {
+            "quality": "Asker expertise/framing",
+            "kind": "writing",
+            "a": "states own reasoning concisely",
+            "b": "admits not knowing JS, vague guesses",
+            "favors": "A"
+          },
+          {
+            "quality": "Evidence",
+            "kind": "writing",
+            "a": "none needed",
+            "b": "timing output but unformatted",
+            "favors": "neither"
+          },
+          {
+            "quality": "Scope",
+            "kind": "writing",
+            "a": "narrow, single question",
+            "b": "open-ended, could be network or anything",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A is a tight, answerable conceptual question, while B concerns an obscure tool with no isolation."
+      },
+      {
+        "pair_id": "2019-34",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Topic commonness",
+            "kind": "topic",
+            "a": "common Bootstrap navbar issue",
+            "b": "niche Blazor datetime-local behavior",
+            "favors": "A"
+          },
+          {
+            "quality": "Symptom description",
+            "kind": "writing",
+            "a": "clear symptom with screenshot",
+            "b": "very detailed behavior description",
+            "favors": "neither"
+          },
+          {
+            "quality": "Likely easy fix",
+            "kind": "topic",
+            "a": "likely missing Bootstrap JS",
+            "b": "possibly a browser quirk with no fix",
+            "favors": "A"
+          },
+          {
+            "quality": "Image/link",
+            "kind": "measured",
+            "a": "screenshot linked",
+            "b": "none",
+            "favors": "neither"
+          }
+        ],
+        "deciding_reason": "A is a familiar Bootstrap problem with a standard fix, while B may be a browser limitation with no clean answer."
+      },
+      {
+        "pair_id": "2019-35",
+        "guess": "B",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Live reproduction",
+            "kind": "writing",
+            "a": "generated HTML shown",
+            "b": "live sample page linked",
+            "favors": "B"
+          },
+          {
+            "quality": "Goal clarity",
+            "kind": "writing",
+            "a": "clear desired output but terse",
+            "b": "clear: restore a previously working map",
+            "favors": "neither"
+          },
+          {
+            "quality": "Error evidence",
+            "kind": "writing",
+            "a": "none needed",
+            "b": "no console error given",
+            "favors": "A"
+          },
+          {
+            "quality": "Topic",
+            "kind": "topic",
+            "a": "internal Settings API markup customization",
+            "b": "common Google Maps embed",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B's live page and common Maps setup make it easy to diagnose, whereas A asks to bend WordPress core output."
+      },
+      {
+        "pair_id": "2019-36",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Shows attempts",
+            "kind": "writing",
+            "a": "explains NA approach and workaround tried",
+            "b": "explains the cause found from URL",
+            "favors": "neither"
+          },
+          {
+            "quality": "Reproducibility",
+            "kind": "writing",
+            "a": "code nearly reproducible, object missing",
+            "b": "single line, environment-specific",
+            "favors": "A"
+          },
+          {
+            "quality": "Image",
+            "kind": "measured",
+            "a": "map image",
+            "b": "none",
+            "favors": "neither"
+          },
+          {
+            "quality": "Constraint conflicts",
+            "kind": "writing",
+            "a": "open to elegant alternative",
+            "b": "insists on keeping here() despite absolute paths",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A has code and a clear goal with an easy subsetting fix, while B's constraint conflicts with how here() works."
+      },
+      {
+        "pair_id": "2019-37",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Detail and investigation",
+            "kind": "writing",
+            "a": "describes repro steps, related bug, observed workaround",
+            "b": "two vague sentences",
+            "favors": "A"
+          },
+          {
+            "quality": "Specific ask",
+            "kind": "writing",
+            "a": "asks for a way to disable or work around",
+            "b": "asks what is missing",
+            "favors": "A"
+          },
+          {
+            "quality": "Length",
+            "kind": "measured",
+            "a": "longer",
+            "b": "very short",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A documents an investigated, specific behavior, whereas B gives almost no context."
+      },
+      {
+        "pair_id": "2019-38",
+        "guess": "B",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Question type",
+            "kind": "topic",
+            "a": "best-practice/limit question bordering on opinion",
+            "b": "concrete cross-browser bug",
+            "favors": "B"
+          },
+          {
+            "quality": "Debugging evidence",
+            "kind": "writing",
+            "a": "long list of links, no measurement",
+            "b": "error text, buffer sizes, versions, numbered checks",
+            "favors": "B"
+          },
+          {
+            "quality": "Resource request",
+            "kind": "writing",
+            "a": "asks for links/advice",
+            "b": "asks for reasons given evidence",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B gives rich diagnostic evidence for a concrete bug, while A is a vague best-practice question."
+      },
+      {
+        "pair_id": "2019-39",
+        "guess": "B",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Known canonical issue",
+            "kind": "topic",
+            "a": "CORS to a third-party SOAP API",
+            "b": "connect blocking router updates (known withRouter order)",
+            "favors": "B"
+          },
+          {
+            "quality": "Error evidence",
+            "kind": "writing",
+            "a": "full CORS error quoted",
+            "b": "symptom only",
+            "favors": "A"
+          },
+          {
+            "quality": "Misconceptions",
+            "kind": "writing",
+            "a": "sets ACAO header on the request",
+            "b": "isolates trigger by commenting connect",
+            "favors": "B"
+          },
+          {
+            "quality": "Code focus",
+            "kind": "writing",
+            "a": "long SOAP payload string",
+            "b": "full component, imports removed",
+            "favors": "neither"
+          }
+        ],
+        "deciding_reason": "B isolates the trigger to connect(), which maps to a well-known fix, while A's CORS issue needs server-side changes the asker cannot make."
+      },
+      {
+        "pair_id": "2019-40",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Code formatting",
+            "kind": "writing",
+            "a": "properly formatted HTML/CSS",
+            "b": "HTML block broken, partly unformatted",
+            "favors": "A"
+          },
+          {
+            "quality": "Live link",
+            "kind": "measured",
+            "a": "link to live page",
+            "b": "none",
+            "favors": "A"
+          },
+          {
+            "quality": "Obvious bug present",
+            "kind": "writing",
+            "a": "unclosed anchors are visible",
+            "b": "layout needs rework",
+            "favors": "A"
+          },
+          {
+            "quality": "Prior attempts",
+            "kind": "writing",
+            "a": "none stated",
+            "b": "vague 'many methods' tried",
+            "favors": "neither"
+          }
+        ],
+        "deciding_reason": "A has readable code with an evident bug and a live link, while B's code is mangled."
+      },
+      {
+        "pair_id": "2019-41",
+        "guess": "B",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Topic",
+            "kind": "topic",
+            "a": "niche Expo camera warning",
+            "b": "common navigation design with react-navigation",
+            "favors": "B"
+          },
+          {
+            "quality": "Requirement clarity",
+            "kind": "writing",
+            "a": "error message clear, logic only 'similar'",
+            "b": "clearly describes desired navigation structure",
+            "favors": "B"
+          },
+          {
+            "quality": "Code formatting",
+            "kind": "writing",
+            "a": "broken inline code fences",
+            "b": "no code",
+            "favors": "neither"
+          }
+        ],
+        "deciding_reason": "B's clearly specified navigation pattern is answerable by common react-navigation knowledge, while A is an obscure Expo warning."
+      },
+      {
+        "pair_id": "2019-42",
+        "guess": "A",
+        "confidence": "high",
+        "differences": [
+          {
+            "quality": "Shows attempt and result",
+            "kind": "writing",
+            "a": "shows code and what it returns",
+            "b": "no attempt",
+            "favors": "A"
+          },
+          {
+            "quality": "Request type",
+            "kind": "writing",
+            "a": "specific how-to",
+            "b": "asks for code to be written",
+            "favors": "A"
+          },
+          {
+            "quality": "Input examples",
+            "kind": "writing",
+            "a": "two sample XML docs",
+            "b": "vague node description",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A is narrow with an attempt and examples, while B is a vague code request."
+      },
+      {
+        "pair_id": "2019-43",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Before/after code",
+            "kind": "writing",
+            "a": "original and refactored versions compared",
+            "b": "single setup",
+            "favors": "A"
+          },
+          {
+            "quality": "Topic",
+            "kind": "topic",
+            "a": "mainstream Java Optional",
+            "b": "niche PHP-Java Bridge on Tomcat",
+            "favors": "A"
+          },
+          {
+            "quality": "Specific questions",
+            "kind": "writing",
+            "a": "pointed questions on design",
+            "b": "'what am I doing wrong'",
+            "favors": "A"
+          },
+          {
+            "quality": "Error evidence",
+            "kind": "writing",
+            "a": "n/a",
+            "b": "only empty output",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A is a well-framed mainstream question, while B is a niche setup with little diagnostic output."
+      },
+      {
+        "pair_id": "2019-44",
+        "guess": "B",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Example accuracy",
+            "kind": "writing",
+            "a": "sample output inconsistent",
+            "b": "precise code and type goal",
+            "favors": "B"
+          },
+          {
+            "quality": "Shows attempt",
+            "kind": "writing",
+            "a": "none beyond %logger{n}",
+            "b": "shows closest attempt and why it fails",
+            "favors": "B"
+          },
+          {
+            "quality": "Topic niche",
+            "kind": "topic",
+            "a": "logback config",
+            "b": "TornadoFX",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "B shows a precise attempt and the exact type it needs, which points to a known select-style API."
+      },
+      {
+        "pair_id": "2019-45",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Topic niche",
+            "kind": "topic",
+            "a": "nginx with ASP.NET Core SPA",
+            "b": "undocumented Dynatrace cookie field",
+            "favors": "A"
+          },
+          {
+            "quality": "Context",
+            "kind": "writing",
+            "a": "explains setup and config",
+            "b": "one cookie line",
+            "favors": "A"
+          },
+          {
+            "quality": "Answerability",
+            "kind": "topic",
+            "a": "general config answer possible",
+            "b": "needs vendor insider knowledge",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "B's question needs proprietary vendor knowledge that few answerers have."
+      },
+      {
+        "pair_id": "2019-46",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Structure",
+            "kind": "writing",
+            "a": "bulleted pipeline steps, clear question",
+            "b": "one dense paragraph with caps shouting",
+            "favors": "A"
+          },
+          {
+            "quality": "Scope",
+            "kind": "writing",
+            "a": "asks for conceptual correction",
+            "b": "open deployment options",
+            "favors": "A"
+          },
+          {
+            "quality": "Tone",
+            "kind": "writing",
+            "a": "measured",
+            "b": "self-deprecating, rambling",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A is well-structured with a clear conceptual question, while B is broad and rambling."
+      },
+      {
+        "pair_id": "2019-47",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Self-contained",
+            "kind": "writing",
+            "a": "describes setup in the text",
+            "b": "relies on attachment and external forum",
+            "favors": "A"
+          },
+          {
+            "quality": "Topic",
+            "kind": "topic",
+            "a": "Google API capability question",
+            "b": "vendor (Aspose) rendering bug",
+            "favors": "A"
+          },
+          {
+            "quality": "Reproduction",
+            "kind": "writing",
+            "a": "no code",
+            "b": "no code or files shown",
+            "favors": "neither"
+          }
+        ],
+        "deciding_reason": "B depends on a missing attachment and a vendor forum, while A at least has a definitive answer."
+      },
+      {
+        "pair_id": "2019-48",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Duplicate risk",
+            "kind": "topic",
+            "a": "unusual fn-pointer lifetime issue",
+            "b": "classic self-referential struct, likely duplicate",
+            "favors": "A"
+          },
+          {
+            "quality": "Reproducibility",
+            "kind": "writing",
+            "a": "full compilable example plus playground",
+            "b": "simplified snippets and error",
+            "favors": "A"
+          },
+          {
+            "quality": "Explains attempts",
+            "kind": "writing",
+            "a": "brief",
+            "b": "detailed reasoning and tries",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B is a well-known duplicate likely closed without an answer, while A has a playground repro of a less common problem."
+      },
+      {
+        "pair_id": "2019-49",
+        "guess": "B",
+        "confidence": "high",
+        "differences": [
+          {
+            "quality": "Minimal example",
+            "kind": "writing",
+            "a": "long convoluted GoTo code",
+            "b": "short snippet",
+            "favors": "B"
+          },
+          {
+            "quality": "Error evidence",
+            "kind": "writing",
+            "a": "vague wrong results via screenshots",
+            "b": "exact runtime error quoted",
+            "favors": "B"
+          },
+          {
+            "quality": "Clarity",
+            "kind": "writing",
+            "a": "confusing prose",
+            "b": "clear setup and environment",
+            "favors": "B"
+          },
+          {
+            "quality": "Images",
+            "kind": "measured",
+            "a": "two screenshots",
+            "b": "none",
+            "favors": "neither"
+          }
+        ],
+        "deciding_reason": "B is minimal with an exact error and an obvious fix, while A is sprawling and unclear."
+      },
+      {
+        "pair_id": "2019-50",
+        "guess": "A",
+        "confidence": "high",
+        "differences": [
+          {
+            "quality": "Concrete example",
+            "kind": "writing",
+            "a": "small matrix with expected output",
+            "b": "external image algorithm, no data",
+            "favors": "A"
+          },
+          {
+            "quality": "Expected vs actual",
+            "kind": "writing",
+            "a": "precise expected indices",
+            "b": "vaguely 'expecting another result'",
+            "favors": "A"
+          },
+          {
+            "quality": "Title consistency",
+            "kind": "writing",
+            "a": "title says minimum, body says maximum",
+            "b": "vague title",
+            "favors": "neither"
+          }
+        ],
+        "deciding_reason": "A gives a tiny reproducible example with the exact expected answer."
+      }
+    ]
+  }
+}

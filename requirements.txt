@@ -6,3 +6,7 @@ matplotlib==3.9.2
 dbt-core==1.12.6
 dbt-bigquery==1.12.1
 dbt-metricflow==0.15.0
+# P3 quality labels (labels/): keys come from a gitignored .env file, never from the command line.
+anthropic==2.3.0
+typesafe-sdk==0.7.5
+python-dotenv==1.2.4

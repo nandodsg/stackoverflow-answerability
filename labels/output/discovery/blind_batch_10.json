@@ -1,0 +1,576 @@
+{
+  "model": "claude-opus-5-5",
+  "usage": {
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "inference_geo": "global",
+    "input_tokens": 44803,
+    "iterations": [
+      {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "input_tokens": 44803,
+        "model": null,
+        "output_tokens": 6226,
+        "type": "message"
+      }
+    ],
+    "output_tokens": 6226,
+    "output_tokens_details": {
+      "thinking_tokens": 1637
+    },
+    "service_tier": "standard",
+    "speed": "standard"
+  },
+  "usd": 0.3037,
+  "result": {
+    "pairs": [
+      {
+        "pair_id": "2021-31",
+        "guess": "B",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Problem isolation",
+            "kind": "writing",
+            "a": "Whole job script plus a ~70-line stack trace",
+            "b": "A few REPL lines showing the object's type and fields",
+            "favors": "B"
+          },
+          {
+            "quality": "Precise question",
+            "kind": "writing",
+            "a": "Asks for an 'easy way to fix'",
+            "b": "Asks for a function f where W1 === f(p)",
+            "favors": "B"
+          },
+          {
+            "quality": "Environment-specific problem",
+            "kind": "topic",
+            "a": "Cluster precompile cache issue that is hard to reproduce",
+            "b": "Language-level question anyone can test",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B poses a crisp, reproducible language question, while A depends on a cluster environment and dumps a huge trace."
+      },
+      {
+        "pair_id": "2021-32",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Runnable example",
+            "kind": "writing",
+            "a": "Stack snippet with CSS and HTML plus a screenshot",
+            "b": "Only a large HTML block; no CSS shown",
+            "favors": "A"
+          },
+          {
+            "quality": "States what was tried",
+            "kind": "writing",
+            "a": "Mentions position and align-items attempts",
+            "b": "Asks whether 'equal' works and suggests a fixed height",
+            "favors": "A"
+          },
+          {
+            "quality": "Images",
+            "kind": "measured",
+            "a": "Has a screenshot",
+            "b": "No image",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A gives a runnable snippet and a picture of the layout, so it is easier to fix."
+      },
+      {
+        "pair_id": "2021-33",
+        "guess": "B",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Exact error quoted",
+            "kind": "writing",
+            "a": "No error; a modeling design question",
+            "b": "Quotes the RuntimeError in full",
+            "favors": "B"
+          },
+          {
+            "quality": "Problem location marked",
+            "kind": "writing",
+            "a": "Two alternative designs, one with typos",
+            "b": "Comments mark the problem line",
+            "favors": "B"
+          },
+          {
+            "quality": "Design or opinion question",
+            "kind": "topic",
+            "a": "Asks 'is it right' about schema choices",
+            "b": "Concrete factory_boy failure",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B points to the failing line and gives the exact error, which invites a SubFactory answer."
+      },
+      {
+        "pair_id": "2021-34",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Input and expected output",
+            "kind": "writing",
+            "a": "Constructible df, mapping rules and the intended result",
+            "b": "Code and traceback but no network details",
+            "favors": "A"
+          },
+          {
+            "quality": "Environment-dependent problem",
+            "kind": "topic",
+            "a": "Pure pandas transformation",
+            "b": "Network/firewall timeout to a WAMP server",
+            "favors": "A"
+          },
+          {
+            "quality": "Tone",
+            "kind": "writing",
+            "a": "Neutral and structured",
+            "b": "Informal, with a bolded frustration line",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A is a self-contained pandas task with expected output, while B is a network issue that is hard to diagnose remotely."
+      },
+      {
+        "pair_id": "2021-35",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Evidence of failure",
+            "kind": "writing",
+            "a": "Before and after images plus the data layout",
+            "b": "Large dumps of the default linker script",
+            "favors": "A"
+          },
+          {
+            "quality": "Tone",
+            "kind": "writing",
+            "a": "Neutral",
+            "b": "Repeatedly calls the output 'garbage'",
+            "favors": "A"
+          },
+          {
+            "quality": "Clarity of the goal",
+            "kind": "writing",
+            "a": "Expected blur versus actual result",
+            "b": "Confused goal; mixes linker scripts with a symbol map",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A states the expected versus actual result with images, while B is a confused rant around huge pasted output."
+      },
+      {
+        "pair_id": "2021-36",
+        "guess": "B",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Focused ask",
+            "kind": "writing",
+            "a": "Describes the behavior and asks for a workaround",
+            "b": "A bolded TLDR asks exactly which manifest elements to add",
+            "favors": "B"
+          },
+          {
+            "quality": "Known-answer topic",
+            "kind": "topic",
+            "a": "Odd Visual Studio/Excel read-only quirk",
+            "b": "Documented manifest extension point",
+            "favors": "B"
+          },
+          {
+            "quality": "Images",
+            "kind": "measured",
+            "a": "None",
+            "b": "Has a screenshot",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B asks a precise question with a documented answer, while A describes a hard-to-reproduce IDE quirk."
+      },
+      {
+        "pair_id": "2021-37",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Scope",
+            "kind": "writing",
+            "a": "One short feasibility question with the query",
+            "b": "Full component, route, config and rules",
+            "favors": "A"
+          },
+          {
+            "quality": "Symptom detail",
+            "kind": "writing",
+            "a": "Asks whether the query is possible",
+            "b": "Blank page and no errors; no debugging output",
+            "favors": "neither"
+          },
+          {
+            "quality": "Body length",
+            "kind": "measured",
+            "a": "Very short",
+            "b": "Long",
+            "favors": "neither"
+          }
+        ],
+        "deciding_reason": "A is a quick API-capability question with a definite yes/no answer, which is easy to answer and accept."
+      },
+      {
+        "pair_id": "2021-38",
+        "guess": "B",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Explanation of the behavior",
+            "kind": "writing",
+            "a": "Error pasted; question duplicated verbatim",
+            "b": "Detailed account of intended versus actual flow and a suspected cause",
+            "favors": "B"
+          },
+          {
+            "quality": "Shows effort",
+            "kind": "writing",
+            "a": "Asks 'any way to do it'",
+            "b": "Says they read docs and tried approaches",
+            "favors": "B"
+          },
+          {
+            "quality": "Common duplicate topic",
+            "kind": "topic",
+            "a": "Very common RenderFlex overflow",
+            "b": "Specific logout flow",
+            "favors": "neither"
+          }
+        ],
+        "deciding_reason": "B explains expected versus actual behavior and its suspected cause, while A is a low-effort, repeated overflow question."
+      },
+      {
+        "pair_id": "2021-39",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Clear goal",
+            "kind": "writing",
+            "a": "Wants automatic updates instead of a button press",
+            "b": "Confused question about how pages match Navigator.push",
+            "favors": "A"
+          },
+          {
+            "quality": "Code shown",
+            "kind": "writing",
+            "a": "Shows the fetch code",
+            "b": "Only an inline snippet",
+            "favors": "A"
+          },
+          {
+            "quality": "Language clarity",
+            "kind": "writing",
+            "a": "Readable",
+            "b": "Broken English, hard to parse",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A has a clear, common need with an obvious stream-listener answer, while B is hard to understand."
+      },
+      {
+        "pair_id": "2021-40",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "States what was tried",
+            "kind": "writing",
+            "a": "Tried increasing the height; shows XML",
+            "b": "Minimal hypothetical snippet",
+            "favors": "A"
+          },
+          {
+            "quality": "Unusual requirement",
+            "kind": "topic",
+            "a": "Common UI tweak",
+            "b": "Running a task before a plugin applies, possibly impossible",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A is a common UI issue with known solutions, while B asks for something that may not be possible in Gradle."
+      },
+      {
+        "pair_id": "2021-41",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Symptom stated precisely",
+            "kind": "writing",
+            "a": "Must click twice; suspects a stale length check",
+            "b": "Says dispatch never happens; asserts it 'should work'",
+            "favors": "A"
+          },
+          {
+            "quality": "Hypothesis given",
+            "kind": "writing",
+            "a": "Points to a specific line",
+            "b": "No diagnostics beyond the claim",
+            "favors": "A"
+          },
+          {
+            "quality": "Classic pattern",
+            "kind": "topic",
+            "a": "Async setState staleness, well known",
+            "b": "Redux thunk issue that may lie outside the shown code",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A's symptom maps directly to the well-known stale-state issue, and the asker already points at the culprit."
+      },
+      {
+        "pair_id": "2021-42",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Context and goal",
+            "kind": "writing",
+            "a": "Explains the data, working code and the desired extension",
+            "b": "Terse; the error appears only in a screenshot",
+            "favors": "A"
+          },
+          {
+            "quality": "Error as text",
+            "kind": "writing",
+            "a": "No error needed",
+            "b": "Error shown as an image only",
+            "favors": "A"
+          },
+          {
+            "quality": "Environment-specific problem",
+            "kind": "topic",
+            "a": "Pure data manipulation",
+            "b": "Offline install dependencies",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A is a clear data-manipulation request with an easy lead/lag answer, while B hides its error in an image."
+      },
+      {
+        "pair_id": "2021-43",
+        "guess": "B",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Niche technology",
+            "kind": "topic",
+            "a": "Legacy Winsock OCX registration in 64-bit Office",
+            "b": "A plain loop over columns",
+            "favors": "B"
+          },
+          {
+            "quality": "Clear rule description",
+            "kind": "writing",
+            "a": "Steps listed; error quoted",
+            "b": "Explains the logic and gives repetitive working code to generalize",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B is an easy refactor-into-a-loop task, while A involves obscure legacy COM registration."
+      },
+      {
+        "pair_id": "2021-44",
+        "guess": "B",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Homework-style task",
+            "kind": "topic",
+            "a": "Lab assignment with constraints, asks for implementation help",
+            "b": "Specific compiler error",
+            "favors": "B"
+          },
+          {
+            "quality": "Error quoted with minimal code",
+            "kind": "writing",
+            "a": "Basic counter code, unclear spec",
+            "b": "Exact errors plus signal declarations and two lines",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B is a minimal type error with a standard answer, while A is homework with an unclear spec."
+      },
+      {
+        "pair_id": "2021-45",
+        "guess": "B",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Shows attempts",
+            "kind": "writing",
+            "a": "No attempt; rules out macros arbitrarily",
+            "b": "Two attempted solutions and why each fails",
+            "favors": "B"
+          },
+          {
+            "quality": "Concrete scenario",
+            "kind": "writing",
+            "a": "Vague 'context variable' ask",
+            "b": "10 nodes, 3 replicas, HA requirement",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B lays out a concrete scenario and the failed approaches, pointing straight to anti-affinity."
+      },
+      {
+        "pair_id": "2021-46",
+        "guess": "B",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Specific feature ask",
+            "kind": "writing",
+            "a": "General 'is there a way' with no setup details",
+            "b": "Describes the exact workflow and missing capability",
+            "favors": "B"
+          },
+          {
+            "quality": "Niche environment",
+            "kind": "topic",
+            "a": "Remote debugging on FreeBSD as root",
+            "b": "Mainstream VS Code feature",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B describes a precise mainstream feature question, while A lacks details about the debugging setup."
+      },
+      {
+        "pair_id": "2021-47",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Minimal example",
+            "kind": "writing",
+            "a": "Short JSX snippet with clear logic",
+            "b": "Huge paste including a giant numeric array",
+            "favors": "A"
+          },
+          {
+            "quality": "Shows research",
+            "kind": "writing",
+            "a": "Links two related questions",
+            "b": "Links a tutorial",
+            "favors": "neither"
+          },
+          {
+            "quality": "Scope",
+            "kind": "writing",
+            "a": "Single syntax issue",
+            "b": "Open-ended goal of artistic rendering",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A is a minimal syntax problem anyone can spot, while B buries a broad request under a huge paste."
+      },
+      {
+        "pair_id": "2021-48",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Answerability",
+            "kind": "topic",
+            "a": "Config question: reuse the same store and secret",
+            "b": "Performance tuning that is hard to explain",
+            "favors": "A"
+          },
+          {
+            "quality": "Evidence",
+            "kind": "writing",
+            "a": "Shows both app configs",
+            "b": "Explain output plus timing code",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "A has a straightforward configuration answer, while B's performance question is open-ended."
+      },
+      {
+        "pair_id": "2021-49",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Error quoted",
+            "kind": "writing",
+            "a": "Linker error given, though poorly formatted",
+            "b": "No error; a comparison question",
+            "favors": "A"
+          },
+          {
+            "quality": "Recommendation request",
+            "kind": "topic",
+            "a": "Concrete build issue",
+            "b": "Asks which driver to use",
+            "favors": "A"
+          },
+          {
+            "quality": "Formatting",
+            "kind": "writing",
+            "a": "Code and error not in code blocks",
+            "b": "Well organized with links",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "A's undefined-reference error has a standard CMake fix, while B leans toward a recommendation question."
+      },
+      {
+        "pair_id": "2021-50",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Scope",
+            "kind": "writing",
+            "a": "Single warning quoted with the path",
+            "b": "Broad request for any speed improvement",
+            "favors": "A"
+          },
+          {
+            "quality": "Data provided",
+            "kind": "writing",
+            "a": "Not needed",
+            "b": "Sample data with syntax errors; CSV links",
+            "favors": "neither"
+          },
+          {
+            "quality": "Links",
+            "kind": "measured",
+            "a": "None",
+            "b": "External data links",
+            "favors": "neither"
+          }
+        ],
+        "deciding_reason": "A's warning points to a simple fix (remove the stray folder), while B is an open-ended optimization with a broken example."
+      }
+    ]
+  }
+}

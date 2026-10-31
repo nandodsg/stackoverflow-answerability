@@ -1,0 +1,604 @@
+{
+  "model": "claude-opus-5-5",
+  "usage": {
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "inference_geo": "global",
+    "input_tokens": 29374,
+    "iterations": [
+      {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "input_tokens": 29374,
+        "model": null,
+        "output_tokens": 6160,
+        "type": "message"
+      }
+    ],
+    "output_tokens": 6160,
+    "output_tokens_details": {
+      "thinking_tokens": 1680
+    },
+    "service_tier": "standard",
+    "speed": "standard"
+  },
+  "usd": 0.2407,
+  "result": {
+    "pairs": [
+      {
+        "pair_id": "2020-01",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Symptom precision",
+            "kind": "writing",
+            "a": "exact symptom: undefined on first click, works on second",
+            "b": "UI not updating until refresh, vaguer",
+            "favors": "A"
+          },
+          {
+            "quality": "Code completeness",
+            "kind": "writing",
+            "a": "full component; async bug visible",
+            "b": "fragmentary snippets, reducer cut off, no delete case shown",
+            "favors": "A"
+          },
+          {
+            "quality": "Recognizable common bug",
+            "kind": "topic",
+            "a": "classic async/promise timing issue",
+            "b": "redux state wiring, needs more context",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A's code clearly shows a well-known async mistake that can be fixed at a glance, while B's snippets are incomplete."
+      },
+      {
+        "pair_id": "2020-02",
+        "guess": "B",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Shows alternatives tried",
+            "kind": "writing",
+            "a": "one query, index noted",
+            "b": "two concrete approaches compared with their tradeoffs",
+            "favors": "B"
+          },
+          {
+            "quality": "Problem difficulty",
+            "kind": "topic",
+            "a": "concurrency deadlock, hard to diagnose remotely",
+            "b": "API usage question with a definite answer",
+            "favors": "B"
+          },
+          {
+            "quality": "Specific ask",
+            "kind": "writing",
+            "a": "open-ended 'any thoughts'",
+            "b": "asks for a better Eloquent way",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B poses a narrow, answerable API question with both attempts shown, whereas A's deadlock is open-ended."
+      },
+      {
+        "pair_id": "2020-03",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Input and expected output",
+            "kind": "writing",
+            "a": "sample input and exact expected counts",
+            "b": "description plus code with a placeholder",
+            "favors": "A"
+          },
+          {
+            "quality": "Conciseness",
+            "kind": "writing",
+            "a": "tightly scoped single operation",
+            "b": "requirement narrative",
+            "favors": "A"
+          },
+          {
+            "quality": "Shows attempt",
+            "kind": "writing",
+            "a": "no attempt shown",
+            "b": "loop code shown",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "A is a crisp input/expected-output question with a known one-line answer."
+      },
+      {
+        "pair_id": "2020-04",
+        "guess": "B",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Problem description",
+            "kind": "writing",
+            "a": "one sentence plus image, no context",
+            "b": "explains the desired rendering and shows sample data",
+            "favors": "B"
+          },
+          {
+            "quality": "Effort shown",
+            "kind": "writing",
+            "a": "none",
+            "b": "mentions trying map and loops",
+            "favors": "B"
+          },
+          {
+            "quality": "Image reliance",
+            "kind": "measured",
+            "a": "image only",
+            "b": "no image",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "A is nearly content-free, while B gives data and a clear goal."
+      },
+      {
+        "pair_id": "2020-05",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Evidence of request/response",
+            "kind": "writing",
+            "a": "headers, body and response shown",
+            "b": "code and truncated output shown",
+            "favors": "neither"
+          },
+          {
+            "quality": "Domain",
+            "kind": "topic",
+            "a": "documented Google Drive API",
+            "b": "hardware AT-command serial niche",
+            "favors": "A"
+          },
+          {
+            "quality": "Spottable error",
+            "kind": "writing",
+            "a": "the data-URL prefix in the body is visibly wrong",
+            "b": "timing and buffer issue that is less obvious",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A's posted multipart body reveals a fixable mistake in a widely used API."
+      },
+      {
+        "pair_id": "2020-06",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Narrative of steps",
+            "kind": "writing",
+            "a": "step-by-step history plus a hint (missing packages folder)",
+            "b": "detailed paths and attempts",
+            "favors": "neither"
+          },
+          {
+            "quality": "Topic commonness",
+            "kind": "topic",
+            "a": "common NuGet restore and reference problem",
+            "b": "niche debug-symbol availability",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A's problem is a common package-restore issue with a standard answer, whereas B's is niche."
+      },
+      {
+        "pair_id": "2020-07",
+        "guess": "B",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Shows code attempt",
+            "kind": "writing",
+            "a": "only a tiny XML sample",
+            "b": "actual stream code shown",
+            "favors": "B"
+          },
+          {
+            "quality": "Clear ask",
+            "kind": "writing",
+            "a": "asks whether it is possible, little context",
+            "b": "specific about the gap between documents and events",
+            "favors": "B"
+          },
+          {
+            "quality": "Niche topic",
+            "kind": "topic",
+            "a": "Oracle XML serialization quirk",
+            "b": "Dart xml package",
+            "favors": "neither"
+          }
+        ],
+        "deciding_reason": "B shows code and a precise gap, making it easier to answer than A's terse possibility question."
+      },
+      {
+        "pair_id": "2020-08",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Structure",
+            "kind": "writing",
+            "a": "headed sections, config, error, workaround",
+            "b": "model plus pseudocode",
+            "favors": "A"
+          },
+          {
+            "quality": "Reproduction and workaround",
+            "kind": "writing",
+            "a": "shows the exact error and that sequential install works",
+            "b": "no attempt",
+            "favors": "A"
+          },
+          {
+            "quality": "Design/opinion question",
+            "kind": "topic",
+            "a": "factual question about behavior",
+            "b": "open 'good way' design question",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A is well structured with error and workaround, pointing to a specific explainable cause."
+      },
+      {
+        "pair_id": "2020-09",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Minimal code",
+            "kind": "writing",
+            "a": "short self-contained ajax snippet",
+            "b": "HTML mixed with PHP fragments",
+            "favors": "A"
+          },
+          {
+            "quality": "Observed behavior",
+            "kind": "writing",
+            "a": "states that the fail callback runs only once",
+            "b": "describes the desired feature",
+            "favors": "A"
+          },
+          {
+            "quality": "Research shown",
+            "kind": "writing",
+            "a": "none",
+            "b": "mentions threads found",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "A presents a tight snippet with a clear observed-versus-wanted behavior and a well-known fix."
+      },
+      {
+        "pair_id": "2020-10",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Exact error",
+            "kind": "writing",
+            "a": "error message given (via image link)",
+            "b": "no error; silent failure",
+            "favors": "A"
+          },
+          {
+            "quality": "Feasibility",
+            "kind": "topic",
+            "a": "simple code bug (db is a method, not a getter)",
+            "b": "may be unsupported in extensions",
+            "favors": "A"
+          },
+          {
+            "quality": "Steps listed",
+            "kind": "writing",
+            "a": "followed a tutorial",
+            "b": "checklist of what was configured",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "A contains an obvious, quickly fixable bug matching the stated error."
+      },
+      {
+        "pair_id": "2020-11",
+        "guess": "B",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Troubleshooting detail",
+            "kind": "writing",
+            "a": "versions, env, attempts, full error",
+            "b": "concrete example of the number change",
+            "favors": "A"
+          },
+          {
+            "quality": "Environment-dependent",
+            "kind": "topic",
+            "a": "local setup issue that is hard to reproduce",
+            "b": "likely Excel display explanation",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B likely has a simple explanatory answer, while A is an environment-specific issue that is hard to resolve remotely despite good detail."
+      },
+      {
+        "pair_id": "2020-12",
+        "guess": "B",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Effort shown",
+            "kind": "writing",
+            "a": "no attempt, homework-like",
+            "b": "code, full traceback, and docs read",
+            "favors": "B"
+          },
+          {
+            "quality": "Input and expected output",
+            "kind": "writing",
+            "a": "clear sample and expected output",
+            "b": "error-driven",
+            "favors": "A"
+          },
+          {
+            "quality": "Diagnosable",
+            "kind": "writing",
+            "a": "trivial regex task",
+            "b": "the circular import is visible in the code",
+            "favors": "neither"
+          }
+        ],
+        "deciding_reason": "B shows full context and a visibly fixable circular import, while A is a bare task request."
+      },
+      {
+        "pair_id": "2020-13",
+        "guess": "B",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Scope",
+            "kind": "writing",
+            "a": "broad why/how about color rendering",
+            "b": "narrow equivalent-command lookup",
+            "favors": "B"
+          },
+          {
+            "quality": "Problem difficulty",
+            "kind": "topic",
+            "a": "color management, viewer-dependent",
+            "b": "known biblatex option",
+            "favors": "B"
+          },
+          {
+            "quality": "Reproducible example",
+            "kind": "writing",
+            "a": "MWE included",
+            "b": "small snippet",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "B asks for a known single answer, while A involves murky color-space behavior."
+      },
+      {
+        "pair_id": "2020-14",
+        "guess": "B",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Diagnostic depth",
+            "kind": "writing",
+            "a": "extensive code, hex dumps, pinpointed extra bytes",
+            "b": "plain goal with movement code",
+            "favors": "A"
+          },
+          {
+            "quality": "Length and reading cost",
+            "kind": "measured",
+            "a": "very long",
+            "b": "moderate",
+            "favors": "B"
+          },
+          {
+            "quality": "Topic commonness",
+            "kind": "topic",
+            "a": "networking library internals",
+            "b": "common Unity rotation task",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B is a common task with a standard snippet answer; A is thorough but niche and long."
+      },
+      {
+        "pair_id": "2020-15",
+        "guess": "B",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Context and config",
+            "kind": "writing",
+            "a": "one loop snippet and unformatted metrics",
+            "b": "config, test setup, counts, hypotheses",
+            "favors": "B"
+          },
+          {
+            "quality": "Hypotheses offered",
+            "kind": "writing",
+            "a": "asks for guidance generally",
+            "b": "lists candidate causes",
+            "favors": "B"
+          },
+          {
+            "quality": "Formatting",
+            "kind": "writing",
+            "a": "garbled bold monitoring text",
+            "b": "clean",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B gives reproducible setup and specific hypotheses, while A is vague performance troubleshooting."
+      },
+      {
+        "pair_id": "2020-16",
+        "guess": "B",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Error quoted",
+            "kind": "writing",
+            "a": "shows bad output, no error",
+            "b": "full error from two PS versions",
+            "favors": "B"
+          },
+          {
+            "quality": "Minimal repro",
+            "kind": "writing",
+            "a": "script with French comments and commented-out attempts",
+            "b": "short self-contained script plus a working variant",
+            "favors": "B"
+          },
+          {
+            "quality": "Attempts shown",
+            "kind": "writing",
+            "a": "commented attempts",
+            "b": "contrast between working and failing calls",
+            "favors": "neither"
+          }
+        ],
+        "deciding_reason": "B is a minimal repro with exact errors and a working contrast, pointing to a clear type-cast fix."
+      },
+      {
+        "pair_id": "2020-17",
+        "guess": "B",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Own code vs borrowed",
+            "kind": "writing",
+            "a": "pasted known extension, no attempt at the change",
+            "b": "own implementation with a clear desired behavior",
+            "favors": "B"
+          },
+          {
+            "quality": "Problem difficulty",
+            "kind": "topic",
+            "a": "image processing with alpha",
+            "b": "common table UI logic",
+            "favors": "B"
+          },
+          {
+            "quality": "Code size",
+            "kind": "writing",
+            "a": "focused",
+            "b": "large dump",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "B's request is a common UI tweak with an easy modification to the posted code."
+      },
+      {
+        "pair_id": "2020-18",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Precision of goal",
+            "kind": "writing",
+            "a": "target SQL shown, constraints stated",
+            "b": "describes outcome, cause unclear",
+            "favors": "A"
+          },
+          {
+            "quality": "Scope constraints",
+            "kind": "writing",
+            "a": "explicitly excludes workarounds",
+            "b": "open",
+            "favors": "neither"
+          },
+          {
+            "quality": "Niche library",
+            "kind": "topic",
+            "a": "linq2db, maintainers active",
+            "b": "EF Core, well-known limitation",
+            "favors": "neither"
+          }
+        ],
+        "deciding_reason": "A is precisely specified with generated and target SQL, easing an expert answer."
+      },
+      {
+        "pair_id": "2020-19",
+        "guess": "A",
+        "confidence": "high",
+        "differences": [
+          {
+            "quality": "Code included",
+            "kind": "writing",
+            "a": "template plus Java test",
+            "b": "only a stack trace, no code or explanation",
+            "favors": "A"
+          },
+          {
+            "quality": "Expected output",
+            "kind": "writing",
+            "a": "exact expected XML shown",
+            "b": "none",
+            "favors": "A"
+          },
+          {
+            "quality": "Body framing",
+            "kind": "writing",
+            "a": "explains the problem and question",
+            "b": "no question text in body",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A is complete with code, error and expected output, while B is a bare stack trace."
+      },
+      {
+        "pair_id": "2020-20",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Relevant evidence",
+            "kind": "writing",
+            "a": "code shown, though with undefined variables",
+            "b": "stack trace of the tool, not the real Gradle error",
+            "favors": "A"
+          },
+          {
+            "quality": "Constraint limiting fixes",
+            "kind": "writing",
+            "a": "none",
+            "b": "refuses to update Flutter",
+            "favors": "A"
+          },
+          {
+            "quality": "Steps tried",
+            "kind": "writing",
+            "a": "none",
+            "b": "lists clean, classpath change",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B's log lacks the actual cause and rules out the likely fix, so A seems more answerable."
+      }
+    ]
+  }
+}

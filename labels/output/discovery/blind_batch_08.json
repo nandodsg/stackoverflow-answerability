@@ -1,0 +1,660 @@
+{
+  "model": "claude-opus-5-5",
+  "usage": {
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "inference_geo": "global",
+    "input_tokens": 24889,
+    "iterations": [
+      {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "input_tokens": 24889,
+        "model": null,
+        "output_tokens": 6597,
+        "type": "message"
+      }
+    ],
+    "output_tokens": 6597,
+    "output_tokens_details": {
+      "thinking_tokens": 1767
+    },
+    "service_tier": "standard",
+    "speed": "standard"
+  },
+  "usd": 0.2315,
+  "result": {
+    "pairs": [
+      {
+        "pair_id": "2020-41",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Clarity and grammar",
+            "kind": "writing",
+            "a": "clear, well-formed prose",
+            "b": "run-on, sloppy text",
+            "favors": "A"
+          },
+          {
+            "quality": "Stating what was tried",
+            "kind": "writing",
+            "a": "shows the config files and the edit attempted",
+            "b": "only guesses at a fix",
+            "favors": "A"
+          },
+          {
+            "quality": "Context contrast",
+            "kind": "writing",
+            "a": "compares with the MVC way that works",
+            "b": "none",
+            "favors": "A"
+          },
+          {
+            "quality": "Screenshot",
+            "kind": "measured",
+            "a": "no image",
+            "b": "screenshot of the problem",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "A explains its setup and what it tried, while B is a loosely written styling complaint."
+      },
+      {
+        "pair_id": "2020-42",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Effort shown",
+            "kind": "writing",
+            "a": "none, repeats the question",
+            "b": "Stackblitz, related plugins, partial progress",
+            "favors": "B"
+          },
+          {
+            "quality": "Problem difficulty",
+            "kind": "topic",
+            "a": "common build-integration how-to",
+            "b": "complex custom UI feature request",
+            "favors": "A"
+          },
+          {
+            "quality": "Links and images",
+            "kind": "measured",
+            "a": "none",
+            "b": "image plus several links",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B shows more effort, but it asks for a whole complex feature, while A has a standard known recipe."
+      },
+      {
+        "pair_id": "2020-43",
+        "guess": "B",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Expected vs actual output",
+            "kind": "writing",
+            "a": "vague 'broken', partial error",
+            "b": "shows desired JSON vs actual JSON",
+            "favors": "B"
+          },
+          {
+            "quality": "Code correctness and focus",
+            "kind": "writing",
+            "a": "syntactically broken code, mixed REST client test",
+            "b": "concise model definition",
+            "favors": "B"
+          },
+          {
+            "quality": "Specific question",
+            "kind": "writing",
+            "a": "implied 'fix auth'",
+            "b": "precise optional-field behavior plus design question",
+            "favors": "B"
+          },
+          {
+            "quality": "Niche API",
+            "kind": "topic",
+            "a": "Subsonic API specifics",
+            "b": "popular pydantic/fastapi",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B gives clear expected vs actual output for a common library, while A is a confused, broken attempt against a niche API."
+      },
+      {
+        "pair_id": "2020-44",
+        "guess": "B",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Problem isolation",
+            "kind": "writing",
+            "a": "large layout file dump, 'nothing shows up'",
+            "b": "small REPL demo of current vs desired behavior",
+            "favors": "B"
+          },
+          {
+            "quality": "Clear desired interface",
+            "kind": "writing",
+            "a": "none",
+            "b": "sketches an ideal API",
+            "favors": "B"
+          },
+          {
+            "quality": "Debugging evidence",
+            "kind": "writing",
+            "a": "no console or build errors",
+            "b": "object_id output shown",
+            "favors": "B"
+          },
+          {
+            "quality": "Niche tooling",
+            "kind": "topic",
+            "a": "Slate plus Swagger integration",
+            "b": "core Ruby string behavior",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B is a crisp, well-illustrated core-Ruby question, while A is a vague 'nothing shows' with a code dump."
+      },
+      {
+        "pair_id": "2020-45",
+        "guess": "B",
+        "confidence": "high",
+        "differences": [
+          {
+            "quality": "Expected vs actual",
+            "kind": "writing",
+            "a": "error message only",
+            "b": "explicit expected vs observed addresses",
+            "favors": "B"
+          },
+          {
+            "quality": "Niche environment",
+            "kind": "topic",
+            "a": "Embarcadero legacy plus VSCode debugger",
+            "b": "pointer arithmetic, a well-known concept",
+            "favors": "B"
+          },
+          {
+            "quality": "Multiple questions",
+            "kind": "writing",
+            "a": "several loosely related questions",
+            "b": "one focused puzzle",
+            "favors": "B"
+          },
+          {
+            "quality": "Images",
+            "kind": "measured",
+            "a": "none",
+            "b": "three screenshots",
+            "favors": "neither"
+          }
+        ],
+        "deciding_reason": "B is a precisely described pointer-arithmetic puzzle with an easy known answer, while A involves a niche toolchain."
+      },
+      {
+        "pair_id": "2020-46",
+        "guess": "A",
+        "confidence": "high",
+        "differences": [
+          {
+            "quality": "Self-contained reproducible code",
+            "kind": "writing",
+            "a": "short complete snippet showing the bug",
+            "b": "only a command and log lines",
+            "favors": "A"
+          },
+          {
+            "quality": "Problem specificity",
+            "kind": "writing",
+            "a": "concrete wrong output",
+            "b": "'sometimes interrupted' with no error",
+            "favors": "A"
+          },
+          {
+            "quality": "Difficulty",
+            "kind": "topic",
+            "a": "beginner variable-overwrite bug",
+            "b": "intermittent queue worker issue",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A contains an obvious, reproducible beginner bug, while B is a vague intermittent problem with no diagnostics."
+      },
+      {
+        "pair_id": "2020-47",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Concrete programmable task",
+            "kind": "writing",
+            "a": "specific: choose theme by output format",
+            "b": "IDE behavior wish",
+            "favors": "A"
+          },
+          {
+            "quality": "Feature request nature",
+            "kind": "topic",
+            "a": "solvable in code",
+            "b": "likely missing IDE feature",
+            "favors": "A"
+          },
+          {
+            "quality": "Research shown",
+            "kind": "writing",
+            "a": "none",
+            "b": "links a GitHub issue",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "A asks for something achievable in code, while B asks for an IDE feature that probably does not exist."
+      },
+      {
+        "pair_id": "2020-48",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Specificity",
+            "kind": "writing",
+            "a": "exact command and desired setting",
+            "b": "vague hypothetical about delayed tasks",
+            "favors": "A"
+          },
+          {
+            "quality": "Scope",
+            "kind": "writing",
+            "a": "one clear question",
+            "b": "two broad questions",
+            "favors": "A"
+          },
+          {
+            "quality": "Thanks",
+            "kind": "measured",
+            "a": "none",
+            "b": "thanks in advance",
+            "favors": "neither"
+          }
+        ],
+        "deciding_reason": "A asks a precise configuration question with a known answer, while B is broad and vague."
+      },
+      {
+        "pair_id": "2020-49",
+        "guess": "A",
+        "confidence": "high",
+        "differences": [
+          {
+            "quality": "Exact error quoted",
+            "kind": "writing",
+            "a": "full SQL exception that pinpoints the bug",
+            "b": "paraphrased 'Program Files not valid'",
+            "favors": "A"
+          },
+          {
+            "quality": "Goal clarity",
+            "kind": "writing",
+            "a": "clear desired behavior",
+            "b": "garbled opening sentence",
+            "favors": "A"
+          },
+          {
+            "quality": "Topic fit",
+            "kind": "topic",
+            "a": "code bug",
+            "b": "server ops scripting in VBS",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A quotes an error that directly reveals the bug, making it quick to answer."
+      },
+      {
+        "pair_id": "2020-50",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Working vs failing contrast",
+            "kind": "writing",
+            "a": "shows values that work and values that fail",
+            "b": "desktop works vs HoloLens fails",
+            "favors": "neither"
+          },
+          {
+            "quality": "Reproducible code",
+            "kind": "writing",
+            "a": "complete snippet with a visible bug",
+            "b": "small diagnostic snippet",
+            "favors": "A"
+          },
+          {
+            "quality": "Niche platform",
+            "kind": "topic",
+            "a": "general UWP animation",
+            "b": "HoloLens 2 OneDrive specifics",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A's full code lets an answerer spot the missing keyframe, while B is a platform-specific issue few can reproduce."
+      },
+      {
+        "pair_id": "2021-01",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Minimal code",
+            "kind": "writing",
+            "a": "two lines that show the bug",
+            "b": "VBA snippet with stray End If",
+            "favors": "A"
+          },
+          {
+            "quality": "Focus",
+            "kind": "writing",
+            "a": "single issue",
+            "b": "drifts from static variables to out-of-memory errors",
+            "favors": "A"
+          },
+          {
+            "quality": "Effort described",
+            "kind": "writing",
+            "a": "none",
+            "b": "memory profiling done",
+            "favors": "B"
+          },
+          {
+            "quality": "Body length",
+            "kind": "measured",
+            "a": "very short",
+            "b": "longer",
+            "favors": "neither"
+          }
+        ],
+        "deciding_reason": "A's two lines reveal an obvious duplicate SendKeys bug, while B mixes several concerns."
+      },
+      {
+        "pair_id": "2021-02",
+        "guess": "B",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Niche library",
+            "kind": "topic",
+            "a": "specific react-native chart library",
+            "b": "general Gradle/Android build error",
+            "favors": "B"
+          },
+          {
+            "quality": "Error quoted",
+            "kind": "writing",
+            "a": "no code or attempt",
+            "b": "exact error text",
+            "favors": "B"
+          },
+          {
+            "quality": "Attempt shown",
+            "kind": "writing",
+            "a": "none, unsure where to start",
+            "b": "none",
+            "favors": "neither"
+          },
+          {
+            "quality": "Image",
+            "kind": "measured",
+            "a": "screenshot",
+            "b": "none",
+            "favors": "neither"
+          }
+        ],
+        "deciding_reason": "Both are thin, but B quotes an exact error in a widely used tool, while A concerns a niche library with no attempt."
+      },
+      {
+        "pair_id": "2021-03",
+        "guess": "B",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Attempt shown",
+            "kind": "writing",
+            "a": "none",
+            "b": "formula tried plus a shared sample sheet",
+            "favors": "B"
+          },
+          {
+            "quality": "Programming fit",
+            "kind": "topic",
+            "a": "product behavior about offline conflicts",
+            "b": "formula problem",
+            "favors": "B"
+          },
+          {
+            "quality": "Clarity of goal",
+            "kind": "writing",
+            "a": "detailed timeline but no solvable target",
+            "b": "clear desired output",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B gives a concrete formula and sample sheet, while A describes product behavior with no programmatic fix."
+      },
+      {
+        "pair_id": "2021-04",
+        "guess": "B",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Visible bug in code",
+            "kind": "writing",
+            "a": "stack trace, no code",
+            "b": "runnable snippet with a clear misuse of getElementById",
+            "favors": "B"
+          },
+          {
+            "quality": "Focused question",
+            "kind": "writing",
+            "a": "clear tooling question",
+            "b": "rambling description",
+            "favors": "A"
+          },
+          {
+            "quality": "Beginner framing",
+            "kind": "writing",
+            "a": "none",
+            "b": "admits being a beginner",
+            "favors": "neither"
+          }
+        ],
+        "deciding_reason": "B's snippet contains an obvious selector misuse that answerers fix quickly, though A is also easy."
+      },
+      {
+        "pair_id": "2021-05",
+        "guess": "B",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Problem isolation",
+            "kind": "writing",
+            "a": "full manifest and main dump",
+            "b": "short focused snippet",
+            "favors": "B"
+          },
+          {
+            "quality": "Specificity of ask",
+            "kind": "writing",
+            "a": "'where is the error'",
+            "b": "how to get a specific token",
+            "favors": "B"
+          },
+          {
+            "quality": "Code volume",
+            "kind": "measured",
+            "a": "three long code blocks",
+            "b": "one short block",
+            "favors": "neither"
+          }
+        ],
+        "deciding_reason": "B is short and focused, while A is a large code dump asking for a review."
+      },
+      {
+        "pair_id": "2021-06",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Structure",
+            "kind": "writing",
+            "a": "numbered concrete questions, files listed",
+            "b": "loosely explained",
+            "favors": "A"
+          },
+          {
+            "quality": "Opinion-based",
+            "kind": "topic",
+            "a": "technical how-to",
+            "b": "'is it a good strategy' design opinion",
+            "favors": "A"
+          },
+          {
+            "quality": "Research shown",
+            "kind": "writing",
+            "a": "links the docs consulted",
+            "b": "none",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A is a concrete technical how-to with research shown, while B is an opinion-style design question."
+      },
+      {
+        "pair_id": "2021-07",
+        "guess": "B",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Expected vs actual",
+            "kind": "writing",
+            "a": "'unable to do it' without details",
+            "b": "get() returns null after storing",
+            "favors": "B"
+          },
+          {
+            "quality": "Attempt shown",
+            "kind": "writing",
+            "a": "only data classes",
+            "b": "constructor, setter and usage shown",
+            "favors": "B"
+          },
+          {
+            "quality": "Environment details",
+            "kind": "writing",
+            "a": "none",
+            "b": "dependency versions listed",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B clearly states what it did and what fails, with versions, while A only shows models and says it can't update."
+      },
+      {
+        "pair_id": "2021-08",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "Full errors quoted",
+            "kind": "writing",
+            "a": "no error, describes the faulty line",
+            "b": "full traceback and QEMU error",
+            "favors": "B"
+          },
+          {
+            "quality": "Sample inputs",
+            "kind": "writing",
+            "a": "provides tagcloud.js and test.json",
+            "b": "exact commands",
+            "favors": "neither"
+          },
+          {
+            "quality": "Topic fit for tag",
+            "kind": "topic",
+            "a": "Python regex",
+            "b": "QEMU networking under the python tag",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A is a reproducible regex bug in core Python territory, while B is QEMU networking with a smaller audience under this tag."
+      },
+      {
+        "pair_id": "2021-09",
+        "guess": "A",
+        "confidence": "high",
+        "differences": [
+          {
+            "quality": "Problem scope",
+            "kind": "writing",
+            "a": "small beginner task with sample file",
+            "b": "very long app and multi-step repro",
+            "favors": "A"
+          },
+          {
+            "quality": "Difficulty",
+            "kind": "topic",
+            "a": "basic parsing",
+            "b": "possible library bug in Dash",
+            "favors": "A"
+          },
+          {
+            "quality": "Repro quality",
+            "kind": "writing",
+            "a": "input shown",
+            "b": "versions and step-by-step repro",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "A is an easy beginner parsing question, while B is a likely library bug needing deep investigation."
+      },
+      {
+        "pair_id": "2021-10",
+        "guess": "B",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "Current vs desired code",
+            "kind": "writing",
+            "a": "attempt plus exception name",
+            "b": "working test and ideal test side by side",
+            "favors": "B"
+          },
+          {
+            "quality": "Formatting",
+            "kind": "writing",
+            "a": "C# attempt not code-formatted",
+            "b": "clean code blocks",
+            "favors": "B"
+          },
+          {
+            "quality": "Known idiom answer",
+            "kind": "topic",
+            "a": "interop marshalling, tricky",
+            "b": "has a standard AutoFixture feature answer",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B clearly contrasts current and desired tests and maps to a well-known feature, while A's interop issue is messier."
+      }
+    ]
+  }
+}

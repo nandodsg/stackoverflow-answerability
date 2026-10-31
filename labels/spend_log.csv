@@ -1,0 +1,13 @@
+logged_at_utc,run,step,model,input_tokens,output_tokens,cache_write_tokens,cache_read_tokens,usd
+2026-10-31T21:03:51+00:00,discovery-2026-10-31,blind_batch_01,claude-opus-5-5,26513,6148,0,0,0.2290
+2026-10-31T21:04:47+00:00,discovery-2026-10-31,blind_batch_02,claude-opus-5-5,19957,6061,0,0,0.2010
+2026-10-31T21:05:39+00:00,discovery-2026-10-31,blind_batch_03,claude-opus-5-5,22186,5778,0,0,0.2043
+2026-10-31T21:06:40+00:00,discovery-2026-10-31,blind_batch_04,claude-opus-5-5,27967,6612,0,0,0.2441
+2026-10-31T21:07:41+00:00,discovery-2026-10-31,blind_batch_05,claude-opus-5-5,24759,6515,0,0,0.2293
+2026-10-31T21:08:39+00:00,discovery-2026-10-31,blind_batch_06,claude-opus-5-5,29374,6160,0,0,0.2407
+2026-10-31T21:09:40+00:00,discovery-2026-10-31,blind_batch_07,claude-opus-5-5,26157,6474,0,0,0.2341
+2026-10-31T21:10:40+00:00,discovery-2026-10-31,blind_batch_08,claude-opus-5-5,24889,6597,0,0,0.2315
+2026-10-31T21:11:31+00:00,discovery-2026-10-31,blind_batch_09,claude-opus-5-5,25324,5701,0,0,0.2153
+2026-10-31T21:12:30+00:00,discovery-2026-10-31,blind_batch_10,claude-opus-5-5,44803,6226,0,0,0.3037
+2026-10-31T21:16:02+00:00,discovery-2026-10-31,reveal,claude-opus-5-5,59588,14499,0,0,0.5283
+2026-10-31T21:15:00+00:00,discovery-2026-10-31,reveal_dropped_attempt,claude-opus-5-5,,,,,0.4900

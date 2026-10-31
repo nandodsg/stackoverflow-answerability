@@ -74,3 +74,22 @@ models:
                 meta: {ac: AC-3.5}
       - name: bucket
         data_tests: [not_null]
+
+  - name: int_label_discovery_pairs
+    description: >
+      Discovery set of the quality labels (needs_full_scan): ~200 pairs from the 5% text sample, 2018-2021, same primary
+      tag, year and has-code-block value, one question with an accepted answer (not self-accepted) and one unanswered.
+      50 pairs per year, at most 3 per (tag, year). Question ids only; the gold and analysis sets exclude these questions.
+    columns:
+      - name: pair_id
+        data_tests: [unique, not_null]
+      - name: accepted_question_id
+        data_tests: [unique, not_null]
+      - name: unanswered_question_id
+        data_tests: [unique, not_null]
+      - name: creation_year
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [2018, 2019, 2020, 2021]
+                quote: false

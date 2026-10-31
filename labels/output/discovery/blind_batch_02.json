@@ -1,0 +1,625 @@
+{
+  "model": "claude-opus-5-5",
+  "usage": {
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "inference_geo": "global",
+    "input_tokens": 19957,
+    "iterations": [
+      {
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 0,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "input_tokens": 19957,
+        "model": null,
+        "output_tokens": 6061,
+        "type": "message"
+      }
+    ],
+    "output_tokens": 6061,
+    "output_tokens_details": {
+      "thinking_tokens": 1586
+    },
+    "service_tier": "standard",
+    "speed": "standard"
+  },
+  "usd": 0.201,
+  "result": {
+    "pairs": [
+      {
+        "pair_id": "2018-21",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "error evidence",
+            "kind": "writing",
+            "a": "describes concrete wrong output observed",
+            "b": "says 'crash' with no error message",
+            "favors": "A"
+          },
+          {
+            "quality": "explains intended algorithm",
+            "kind": "writing",
+            "a": "walks through what code should do step by step",
+            "b": "minimal explanation, hopes approach is right",
+            "favors": "A"
+          },
+          {
+            "quality": "self-contained example",
+            "kind": "writing",
+            "a": "includes sample string, runnable logic",
+            "b": "depends on undefined format, engine, buffer helper",
+            "favors": "A"
+          },
+          {
+            "quality": "title clarity",
+            "kind": "writing",
+            "a": "clear task title",
+            "b": "misspelled, vague title",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A gives a self-contained example and observed symptom, while B reports an unspecified crash."
+      },
+      {
+        "pair_id": "2018-22",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "scope",
+            "kind": "writing",
+            "a": "single factual question",
+            "b": "open design question about streaming in a framework",
+            "favors": "A"
+          },
+          {
+            "quality": "shows search effort",
+            "kind": "writing",
+            "a": "links places already checked",
+            "b": "names functions considered",
+            "favors": "neither"
+          },
+          {
+            "quality": "problem difficulty",
+            "kind": "topic",
+            "a": "easy lookup",
+            "b": "niche Yesod/conduit streaming, admittedly simplified",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A is a narrow factual question with a quick definitive answer, while B is a hard niche design problem."
+      },
+      {
+        "pair_id": "2018-23",
+        "guess": "B",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "completeness",
+            "kind": "writing",
+            "a": "body cut off mid-sentence ('I tried with')",
+            "b": "complete if brief",
+            "favors": "B"
+          },
+          {
+            "quality": "recommendation request",
+            "kind": "topic",
+            "a": "asks for best algorithm",
+            "b": "yes/no feasibility question",
+            "favors": "B"
+          },
+          {
+            "quality": "concrete example",
+            "kind": "writing",
+            "a": "workflow listed",
+            "b": "concrete search-via-Chrome example",
+            "favors": "neither"
+          }
+        ],
+        "deciding_reason": "B asks a feasibility question with a clear-cut answer, while A is an unfinished algorithm-recommendation request."
+      },
+      {
+        "pair_id": "2018-24",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "focused conceptual question",
+            "kind": "writing",
+            "a": "one precise why-question on a spec snippet",
+            "b": "practical question with messy code",
+            "favors": "A"
+          },
+          {
+            "quality": "error quoted",
+            "kind": "writing",
+            "a": "no error, conceptual",
+            "b": "compile error quoted exactly",
+            "favors": "B"
+          },
+          {
+            "quality": "formatting",
+            "kind": "writing",
+            "a": "clean short snippet with link to spec",
+            "b": "badly indented code, mixed formatting",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A is a clean, narrow conceptual question about a cited spec example that invites a definitive explanation."
+      },
+      {
+        "pair_id": "2018-25",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "problem generality",
+            "kind": "topic",
+            "a": "common Angular routing need",
+            "b": "environment-specific Docker/Facebook config",
+            "favors": "A"
+          },
+          {
+            "quality": "code shown",
+            "kind": "measured",
+            "a": "code only as screenshot",
+            "b": "no code, settings listed",
+            "favors": "neither"
+          },
+          {
+            "quality": "contrast of working vs failing",
+            "kind": "writing",
+            "a": "none",
+            "b": "contrasts ng serve vs docker",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "A asks a common, well-scoped framework question with a known answer, while B depends on external app configuration."
+      },
+      {
+        "pair_id": "2018-26",
+        "guess": "B",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "scope",
+            "kind": "writing",
+            "a": "broad load-testing how-to",
+            "b": "narrow factual question",
+            "favors": "B"
+          },
+          {
+            "quality": "effort shown",
+            "kind": "writing",
+            "a": "context about app and tools",
+            "b": "no effort, wants one-word answer",
+            "favors": "A"
+          },
+          {
+            "quality": "tag fit",
+            "kind": "topic",
+            "a": "Android testing under php tag",
+            "b": "core PHP",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B has a short definitive answer despite low effort, while A is a broad testing-strategy question."
+      },
+      {
+        "pair_id": "2018-27",
+        "guess": "B",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "symptom description",
+            "kind": "writing",
+            "a": "shows schema, query and output",
+            "b": "describes pending request symptom clearly",
+            "favors": "neither"
+          },
+          {
+            "quality": "ask clarity",
+            "kind": "writing",
+            "a": "goal somewhat unclear given odd schema",
+            "b": "explicit numbered asks",
+            "favors": "B"
+          },
+          {
+            "quality": "missing relevant code",
+            "kind": "writing",
+            "a": "complete relevant code",
+            "b": "omits backend routes",
+            "favors": "A"
+          },
+          {
+            "quality": "common pitfall",
+            "kind": "topic",
+            "a": "awkward schema design",
+            "b": "classic missing server response",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B's symptom points to a well-known fix (server not responding), making a quick accepted answer likely."
+      },
+      {
+        "pair_id": "2018-28",
+        "guess": "B",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "expected vs actual",
+            "kind": "writing",
+            "a": "states goal, not what goes wrong",
+            "b": "describes exact wrong behavior per click",
+            "favors": "B"
+          },
+          {
+            "quality": "code minimality",
+            "kind": "writing",
+            "a": "full cloud function",
+            "b": "short repeating snippet",
+            "favors": "B"
+          },
+          {
+            "quality": "constraints stated",
+            "kind": "writing",
+            "a": "notes leaderboard must hold 10 records",
+            "b": "none",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "B gives a minimal snippet with precise actual behavior that reveals an index-shift bug."
+      },
+      {
+        "pair_id": "2018-29",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "self-contained question",
+            "kind": "writing",
+            "a": "minimal example of desired syntax",
+            "b": "relies on custom query classes not shown",
+            "favors": "A"
+          },
+          {
+            "quality": "alternatives considered",
+            "kind": "writing",
+            "a": "mentions ClassData/MemberData",
+            "b": "says modelled on working example",
+            "favors": "A"
+          },
+          {
+            "quality": "problem generality",
+            "kind": "topic",
+            "a": "common xUnit question",
+            "b": "context-dependent EF save issue",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A is a minimal, common xUnit question with a known answer, while B hides the likely cause in unshown code."
+      },
+      {
+        "pair_id": "2018-30",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "opinion content",
+            "kind": "topic",
+            "a": "concrete summarize-by-group task",
+            "b": "includes which-is-better and package recommendation",
+            "favors": "A"
+          },
+          {
+            "quality": "multiple questions",
+            "kind": "writing",
+            "a": "single task",
+            "b": "three separate questions",
+            "favors": "A"
+          },
+          {
+            "quality": "visual specification",
+            "kind": "measured",
+            "a": "no images",
+            "b": "images of desired charts",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "A is a single common data-summary task while B mixes opinion and recommendation asks."
+      },
+      {
+        "pair_id": "2018-31",
+        "guess": "B",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "error quoted",
+            "kind": "writing",
+            "a": "exact exception quoted",
+            "b": "exact error quoted with signature",
+            "favors": "neither"
+          },
+          {
+            "quality": "working vs failing contrast",
+            "kind": "writing",
+            "a": "worked before upgrade",
+            "b": "fibonacci works, getSSIDList fails side by side",
+            "favors": "B"
+          },
+          {
+            "quality": "problem difficulty",
+            "kind": "topic",
+            "a": "possible Hibernate regression bug",
+            "b": "simple JNI signature typo",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "B's error and side-by-side working call expose an easily fixable signature mistake, whereas A looks like a library bug."
+      },
+      {
+        "pair_id": "2018-32",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "prose framing",
+            "kind": "writing",
+            "a": "clear stated goal and side question",
+            "b": "no prose, just from/to tables",
+            "favors": "A"
+          },
+          {
+            "quality": "input/expected output",
+            "kind": "writing",
+            "a": "none needed",
+            "b": "sample input and expected output",
+            "favors": "B"
+          },
+          {
+            "quality": "effort shown",
+            "kind": "writing",
+            "a": "describes current startup approach",
+            "b": "no attempt shown",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A is a clearly framed question with a known answer, while B is an effortless data-only dump."
+      },
+      {
+        "pair_id": "2018-33",
+        "guess": "B",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "structured questions",
+            "kind": "writing",
+            "a": "single guess about install order",
+            "b": "numbered precise behavior questions",
+            "favors": "B"
+          },
+          {
+            "quality": "environment specificity",
+            "kind": "topic",
+            "a": "SSIS-specific environment issue",
+            "b": "general foreach semantics",
+            "favors": "B"
+          },
+          {
+            "quality": "error quoted",
+            "kind": "writing",
+            "a": "error messages quoted",
+            "b": "no error",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "B asks precise, documentable questions about general behavior, while A hinges on an opaque SSIS environment."
+      },
+      {
+        "pair_id": "2018-34",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "concision",
+            "kind": "writing",
+            "a": "short with concrete URL example",
+            "b": "long, repetitive walkthrough",
+            "favors": "A"
+          },
+          {
+            "quality": "problem commonness",
+            "kind": "topic",
+            "a": "standard ingress question",
+            "b": "container lifecycle workaround",
+            "favors": "A"
+          },
+          {
+            "quality": "what was tried",
+            "kind": "writing",
+            "a": "nothing shown",
+            "b": "detailed manual approach",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "A asks a common, concise question answered directly by Ingress."
+      },
+      {
+        "pair_id": "2018-35",
+        "guess": "B",
+        "confidence": "high",
+        "differences": [
+          {
+            "quality": "language",
+            "kind": "writing",
+            "a": "written in Portuguese on English site",
+            "b": "English",
+            "favors": "B"
+          },
+          {
+            "quality": "specificity",
+            "kind": "writing",
+            "a": "one-line generic ask",
+            "b": "specific multi-database scenario",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "A is a one-line non-English question likely closed, while B is a specific answerable question."
+      },
+      {
+        "pair_id": "2018-36",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "working baseline",
+            "kind": "writing",
+            "a": "shows working single-column version and desired variant",
+            "b": "shows trigger and function",
+            "favors": "A"
+          },
+          {
+            "quality": "error quoted",
+            "kind": "writing",
+            "a": "none",
+            "b": "full error quoted",
+            "favors": "B"
+          },
+          {
+            "quality": "prior knowledge stated",
+            "kind": "writing",
+            "a": "explains Oracle equivalent and constraints",
+            "b": "misdiagnoses id as keyword",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A clearly contrasts a working baseline with the desired variant and states constraints."
+      },
+      {
+        "pair_id": "2018-37",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "sample data",
+            "kind": "writing",
+            "a": "sample XML and current query",
+            "b": "no data or code, architecture description",
+            "favors": "A"
+          },
+          {
+            "quality": "scope",
+            "kind": "writing",
+            "a": "narrow query problem",
+            "b": "broad system design",
+            "favors": "A"
+          },
+          {
+            "quality": "actual failure described",
+            "kind": "writing",
+            "a": "explains why current query fails",
+            "b": "lists constraints only",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A provides sample data, attempted query and failure mode for a concrete query problem; B is a broad design question."
+      },
+      {
+        "pair_id": "2018-38",
+        "guess": "A",
+        "confidence": "medium",
+        "differences": [
+          {
+            "quality": "research shown",
+            "kind": "writing",
+            "a": "links docs, notes constructor option",
+            "b": "brief attempt only",
+            "favors": "A"
+          },
+          {
+            "quality": "alternatives offered",
+            "kind": "writing",
+            "a": "proposes alternative acceptable solution",
+            "b": "none",
+            "favors": "A"
+          },
+          {
+            "quality": "code accuracy",
+            "kind": "writing",
+            "a": "commented, real code",
+            "b": "pseudo-ish code with nonexistent methods",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A shows documented research and clear goals, whereas B is vague with inaccurate code."
+      },
+      {
+        "pair_id": "2018-39",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "scope",
+            "kind": "writing",
+            "a": "compare two short versions",
+            "b": "verify 18 lines of reasoning",
+            "favors": "A"
+          },
+          {
+            "quality": "concision",
+            "kind": "writing",
+            "a": "compact code and two questions",
+            "b": "very long annotated code",
+            "favors": "A"
+          },
+          {
+            "quality": "shows reasoning",
+            "kind": "writing",
+            "a": "little",
+            "b": "detailed own reasoning",
+            "favors": "B"
+          }
+        ],
+        "deciding_reason": "A asks a compact, bounded comparison while B asks reviewers to audit lengthy reasoning."
+      },
+      {
+        "pair_id": "2018-40",
+        "guess": "A",
+        "confidence": "low",
+        "differences": [
+          {
+            "quality": "question focus",
+            "kind": "writing",
+            "a": "single direct feature question",
+            "b": "troubleshooting with log",
+            "favors": "neither"
+          },
+          {
+            "quality": "log evidence",
+            "kind": "writing",
+            "a": "none",
+            "b": "full log quoted",
+            "favors": "B"
+          },
+          {
+            "quality": "reproducibility",
+            "kind": "topic",
+            "a": "general capability",
+            "b": "corrupted local DB state",
+            "favors": "A"
+          }
+        ],
+        "deciding_reason": "A asks a general capability question with a definite answer, while B is a local corruption issue that is harder to resolve remotely."
+      }
+    ]
+  }
+}
