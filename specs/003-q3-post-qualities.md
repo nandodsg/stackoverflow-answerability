@@ -30,7 +30,8 @@ the first answer, so features measured on the current text can be caused by the 
 ## Feature table (decided 2026-10-30)
 
 One model reads `post_history.text` once (~109 GB; the column bills in full whatever the row filter) and stores one
-row per question with numbers and flags, never the body. Choices:
+row per question with numbers and flags, never the body (plus one row per answer of the 5% sample, same columns).
+Choices:
 
 - **Cohorts**: every question created **2018–2022** (five years; 2022 is partial and censored, so the AC-3.3
   two-cohort check rests on full years). Plus the original tags of 2013–2017 questions originally tagged exactly
@@ -50,8 +51,17 @@ row per question with numbers and flags, never the body. Choices:
   dbt macro, so original-vs-current differences are real and not a parsing artifact.
 - **Current-text features** (AC-3.5): the same macros on `posts_questions.body` in a second tagged model (~36 GB).
   The two reads cannot share one query: together they bill ~145 GB, above the `full_scan` cap.
-- **Sample first**: both models run once on a ~0.1% `TABLESAMPLE` of their source to check the tag parsing, the
-  Markdown/HTML rules (they must agree on never-edited questions) and the rows per year, before the full run.
+- **Sample first**: both models run once on a `TABLESAMPLE` of their source (`--vars '{sample_pct: 2}'`) to check the
+  tag parsing and the rows per year before the full run. A sample takes whole storage blocks (a 0.1% sample was one
+  block from one year), so the Markdown/HTML agreement is checked per question on the stored tables after the scan.
+- **Markdown vs HTML agreement** (4.05M never-edited questions, 2018–2022; the two texts of such a question have the
+  same content): title features 100%; has code block 98.0%; number of code blocks 94.2%; inline code 97.7%; image 99.9%;
+  links 98.4%; error, effort and greeting text >= 99.95%. The remaining ~2% on code is the format floor (an indented
+  block the stored text lost the first indent of, a fence the old site did not render, ...). Findings that use code
+  blocks use "has a code block"; the count is the weaker feature. The leakage KPI (AC-3.6) subtracts this floor from
+  the original-vs-current differences. Original tags equal the current tags for 99.9999% of never-edited questions.
+- The macros live in `macros/text_features.sql`; `tests/assert_text_feature_rules.sql` holds hand-written examples of
+  every rule (Markdown and HTML) and reads no table.
 - Features that need no text (hour and weekday posted, asker account age, asker's prior questions, first question)
   come from metadata in regular models.
 

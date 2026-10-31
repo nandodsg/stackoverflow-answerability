@@ -1,0 +1,230 @@
+version: 2
+
+models:
+  - name: mart_p1_tags
+    description: >
+      Prompt 1, single tags. One row per (year, tag) with at least 385 questions, for 2022 and the 2021 robustness
+      check. Rates use all questions as the denominator (D2). "top" ranks sort by the lower bound, "bottom" ranks by
+      the upper bound (D1); `_raw` ranks are robustness method A.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [creation_year, tag]
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "abs(accepted_rate - answer_rate * coalesce(accepted_rate_among_answered, 0)) < 1e-9"
+          config:
+            meta: {ac: AC-0.5, also: AC-1.8}
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "abs(answers_per_question - answer_rate * coalesce(answers_per_answered_question, 0)) < 1e-9"
+          config:
+            meta: {ac: AC-0.6}
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "accepted_rate_lower <= accepted_rate and accepted_rate <= accepted_rate_upper and answer_rate_lower <= answer_rate and answer_rate <= answer_rate_upper and answers_per_question_lower <= answers_per_question and answers_per_question <= answers_per_question_upper"
+          config:
+            meta: {ac: AC-1.6}
+    columns:
+      - name: creation_year
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [2021, 2022]
+                quote: false
+              config:
+                meta: {ac: AC-1.1}
+      - name: tag
+        data_tests: [not_null]
+      - name: n_questions
+        data_tests:
+          - not_null:
+              config:
+                meta: {ac: AC-1.3}
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 385
+              config:
+                meta: {ac: AC-1.2}
+      - name: answer_rate
+        data_tests: &rate_range
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                max_value: 1
+              config:
+                meta: {ac: AC-1.3}
+      - name: accepted_rate
+        data_tests: *rate_range
+      - name: accepted_rate_among_answered
+        data_tests: *rate_range
+      - name: accepted_rate_lower
+        data_tests: *rate_range
+      - name: accepted_rate_upper
+        data_tests: *rate_range
+      - name: answers_interval_reliable
+        description: Cochran's rule (n > 25 × skewness²). False means the answers-per-question interval is approximate (AC-1.10).
+        data_tests: [not_null]
+      - name: tag_exposure
+        description: Share of the tag's questions whose tags were first edited after the first answer (AC-0.8, AC-1.9).
+        data_tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                max_value: 1
+
+  - name: mart_p1_pairs
+    description: Prompt 1, tag combinations. Same columns and rules as mart_p1_tags; one row per (year, unordered tag pair).
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [creation_year, tag_a, tag_b]
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "tag_a < tag_b"
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "abs(accepted_rate - answer_rate * coalesce(accepted_rate_among_answered, 0)) < 1e-9"
+          config:
+            meta: {ac: AC-0.5, also: AC-1.8}
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "abs(answers_per_question - answer_rate * coalesce(answers_per_answered_question, 0)) < 1e-9"
+          config:
+            meta: {ac: AC-0.6}
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "accepted_rate_lower <= accepted_rate and accepted_rate <= accepted_rate_upper and answer_rate_lower <= answer_rate and answer_rate <= answer_rate_upper and answers_per_question_lower <= answers_per_question and answers_per_question <= answers_per_question_upper"
+          config:
+            meta: {ac: AC-1.6}
+    columns:
+      - name: creation_year
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [2021, 2022]
+                quote: false
+              config:
+                meta: {ac: AC-1.1}
+      - name: n_questions
+        data_tests:
+          - not_null:
+              config:
+                meta: {ac: AC-1.3}
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 385
+              config:
+                meta: {ac: AC-1.2}
+      - name: accepted_rate
+        data_tests: *rate_range
+      - name: answer_rate
+        data_tests: *rate_range
+      - name: answers_interval_reliable
+        data_tests: [not_null]
+      - name: tag_exposure
+        data_tests:
+          - not_null
+
+  - name: mart_p2_python_dbt
+    description: >
+      Prompt 2. Questions whose current tags are exactly `python` or exactly `dbt`, one row per (tag, creation year)
+      for 2013-2022, with zero-question years kept. Answers per question is the headline (D3); questions per answer is
+      its inverse, shown once ("Q÷A = 1 / this").
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [tag, creation_year]
+          config:
+            meta: {ac: AC-2.2}
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "abs(accepted_rate - answer_rate * coalesce(accepted_rate_among_answered, 0)) < 1e-9"
+          config:
+            meta: {ac: AC-0.5}
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "n_questions = 0 or abs(answers_per_question - answer_rate * coalesce(answers_per_answered_question, 0)) < 1e-9"
+          config:
+            meta: {ac: AC-0.6}
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "n_answers = 0 or abs(questions_per_answer * answers_per_question - 1) < 1e-9"
+          config:
+            meta: {ac: AC-0.6, also: AC-2.5}
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "n_questions = 0 or (accepted_rate_lower is not null and accepted_rate_upper is not null and answers_per_question_lower is not null and answers_per_question_upper is not null)"
+          config:
+            meta: {ac: AC-2.3}
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "is_partial_year = (creation_year = 2022)"
+          config:
+            meta: {ac: AC-2.4}
+    columns:
+      - name: tag
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['python', 'dbt']
+      - name: creation_year
+        data_tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 2013
+                max_value: 2022
+      - name: n_questions
+        data_tests:
+          - not_null:
+              config:
+                meta: {ac: AC-2.3}
+      - name: accepted_rate
+        description: Null when the year has no question.
+      - name: tag_exposure
+        description: Share of the group's questions whose tags were first edited after the first answer (AC-0.8, AC-2.6).
+
+unit_tests:
+  - name: mart_p2_exact_tag_match
+    description: >
+      AC-2.1. Only a question whose tags are exactly `python` or exactly `dbt` counts; `python|pandas`, `python-3.x`
+      and `dbt|sql` do not. Every (tag, year) row stays, empty years included (AC-2.2).
+    model: mart_p2_python_dbt
+    given:
+      - input: ref('int_questions')
+        rows:
+          - {question_id: 1, creation_year: 2020, tags: "python", answer_count: 2, is_answered: true, has_accepted_answer: true}
+          - {question_id: 2, creation_year: 2020, tags: "python|pandas", answer_count: 5, is_answered: true, has_accepted_answer: true}
+          - {question_id: 3, creation_year: 2020, tags: "python-3.x", answer_count: 1, is_answered: true, has_accepted_answer: false}
+          - {question_id: 4, creation_year: 2021, tags: "dbt", answer_count: 1, is_answered: true, has_accepted_answer: false}
+          - {question_id: 5, creation_year: 2021, tags: "dbt|sql", answer_count: 3, is_answered: true, has_accepted_answer: true}
+      - input: ref('int_question_exposure')
+        rows:
+          - {question_id: 1, tags_exposed: false}
+          - {question_id: 2, tags_exposed: false}
+          - {question_id: 3, tags_exposed: false}
+          - {question_id: 4, tags_exposed: false}
+          - {question_id: 5, tags_exposed: false}
+    expect:
+      rows:
+        - {tag: python, creation_year: 2013, n_questions: 0}
+        - {tag: python, creation_year: 2014, n_questions: 0}
+        - {tag: python, creation_year: 2015, n_questions: 0}
+        - {tag: python, creation_year: 2016, n_questions: 0}
+        - {tag: python, creation_year: 2017, n_questions: 0}
+        - {tag: python, creation_year: 2018, n_questions: 0}
+        - {tag: python, creation_year: 2019, n_questions: 0}
+        - {tag: python, creation_year: 2020, n_questions: 1}
+        - {tag: python, creation_year: 2021, n_questions: 0}
+        - {tag: python, creation_year: 2022, n_questions: 0}
+        - {tag: dbt, creation_year: 2013, n_questions: 0}
+        - {tag: dbt, creation_year: 2014, n_questions: 0}
+        - {tag: dbt, creation_year: 2015, n_questions: 0}
+        - {tag: dbt, creation_year: 2016, n_questions: 0}
+        - {tag: dbt, creation_year: 2017, n_questions: 0}
+        - {tag: dbt, creation_year: 2018, n_questions: 0}
+        - {tag: dbt, creation_year: 2019, n_questions: 0}
+        - {tag: dbt, creation_year: 2020, n_questions: 0}
+        - {tag: dbt, creation_year: 2021, n_questions: 1}
+        - {tag: dbt, creation_year: 2022, n_questions: 0}

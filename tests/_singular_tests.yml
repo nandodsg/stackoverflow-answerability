@@ -9,3 +9,11 @@ data_tests:
     description: >
       Stands in for source freshness on a frozen snapshot: warns if the row count or the newest creation time of
       questions or answers differs from the 2022-09-25 snapshot the README numbers come from.
+  - name: assert_text_feature_rules
+    description: >
+      AC-3.4 support. Hand-written Markdown and HTML examples for every text-feature rule in macros/text_features.sql;
+      returns the examples where a rule gives a different value. Reads no table.
+  - name: assert_wilson_reference_values
+    description: AC-1.5. The Wilson bounds match the reference values of specs/001 (9/10, 850/1000, 1/1, 0/1).
+  - name: assert_p1_rank_order
+    description: AC-1.6. "Highest" ranks sort by the lower bound and "lowest" ranks by the upper bound, in both P1 marts.

@@ -1,0 +1,14 @@
+selectors:
+  # The default for `dbt run`, `dbt test` and `dbt build` when no --select is given: everything except the models
+  # tagged `full_scan`, which read ~145 GB of text in total. Run those on purpose and one at a time:
+  #   dbt run --target full_scan --select tag:full_scan
+  - name: default_build
+    default: true
+    description: Everything except the one-time text-scan models.
+    definition:
+      union:
+        - method: fqn
+          value: "*"
+        - exclude:
+            - method: tag
+              value: full_scan

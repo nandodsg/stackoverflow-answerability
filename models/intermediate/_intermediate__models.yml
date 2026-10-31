@@ -32,3 +32,58 @@ models:
     columns:
       - name: tag
         data_tests: [not_null]
+
+  - name: int_question_tag_pairs
+    description: One row per (question, unordered pair of current tags), stored alphabetically (tag_a < tag_b).
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [question_id, tag_a, tag_b]
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "tag_a < tag_b"
+
+  - name: int_question_exposure
+    description: >
+      Leakage exposure (specs/000, AC-0.8/0.9): one row per question saying whether its tags, or its title/body, were
+      first edited after its first answer. Reads revision metadata only, never `text`.
+    columns:
+      - name: question_id
+        data_tests: [unique, not_null]
+      - name: tags_exposed
+        description: First tag edit (post_history types 6, 9) is later than the first answer. False when unanswered.
+        data_tests: [not_null]
+      - name: text_exposed
+        description: First title/body edit (types 4, 5, 7, 8) is later than the first answer. False when unanswered.
+        data_tests: [not_null]
+
+unit_tests:
+  - name: exposure_counts_only_edits_after_the_first_answer
+    description: >
+      AC-0.9. Q1: tag edit after the first answer is exposed (tags only). Q2: body edit before the first answer is not
+      exposed. Q3: a never-answered question cannot be exposed. Q4: a tag rollback after the first answer is exposed.
+      Q5: title edit after the answer exposes the text, a tag edit before it does not expose the tags.
+    model: int_question_exposure
+    given:
+      - input: ref('int_questions')
+        rows:
+          - {question_id: 1, creation_year: 2022, first_answer_at: "2022-01-02 00:00:00"}
+          - {question_id: 2, creation_year: 2022, first_answer_at: "2022-01-02 00:00:00"}
+          - {question_id: 3, creation_year: 2022, first_answer_at: null}
+          - {question_id: 4, creation_year: 2022, first_answer_at: "2022-01-02 00:00:00"}
+          - {question_id: 5, creation_year: 2022, first_answer_at: "2022-01-02 00:00:00"}
+      - input: ref('stg_stackoverflow__post_history')
+        rows:
+          - {post_id: 1, post_history_type_id: 6, created_at: "2022-01-03 00:00:00"}
+          - {post_id: 2, post_history_type_id: 5, created_at: "2022-01-01 00:00:00"}
+          - {post_id: 3, post_history_type_id: 6, created_at: "2022-01-03 00:00:00"}
+          - {post_id: 4, post_history_type_id: 9, created_at: "2022-01-05 00:00:00"}
+          - {post_id: 5, post_history_type_id: 6, created_at: "2022-01-01 00:00:00"}
+          - {post_id: 5, post_history_type_id: 4, created_at: "2022-01-04 00:00:00"}
+    expect:
+      rows:
+        - {question_id: 1, tags_exposed: true, text_exposed: false}
+        - {question_id: 2, tags_exposed: false, text_exposed: false}
+        - {question_id: 3, tags_exposed: false, text_exposed: false}
+        - {question_id: 4, tags_exposed: true, text_exposed: false}
+        - {question_id: 5, tags_exposed: false, text_exposed: true}
