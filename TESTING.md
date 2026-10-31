@@ -81,6 +81,6 @@ Never edit a generated file: change the model or the source and run the script a
 
 | File | Prompt | Expected result | Status |
 |---|---|---|---|
-| `q1.sql` | 1 | 2022 accepted rate 30.5%; 1,162 ranked tags; 1,026 ranked pairs; top / bottom 10 lists | numbers verified (2026-10-31) on the same SQL written with CTEs; the delivered temp-table script not re-run since |
-| `q2.sql` | 2 | python-only answers per question 2.31 / 1.52 / 1.26 (2013 / 2021 / 2022); dbt-only 1.39 / 1.14 / 1.06 (2020–2022) | numbers verified likewise; the temp-table script ran once (7.21 GiB billed) before the closing `drop table` lines were added |
+| `q1.sql` | 1 | 2022 accepted rate 30.5%; 1,162 ranked tags; 1,026 ranked pairs; top / bottom 10 lists | run as delivered in a fresh sandbox project on 2026-10-31 (8.92 GiB billed, temp tables dropped, 1,162 tags and 1,026 pairs); numbers also checked on the CTE variant |
+| `q2.sql` | 2 | python-only answers per question 2.31 / 1.52 / 1.26 (2013 / 2021 / 2022); dbt-only 1.39 / 1.14 / 1.06 (2020–2022) | run as delivered in a fresh sandbox project on 2026-10-31 (31 / 58 / 79 dbt questions in 2020–2022, python 7,819 / 15,811 / 12,809 in 2013 / 2021 / 2022); numbers also checked on the CTE variant |
 | `q3.sql` | 3 | _waits for the quality labels_ | not started |

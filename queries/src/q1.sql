@@ -18,7 +18,7 @@
 --   * Ranking uses a 95% interval, not the raw rate: "highest" lists sort by the LOWER bound, "lowest" lists by
 --     the UPPER bound. Rates use the Wilson interval; answers per question uses mean +/- 1.96 x standard error.
 --   * `answers_interval_reliable` is false where the normal interval is only approximate (Cochran's rule).
---   * Cost: reads questions, answers and post_history metadata columns only (never body or text), under 15 GB.
+--   * Cost: reads questions, answers and post_history metadata columns only (never body or text), about 9 GB.
 
 -- 1. Headline numbers.
 select
