@@ -1,0 +1,155 @@
+version: 2
+
+# Semantic models (MetricFlow). Each one says: which column identifies a row (entity), which columns we slice by
+# (dimensions) and which columns we add up (measures). `create_metric: true` turns a measure into a metric of the same
+# name, so the ratio metrics in _semantic__metrics.yml can use them as numerator and denominator.
+#
+# Measures and metrics need globally unique names, so the three models are told apart by prefix:
+# no prefix = whole questions, by_tag_ = one row per (question, tag), by_pair_ = one row per (question, tag pair).
+# P3 (Item 6): add its semantic model(s) in the marked block at the end of this file, its metrics at the end of
+# _semantic__metrics.yml.
+
+models:
+  - name: metricflow_time_spine
+    description: One row per day; MetricFlow's calendar.
+    time_spine:
+      standard_granularity_column: date_day
+    columns:
+      - name: date_day
+        granularity: day
+        data_tests: [unique, not_null]
+
+semantic_models:
+  - name: questions
+    description: One row per question (sem_questions). The population behind the whole-snapshot numbers, e.g. the 2022 baseline.
+    model: ref('sem_questions')
+    defaults:
+      agg_time_dimension: created_at
+    entities:
+      - name: question
+        type: primary
+        expr: question_id
+    dimensions:
+      - name: created_at
+        type: time
+        type_params:
+          time_granularity: day
+      - name: creation_year
+        type: categorical
+      - name: tags
+        type: categorical
+        description: The whole tag string, e.g. `python` means python-only (P2).
+      - name: tag_count
+        type: categorical
+    measures:
+      - name: questions
+        description: Number of questions.
+        agg: count
+        expr: question_id
+        create_metric: true
+      - name: answered_questions
+        description: Questions with at least one answer.
+        agg: sum
+        expr: answered_flag
+        create_metric: true
+      - name: accepted_questions
+        description: Questions with an accepted answer.
+        agg: sum
+        expr: accepted_flag
+        create_metric: true
+      - name: answers
+        description: Total answers (answer_count summed).
+        agg: sum
+        expr: answer_count
+        create_metric: true
+      - name: tag_exposed_questions
+        description: Questions whose tags were first edited after the first answer (leakage exposure, AC-0.8).
+        agg: sum
+        expr: tags_exposed_flag
+        create_metric: true
+
+  - name: question_tags
+    description: One row per (question, current tag) (sem_question_tags). P1 single tags, and P2 with tag = python / dbt and tag_count = 1.
+    model: ref('sem_question_tags')
+    defaults:
+      agg_time_dimension: created_at
+    entities:
+      - name: question_tag
+        type: primary
+        expr: "concat(cast(question_id as string), '|', tag)"
+    dimensions:
+      - name: created_at
+        type: time
+        type_params:
+          time_granularity: day
+      - name: creation_year
+        type: categorical
+      - name: tag
+        type: categorical
+      - name: tag_count
+        type: categorical
+    measures:
+      - name: by_tag_questions
+        agg: count
+        expr: question_id
+        create_metric: true
+      - name: by_tag_answered_questions
+        agg: sum
+        expr: answered_flag
+        create_metric: true
+      - name: by_tag_accepted_questions
+        agg: sum
+        expr: accepted_flag
+        create_metric: true
+      - name: by_tag_answers
+        agg: sum
+        expr: answer_count
+        create_metric: true
+      - name: by_tag_tag_exposed_questions
+        agg: sum
+        expr: tags_exposed_flag
+        create_metric: true
+
+  - name: question_tag_pairs
+    description: One row per (question, unordered tag pair) (sem_question_tag_pairs). P1 tag combinations.
+    model: ref('sem_question_tag_pairs')
+    defaults:
+      agg_time_dimension: created_at
+    entities:
+      - name: question_pair
+        type: primary
+        expr: "concat(cast(question_id as string), '|', tag_a, '|', tag_b)"
+    dimensions:
+      - name: created_at
+        type: time
+        type_params:
+          time_granularity: day
+      - name: creation_year
+        type: categorical
+      - name: tag_a
+        type: categorical
+      - name: tag_b
+        type: categorical
+    measures:
+      - name: by_pair_questions
+        agg: count
+        expr: question_id
+        create_metric: true
+      - name: by_pair_answered_questions
+        agg: sum
+        expr: answered_flag
+        create_metric: true
+      - name: by_pair_accepted_questions
+        agg: sum
+        expr: accepted_flag
+        create_metric: true
+      - name: by_pair_answers
+        agg: sum
+        expr: answer_count
+        create_metric: true
+      - name: by_pair_tag_exposed_questions
+        agg: sum
+        expr: tags_exposed_flag
+        create_metric: true
+
+  # --- P3 (Item 6): add the P3 semantic model(s) below this line ---------------------------------------------------

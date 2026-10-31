@@ -20,3 +20,6 @@ models:
     staging:
       # Views store nothing; the BigQuery sandbox has 10 GB of storage.
       +materialized: view
+    semantic:
+      # Inputs of the MetricFlow layer: views over the intermediate tables, nothing stored.
+      +materialized: view

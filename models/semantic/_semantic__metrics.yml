@@ -1,0 +1,107 @@
+version: 2
+
+# Metrics (MetricFlow), defined once from the definitions table of specs/000. All of them are ratio metrics: the sum
+# of the numerator divided by the sum of the denominator over whatever group the query asks for, which is the spec's
+# rule "a ratio of the group's totals, never an average of per-question ratios". The counts they use are the measures
+# of _semantic__models.yml (each measure is also a metric of the same name).
+# Three families with the same six definitions: no prefix (whole questions), by_tag_, by_pair_.
+# P3 (Item 6): add its metrics at the end of this file.
+
+metrics:
+  # --- Whole questions ---------------------------------------------------------------------------------------------
+  - name: answer_rate
+    label: Answer rate
+    description: Answered questions / questions.
+    type: ratio
+    type_params: {numerator: answered_questions, denominator: questions}
+  - name: accepted_rate
+    label: Accepted rate
+    description: Questions with an accepted answer / all questions. The headline and ranking metric (D2, AC-0.5).
+    type: ratio
+    type_params: {numerator: accepted_questions, denominator: questions}
+  - name: accepted_rate_among_answered
+    label: Accepted rate among answered
+    description: Accepted questions / answered questions. Shown beside the accepted rate, never ranked (D2, AC-0.5).
+    type: ratio
+    type_params: {numerator: accepted_questions, denominator: answered_questions}
+  - name: answers_per_question
+    label: Answers per question
+    description: Total answers / total questions. The headline of P2 and of "most answers" in P1 (D3, AC-0.6).
+    type: ratio
+    type_params: {numerator: answers, denominator: questions}
+  - name: questions_per_answer
+    label: Questions per answer
+    description: Total questions / total answers = 1 / answers per question. Shown once as "Q÷A = 1 / this" (D3, AC-0.6, AC-2.5).
+    type: ratio
+    type_params: {numerator: questions, denominator: answers}
+  - name: tag_exposure
+    label: Tag exposure
+    description: Questions whose tags were first edited after the first answer / questions (leakage KPI, AC-0.8).
+    type: ratio
+    type_params: {numerator: tag_exposed_questions, denominator: questions}
+
+  # --- Questions grouped by tag (P1 single tags; P2 with tag = python / dbt and tag_count = 1) ----------------------
+  - name: by_tag_answer_rate
+    label: Answer rate, by tag
+    description: Answered questions / questions, per tag.
+    type: ratio
+    type_params: {numerator: by_tag_answered_questions, denominator: by_tag_questions}
+  - name: by_tag_accepted_rate
+    label: Accepted rate, by tag
+    description: Questions with an accepted answer / all questions, per tag (D2).
+    type: ratio
+    type_params: {numerator: by_tag_accepted_questions, denominator: by_tag_questions}
+  - name: by_tag_accepted_rate_among_answered
+    label: Accepted rate among answered, by tag
+    description: Accepted questions / answered questions, per tag (D2).
+    type: ratio
+    type_params: {numerator: by_tag_accepted_questions, denominator: by_tag_answered_questions}
+  - name: by_tag_answers_per_question
+    label: Answers per question, by tag
+    description: Total answers / total questions, per tag (D3).
+    type: ratio
+    type_params: {numerator: by_tag_answers, denominator: by_tag_questions}
+  - name: by_tag_questions_per_answer
+    label: Questions per answer, by tag
+    description: Total questions / total answers, per tag = 1 / answers per question (D3, AC-2.5).
+    type: ratio
+    type_params: {numerator: by_tag_questions, denominator: by_tag_answers}
+  - name: by_tag_tag_exposure
+    label: Tag exposure, by tag
+    description: Questions whose tags were first edited after the first answer / questions, per tag (AC-0.8).
+    type: ratio
+    type_params: {numerator: by_tag_tag_exposed_questions, denominator: by_tag_questions}
+
+  # --- Questions grouped by tag pair (P1 tag combinations) ---------------------------------------------------------
+  - name: by_pair_answer_rate
+    label: Answer rate, by tag pair
+    description: Answered questions / questions, per tag pair.
+    type: ratio
+    type_params: {numerator: by_pair_answered_questions, denominator: by_pair_questions}
+  - name: by_pair_accepted_rate
+    label: Accepted rate, by tag pair
+    description: Questions with an accepted answer / all questions, per tag pair (D2).
+    type: ratio
+    type_params: {numerator: by_pair_accepted_questions, denominator: by_pair_questions}
+  - name: by_pair_accepted_rate_among_answered
+    label: Accepted rate among answered, by tag pair
+    description: Accepted questions / answered questions, per tag pair (D2).
+    type: ratio
+    type_params: {numerator: by_pair_accepted_questions, denominator: by_pair_answered_questions}
+  - name: by_pair_answers_per_question
+    label: Answers per question, by tag pair
+    description: Total answers / total questions, per tag pair (D3).
+    type: ratio
+    type_params: {numerator: by_pair_answers, denominator: by_pair_questions}
+  - name: by_pair_questions_per_answer
+    label: Questions per answer, by tag pair
+    description: Total questions / total answers, per tag pair = 1 / answers per question (D3).
+    type: ratio
+    type_params: {numerator: by_pair_questions, denominator: by_pair_answers}
+  - name: by_pair_tag_exposure
+    label: Tag exposure, by tag pair
+    description: Questions whose tags were first edited after the first answer / questions, per tag pair (AC-0.8).
+    type: ratio
+    type_params: {numerator: by_pair_tag_exposed_questions, denominator: by_pair_questions}
+
+  # --- P3 (Item 6): add the P3 metrics below this line -------------------------------------------------------------
