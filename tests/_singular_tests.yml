@@ -17,3 +17,12 @@ data_tests:
     description: AC-1.5. The Wilson bounds match the reference values of specs/001 (9/10, 850/1000, 1/1, 0/1).
   - name: assert_p1_rank_order
     description: AC-1.6. "Highest" ranks sort by the lower bound and "lowest" ranks by the upper bound, in both P1 marts.
+  - name: assert_p1_original_tags_stable
+    description: >
+      AC-0.10 / AC-1.9 (severity: warn, needs_full_scan). 2022 accepted-rate rankings of tags and pairs on current vs
+      original tags: lists every group entering or leaving a top / bottom 10 or moving more than 2.5 points.
+  - name: assert_p2_original_tags_stable
+    description: >
+      AC-0.10 / AC-2.6 (severity: warn, needs_full_scan). P2 on current vs original tags, per (tag, year): lists
+      populations that are empty in one version, YoY directions that switch, and values that move by more than the
+      half-width of the current 95% interval.

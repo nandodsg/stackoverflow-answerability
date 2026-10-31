@@ -57,6 +57,49 @@ models:
         description: First title/body edit (types 4, 5, 7, 8) is later than the first answer. False when unanswered.
         data_tests: [not_null]
 
+  - name: int_question_window30
+    description: >
+      The 30-day-window outcomes of 2021-2022 questions (specs/001 "Metrics", censoring): answers and acceptance counted
+      only within 30 days of the question, and whether the question had the full window.
+    data_tests:
+      - unique:
+          arguments:
+            column_name: question_id
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "answers_30d <= answer_count and (not accepted_30d or has_accepted_answer)"
+          config:
+            meta: {spec: "001 Metrics (30-day window)"}
+    columns:
+      - name: has_full_window
+        data_tests: [not_null]
+
+  - name: int_question_tags_30d
+    description: int_question_tags with 30-day-window outcomes, full-window questions only.
+  - name: int_question_tag_pairs_30d
+    description: int_question_tag_pairs with 30-day-window outcomes, full-window questions only.
+    data_tests:
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "tag_a < tag_b"
+
+  - name: int_questions_original
+    description: >
+      int_questions with the ORIGINAL tags from the one-time text scan (needs_full_scan). Before 2018 only originally
+      python-only / dbt-only questions have tags; from 2018 a question with no history row keeps its current tags.
+    data_tests:
+      - unique:
+          arguments:
+            column_name: question_id
+  - name: int_question_original_tags
+    description: One row per (question, original tag) for 2021-2022 (needs_full_scan).
+  - name: int_question_original_tag_pairs
+    description: One row per (question, unordered original tag pair) for 2021-2022 (needs_full_scan).
+    data_tests:
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "tag_a < tag_b"
+
 unit_tests:
   - name: exposure_counts_only_edits_after_the_first_answer
     description: >

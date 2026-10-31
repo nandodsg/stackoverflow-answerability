@@ -2,9 +2,11 @@ selectors:
   # The default for `dbt run`, `dbt test` and `dbt build` when no --select is given: everything except the models
   # tagged `full_scan`, which read ~145 GB of text in total. Run those on purpose and one at a time:
   #   dbt run --target full_scan --select tag:full_scan
+  # Models and tests tagged `needs_full_scan` read the scan's tables (original tags: the leakage impact checks), so they
+  # cannot build before the scan exists either. After the scan: dbt build --select tag:needs_full_scan
   - name: default_build
     default: true
-    description: Everything except the one-time text-scan models.
+    description: Everything except the one-time text-scan models and what depends on them.
     definition:
       union:
         - method: fqn
@@ -12,3 +14,5 @@ selectors:
         - exclude:
             - method: tag
               value: full_scan
+            - method: tag
+              value: needs_full_scan

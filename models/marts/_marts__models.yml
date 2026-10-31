@@ -185,6 +185,170 @@ models:
       - name: tag_exposure
         description: Share of the group's questions whose tags were first edited after the first answer (AC-0.8, AC-2.6).
 
+  - name: mart_p1_tags_30d
+    description: Prompt 1 single tags on the 30-day window (questions that had the full 30 days; answers and acceptance counted within 30 days). Same rules and columns as mart_p1_tags.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [creation_year, tag]
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "abs(accepted_rate - answer_rate * coalesce(accepted_rate_among_answered, 0)) < 1e-9"
+          config:
+            meta: {ac: AC-0.5}
+    columns:
+      - name: n_questions
+        data_tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 385
+              config:
+                meta: {ac: AC-1.2}
+
+  - name: mart_p1_pairs_30d
+    description: Prompt 1 tag pairs on the 30-day window. Same rules and columns as mart_p1_pairs.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [creation_year, tag_a, tag_b]
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "abs(accepted_rate - answer_rate * coalesce(accepted_rate_among_answered, 0)) < 1e-9"
+          config:
+            meta: {ac: AC-0.5}
+    columns:
+      - name: n_questions
+        data_tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 385
+              config:
+                meta: {ac: AC-1.2}
+
+  - name: mart_p1_tags_original
+    description: Prompt 1 impact check, single tags on the ORIGINAL tags (post_history type 3). Same rules and columns as mart_p1_tags (AC-1.9).
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [creation_year, tag]
+    columns:
+      - name: n_questions
+        data_tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 385
+              config:
+                meta: {ac: AC-1.2}
+
+  - name: mart_p1_pairs_original
+    description: Prompt 1 impact check, tag pairs on the ORIGINAL tags. Same rules and columns as mart_p1_pairs (AC-1.9).
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [creation_year, tag_a, tag_b]
+    columns:
+      - name: n_questions
+        data_tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 385
+              config:
+                meta: {ac: AC-1.2}
+
+  - name: mart_p1_tags_robustness
+    description: >
+      Robustness methods for single tags (AC-1.7): the accepted-rate rank by Wilson bound, raw rate (A) and empirical
+      Bayes (C), with the prior fitted on every tag that has at least 30 questions.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [creation_year, tag]
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "prior_strength > 0"
+          config:
+            meta: {ac: AC-1.7}
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "accepted_rate_eb between least(accepted_rate, pooled_rate) - 1e-9 and greatest(accepted_rate, pooled_rate) + 1e-9"
+          config:
+            meta: {ac: AC-1.7}
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "n_questions >= 385"
+          config:
+            meta: {ac: AC-1.2}
+
+  - name: mart_p1_pairs_robustness
+    description: Robustness methods for tag pairs (AC-1.7), same columns as mart_p1_tags_robustness.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [creation_year, tag_a, tag_b]
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "prior_strength > 0"
+          config:
+            meta: {ac: AC-1.7}
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "accepted_rate_eb between least(accepted_rate, pooled_rate) - 1e-9 and greatest(accepted_rate, pooled_rate) + 1e-9"
+          config:
+            meta: {ac: AC-1.7}
+
+  - name: mart_p1_robustness_overlap
+    description: How many of each Wilson top / bottom 10 are also in the raw-rate (A) and empirical-Bayes (C) lists (AC-1.7).
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [grain, creation_year]
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "top10_overlap_raw between 0 and 10 and top10_overlap_eb between 0 and 10 and bottom10_overlap_raw between 0 and 10 and bottom10_overlap_eb between 0 and 10"
+          config:
+            meta: {ac: AC-1.7}
+
+  - name: mart_p1_rank_flips
+    description: Tags and pairs that enter or leave a top / bottom 10 between 2021 and 2022 (AC-1.4). Empty when nothing changes.
+    columns:
+      - name: metric
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [accepted_rate, answer_rate, answers_per_question]
+              config:
+                meta: {ac: AC-1.4}
+      - name: hard_flip
+        data_tests: [not_null]
+
+  - name: mart_p2_python_dbt_original
+    description: Prompt 2 impact check on the ORIGINAL tags (AC-2.6). Same rules and columns as mart_p2_python_dbt.
+    data_tests: &p2_variant_tests
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [tag, creation_year]
+          config:
+            meta: {ac: AC-2.2}
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "is_partial_year = (creation_year = 2022)"
+          config:
+            meta: {ac: AC-2.4}
+
+  - name: mart_p2_python_dbt_no_tag_edits
+    description: Prompt 2 sensitivity view dropping every question whose tags were ever edited. Same rules and columns as mart_p2_python_dbt.
+    data_tests: *p2_variant_tests
+
+  - name: mart_p2_dbt_any_position
+    description: Prompt 2 sensitivity view, questions tagged `dbt` among other tags (labeled sensitivity, not the answer). Same rules and columns as mart_p2_python_dbt.
+    data_tests: *p2_variant_tests
+    columns:
+      - name: tag
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['dbt']
+
 unit_tests:
   - name: mart_p2_exact_tag_match
     description: >
