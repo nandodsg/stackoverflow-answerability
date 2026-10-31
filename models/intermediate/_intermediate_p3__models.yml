@@ -1,0 +1,76 @@
+version: 2
+
+# Prompt 3 (specs/003). Kept apart from _intermediate__models.yml so the P3 work has its own file.
+models:
+  - name: int_question_posting_context
+    description: >
+      The P3 features that need no text, one row per 2018-2022 question: hour and weekday posted (UTC), the asker's
+      account age at posting and the asker's earlier questions (a lower bound: deleted questions are not in the data).
+      Null account fields mean the asker's account no longer exists.
+    columns:
+      - name: question_id
+        data_tests: [unique, not_null]
+      - name: hour_posted_utc
+        data_tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                max_value: 23
+      - name: weekday_posted
+        description: 1 = Sunday ... 7 = Saturday (BigQuery's numbering).
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [1, 2, 3, 4, 5, 6, 7]
+                quote: false
+      - name: asker_account_age_days
+        description: Days from the asker's account creation to the question (AC-3.1, known at posting time).
+        data_tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+              config:
+                severity: warn
+                meta: {ac: AC-3.1}
+      - name: asker_prior_questions
+        data_tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+
+  - name: int_p3_questions
+    description: >
+      Everything P3 needs, one row per 2018-2022 question (needs_full_scan): outcomes, original-text features,
+      current-text features (prefixed current_), no-text features, primary tag and the edit flags of AC-3.5.
+    columns:
+      - name: question_id
+        data_tests: [unique, not_null]
+      - name: is_text_edited
+        description: Title or body edited at least once (post_history types 4, 5, 7, 8).
+        data_tests: [not_null]
+      - name: text_exposed
+        description: Title or body first edited after the first answer (AC-0.8).
+        data_tests: [not_null]
+
+  - name: int_p3_bucket_counts
+    description: >
+      Question counts per version x feature x bucket x year x tag stratum (needs_full_scan). The heavy P3 step, done
+      once; the marts read this table.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [version, feature, bucket, creation_year, tag_stratum]
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "n_accepted <= n_answered and n_answered <= n_questions"
+    columns:
+      - name: version
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [original, current, never_edited, not_edited_after_answer]
+              config:
+                meta: {ac: AC-3.5}
+      - name: bucket
+        data_tests: [not_null]

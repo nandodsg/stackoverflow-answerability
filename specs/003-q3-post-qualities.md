@@ -89,6 +89,54 @@ does a reproducible one do better?).
 one (same rules and labels, original text, one row per answer). Answer text can never explain the question's answer
 rate (an unanswered question has no answer), so this lens is reported separately, for acceptance only.
 
+## Analysis models (decided and built 2026-10-31)
+
+- **No-text features** (`int_question_posting_context`, one row per 2018–2022 question): hour and weekday posted (UTC,
+  not the asker's local time), the asker's account age at posting, and the asker's earlier questions since 2008 (a
+  lower bound: deleted questions are not in the data). A deleted account gives "unknown"; so does a negative age (607
+  askers have an account created after their question, probably merged accounts). The "unknown" bucket is reported
+  but not read as a quality: whether an account is deleted is known only later.
+- **One question table** (`int_p3_questions`, a view): outcomes, original-text features, current-text features, no-text
+  features, primary tag (the first original tag) and the edit flags. 30 questions with no history row are left out.
+- **Buckets** (`macros/p3_features.sql`): fixed cut points, not deciles, so the original and current text of a question
+  land in the same buckets. Bucket `1:` is the reference (no / zero / smallest / Monday / 00–05 UTC / first question).
+
+  | Feature | Buckets |
+  |---|---|
+  | Title length | <40, 40–59, 60–79, 80+ |
+  | Body length | <500, 500–999, 1,000–1,999, 2,000–3,999, 4,000+ |
+  | Code blocks | 0, 1, 2, 3+ |
+  | Links | 0, 1, 2+ |
+  | Original tag count | 1, 2, 3, 4, 5+ |
+  | Hour posted (UTC) | 00–05, 06–11, 12–17, 18–23 |
+  | Weekday posted | each day, and weekday vs weekend |
+  | Account age | under 1 day, 1–29 days, 1–12 months, 1–3 years, 3+ years |
+  | Prior questions | 0 (first question), 1–4, 5–19, 20+ |
+  | Yes/no features | no, yes |
+
+- **Versions** (AC-3.5): `original` (the headline), `current` (current text), `never_edited` (title and body never
+  edited), `not_edited_after_answer` (no title/body edit after the first answer).
+- **Rates** (`mart_p3_feature_rates`): per version × feature × bucket × cohort (each year 2018–2022 and the four full
+  years together), answer rate and accepted rate out of all questions, accepted among answered, Wilson bounds.
+- **Effects** (`mart_p3_feature_effects`): a bucket's rate minus the reference bucket's, with the 95% margin of the
+  difference. A bucket or reference below 385 questions in a cohort is not reported (the D1 floor).
+  - **Stable** (AC-3.3, stricter than "two cohorts"): same sign in each full year, 2018, 2019, 2020 and 2021. 2022 is
+    partial (censored) and shown, not used.
+  - **Topic control**: the same difference inside each primary-tag stratum (the 20 most common primary tags, plus
+    "other"), averaged with weights = the bucket's questions in the stratum; strata with fewer than 30 questions on
+    either side are skipped. If the adjusted effect shrinks towards zero, the raw effect was mostly topic.
+  - **Direction vs original**: each effect in the other three versions is flagged when it points the other way.
+- **Leakage KPI** (`mart_p3_leakage`, AC-3.6): per year and text feature, the share of questions whose **bucket**
+  differs between original and current text, the same share on never-edited questions (the format floor), and the
+  difference. Buckets, not raw values: Markdown and HTML lengths differ by a few characters on every post.
+- **AC-0.10 warning** (`assert_p3_original_text_stable`): an effect over 2018–2021 that points one way on the original
+  text and the other way on the current text, where at least one of the two is clearly not zero.
+- **Answer lens** (`mart_p3_answer_rates`): the 5% sample's answers, acceptance rate by body-feature bucket.
+- **AC-3.2 / AC-3.4 check** (`assert_text_columns_read_once`): reads dbt's project graph and fails if any model other
+  than the staging view and the scan model reads `posts_questions` or `post_history` straight from the source.
+- Not built: a 30-day window for P3 (each comparison is within one year and stability rests on full years, so
+  censoring mostly cancels out) and the optional logistic regression.
+
 ## Excluded or flagged as post-hoc
 
 `score`, `view_count`, `comment_count`, `favorite_count`, current `users.reputation`, edits after posting — these are

@@ -1,0 +1,130 @@
+version: 2
+
+# Prompt 3 (specs/003). Kept apart from _marts__models.yml so the P3 work has its own file.
+models:
+  - name: mart_p3_feature_rates
+    description: >
+      Prompt 3, rates by bucket: one row per version x feature x bucket x cohort (each year 2018-2022 and '2018-2021').
+      Answer rate and accepted rate out of all questions (D2), accepted among answered beside them, each with 95% Wilson
+      bounds. Bucket '1:' of each feature is the reference the effects are measured against.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [version, feature, bucket, cohort]
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "abs(accepted_rate - answer_rate * coalesce(accepted_rate_among_answered, 0)) < 1e-9"
+          config:
+            meta: {ac: AC-0.5}
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "accepted_rate_lower <= accepted_rate and accepted_rate <= accepted_rate_upper and answer_rate_lower <= answer_rate and answer_rate <= answer_rate_upper"
+    columns:
+      - name: version
+        description: original (headline), current, never_edited, not_edited_after_answer (AC-3.5).
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [original, current, never_edited, not_edited_after_answer]
+              config:
+                meta: {ac: AC-3.5}
+      - name: answer_rate
+        data_tests: &rate_range
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                max_value: 1
+      - name: accepted_rate
+        data_tests: *rate_range
+      - name: accepted_rate_among_answered
+        data_tests: *rate_range
+
+  - name: mart_p3_feature_effects
+    description: >
+      Prompt 3, effects: each non-reference bucket's rates minus the reference bucket's, per version and cohort, with
+      the 95% margin of the difference, the topic-controlled (tag-adjusted) effect and the AC-3.3 stability flags (same
+      sign in each full year 2018-2021).
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [version, feature, bucket, cohort]
+    columns:
+      - name: accepted_rate_effect_stable
+        description: AC-3.3. True when the accepted-rate effect has the same sign in 2018, 2019, 2020 and 2021.
+        data_tests:
+          - not_null:
+              config:
+                meta: {ac: AC-3.3}
+      - name: answer_rate_effect_stable
+        description: AC-3.3, for the answer rate.
+        data_tests: [not_null]
+      - name: tag_adjusted_coverage
+        description: Share of the bucket's questions in strata where both sides have at least 30 questions.
+        data_tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                max_value: 1
+
+  - name: mart_p3_leakage
+    description: >
+      Prompt 3, leakage KPI (AC-3.6): per year and text feature, text exposure and the share of questions whose bucket
+      differs between original and current text, on all questions and on never-edited ones (the format floor).
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [creation_year, feature]
+    columns:
+      - name: text_exposure
+        data_tests:
+          - not_null:
+              config:
+                meta: {ac: AC-3.6}
+      - name: share_changed
+        data_tests:
+          - not_null:
+              config:
+                meta: {ac: AC-3.6}
+
+  - name: mart_p3_answer_rates
+    description: >
+      Prompt 3, answer lens: among the 5% sample's answers, the acceptance rate by body-feature bucket and cohort (year
+      of the question), with Wilson bounds and the difference from the reference bucket.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [feature, bucket, cohort]
+    columns:
+      - name: acceptance_rate
+        data_tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                max_value: 1
+
+unit_tests:
+  - name: mart_p3_effect_stability
+    description: >
+      AC-3.3. A code-block effect that is positive in 2018-2020 but negative in 2021 is not stable; an answer-rate
+      effect positive in all four full years is. The effect is the bucket's rate minus the reference bucket's rate.
+    model: mart_p3_feature_effects
+    given:
+      - input: ref('mart_p3_feature_rates')
+        rows:
+          - {version: original, feature: has_code_block, bucket: "1: no", cohort: "2018", is_reference_bucket: true, is_partial_year: false, n_questions: 1000, n_answered: 600, answer_rate: 0.6, accepted_rate: 0.3, accepted_rate_among_answered: 0.5}
+          - {version: original, feature: has_code_block, bucket: "2: yes", cohort: "2018", is_reference_bucket: false, is_partial_year: false, n_questions: 1000, n_answered: 700, answer_rate: 0.7, accepted_rate: 0.4, accepted_rate_among_answered: 0.57}
+          - {version: original, feature: has_code_block, bucket: "1: no", cohort: "2019", is_reference_bucket: true, is_partial_year: false, n_questions: 1000, n_answered: 600, answer_rate: 0.6, accepted_rate: 0.3, accepted_rate_among_answered: 0.5}
+          - {version: original, feature: has_code_block, bucket: "2: yes", cohort: "2019", is_reference_bucket: false, is_partial_year: false, n_questions: 1000, n_answered: 700, answer_rate: 0.7, accepted_rate: 0.4, accepted_rate_among_answered: 0.57}
+          - {version: original, feature: has_code_block, bucket: "1: no", cohort: "2020", is_reference_bucket: true, is_partial_year: false, n_questions: 1000, n_answered: 600, answer_rate: 0.6, accepted_rate: 0.3, accepted_rate_among_answered: 0.5}
+          - {version: original, feature: has_code_block, bucket: "2: yes", cohort: "2020", is_reference_bucket: false, is_partial_year: false, n_questions: 1000, n_answered: 700, answer_rate: 0.7, accepted_rate: 0.4, accepted_rate_among_answered: 0.57}
+          - {version: original, feature: has_code_block, bucket: "1: no", cohort: "2021", is_reference_bucket: true, is_partial_year: false, n_questions: 1000, n_answered: 600, answer_rate: 0.6, accepted_rate: 0.3, accepted_rate_among_answered: 0.5}
+          - {version: original, feature: has_code_block, bucket: "2: yes", cohort: "2021", is_reference_bucket: false, is_partial_year: false, n_questions: 1000, n_answered: 700, answer_rate: 0.7, accepted_rate: 0.2, accepted_rate_among_answered: 0.29}
+      - input: ref('int_p3_bucket_counts')
+        rows:
+          - {version: original, feature: has_code_block, bucket: "1: no", creation_year: 2018, tag_stratum: python, n_questions: 1000, n_answered: 600, n_accepted: 30}
+    expect:
+      rows:
+        - {cohort: "2018", answer_rate_effect_stable: true, accepted_rate_effect_stable: false}
+        - {cohort: "2019", answer_rate_effect_stable: true, accepted_rate_effect_stable: false}
+        - {cohort: "2020", answer_rate_effect_stable: true, accepted_rate_effect_stable: false}
+        - {cohort: "2021", answer_rate_effect_stable: true, accepted_rate_effect_stable: false}

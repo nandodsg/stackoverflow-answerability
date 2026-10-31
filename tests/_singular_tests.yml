@@ -26,3 +26,14 @@ data_tests:
       AC-0.10 / AC-2.6 (severity: warn, needs_full_scan). P2 on current vs original tags, per (tag, year): lists
       populations that are empty in one version, YoY directions that switch, and values that move by more than the
       half-width of the current 95% interval.
+  - name: assert_p3_bucket_rules
+    description: >
+      Hand-written values and the P3 bucket each must land in (macros/p3_features.sql), edges included. Reads no table.
+  - name: assert_text_columns_read_once
+    description: >
+      AC-3.2 / AC-3.4. Reads the dbt project graph: lists any model other than the staging view and the one-time scan
+      that reads `posts_questions` or `post_history` straight from the source. Reads no table.
+  - name: assert_p3_original_text_stable
+    description: >
+      AC-0.10 / AC-3.6 (severity: warn, needs_full_scan). P3 effects on original vs current text, 2018-2021: lists
+      effects whose direction flips where at least one side is clearly not zero.
