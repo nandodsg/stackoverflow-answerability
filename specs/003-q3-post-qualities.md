@@ -124,7 +124,9 @@ labels, not independent hand labels: the share of labels changed is reported wit
 remain the one independent human check. Candidate labelers for the analysis set (Claude models, OpenAI GPT-6 Luna,
 TypeSafe Jev) are scored against the reviewed set. The reference runs cost US$ 2.94 for both models on all 120
 questions (Opus on the practice set, US$ 0.43); on the 100 scoring questions the two agree on 567 of 600 labels
-(kappa 0.76 to 0.88 per label, 0.37 on the image label, whose positives are rare), leaving 33 tie-breaks.
+(kappa 0.76 to 0.88 per label, 0.37 on the image label, whose positives are rare), leaving 33 tie-breaks. The review is done: all 567 agreed labels were kept (none changed) and the 33 splits went 18 to
+Gemini and 15 to Grok. Zero changes is the anchoring risk named above, so the reviewed set is reported as the models'
+labels with a human check on the splits, next to the independent blind practice result.
 
 Rule-based features and quality labels are not competing methods. Rule-based features cover every question and
 are reproducible in `queries/q3.sql`; labels cover the sample and are stored as a table. They meet in two checks: a
