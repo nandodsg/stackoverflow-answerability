@@ -64,7 +64,8 @@
   <div class="inner stack">
     <p class="eyebrow" data-reveal>{ <span class="label">05 · prompt 1</span> }</p>
     <h2 data-reveal>Which tags get <span class="mark">answers</span>?</h2>
-    <p class="muted" data-reveal>PLACEHOLDER DATA: invented numbers in the real mart's shape. Edit the query: try <code>n_questions &gt;= 100</code> or <code>creation_year = 2021</code>, then Run.</p>
+    <p data-reveal>In 2022, text processing and data wrangling win: <code>jq</code>, <code>awk</code>, <code>sed</code>, <code>regex</code>, <code>dplyr</code>, <code>data.table</code>. Between 58% and 68% of their questions end with an accepted answer (the whole year: 30.5%), and <code>awk</code> collects 2.45 answers per question. Platforms and integrations lose: <code>magento2</code>, <code>appium</code>, <code>facebook</code>, Chrome extensions, about one question in ten accepted. Pairs tell the same story, except the #1, <code>arrays + google-sheets</code>, which exists mostly because of retagging after the answer.</p>
+    <p class="muted" data-reveal>Ranked by the 95% interval, with a 385-question floor (1,162 tags, 1,026 pairs). Full lists and caveats: README, section 1. The panel runs on placeholder files until the marts are exported. Edit the query: try <code>n_questions &gt;= 100</code> or <code>creation_year = 2021</code>, then Run.</p>
     <div class="sql-panel" data-reveal data-panel data-render="table" data-table="mart_p1_tags">
       <div class="sql-head"><span>live SQL · DuckDB-WASM</span><span class="sql-status" data-state="loading">loading engine…</span></div>
       <label class="muted" for="q-p1" hidden>Query</label>
@@ -85,9 +86,9 @@ LIMIT 10;</textarea>
     <div class="strip" data-reveal>
       <p class="strip-title">{ HOW WE KNOW }</p>
       <div class="chips">
-        <details class="chip"><summary><span>Evidence</span><span class="tag">EDA</span></summary><div class="chip-body">Placeholder: D1 sample-size EDA behind the 385 floor.</div></details>
-        <details class="chip"><summary><span>Guard</span><span class="tag">tests</span></summary><div class="chip-body">Placeholder: pass / warn counts for the P1 tests.</div></details>
-        <details class="chip"><summary><span>Cost</span><span class="tag">GB billed</span></summary><div class="chip-body">Placeholder: GB billed to produce the P1 marts.</div></details>
+        <details class="chip"><summary><span>Evidence</span><span class="tag">EDA</span></summary><div class="chip-body">Unfiltered, the 2022 top and bottom 10 are tags with 1–2 questions at 100% and 0%. 385 is the smallest n with a ±5-point worst-case margin. Raw-rate and empirical-Bayes rankings share 9–10 of 10 names with these lists, and 2021 keeps 8 of the top 10 tags. <code>eda/d1_sample_size</code>, <code>eda/d1_answers_ranking</code>.</div></details>
+        <details class="chip"><summary><span>Guard</span><span class="tag">tests</span></summary><div class="chip-body">Floor, rate bounds and sort order are dbt tests (Wilson checked against hand-computed values). A warn test reruns the ranking on the original tags: 46 tags and 65 pairs flagged, 9 of 10 tags stay in each list. No row in a top or bottom 10 fails Cochran's rule, so no interval is labeled approximate.</div></details>
+        <details class="chip"><summary><span>Cost</span><span class="tag">GB billed</span></summary><div class="chip-body"><code>queries/q1.sql</code> bills about 9 GB (8.92 GiB in a fresh sandbox), metadata columns only, never <code>body</code>. The original-tags check reads the one-time <code>post_history</code> text scan (106 GiB, run once).</div></details>
       </div>
     </div>
   </div>
@@ -99,7 +100,8 @@ LIMIT 10;</textarea>
     <h2 data-reveal>Python-only vs dbt-only, <span class="mark">year over year</span></h2>
     <div class="cols">
       <div class="stack">
-        <p class="muted" data-reveal>PLACEHOLDER DATA. Answers per question for one year, computed by the query beside it. Step through the years, or edit the query.</p>
+        <p data-reveal>python-only answers per question fell from 2.31 (2013) to 1.52 (2021), and the accepted rate from 65.2% to 43.0%. The 1.26 of 2022 is mostly censoring: questions not answered yet when the data stops. dbt-only has 31, 58 and 79 questions (2020–2022) at 1.39, 1.14 and 1.06, intervals overlapping, so no dbt trend; but in 2021 and 2022 dbt-only got fewer answers per question than python-only. The ratio shown is answers per question; Q÷A = 1 / this (python 2022: 0.79 questions per answer).</p>
+        <p class="muted" data-reveal>Answers per question for one year, computed by the query beside it (placeholder files until the marts are exported; real numbers in the README, section 2). Step through the years, or edit the query.</p>
         <div class="steps" data-reveal role="group" aria-label="Year">
           <button type="button" class="btn step" data-year="2013" data-for="p2">2013</button>
           <button type="button" class="btn step" data-year="2021" data-for="p2">2021</button>
@@ -126,9 +128,9 @@ WHERE tag = 'python'
     <div class="strip" data-reveal>
       <p class="strip-title">{ HOW WE KNOW }</p>
       <div class="chips">
-        <details class="chip"><summary><span>Evidence</span><span class="tag">EDA</span></summary><div class="chip-body">Placeholder: censoring check on the 2022 drop.</div></details>
-        <details class="chip"><summary><span>Guard</span><span class="tag">tests</span></summary><div class="chip-body">Placeholder: YoY direction warn test.</div></details>
-        <details class="chip"><summary><span>Cost</span><span class="tag">GB billed</span></summary><div class="chip-body">Placeholder: GB billed for the P2 mart.</div></details>
+        <details class="chip"><summary><span>Evidence</span><span class="tag">EDA</span></summary><div class="chip-body">2021 → 2022, python-only: answer rate 84.8% → 73.5%, answers per answered question 1.80 → 1.71. About three quarters of the drop is questions not answered yet (censoring). <code>eda/d3_ratio</code>, <code>eda/d2_denominator</code>.</div></details>
+        <details class="chip"><summary><span>Guard</span><span class="tag">tests</span></summary><div class="chip-body">A unit test pins the exact-match filter (<code>python</code>, <code>python|pandas</code>, <code>python-3.x</code>, <code>dbt</code>, <code>dbt|sql</code>); empty dbt years stay as rows. A warn test on the original tags flags 3 rows: python 2019 (a near-zero YoY change switches sign), python 2021 (1.52 vs 1.50), dbt 2022 (accepted YoY +2.0 vs −0.6 points).</div></details>
+        <details class="chip"><summary><span>Cost</span><span class="tag">GB billed</span></summary><div class="chip-body"><code>queries/q2.sql</code> bills about 7 GB, metadata columns only, never <code>body</code>.</div></details>
       </div>
     </div>
   </div>
