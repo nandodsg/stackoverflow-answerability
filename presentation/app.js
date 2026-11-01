@@ -93,6 +93,19 @@
   }
   window.presentation = { countUp: countUp, reduced: reduced };
 
+  /* ---------- architecture guards: a button highlights where tests, caps or leakage checks attach ---------- */
+  // Pressing the active button again clears the highlight. Works without GSAP (it only flips data-show).
+  document.querySelectorAll("[data-arch]").forEach(function (arch) {
+    var buttons = arch.querySelectorAll("[data-guard]");
+    buttons.forEach(function (b) {
+      b.addEventListener("click", function () {
+        var on = arch.dataset.show !== b.dataset.guard;
+        arch.dataset.show = on ? b.dataset.guard : "";
+        buttons.forEach(function (x) { x.setAttribute("aria-pressed", on && x === b ? "true" : "false"); });
+      });
+    });
+  });
+
   /* ---------- motion layer ---------- */
   if (!window.gsap || !window.ScrollTrigger || reduced) return;
   gsap.registerPlugin(ScrollTrigger);

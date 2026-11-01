@@ -484,9 +484,107 @@ Run it yourself: [`queries/q2.sql`](queries/q2.sql) (BigQuery console, about 7 G
 
 _TBD — spec: [`specs/003`](specs/003-q3-post-qualities.md)_
 
+## This solution's data architecture
+
+One public dataset goes in; the three answers, the runnable queries and the presentation's numbers come out. The
+picture first, then what each box is for.
+
+```mermaid
+flowchart TB
+  src[("bigquery-public-data.stackoverflow<br>posts_questions, posts_answers, post_history, users<br>frozen at 2022-09-25")]
+
+  subgraph G1["TESTS: unique keys, answers resolve, answer_count, 292 legacy ids (warn), snapshot (warn)"]
+    stg["staging<br>4 views, one per source table<br>without body and post_history.text"]
+  end
+  subgraph G2["CAP: dev target, 20 GiB per query; the default build skips the scans"]
+    subgraph G2b["LEAKAGE EXPOSURE: questions edited after the first answer, on every result row"]
+      hub["int_questions, the question hub<br>one row per question, table partitioned by year<br>+ tags, tag pairs, 30-day window, tag exposure"]
+    end
+  end
+  subgraph G3["CAP: full_scan target, 120 GiB per query, run on purpose"]
+    subgraph G3b["TESTS: graph test, only staging and the scans read the source text"]
+      scan["one-time text scans<br>int_post_history_scan: original title, body and tags, 106 GiB<br>int_question_body_scan: current body, 35 GiB"]
+    end
+  end
+  subgraph G4["LEAKAGE IMPACT: warn tests list every result that moves"]
+    orig["original-version models<br>P1 and P2 rebuilt on the tags as first posted"]
+  end
+  feat["P3 features<br>text rules, posting context, fixed buckets"]
+  lab["quality labels<br>labels/: written rubric + language models<br>on a 30,000-question sample"]
+  subgraph G5["TESTS: 385-question floor, rates in 0 to 1, interval order, Wilson values, unit tests"]
+    marts["marts<br>P1 tags and pairs, P2 python / dbt, P3 rates and effects<br>+ robustness and 30-day checks"]
+  end
+  subgraph G6["TESTS: mf query reproduces the README numbers"]
+    sem["semantic layer<br>MetricFlow, each metric defined once at question grain"]
+  end
+  qry["queries/q1.sql, q2.sql, q3.sql<br>generated from the models, inlined down to the public tables"]
+  out["README numbers and the presentation<br>marts exported to CSV, SQL run in the browser"]
+
+  src --> stg --> hub --> marts
+  src -.-> scan
+  hub --> orig
+  scan --> orig --> marts
+  hub --> feat
+  scan --> feat --> marts
+  scan --> lab --> marts
+  hub --> sem
+  marts -.->|"compiled by build_queries.py"| qry
+  marts --> out
+  sem --> out
+  qry --> out
+
+  classDef test fill:#e0f7fc,stroke:#00bae2,color:#0e100f
+  classDef cost fill:#f7f5e6,stroke:#7c7c6f,color:#0e100f
+  classDef leak fill:#fde9fc,stroke:#d65fcf,color:#0e100f
+  class G1,G3b,G5,G6 test
+  class G2,G3 cost
+  class G2b,G4 leak
+```
+
+Blue frames are tests, beige frames are the byte caps, pink frames are the leakage checks. Every test points to an
+acceptance criterion in [`specs/`](specs/); the full map is in [`TESTING.md`](TESTING.md).
+
+- **Sources and staging.** The four tables come in as dbt sources and get one staging view each. Views store nothing
+  (the BigQuery sandbox has 10 GB of storage), and they leave out `posts_questions.body` and `post_history.text`, the
+  two columns that cost real money: reading them scans 36 GB and 109 GB. Source freshness makes no sense on a snapshot
+  frozen in 2022, so a test warns if its row counts or newest dates ever change instead, because that would make every
+  number in this README stale.
+- **The hub.** `int_questions` holds one row per question with what the three prompts share (answer count, accepted
+  answer, tags), stored as a table partitioned by creation year: a 2022 query reads 0.05 GB instead of 0.84. Tags,
+  tag pairs, the 30-day window and the tag exposure are thin models on top of it.
+- **The one-time text scans.** P3 needs the text, and the edits problem (D4 in the [decisions log](PLAN.md#decisions-log))
+  needs its *original* version, which lives only in `post_history`. Two models read the text once each, keep the
+  features and a 5% sample of the raw text, and are tagged so the default `dbt build` never runs them. They run only on
+  the `full_scan` target, capped at 120 GiB per query. Everything else runs on the `dev` target, capped at 20 GiB, so
+  an accidental read of a text column fails before it reads a byte. And in case someone tries anyway, a test reads the
+  project graph and fails if any other model touches the source text tables.
+- **Original versions and leakage.** The scans also keep the tags as the asker first posted them. P1 and P2 are
+  rebuilt on those tags, and `warn` tests list every result that moves (P1: 46 tags and 65 pairs; P2: 3 rows). They
+  don't fail the build; they feed the "Do tag edits change it?" part of each answer. Exposure, the share of a group's
+  questions edited after the first answer, is a column on every result row.
+- **Quality labels.** Python scripts in [`labels/`](labels/) send sampled question text to language models under a
+  written rubric ([`labels/rubric.md`](labels/rubric.md)) and bring the labels back as one more input to the P3 marts.
+  It is the only step outside dbt, because it calls an API.
+- **Marts, semantic layer and outputs.** Each mart answers one prompt (or checks one), with the 385 floor, the
+  intervals and the ranks. The semantic layer defines each metric once, at question grain and not over the marts,
+  because a ratio of rates that were already divided would be wrong; a check script runs `mf query` and compares the
+  result with the numbers in this README. [`queries/`](queries/) is generated from the same models by
+  `queries/build_queries.py`, with every model inlined down to the public tables, so a reviewer can run q1 (about 9 GB)
+  and q2 (about 7 GB) in the BigQuery console without dbt. The presentation never calls BigQuery: it reads CSV exports
+  of the marts and runs SQL over them in the browser with DuckDB-WASM.
+
+How to build and test it, step by step: [`TESTING.md`](TESTING.md#how-to-run).
+
 ## How this was built
 
-_TBD — spec-first, with an AI coding agent; decisions in [`PLAN.md`](PLAN.md)._
+I wrote the specs first and built the rest with Claude Code as a pair programmer, which is why every commit carries a
+co-author line. The choices are mine, and the [decisions log](PLAN.md#decisions-log) shows each one next to the EDA that
+backed it: D3 (answers per question as the headline) went against the AI's recommendation, for readability and one
+metric shared by P1 and P2, and the leakage KPI was my idea, born from a simple worry ("what if the tag came *after*
+the answer?"). The language-model calls of P3 cost US$ 10.10 in all, logged call by call in
+[`labels/spend_log.csv`](labels/spend_log.csv): US$ 3.86 on Anthropic (out of US$ 100 of promotional credits),
+US$ 2.96 on the Vercel AI Gateway and US$ 3.28 on TypeSafe Jev. BigQuery ran in the free sandbox, behind the byte caps
+described above.
 
 ## How this repo is organized
 

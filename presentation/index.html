@@ -26,9 +26,13 @@
   <div class="inner stack">
     <p class="eyebrow" data-reveal>{ <span class="label">01 · the question</span> }</p>
     <h1 class="display" data-reveal>Stack Overflow, <span class="mark">answerability</span></h1>
-    <p class="lede" data-reveal>Three questions on the public Stack Overflow dataset: which tags get answers, how Python and dbt compare year over year, and what else about a question predicts an answer.</p>
+    <p class="lede" data-reveal>What makes a Stack Overflow question get answered, and get an accepted answer? Three questions on the public dataset, answered with a dbt project, guarded by tests written from acceptance criteria, and computed again on this page by SQL you can edit.</p>
+    <ol class="cards questions" data-stagger>
+      <li class="card p1"><p class="card-k">P1 · tags</p><p class="card-t">Which tags, and pairs of tags, get the most answers and the highest rate of accepted answers this year?</p></li>
+      <li class="card p2"><p class="card-k">P2 · python vs dbt</p><p class="card-t">Questions tagged only <code>python</code> or only <code>dbt</code>: how does the question-to-answer ratio move year over year, over the last ten years?</p></li>
+      <li class="card p3"><p class="card-k">P3 · beyond tags</p><p class="card-t">Which qualities of a question, other than its tags, go with getting an answer and an accepted one?</p></li>
+    </ol>
     <p data-reveal><a class="btn cta" href="#c2">Start</a></p>
-    <p class="placeholder-note" data-reveal>Placeholder chapter. Headline figures use count-up: <span class="big-number" style="font-size:34px" data-count="1162" data-decimals="0">1162</span> tags above the floor (invented until the export runs).</p>
   </div>
 </section>
 
@@ -36,7 +40,14 @@
   <div class="inner stack">
     <p class="eyebrow" data-reveal>{ <span class="label">02 · the data</span> }</p>
     <h2 data-reveal>Frozen at 2022-09-25, and full of <span class="mark">traps</span></h2>
-    <p class="placeholder-note" data-reveal>Placeholder: edits and leakage, censoring, survivorship.</p>
+    <p class="lede wide" data-reveal>A snapshot that stopped on 2022-09-25 at 05:56 UTC, with 23,020,127 questions since 2008. So "this year" means 2022, and 2022 is a partial year. Four things in this data can fool a ranking, and every answer carries a check for each of them.</p>
+    <ul class="cards" data-stagger>
+      <li class="card"><p class="card-k">Small groups</p><p class="card-v"><span data-count="2">2</span></p><p class="card-t">questions at most behind each tag of the raw 2022 top and bottom 10, at 100% and 0%. The median tag has 6. Hence the 385-question floor and the ranking by interval (D1).</p></li>
+      <li class="card"><p class="card-k">Edits and leakage</p><p class="card-v"><span data-count="45">45</span>%</p><p class="card-t">of 2022 questions were edited, 9% only after their first answer. Edited questions do better (34% accepted vs 28%), so dropping them is biased, and an edit made after the answer can be caused by it (D4).</p></li>
+      <li class="card"><p class="card-k">Censoring</p><p class="card-v"><span data-count="73.5" data-decimals="1">73.5</span>%</p><p class="card-t">answer rate of 2022 python-only questions, down from 84.8% in 2021. Late questions had days, not months, to get answered: about three quarters of P2's 2022 drop is that.</p></li>
+      <li class="card"><p class="card-k">Survivorship</p><p class="card-v">up</p><p class="card-t">is the direction of the bias. Deleted questions are not in the data, and Stack Overflow deletes mostly unanswered, low-score ones, so every rate reads high, older years more. This data can't size it.</p></li>
+    </ul>
+    <p class="muted" data-reveal>The good news: the keys are clean. <code>answer_count</code> matches the joined answers for every question, no answer is orphaned, and only 292 of 11.8M accepted-answer ids (all from 2008–2012) don't resolve; a warning test keeps listing them.</p>
   </div>
 </section>
 
@@ -44,19 +55,94 @@
   <div class="inner stack">
     <p class="eyebrow" data-reveal>{ <span class="label">03 · decisions</span> }</p>
     <h2 data-reveal>Decisions made with <span class="mark">evidence</span></h2>
-    <p class="placeholder-note" data-reveal>Placeholder: D1 to D4 as a timeline from the decisions log, each with its EDA chart.</p>
+    <p class="lede wide" data-reveal>Four definitions could have gone either way. Before any dbt model, each one got a small EDA on the real data, a written decision and a row in the decisions log.</p>
+    <ol class="timeline" data-stagger>
+      <li class="tl">
+        <p class="tl-when">D1 · 2026-10-29</p>
+        <h3>How do you rank a tag with two questions?</h3>
+        <p>My first idea was a cutoff at the mean minus three standard deviations. The data killed it: tag size is nothing like a bell curve (median 6 questions, mean 90, sd 1,543), so that cutoff is negative and removes nothing. Decided: a 385-question floor, the smallest sample with a ±5-point worst-case margin, and the Wilson bound as the sort key.</p>
+        <p class="tl-ev">Raw-rate and empirical-Bayes rankings share 9–10 of 10 names with these lists. <code>eda/d1_sample_size</code></p>
+      </li>
+      <li class="tl">
+        <p class="tl-when">D2 · 2026-10-30</p>
+        <h3>Accepted out of what?</h3>
+        <p>Out of all questions, or out of the answered ones? The top 10 barely cares (8 of 10 tags shared). The bottom 10 does (5 of 10), because the worst tags are the ones nobody answers. Decided: all questions as the headline, with answer rate and accepted among answered beside it on every row; the two multiply back to it.</p>
+        <p class="tl-ev">magento2: 41% answered, 9% accepted. <code>eda/d2_denominator</code></p>
+      </li>
+      <li class="tl">
+        <p class="tl-when">D3 · 2026-10-30</p>
+        <h3>Which way up is the ratio?</h3>
+        <p>Questions per answer and answers per question carry the same information, but not the same headline: python-only 2021 → 2022 is −17% one way and +21% the other. Decided against the AI's recommendation: answers per question, for readability and one metric shared by P1 and P2, with Q÷A = 1 / this shown once.</p>
+        <p class="tl-ev"><code>answer_count</code> matches the joined answers exactly for both populations. <code>eda/d3_ratio</code></p>
+      </li>
+      <li class="tl">
+        <p class="tl-when">D4 · 2026-10-30</p>
+        <h3>What about edited questions?</h3>
+        <p>45% of 2022 questions were edited, and edited questions do better, so a never-edited filter is biased. Decided: P3 reads the original text from <code>post_history</code> (one scan of about 110 GB, run on purpose), P1 and P2 keep current tags with a check on the original ones, and a leakage KPI (my idea) rides along every answer.</p>
+        <p class="tl-ev">Tag exposure rises with accepted rate (rank correlation 0.67): 8 of the top 10 tags above 10%. <code>eda/d4_edits</code></p>
+      </li>
+    </ol>
+    <p class="muted" data-reveal>Every decision, its date and its why: the decisions log in <code>PLAN.md</code>. Each <code>eda/</code> folder holds the SQL, the script and the charts.</p>
   </div>
 </section>
 
-<section class="chapter eng" id="c4" data-title="Data architecture">
+<section class="chapter eng dense" id="c4" data-title="Data architecture">
   <div class="inner stack">
     <p class="eyebrow" data-reveal>{ <span class="label">04 · architecture</span> }</p>
     <h2 data-reveal>From the public dataset to <span class="mark">one number</span></h2>
-    <ol class="flow" data-stagger>
-      <li data-n="1">source</li><li data-n="2">staging</li><li data-n="3">intermediate</li>
-      <li data-n="4">marts</li><li data-n="5">semantic layer</li><li data-n="6">queries</li>
-    </ol>
-    <p class="placeholder-note" data-reveal>Placeholder: nodes appear in order; the real diagram marks where the tests, cost caps and leakage checks attach.</p>
+    <p class="lede wide" data-reveal>One public dataset goes in; the three answers, the runnable queries and this page's numbers come out. Pick a guard to see where it attaches.</p>
+    <div class="arch" data-arch data-show="">
+      <div class="steps" data-reveal role="group" aria-label="Highlight a guard">
+        <button type="button" class="btn step" data-guard="test" aria-pressed="false">Tests</button>
+        <button type="button" class="btn step" data-guard="cost" aria-pressed="false">Byte caps</button>
+        <button type="button" class="btn step" data-guard="leak" aria-pressed="false">Leakage checks</button>
+      </div>
+      <ol class="arch-flow" data-stagger>
+        <li class="arch-node">
+          <p class="arch-k">01 · source</p>
+          <p class="arch-t"><code>bigquery-public-data.stackoverflow</code></p>
+          <p class="arch-d">4 tables (questions, answers, post history, users), frozen at 2022-09-25.</p>
+          <ul class="guards"><li class="g test">snapshot unchanged (warn)</li></ul>
+        </li>
+        <li class="arch-node">
+          <p class="arch-k">02 · staging</p>
+          <p class="arch-t">4 views, one per table</p>
+          <p class="arch-d">Without <code>body</code> and <code>post_history.text</code>, the two columns that cost 36 GB and 109 GB a read.</p>
+          <ul class="guards"><li class="g test">unique keys, every answer has its question</li><li class="g test">answer_count = joined answers; 292 legacy ids (warn)</li><li class="g cost">views store nothing; text left out</li></ul>
+        </li>
+        <li class="arch-node">
+          <p class="arch-k">03 · the hub</p>
+          <p class="arch-t"><code>int_questions</code></p>
+          <p class="arch-d">One row per question, partitioned by year: a 2022 query reads 0.05 GB, not 0.84. Tags, pairs, the 30-day window and exposure sit on top.</p>
+          <ul class="guards"><li class="g cost">dev target: 20 GiB per query</li><li class="g leak">exposure: edited after the first answer</li></ul>
+        </li>
+        <li class="arch-node">
+          <p class="arch-k">03b · read once</p>
+          <p class="arch-t">Text scans and quality labels</p>
+          <p class="arch-d">Original text and tags (106 GiB) and current body (35 GiB), each read once. <code>labels/</code> sends a 30,000-question sample to language models under a written rubric.</p>
+          <ul class="guards"><li class="g cost">full_scan target: 120 GiB; skipped by the default build</li><li class="g test">graph test: no other model reads the text</li></ul>
+        </li>
+        <li class="arch-node">
+          <p class="arch-k">04 · marts</p>
+          <p class="arch-t">One prompt each</p>
+          <p class="arch-d">P1 tags and pairs, P2 python / dbt, P3 rates and effects, with the floor, intervals and ranks; plus robustness, 30-day and original-version checks.</p>
+          <ul class="guards"><li class="g test">floor, bounds, sort order, Wilson values, unit tests</li><li class="g leak">warn: 46 tags, 65 pairs and 3 P2 rows move on the original tags</li></ul>
+        </li>
+        <li class="arch-node">
+          <p class="arch-k">05 · semantic layer</p>
+          <p class="arch-t">MetricFlow</p>
+          <p class="arch-d">Each metric defined once, at question grain, never as a ratio of rates that were already divided.</p>
+          <ul class="guards"><li class="g test">mf query reproduces the README numbers</li><li class="g test">CI: dbt parse, mf validate-configs</li></ul>
+        </li>
+        <li class="arch-node">
+          <p class="arch-k">06 · outputs</p>
+          <p class="arch-t">Queries, README, this page</p>
+          <p class="arch-d"><code>queries/</code> is generated from the models and inlined down to the public tables. This page reads CSV exports of the marts with DuckDB-WASM.</p>
+          <ul class="guards"><li class="g cost">q1 about 9 GB, q2 about 7 GB; this page 0 bytes</li></ul>
+        </li>
+      </ol>
+    </div>
+    <p class="muted" data-reveal>Every test points to an acceptance criterion in <code>specs/</code>; the map is <code>TESTING.md</code>. The same diagram is in the README.</p>
   </div>
 </section>
 
@@ -156,7 +242,24 @@ WHERE tag = 'python'
   <div class="inner stack">
     <p class="eyebrow" data-reveal>{ <span class="label">08 · quality and cost</span> }</p>
     <h2 data-reveal>Tests, caps, and what it <span class="mark">cost</span></h2>
-    <p class="placeholder-note" data-reveal>Placeholder: acceptance criterion to test map, test counts and warn tests, scan sizes, real BigQuery and API spend, CI. Cost control in three layers: (1) per-target dbt <code>maximum_bytes_billed</code> caps (dev 20 GiB, full_scan 120 GiB); (2) the EDA scripts' 10 GB dry-run limit (<code>--allow-gb</code> raises it); (3) a local coding-agent hook that dry-runs <code>bq query</code> and asks above 10 GB, always asks before dbt commands that run queries and <code>mf query</code>, and asks whenever it cannot estimate. The hook is described here, never linked or copied.</p>
+    <div class="cols">
+      <div class="stack">
+        <h3 class="sub" data-reveal>Quality</h3>
+        <ul class="cards cards-1" data-stagger>
+          <li class="card"><p class="card-v"><span data-count="170">170</span></p><p class="card-t">dbt tests: 153 generic, 14 singular and 3 unit tests on hand-written rows. Each one names its acceptance criterion; <code>TESTING.md</code> maps every criterion to its test and says where a gap is.</p></li>
+          <li class="card"><p class="card-v">warn</p><p class="card-t">is the severity of the leakage impact checks: they never fail the build, they list what moves on the original version (P1: 46 tags and 65 pairs; P2: 3 rows), and the README discusses each.</p></li>
+          <li class="card"><p class="card-v"><span data-count="0">0</span> credentials</p><p class="card-t">in CI. GitHub Actions runs <code>dbt parse</code>, <code>mf validate-configs --skip-dw</code> and the Python checks on every push, without touching the warehouse.</p></li>
+        </ul>
+      </div>
+      <div class="stack">
+        <h3 class="sub" data-reveal>Cost</h3>
+        <ul class="cards cards-1" data-stagger>
+          <li class="card"><p class="card-v">3 layers</p><p class="card-t">kept BigQuery in check. A byte cap per dbt target (<code>dev</code> 20 GiB, <code>full_scan</code> 120 GiB per query), a 10 GB dry-run limit in every EDA script, and a local coding-agent hook (kept out of the repo) that dry-runs each query, asks before a big one or any dbt run, and asks whenever it can't estimate.</p></li>
+          <li class="card"><p class="card-v"><span data-count="141">141</span> GiB</p><p class="card-t">is what the two text columns cost, one read each: <code>post_history.text</code> 106 GiB (read twice in practice, after a rule fix) and <code>posts_questions.body</code> 35 GiB. Every other query reads metadata only.</p></li>
+          <li class="card"><p class="card-v">US$ <span data-count="10.10" data-decimals="2">10.10</span></p><p class="card-t">of language-model calls, logged call by call: US$ 3.86 Anthropic (out of US$ 100 of promotional credits), US$ 2.96 Vercel AI Gateway, US$ 3.28 TypeSafe Jev. BigQuery ran in the free sandbox.</p></li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -164,7 +267,29 @@ WHERE tag = 'python'
   <div class="inner stack">
     <p class="eyebrow" data-reveal>{ <span class="label">09 · limits</span> }</p>
     <h2 data-reveal>What this <span class="mark">does not</span> show</h2>
-    <p class="placeholder-note" data-reveal>Placeholder: limitations and what I would do next.</p>
+    <div class="cols">
+      <div class="stack">
+        <h3 class="sub" data-reveal>Limits</h3>
+        <ul class="list" data-stagger>
+          <li><b>Association, not cause.</b> A tag or a quality goes with answers; nothing here shows that adding it to a question would help.</li>
+          <li><b>2022 is partial and censored.</b> The 30-day window and accepted among answered are the checks, not a fix.</li>
+          <li><b>Survivorship.</b> Deleted questions are missing, so every rate reads high, older years more, by an amount this data can't size.</li>
+          <li><b>Literal populations.</b> "Only python" means exactly one tag, and dbt-only is 168 questions in 2.7 years: read its intervals, not its points.</li>
+          <li><b>Edits.</b> Exposure and the original-version checks measure the leakage; they don't remove it.</li>
+          <li><b>Model labels.</b> P3's quality labels come from a language model, scored against a gold set I reviewed starting from two other models' labels, so the agreement is optimistic (chapter 7).</li>
+        </ul>
+      </div>
+      <div class="stack">
+        <h3 class="sub" data-reveal>What I'd do next</h3>
+        <ul class="list" data-stagger>
+          <li><b>CI with the warehouse.</b> <code>dbt build</code> on every push needs a cloud identity on the runner and a byte budget per run; left out on purpose.</li>
+          <li><b>Orchestration.</b> Dagster, once the source is live instead of frozen, with source freshness back in place of the snapshot test.</li>
+          <li><b>A blind gold set.</b> Hand labels made without the models' suggestions, as the independent check on the labeler.</li>
+          <li><b>Labels on the whole text sample.</b> About 422,000 questions instead of 30,000, roughly US$ 400–550 with the cheapest labelers.</li>
+          <li><b>Hosted dbt docs.</b> The lineage graph online; it needs a warehouse connection for the catalog.</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -172,7 +297,8 @@ WHERE tag = 'python'
   <div class="inner stack">
     <p class="eyebrow" data-reveal>{ <span class="label">10 · how it was built</span> }</p>
     <h2 data-reveal>Built with an <span class="mark">AI assistant</span></h2>
-    <p class="placeholder-note" data-reveal>Placeholder: the AI note, in Nando's voice.</p>
+    <p class="lede wide" data-reveal>I wrote the specs first and built the rest with Claude Code as a pair programmer, which is why every commit carries a co-author line. The choices are mine, and the decisions log shows each one next to the EDA that backed it: D3 (answers per question as the headline) went against the AI's recommendation, for readability and one metric shared by P1 and P2, and the leakage KPI was my idea, born from a simple worry ("what if the tag came <em>after</em> the answer?").</p>
+    <p data-reveal>The language-model calls of P3 cost US$ 10.10 in all, logged call by call in <code>labels/spend_log.csv</code>: US$ 3.86 on Anthropic (out of US$ 100 of promotional credits), US$ 2.96 on the Vercel AI Gateway and US$ 3.28 on TypeSafe Jev. BigQuery ran in the free sandbox, behind the byte caps of chapter 8.</p>
     <p class="muted" data-reveal>Stack Overflow content: (c) Stack Exchange Inc. and its contributors, licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</p>
   </div>
 </section>
