@@ -65,7 +65,7 @@
     <p class="eyebrow" data-reveal>{ <span class="label">05 · prompt 1</span> }</p>
     <h2 data-reveal>Which tags get <span class="mark">answers</span>?</h2>
     <p data-reveal>In 2022, text processing and data wrangling win: <code>jq</code>, <code>awk</code>, <code>sed</code>, <code>regex</code>, <code>dplyr</code>, <code>data.table</code>. Between 58% and 68% of their questions end with an accepted answer (the whole year: 30.5%), and <code>awk</code> collects 2.45 answers per question. Platforms and integrations lose: <code>magento2</code>, <code>appium</code>, <code>facebook</code>, Chrome extensions, about one question in ten accepted. Pairs tell the same story, except the #1, <code>arrays + google-sheets</code>, which exists mostly because of retagging after the answer.</p>
-    <p class="muted" data-reveal>Ranked by the 95% interval, with a 385-question floor (1,162 tags, 1,026 pairs). Full lists and caveats: README, section 1. The panel runs on placeholder files until the marts are exported. Edit the query: try <code>n_questions &gt;= 100</code> or <code>creation_year = 2021</code>, then Run.</p>
+    <p class="muted" data-reveal>Ranked by the 95% interval, with a 385-question floor (1,162 tags, 1,026 pairs). Full lists and caveats: README, section 1. The panel queries a snapshot of the dbt mart, exported to CSV. Edit the query: try <code>n_questions &gt;= 100</code> or <code>creation_year = 2021</code>, then Run.</p>
     <div class="sql-panel" data-reveal data-panel data-render="table" data-table="mart_p1_tags">
       <div class="sql-head"><span>live SQL · DuckDB-WASM</span><span class="sql-status" data-state="loading">loading engine…</span></div>
       <label class="muted" for="q-p1" hidden>Query</label>
@@ -101,7 +101,7 @@ LIMIT 10;</textarea>
     <div class="cols">
       <div class="stack">
         <p data-reveal>python-only answers per question fell from 2.31 (2013) to 1.52 (2021), and the accepted rate from 65.2% to 43.0%. The 1.26 of 2022 is mostly censoring: questions not answered yet when the data stops. dbt-only has 31, 58 and 79 questions (2020–2022) at 1.39, 1.14 and 1.06, intervals overlapping, so no dbt trend; but in 2021 and 2022 dbt-only got fewer answers per question than python-only. The ratio shown is answers per question; Q÷A = 1 / this (python 2022: 0.79 questions per answer).</p>
-        <p class="muted" data-reveal>Answers per question for one year, computed by the query beside it (placeholder files until the marts are exported; real numbers in the README, section 2). Step through the years, or edit the query.</p>
+        <p class="muted" data-reveal>Answers per question for one year, computed by the query beside it from a snapshot of the dbt mart (full table in the README, section 2). Step through the years, or edit the query.</p>
         <div class="steps" data-reveal role="group" aria-label="Year">
           <button type="button" class="btn step" data-year="2013" data-for="p2">2013</button>
           <button type="button" class="btn step" data-year="2021" data-for="p2">2021</button>
