@@ -581,9 +581,10 @@ I wrote the specs first and built the rest with Claude Code as a pair programmer
 co-author line. The choices are mine, and the [decisions log](PLAN.md#decisions-log) shows each one next to the EDA that
 backed it: D3 (answers per question as the headline) went against the AI's recommendation, for readability and one
 metric shared by P1 and P2, and the leakage KPI was my idea, born from a simple worry ("what if the tag came *after*
-the answer?"). The language-model calls of P3 cost US$ 10.10 in all, logged call by call in
+the answer?"). The language-model calls of P3 cost about US$ 10.65 in all, logged call by call in
 [`labels/spend_log.csv`](labels/spend_log.csv): US$ 3.86 on Anthropic (out of US$ 100 of promotional credits),
-US$ 2.96 on the Vercel AI Gateway and US$ 3.28 on TypeSafe Jev. BigQuery ran in the free sandbox, behind the byte caps
+US$ 2.96 on the Vercel AI Gateway and US$ 3.83 on TypeSafe Jev (worked out from the logged tokens, because each Jev call
+rounds to almost nothing in the log). BigQuery ran in the free sandbox, behind the byte caps
 described above.
 
 ## How this repo is organized

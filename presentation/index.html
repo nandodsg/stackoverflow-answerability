@@ -256,7 +256,7 @@ WHERE tag = 'python'
         <ul class="cards cards-1" data-stagger>
           <li class="card"><p class="card-v">3 layers</p><p class="card-t">kept BigQuery in check. A byte cap per dbt target (<code>dev</code> 20 GiB, <code>full_scan</code> 120 GiB per query), a 10 GB dry-run limit in every EDA script, and a local coding-agent hook (kept out of the repo) that dry-runs each query, asks before a big one or any dbt run, and asks whenever it can't estimate.</p></li>
           <li class="card"><p class="card-v"><span data-count="141">141</span> GiB</p><p class="card-t">is what the two text columns cost, one read each: <code>post_history.text</code> 106 GiB (read twice in practice, after a rule fix) and <code>posts_questions.body</code> 35 GiB. Every other query reads metadata only.</p></li>
-          <li class="card"><p class="card-v">US$ <span data-count="10.10" data-decimals="2">10.10</span></p><p class="card-t">of language-model calls, logged call by call: US$ 3.86 Anthropic (out of US$ 100 of promotional credits), US$ 2.96 Vercel AI Gateway, US$ 3.28 TypeSafe Jev. BigQuery ran in the free sandbox.</p></li>
+          <li class="card"><p class="card-v">US$ <span data-count="10.65" data-decimals="2">10.65</span></p><p class="card-t">of language-model calls, logged call by call: US$ 3.86 Anthropic (out of US$ 100 of promotional credits), US$ 2.96 Vercel AI Gateway, US$ 3.83 TypeSafe Jev (from the logged tokens; each call rounds to almost nothing in the log). BigQuery ran in the free sandbox.</p></li>
         </ul>
       </div>
     </div>
@@ -298,7 +298,7 @@ WHERE tag = 'python'
     <p class="eyebrow" data-reveal>{ <span class="label">10 · how it was built</span> }</p>
     <h2 data-reveal>Built with an <span class="mark">AI assistant</span></h2>
     <p class="lede wide" data-reveal>I wrote the specs first and built the rest with Claude Code as a pair programmer, which is why every commit carries a co-author line. The choices are mine, and the decisions log shows each one next to the EDA that backed it: D3 (answers per question as the headline) went against the AI's recommendation, for readability and one metric shared by P1 and P2, and the leakage KPI was my idea, born from a simple worry ("what if the tag came <em>after</em> the answer?").</p>
-    <p data-reveal>The language-model calls of P3 cost US$ 10.10 in all, logged call by call in <code>labels/spend_log.csv</code>: US$ 3.86 on Anthropic (out of US$ 100 of promotional credits), US$ 2.96 on the Vercel AI Gateway and US$ 3.28 on TypeSafe Jev. BigQuery ran in the free sandbox, behind the byte caps of chapter 8.</p>
+    <p data-reveal>The language-model calls of P3 cost about US$ 10.65 in all, logged call by call in <code>labels/spend_log.csv</code>: US$ 3.86 on Anthropic (out of US$ 100 of promotional credits), US$ 2.96 on the Vercel AI Gateway and US$ 3.83 on TypeSafe Jev (worked out from the logged tokens, because each Jev call rounds to almost nothing in the log). BigQuery ran in the free sandbox, behind the byte caps of chapter 8.</p>
     <p class="muted" data-reveal>Stack Overflow content: (c) Stack Exchange Inc. and its contributors, licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</p>
   </div>
 </section>
