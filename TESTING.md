@@ -70,7 +70,21 @@ build. See [`PLAN.md`](PLAN.md) for the cost guardrails.
 
 ## Prompt 3 ([`specs/003`](specs/003-q3-post-qualities.md))
 
-_To fill in when the quality labels are final (the P3 tests are in `models/**/_*_p3__models.yml` and `tests/assert_p3_*`)._
+| AC | What it checks | Test | Kind |
+|---|---|---|---|
+| AC-3.1 | Every feature is known at posting time | No-text features (`asker_account_age_days`, `asker_prior_questions`, hour and weekday posted) are built from posting-time metadata in [`int_question_posting_context`](models/intermediate/int_question_posting_context.sql); `accepted_range` ≥ 0 on `asker_account_age_days` in `_intermediate_p3__models.yml` (`severity: warn`, `meta: ac: AC-3.1`). Text features come from the original text, see AC-3.4 | model + generic |
+| AC-3.2 | `body` and `post_history` text are read once; no downstream model reads them | [`assert_text_columns_read_once`](tests/assert_text_columns_read_once.sql): reads dbt's project graph and fails if any model other than the staging view and the one-time scan reads `posts_questions` or `post_history` from the source (reads no table) | singular |
+| AC-3.3 | An effect that does not point the same way in each full year is labeled unstable | `accepted_rate_effect_stable` and `answer_rate_effect_stable` on `mart_p3_feature_effects` (`meta: ac: AC-3.3`); unit tests `mart_p3_effect_stability` and `mart_p3_label_effect_stability` (a level with only 3 full years above the floor is "not stable" and shows `full_years_with_effect` = 3) | generic + unit |
+| AC-3.4 | Title / body features come from the original text; the scan is done once and its size is stated | Models `int_post_history_scan` (original) and `int_question_body_scan` (current) behind the `full_scan` tag, never in a default build; [`assert_text_feature_rules`](tests/assert_text_feature_rules.sql) and [`assert_p3_bucket_rules`](tests/assert_p3_bucket_rules.sql) hold hand-written examples of every rule (read no table). The scan size is README text | model + singular |
+| AC-3.5 | Each effect is also reported on current text, never-edited and not-edited-after-first-answer | `version` `accepted_values` [original, current, never_edited, not_edited_after_answer] on `mart_p3_feature_rates` and `mart_p3_label_rates` (`meta: ac: AC-3.5`); `_effect_flips_vs_original` column on both effects marts | generic |
+| AC-3.6 | Text exposure and the share of values changed between original and current text; a direction change warns | `not_null` on `text_exposure` and `share_changed` of `mart_p3_leakage` (`meta: ac: AC-3.6`); [`assert_p3_original_text_stable`](tests/assert_p3_original_text_stable.sql) (warn, `tag:needs_full_scan`, closes the P3 part of AC-0.10) | generic + singular (warn) |
+| AC-3.7 | Each label level is reported against its rule-based neighbour | `mart_p3_label_vs_rules`: `unique_combination_of_columns` (label, level, rule value) and `accepted_range` 0–1 on both shares; the flag for a label that does not line up is README text read from this mart | model + generic |
+| AC-3.8 | Each label level's effect is reported overall and inside rule-based strata; rare levels carry `full_years_with_effect` < 4 | `mart_p3_label_incremental`: `unique_combination_of_columns` (label, level) and `accepted_range` 0–1 on `adjusted_coverage`; `full_years_with_effect` `accepted_range` 0–4 on `mart_p3_label_effects`; unit test `mart_p3_label_effect_stability` | model + generic + unit |
+
+The labels themselves have their own checks, outside the AC list: [`assert_quality_labels_match_analysis_set`](tests/assert_quality_labels_match_analysis_set.sql)
+(the seed covers exactly the 30,000-question analysis set), the seed's `accepted_values` on every label level
+(`seeds/_seeds.yml`), and [`assert_p3_label_buckets`](tests/assert_p3_label_buckets.sql) (the label layer accounts for every
+labeled question and every rubric level). Tests that read the scans or the seed are tagged `needs_full_scan`.
 
 ## Compiled queries
 
@@ -79,8 +93,13 @@ _To fill in when the quality labels are final (the P3 tests are in `models/**/_*
 [`queries/build_queries.py`](queries/build_queries.py) from the models and the hand-written headers in `queries/src/`.
 Never edit a generated file: change the model or the source and run the script again.
 
+`q3.sql` is the one exception to "self-contained": it reads three stored tables by name (`int_post_history_scan`,
+`int_question_body_scan` and the seed `quality_labels_analysis`), because the text scans cost ~145 GB to rebuild and the
+labels are a CSV, not SQL. The file carries the placeholder `YOUR_PROJECT`.`so_answerability`, and its header says how
+to build the three tables and replace it.
+
 | File | Prompt | Expected result | Status |
 |---|---|---|---|
 | `q1.sql` | 1 | 2022 accepted rate 30.5%; 1,162 ranked tags; 1,026 ranked pairs; top / bottom 10 lists | run as delivered in a fresh sandbox project on 2026-10-31 (8.92 GiB billed, temp tables dropped, 1,162 tags and 1,026 pairs); numbers also checked on the CTE variant |
 | `q2.sql` | 2 | python-only answers per question 2.31 / 1.52 / 1.26 (2013 / 2021 / 2022); dbt-only 1.39 / 1.14 / 1.06 (2020–2022) | run as delivered in a fresh sandbox project on 2026-10-31 (31 / 58 / 79 dbt questions in 2020–2022, python 7,819 / 15,811 / 12,809 in 2013 / 2021 / 2022); numbers also checked on the CTE variant |
-| `q3.sql` | 3 | _waits for the quality labels_ | not started |
+| `q3.sql` | 3 | Eight results, one per P3 mart: 1,509 / 1,032 / 60 / 144 rows (rule-based rates, effects, leakage, answer lens) and 270 / 69 / 24 / 9 rows (label rates, effects, label vs rules, incremental) | compiled 2026-11-01; each of the 8 result statements run on a storage-free copy with the real project prefix and compared with the built marts: all 8 identical (31.4 GiB billed, 38 GiB uncached). The temp-table script as delivered has not been run end to end (it needs the stored tables, below) |
