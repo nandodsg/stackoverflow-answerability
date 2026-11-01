@@ -147,4 +147,73 @@ metrics:
     type: ratio
     type_params: {numerator: by_pair_30d_answers, denominator: by_pair_30d_questions}
 
+  # --- Original-tags variant (same four definitions; Q÷A too for the whole-question family, which P2 quotes) -------------
+  - name: by_tag_orig_answer_rate
+    label: Answer rate, by tag, original tags
+    description: Answer rate computed on the tags as first posted (post_history type 3).
+    type: ratio
+    type_params: {numerator: by_tag_orig_answered_questions, denominator: by_tag_orig_questions}
+  - name: by_tag_orig_accepted_rate
+    label: Accepted rate, by tag, original tags
+    description: Accepted rate computed on the tags as first posted (post_history type 3).
+    type: ratio
+    type_params: {numerator: by_tag_orig_accepted_questions, denominator: by_tag_orig_questions}
+  - name: by_tag_orig_accepted_rate_among_answered
+    label: Accepted rate among answered, by tag, original tags
+    description: Accepted rate among answered computed on the tags as first posted (post_history type 3).
+    type: ratio
+    type_params: {numerator: by_tag_orig_accepted_questions, denominator: by_tag_orig_answered_questions}
+  - name: by_tag_orig_answers_per_question
+    label: Answers per question, by tag, original tags
+    description: Answers per question computed on the tags as first posted (post_history type 3).
+    type: ratio
+    type_params: {numerator: by_tag_orig_answers, denominator: by_tag_orig_questions}
+
+  - name: by_pair_orig_answer_rate
+    label: Answer rate, by tag pair, original tags
+    description: Answer rate computed on the tags as first posted (post_history type 3).
+    type: ratio
+    type_params: {numerator: by_pair_orig_answered_questions, denominator: by_pair_orig_questions}
+  - name: by_pair_orig_accepted_rate
+    label: Accepted rate, by tag pair, original tags
+    description: Accepted rate computed on the tags as first posted (post_history type 3).
+    type: ratio
+    type_params: {numerator: by_pair_orig_accepted_questions, denominator: by_pair_orig_questions}
+  - name: by_pair_orig_accepted_rate_among_answered
+    label: Accepted rate among answered, by tag pair, original tags
+    description: Accepted rate among answered computed on the tags as first posted (post_history type 3).
+    type: ratio
+    type_params: {numerator: by_pair_orig_accepted_questions, denominator: by_pair_orig_answered_questions}
+  - name: by_pair_orig_answers_per_question
+    label: Answers per question, by tag pair, original tags
+    description: Answers per question computed on the tags as first posted (post_history type 3).
+    type: ratio
+    type_params: {numerator: by_pair_orig_answers, denominator: by_pair_orig_questions}
+
+  - name: orig_answer_rate
+    label: Answer rate, original tags
+    description: Answer rate computed on the tags as first posted (post_history type 3).
+    type: ratio
+    type_params: {numerator: orig_answered_questions, denominator: orig_questions}
+  - name: orig_accepted_rate
+    label: Accepted rate, original tags
+    description: Accepted rate computed on the tags as first posted (post_history type 3).
+    type: ratio
+    type_params: {numerator: orig_accepted_questions, denominator: orig_questions}
+  - name: orig_accepted_rate_among_answered
+    label: Accepted rate among answered, original tags
+    description: Accepted rate among answered computed on the tags as first posted (post_history type 3).
+    type: ratio
+    type_params: {numerator: orig_accepted_questions, denominator: orig_answered_questions}
+  - name: orig_answers_per_question
+    label: Answers per question, original tags
+    description: Answers per question computed on the tags as first posted (post_history type 3).
+    type: ratio
+    type_params: {numerator: orig_answers, denominator: orig_questions}
+  - name: orig_questions_per_answer
+    label: Questions per answer, original tags
+    description: Questions per answer computed on the tags as first posted (post_history type 3).
+    type: ratio
+    type_params: {numerator: orig_questions, denominator: orig_answers}
+
   # --- P3 (Item 6): add the P3 metrics below this line -------------------------------------------------------------

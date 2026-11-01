@@ -129,6 +129,103 @@ for (label, year), (expected_ranked, *groups) in WINDOW_30D.items():
         accepted_rate = float(mf_query("--metrics", prefix + "accepted_rate", "--where", where)[0][prefix + "accepted_rate"])
         check("AC-0.5", f"  its accepted rate = accepted / questions", abs(accepted_rate - expected_counts[2] / expected_counts[0]) < 1e-9)
 
+# 5. Original-tags variant (specs/000 AC-0.10, specs/001 AC-1.9, specs/002 AC-2.6): the same checks on the tags as first
+#    posted. Expected numbers read once from mart_p1_tags_original / mart_p1_pairs_original (same layout as section 4) and
+#    from mart_p2_python_dbt_original (every python-only / dbt-only year with questions; a year with none returns no row).
+ORIGINAL_TAGS = {
+    ("pairs", 2022): (997, ("jq|json", 423, 406, 300, 626), ("android|webview", 477, 151, 49, 179)),
+    ("pairs", 2021): (1389, ("r|regex", 551, 531, 450, 951), ("google-chrome|google-chrome-extension", 583, 245, 97, 282)),
+    ("tags", 2022): (1141, ("jq", 834, 804, 565, 1235), ("magento2", 481, 199, 42, 236)),
+    ("tags", 2021): (1390, ("stringr", 392, 368, 302, 682), ("facebook", 1167, 560, 189, 671)),
+}
+for (label, year), (expected_ranked, *groups) in ORIGINAL_TAGS.items():
+    prefix, family = ("by_tag_orig_", "question_tag_original") if label == "tags" else ("by_pair_orig_", "question_pair_original")
+    keys = [f"{family}__tag"] if label == "tags" else [f"{family}__tag_a", f"{family}__tag_b"]
+    rows = mf_query(
+        "--metrics", prefix + "questions",
+        "--group-by", ",".join(keys),
+        "--where", f"{dim(family + '__creation_year')} = {year}",
+        "--order", f"-{prefix}questions",
+        "--limit", "3000",
+    )
+    ranked = sum(1 for r in rows if int(float(r[prefix + "questions"])) >= MIN_QUESTIONS)
+    check("AC-1.9", f"original tags {year} ranked {label} (>= {MIN_QUESTIONS} questions) = {expected_ranked}",
+          ranked == expected_ranked, f"({ranked}; fetched {len(rows)})")
+    for position, (group, *expected_counts) in zip(("top", "bottom"), groups):
+        parts = group.split("|")
+        where = " AND ".join(f"{dim(key)} = '{part}'" for key, part in zip(keys, parts))
+        where += f" AND {dim(family + '__creation_year')} = {year}"
+        row = mf_query(
+            "--metrics", ",".join(prefix + m for m in ("questions", "answered_questions", "accepted_questions", "answers")),
+            "--where", where,
+        )[0]
+        got = [int(float(row[prefix + m])) for m in ("questions", "answered_questions", "accepted_questions", "answers")]
+        check("AC-1.9", f"original tags {year} {label} {position} accepted-rate group {group}: counts match the mart",
+              got == expected_counts, f"({got} vs {expected_counts})")
+
+# P2 on the original tags: (questions, answered, accepted, answers) per (tag, year); tag_count is not needed because the
+# `tags` dimension holds the whole original string, so `python` already means python-only as posted (AC-2.1).
+P2_ORIGINAL = {
+    ("dbt", 2020): (34, 32, 13, 45),
+    ("dbt", 2021): (62, 52, 18, 70),
+    ("dbt", 2022): (81, 69, 23, 86),
+    ("python", 2013): (9146, 8861, 5961, 21406),
+    ("python", 2014): (10056, 9621, 6254, 19944),
+    ("python", 2015): (11327, 10611, 6536, 21694),
+    ("python", 2016): (12099, 11103, 6406, 22315),
+    ("python", 2017): (13543, 12048, 6694, 23103),
+    ("python", 2018): (13747, 12269, 6851, 23332),
+    ("python", 2019): (17191, 15319, 8356, 28874),
+    ("python", 2020): (18082, 15828, 8221, 29529),
+    ("python", 2021): (17104, 14386, 7334, 25573),
+    ("python", 2022): (13483, 9897, 4832, 16854),
+}
+rows = mf_query(
+    "--metrics", "orig_questions,orig_answered_questions,orig_accepted_questions,orig_answers,orig_questions_per_answer,orig_answers_per_question",
+    "--group-by", "question_original__tags,question_original__creation_year",
+    "--where", f"{dim('question_original__tags')} IN ('python', 'dbt')",
+)
+got = {(r["question_original__tags"], int(r["question_original__creation_year"])): r for r in rows}
+counts_ok = all(
+    key in got and [int(float(got[key]["orig_" + m])) for m in ("questions", "answered_questions", "accepted_questions", "answers")] == list(value)
+    for key, value in P2_ORIGINAL.items()
+) and set(got) == set(P2_ORIGINAL)
+check("AC-2.6", "original tags: python-only / dbt-only counts of every year match mart_p2_python_dbt_original", counts_ok,
+      f"({len(got)} of {len(P2_ORIGINAL)} rows)")
+check("AC-0.6", "original tags: questions per answer = 1 / answers per question, every row",
+      all(abs(float(r["orig_questions_per_answer"]) * float(r["orig_answers_per_question"]) - 1) < 1e-9 for r in got.values()))
+
+# 6. No-tag-edits variant (specs/002 Population): no extra metrics, the existing ones filtered with tag_ever_edited = 0
+#    (and 2013-2022, the years of the P2 mart; the semantic model also holds 2008-2012).
+#    Expected numbers from mart_p2_python_dbt_no_tag_edits.
+P2_NO_TAG_EDITS = {
+    ("dbt", 2020): (29, 27, 12, 40),
+    ("dbt", 2021): (58, 49, 15, 66),
+    ("dbt", 2022): (79, 67, 22, 84),
+    ("python", 2013): (7295, 7082, 4766, 16745),
+    ("python", 2014): (8037, 7681, 4936, 15785),
+    ("python", 2015): (9187, 8595, 5244, 17394),
+    ("python", 2016): (9702, 8885, 5090, 17725),
+    ("python", 2017): (10925, 9675, 5331, 18457),
+    ("python", 2018): (10683, 9508, 5252, 18098),
+    ("python", 2019): (13465, 12039, 6606, 22967),
+    ("python", 2020): (14789, 12957, 6702, 24338),
+    ("python", 2021): (14496, 12215, 6212, 21944),
+    ("python", 2022): (11613, 8475, 4083, 14543),
+}
+rows = mf_query(
+    "--metrics", "questions,answered_questions,accepted_questions,answers",
+    "--group-by", "question__tags,question__creation_year",
+    "--where", f"{dim('question__tags')} IN ('python', 'dbt') AND {dim('question__tag_ever_edited')} = 0 AND {dim('question__creation_year')} BETWEEN 2013 AND 2022",
+)
+got = {(r["question__tags"], int(r["question__creation_year"])): r for r in rows}
+counts_ok = all(
+    key in got and [int(float(got[key][m])) for m in ("questions", "answered_questions", "accepted_questions", "answers")] == list(value)
+    for key, value in P2_NO_TAG_EDITS.items()
+) and set(got) == set(P2_NO_TAG_EDITS)
+check("AC-2.1", "no tag edits: python-only / dbt-only counts of every year match mart_p2_python_dbt_no_tag_edits", counts_ok,
+      f"({len(got)} of {len(P2_NO_TAG_EDITS)} rows)")
+
 failed = results.count(False)
 print(f"\n{len(results) - failed} passed, {failed} failed")
 sys.exit(1 if failed else 0)
