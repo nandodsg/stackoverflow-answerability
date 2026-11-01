@@ -23,8 +23,10 @@ import argparse
 import csv
 import json
 import sys
+from concurrent.futures import ThreadPoolExecutor
 
-from common import GATEWAY_PRICES, LABELS, PRICES, anthropic_client, gateway_client, log_spend, read_json, write_json
+from common import (BQ_DATASET, BQ_PROJECT, CACHE, GATEWAY_PRICES, LABELS, PRICES, TYPESAFE_PRICES, anthropic_client,
+                    bq_query, gateway_client, log_spend, read_json, typesafe_client, write_json)
 from gold_page import load_questions
 from rubric import load_rubric
 
@@ -86,6 +88,32 @@ def gateway_request(q: dict, model: str, effort: str, rubric: dict, reasons: boo
     }
 
 
+def load_analysis() -> list[dict]:
+    """The 30,000 analysis questions with their original text, read once (about 1-2 GB) and cached; gold_rank = rank."""
+    cache = CACHE / "analysis_text.json"
+    if cache.exists():
+        return read_json(cache)
+    rows = bq_query(f"""
+        select a.question_id, 'analysis' as gold_set, a.analysis_rank as gold_rank, a.creation_year,
+               o.original_tags, o.original_title, o.original_body_text
+        from `{BQ_PROJECT}.{BQ_DATASET}.int_label_analysis_questions` as a
+        join `{BQ_PROJECT}.{BQ_DATASET}.int_post_history_scan` as o
+            on o.post_id = a.question_id and o.post_kind = 'question' and o.creation_year between 2018 and 2022
+        order by a.analysis_rank""")
+    if len(rows) != 30000:
+        sys.exit(f"Expected 30,000 analysis questions, got {len(rows)}.")
+    write_json(cache, rows)
+    return rows
+
+
+def jev_questions(rubric: dict) -> dict:
+    """One choice question per label: the label's rubric section as instructions, its levels as the choices."""
+    intro = ("You judge how a Stack Overflow question is written, as its asker first posted it. You do not know whether "
+             "it was answered. Decide this one label only, following its decision rule and borderline cases.\n\n")
+    return {l["key"]: {"type": "choice", "instructions": f"{intro}Label: {l['title']}\n\n{l['section']}",
+                       "criteria": {level: None for level in l["levels"]}} for l in rubric["labels"]}
+
+
 def slug(model: str) -> str:
     return model.replace("/", "_")
 
@@ -108,7 +136,25 @@ def parse_result(text: str, rubric: dict, reasons: bool) -> dict:
     return result
 
 
+def count_jev(questions: list[dict], model: str, rubric: dict) -> None:
+    """Input tokens counted with the Claude tokenizer as a proxy; Jev bills input only, so expected = ceiling."""
+    client = anthropic_client()
+    extra = "\n\n".join(q["instructions"] for q in jev_questions(rubric).values())
+    n = len(questions)
+    sample = questions if n <= 500 else questions[::n // 200]  # a big set is counted on ~200 evenly spaced questions
+    total = sum(client.messages.count_tokens(
+        model=COUNT_PROXY, messages=[{"role": "user", "content": render_question(q) + "\n\n" + extra}]).input_tokens
+        for q in sample)
+    total = round(total * n / len(sample))
+    cost = total * TYPESAFE_PRICES[model]["input"] / 1e6
+    print(f"{model}: {n} calls (6 choice questions each), {total:,} input tokens in all ({total // n:,} per call) "
+          f"(counted with the {COUNT_PROXY} tokenizer as a proxy)")
+    print(f"Expected cost ~US$ {cost:.2f} (input only; a gap of up to ~30% from the proxy count is plausible).")
+
+
 def count(questions: list[dict], model: str, effort: str, rubric: dict, reasons: bool) -> None:
+    if model in TYPESAFE_PRICES:
+        return count_jev(questions, model, rubric)
     client = anthropic_client()
     gateway = model in GATEWAY_PRICES
     total = 0
@@ -143,40 +189,72 @@ def call_gateway(client, q, model, effort, rubric, reasons):
             choice.message.content or "", resp.usage.model_dump())
 
 
+def call_jev(client, q, model, effort, rubric, reasons):
+    resp = client.system_one(state=render_question(q), questions=jev_questions(rubric), model=model)
+    keys = [l["key"] for l in rubric["labels"]]
+    text = json.dumps({"labels": {k: resp.choices[k].choice for k in keys},
+                       "probabilities": {k: dict(resp.choices[k].probabilities) for k in keys}})
+    return resp.model or model, resp.usage, True, "stop", text, resp.usage.model_dump()
+
+
+def _safe_call(call, client, q, model, effort, rubric, reasons):
+    try:
+        return call(client, q, model, effort, rubric, reasons)
+    except Exception as e:  # one failed call must not stop a 30,000-call run; it is retried on the next run
+        return e
+
+
 def run(questions: list[dict], gold_set: str, model: str, effort: str, rubric: dict, reasons: bool,
-        max_usd: float) -> None:
+        max_usd: float, workers: int = 1) -> None:
     gateway = model in GATEWAY_PRICES
-    client, call = (gateway_client(), call_gateway) if gateway else (anthropic_client(), call_anthropic)
+    if model in TYPESAFE_PRICES:
+        client, call, reasons = typesafe_client(), call_jev, False  # no reasons from Jev
+    else:
+        client, call = (gateway_client(), call_gateway) if gateway else (anthropic_client(), call_anthropic)
     json_path, csv_path = paths(model, gold_set)
     done = read_json(json_path) if json_path.exists() else {}
     if done and next(iter(done.values()))["rubric_version"] != rubric["version"]:
         sys.exit(f"{json_path.name} was labeled on another rubric version; move it aside before re-labeling.")
     run_name = f"gold-{gold_set}-{slug(model)}-{rubric['version']}"
     spent = 0.0
-    for q in questions:
-        qid = str(q["question_id"])
-        if qid in done:
-            continue
-        if spent >= max_usd:
-            print(f"Stopped: US$ {spent:.2f} spent, cap US$ {max_usd:.2f}.")
-            break
-        served, usage, finished, stop, text, usage_dict = call(client, q, model, effort, rubric, reasons)
-        # Price by the model asked for: a gateway model id comes back as served, Claude may fall back to another.
-        cost = log_spend(run_name, f"q{q['gold_rank']:03d}", served if served in PRICES else model, usage)
-        spent += cost
-        print(f"  {gold_set} {q['gold_rank']:3d} ({qid}): {usage_dict.get('input_tokens', usage_dict.get('prompt_tokens'))} in, "
-              f"{usage_dict.get('output_tokens', usage_dict.get('completion_tokens'))} out, US$ {cost:.3f}, stop {stop}")
-        if not finished:
-            print(f"    not saved: stopped with {stop}")
-            continue
-        try:
-            result = parse_result(text, rubric, reasons)
-        except (ValueError, KeyError, json.JSONDecodeError) as e:
-            print(f"    not saved: {e}")
-            continue
-        done[qid] = {"gold_rank": q["gold_rank"], "rubric_version": rubric["version"], "served_by": served,
-                     "effort": effort, "usd": round(cost, 4), "usage": usage_dict, **result}
-        write_json(json_path, done)  # after every call, so an interrupted run resumes where it stopped
+    todo = [q for q in questions if str(q["question_id"]) not in done]
+    since_write = 0
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        for start in range(0, len(todo), workers):
+            if spent >= max_usd:
+                print(f"Stopped: US$ {spent:.2f} spent, cap US$ {max_usd:.2f}.")
+                break
+            chunk = todo[start:start + workers]
+            for q, outcome in zip(chunk, pool.map(lambda q: _safe_call(call, client, q, model, effort, rubric, reasons),
+                                                  chunk)):
+                qid = str(q["question_id"])
+                if isinstance(outcome, Exception):
+                    print(f"  {gold_set} {q['gold_rank']:3d} ({qid}): call failed, not saved: {outcome!r}")
+                    continue
+                served, usage, finished, stop, text, usage_dict = outcome
+                # Price by the model asked for: a gateway model id comes back as served, Claude may fall back to another.
+                cost = log_spend(run_name, f"q{q['gold_rank']:03d}", served if served in PRICES else model, usage)
+                spent += cost
+                if len(done) < 200 or q["gold_rank"] % 100 == 0:
+                    print(f"  {gold_set} {q['gold_rank']:3d} ({qid}): "
+                          f"{usage_dict.get('input_tokens', usage_dict.get('prompt_tokens'))} in, "
+                          f"{usage_dict.get('output_tokens', usage_dict.get('completion_tokens'))} out, "
+                          f"US$ {cost:.4f}, stop {stop}; spent US$ {spent:.2f}")
+                if not finished:
+                    print(f"    {qid} not saved: stopped with {stop}")
+                    continue
+                try:
+                    result = parse_result(text, rubric, reasons)
+                except (ValueError, KeyError, json.JSONDecodeError) as e:
+                    print(f"    {qid} not saved: {e}")
+                    continue
+                done[qid] = {"gold_rank": q["gold_rank"], "rubric_version": rubric["version"], "served_by": served,
+                             "effort": effort, "usd": round(cost, 4), "usage": usage_dict, **result}
+                since_write += 1
+            if since_write >= 200 or len(chunk) < workers:  # a resumed run loses at most 200 labels
+                write_json(json_path, done)
+                since_write = 0
+    write_json(json_path, done)
     write_csv(done, gold_set, model, rubric, csv_path)
     print(f"US$ {spent:.2f} this run; {len(done)} of {len(questions)} labeled -> {csv_path}")
 
@@ -195,21 +273,24 @@ def write_csv(done: dict, gold_set: str, model: str, rubric: dict, path) -> None
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("mode", choices=["count", "run"])
-    parser.add_argument("--set", required=True, choices=["practice", "scoring"], dest="gold_set")
+    parser.add_argument("--set", required=True, choices=["practice", "scoring", "analysis"], dest="gold_set")
     parser.add_argument("--model", default="claude-opus-5-5", choices=sorted(PRICES))
     parser.add_argument("--effort", default=EFFORT, choices=["low", "medium", "high", "xhigh", "max"])
     parser.add_argument("--no-reasons", action="store_true", help="labels only (cheaper output)")
+    parser.add_argument("--workers", type=int, default=1, help="run only: calls in flight at once")
     parser.add_argument("--max-usd", type=float, help="run only: stop starting new calls once this much is spent")
     args = parser.parse_args()
     rubric = load_rubric()
-    questions = [q for q in load_questions() if q["gold_set"] == args.gold_set]
+    questions = load_analysis() if args.gold_set == "analysis" else [
+        q for q in load_questions() if q["gold_set"] == args.gold_set]
     if args.mode == "count":
         count(questions, args.model, args.effort, rubric, not args.no_reasons)
     else:
         if args.max_usd is None:
             sys.exit("run needs --max-usd (the spending cap you approved).")
         OUT.mkdir(parents=True, exist_ok=True)
-        run(questions, args.gold_set, args.model, args.effort, rubric, not args.no_reasons, args.max_usd)
+        run(questions, args.gold_set, args.model, args.effort, rubric, not args.no_reasons, args.max_usd,
+            args.workers)
 
 
 if __name__ == "__main__":

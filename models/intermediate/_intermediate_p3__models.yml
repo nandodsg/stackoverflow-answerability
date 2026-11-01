@@ -94,6 +94,22 @@ models:
                 values: [2018, 2019, 2020, 2021]
                 quote: false
 
+  - name: int_label_analysis_questions
+    description: >
+      Analysis set of the quality labels (needs_full_scan, a view): a plain random draw of 30,000 questions from the 5%
+      text sample, 2018-2022, minus the discovery and gold questions. Labeled by the chosen labeling model. Ids only.
+    columns:
+      - name: question_id
+        data_tests: [unique, not_null]
+      - name: analysis_rank
+        data_tests: [unique, not_null]
+      - name: creation_year
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [2018, 2019, 2020, 2021, 2022]
+                quote: false
+
   - name: int_label_gold_questions
     description: >
       Gold set of the quality labels (needs_full_scan, a view): 120 questions from the 5% text sample, 2018-2022, minus

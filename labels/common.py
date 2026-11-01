@@ -38,8 +38,15 @@ PRICES = {
 GATEWAY_PRICES = {
     "google/gemini-4-argon": {"input": 2.20, "output": 11.00, "cache_write": 2.20, "cache_read": 0.11},
     "spacexai/grok-4.7": {"input": 2.20, "output": 6.60, "cache_write": 2.20, "cache_read": 0.55},
+    "openai/gpt-6-luna": {"input": 0.11, "output": 0.55, "cache_write": 0.1375, "cache_read": 0.011},
+}
+# TypeSafe decisions API (direct, with the typesafe-sdk): billed on input tokens only; price from the gateway
+# catalog entry typesafe-ai/jev (2026-11-01).
+TYPESAFE_PRICES = {
+    "jev-latest": {"input": 0.042, "output": 0.0, "cache_write": 0.0, "cache_read": 0.0},
 }
 PRICES |= GATEWAY_PRICES
+PRICES |= TYPESAFE_PRICES
 GATEWAY_URL = "https://ai-gateway.vercel.sh/v1"
 
 load_dotenv(REPO / ".env")  # no override=True: .env never replaces a variable that is already set
@@ -55,6 +62,12 @@ def gateway_client():
     from openai import OpenAI
 
     return OpenAI(api_key=os.environ["AI_GATEWAY_API_KEY"], base_url=GATEWAY_URL)
+
+
+def typesafe_client():
+    from typesafe_sdk import TypeSafeClient
+
+    return TypeSafeClient(api_key=os.environ["TYPESAFE_API_KEY"])
 
 
 def tokens(usage) -> tuple[int, int, int, int]:

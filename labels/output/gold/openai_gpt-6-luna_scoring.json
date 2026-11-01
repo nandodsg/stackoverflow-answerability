@@ -1,0 +1,5402 @@
+{
+  "68258046": {
+    "gold_rank": 1,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0005,
+    "usage": {
+      "completion_tokens": 256,
+      "prompt_tokens": 2957,
+      "total_tokens": 3213,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 104,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.00049755,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 2954,
+      "market_cost": 0.00049755,
+      "gateway_cost": 0.00049755
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Shows an existing object, but does not write out the literal desired output after insertion.",
+      "ask_scope": "Asks how to prevent changing the first object's quantity when adding the same product again.",
+      "failure_description": "States that the quantity changes in the first object too.",
+      "code_focus": "The short service method and call directly show the insertion logic.",
+      "environment_dependent": "The issue concerns object behavior in the shown code, not the asker’s setup.",
+      "image_only_evidence": "No image is present."
+    }
+  },
+  "59720878": {
+    "gold_rank": 2,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0005,
+    "usage": {
+      "completion_tokens": 561,
+      "prompt_tokens": 4020,
+      "total_tokens": 4581,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 374,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000473,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 1322,
+      "market_cost": 0.000473,
+      "gateway_cost": 0.000473
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "dump",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and desired output are written out.",
+      "ask_scope": "Asks one specific question about whether a Next.js page needs a default export.",
+      "failure_description": "The log gives the exact error message.",
+      "code_focus": "The full page and configuration files include substantial code beyond the export issue.",
+      "environment_dependent": "The stated conflict involves the asker's gts configuration forbidding default exports.",
+      "image_only_evidence": "No image is included."
+    }
+  },
+  "70911929": {
+    "gold_rank": 3,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0004,
+    "usage": {
+      "completion_tokens": 530,
+      "prompt_tokens": 3216,
+      "total_tokens": 3746,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 340,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000357,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 518,
+      "market_cost": 0.000357,
+      "gateway_cost": 0.000357
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "The desired table is shown, but no concrete input is separately written out.",
+      "ask_scope": "The specific printing problem could be resolved with a focused answer.",
+      "failure_description": "The shown output omits the IDs, departments, and positions.",
+      "code_focus": "The short employee and entry-form code includes the relevant printing loop.",
+      "environment_dependent": "The issue concerns Java output behavior, not the asker's setup.",
+      "image_only_evidence": "No image is used."
+    }
+  },
+  "58341888": {
+    "gold_rank": 4,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0002,
+    "usage": {
+      "completion_tokens": 344,
+      "prompt_tokens": 2823,
+      "total_tokens": 3167,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 159,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000214875,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 125,
+      "market_cost": 0.000214875,
+      "gateway_cost": 0.000214875
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and desired output are both written out.",
+      "ask_scope": "Asks one specific question about redirecting after a function result.",
+      "failure_description": "Asks how to do something without reporting a failed attempt.",
+      "code_focus": "The short snippet shows the relevant login callback and redirect location.",
+      "environment_dependent": "The question concerns code behavior, not the asker's setup.",
+      "image_only_evidence": "No image is included."
+    }
+  },
+  "73245046": {
+    "gold_rank": 5,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0002,
+    "usage": {
+      "completion_tokens": 271,
+      "prompt_tokens": 2897,
+      "total_tokens": 3168,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 135,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000187625,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 199,
+      "market_cost": 0.000187625,
+      "gateway_cost": 0.000187625
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and desired output are both written out.",
+      "ask_scope": "Asks for the issue causing a specific timeout in the shown code.",
+      "failure_description": "The exact timeout message is quoted.",
+      "code_focus": "The short code snippet is directly relevant to the reported timeout.",
+      "environment_dependent": "The question describes code behavior, not a setup or deployment issue.",
+      "image_only_evidence": "No image is referenced."
+    }
+  },
+  "60077210": {
+    "gold_rank": 6,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0002,
+    "usage": {
+      "completion_tokens": 337,
+      "prompt_tokens": 2921,
+      "total_tokens": 3258,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 193,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000223625,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 223,
+      "market_cost": 0.000223625,
+      "gateway_cost": 0.000223625
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "The code and output are shown, but no literal desired output is provided.",
+      "ask_scope": "The specific issue is that the first output is overwritten for later coordinates.",
+      "failure_description": "The post describes the same result being returned for all ten coordinates.",
+      "code_focus": "The short code block shows the relevant apply call.",
+      "environment_dependent": "No setup, installation, version, or deployment issue is mentioned.",
+      "image_only_evidence": "No image is included."
+    }
+  },
+  "55104952": {
+    "gold_rank": 7,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 541,
+      "prompt_tokens": 2944,
+      "total_tokens": 3485,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 346,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.0003285,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 246,
+      "market_cost": 0.0003285,
+      "gateway_cost": 0.0003285
+    },
+    "labels": {
+      "worked_example": "yes",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Shows `make fileName.cpp` and the desired executable `./fileName`.",
+      "ask_scope": "Asks for one specific Makefile rule to compile the named source file.",
+      "failure_description": "How-to question with no reported failed attempt.",
+      "code_focus": "Short Makefile and command examples directly illustrate the requested rule.",
+      "environment_dependent": "The question concerns a reproducible Makefile rule, not a specific setup.",
+      "image_only_evidence": "No image is used as evidence."
+    }
+  },
+  "61074096": {
+    "gold_rank": 8,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0002,
+    "usage": {
+      "completion_tokens": 357,
+      "prompt_tokens": 2889,
+      "total_tokens": 3246,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 178,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000229625,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 191,
+      "market_cost": 0.000229625,
+      "gateway_cost": 0.000229625
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and literal desired output are given.",
+      "ask_scope": "Asks how to reduce the specifically named CPU and connection increases.",
+      "failure_description": "Reports increased CPU and database connections during archival.",
+      "code_focus": "The concise command directly shows the archival operation being asked about.",
+      "environment_dependent": "The question concerns archiving a production RDS database.",
+      "image_only_evidence": "No image is included."
+    }
+  },
+  "66295771": {
+    "gold_rank": 9,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 484,
+      "prompt_tokens": 3080,
+      "total_tokens": 3564,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 331,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000317,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 382,
+      "market_cost": 0.000317,
+      "gateway_cost": 0.000317
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "partial",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "The post gives code but no literal input and desired-output pair.",
+      "ask_scope": "It asks how to call one function when a link is clicked.",
+      "failure_description": "It reports the exact ReferenceError: GeoIPModule is not defined.",
+      "code_focus": "The relevant function and attempted call are shown, but the defining context is missing.",
+      "environment_dependent": "The reported issue concerns the code’s function reference, not a specified setup.",
+      "image_only_evidence": "No image is used for essential evidence."
+    }
+  },
+  "73760417": {
+    "gold_rank": 10,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0004,
+    "usage": {
+      "completion_tokens": 373,
+      "prompt_tokens": 4428,
+      "total_tokens": 4801,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 229,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.00043,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 1730,
+      "market_cost": 0.00043,
+      "gateway_cost": 0.00043
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "dump",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input-and-desired-output pair is written out.",
+      "ask_scope": "Asks about one specific list-binding problem when adding another award.",
+      "failure_description": "The post states that the list returns null on another award submission.",
+      "code_focus": "Includes the whole view page with substantial unrelated layout and styling markup.",
+      "environment_dependent": "The issue concerns form binding, with no setup or deployment dependency mentioned.",
+      "image_only_evidence": "No image is included."
+    }
+  },
+  "55411003": {
+    "gold_rank": 11,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0004,
+    "usage": {
+      "completion_tokens": 692,
+      "prompt_tokens": 3046,
+      "total_tokens": 3738,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 549,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.00041675,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 348,
+      "market_cost": 0.00041675,
+      "gateway_cost": 0.00041675
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "partial",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Shows the query and desired SQL fragment, but no concrete input/output pair.",
+      "ask_scope": "Asks how to change one specific EXISTS query.",
+      "failure_description": "The generated SQL uses SELECT 1 instead of the requested column.",
+      "code_focus": "Relevant query and model snippets are short but fragmentary.",
+      "environment_dependent": "The question concerns SQLAlchemy query behavior, not a setup issue.",
+      "image_only_evidence": "No image is included or referenced."
+    }
+  },
+  "50926788": {
+    "gold_rank": 12,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0002,
+    "usage": {
+      "completion_tokens": 323,
+      "prompt_tokens": 3080,
+      "total_tokens": 3403,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 178,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.0002365,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 382,
+      "market_cost": 0.0002365,
+      "gateway_cost": 0.0002365
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Code shows an approach, but no literal input/output pair is given.",
+      "ask_scope": "Asks how to implement one specific recursive operation in C#.",
+      "failure_description": "A how-to request with no reported failure symptom.",
+      "code_focus": "Both code snippets are concise and directly relevant to the recursive zip-file operation.",
+      "environment_dependent": "The question concerns code behavior, not a specific installation or setup.",
+      "image_only_evidence": "No images are included."
+    }
+  },
+  "61867164": {
+    "gold_rank": 13,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0002,
+    "usage": {
+      "completion_tokens": 284,
+      "prompt_tokens": 2841,
+      "total_tokens": 3125,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 142,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000187125,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 143,
+      "market_cost": 0.000187125,
+      "gateway_cost": 0.000187125
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and literal desired output are written out.",
+      "ask_scope": "The specific swipe-navigation failure could be resolved with a focused fix or explanation.",
+      "failure_description": "Downward swipe reports “heading not found” and remains stuck in the navigation bar.",
+      "code_focus": "No code is included.",
+      "environment_dependent": "The post describes accessibility behavior, not a setup or deployment issue.",
+      "image_only_evidence": "No image is referenced."
+    }
+  },
+  "62255052": {
+    "gold_rank": 14,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0004,
+    "usage": {
+      "completion_tokens": 638,
+      "prompt_tokens": 2961,
+      "total_tokens": 3599,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 489,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000379125,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 263,
+      "market_cost": 0.000379125,
+      "gateway_cost": 0.000379125
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and desired output pair is written out.",
+      "ask_scope": "The specific task is retrieving the focused element’s background and border colors.",
+      "failure_description": "Image comparison won’t work when website content changes dynamically.",
+      "code_focus": "No code block or pasted code of two or more lines.",
+      "environment_dependent": "No setup-specific issue is described; the question concerns browser behavior generally.",
+      "image_only_evidence": "The text already describes the focused border and background colors."
+    }
+  },
+  "69821469": {
+    "gold_rank": 15,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0002,
+    "usage": {
+      "completion_tokens": 311,
+      "prompt_tokens": 2825,
+      "total_tokens": 3136,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 173,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000198625,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 127,
+      "market_cost": 0.000198625,
+      "gateway_cost": 0.000198625
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "not_applicable",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and desired output are written out.",
+      "ask_scope": "One specific question asks why the drag icon does not appear.",
+      "failure_description": "The stated symptom is that the drag icon does not show up.",
+      "code_focus": "The post contains no code block or pasted code.",
+      "environment_dependent": "The asker says they are using Windows 10.",
+      "image_only_evidence": "No image is included or linked."
+    }
+  },
+  "59075482": {
+    "gold_rank": 16,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0002,
+    "usage": {
+      "completion_tokens": 361,
+      "prompt_tokens": 2914,
+      "total_tokens": 3275,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 176,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.00023475,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 216,
+      "market_cost": 0.00023475,
+      "gateway_cost": 0.00023475
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Shows a request object but no literal desired output.",
+      "ask_scope": "Asks how to execute this specific call in NodeJS.",
+      "failure_description": "Reports the exact error: “XMLHttpRequest is not defined.”",
+      "code_focus": "The short code snippet shows the client call in question.",
+      "environment_dependent": "The issue concerns the code’s runtime behavior, not setup or deployment.",
+      "image_only_evidence": "No image is referenced."
+    }
+  },
+  "48844194": {
+    "gold_rank": 17,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 624,
+      "prompt_tokens": 2782,
+      "total_tokens": 3406,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 479,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.00034975,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 84,
+      "market_cost": 0.00034975,
+      "gateway_cost": 0.00034975
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "vague",
+      "code_focus": "not_applicable",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and desired output are written out.",
+      "ask_scope": "Asks for a way to fix one specific highlighting issue.",
+      "failure_description": "Says highlighting should be proper but gives no specific symptom in text.",
+      "code_focus": "No code is included.",
+      "environment_dependent": "The question concerns highlighting configuration in PyCharm.",
+      "image_only_evidence": "The image illustrates the highlighting issue; no essential error, data, or code is image-only."
+    }
+  },
+  "66815431": {
+    "gold_rank": 18,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 410,
+      "prompt_tokens": 3190,
+      "total_tokens": 3600,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 269,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.00029375,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 492,
+      "market_cost": 0.00029375,
+      "gateway_cost": 0.00029375
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "partial",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Shows component usage and an error, but no literal desired output.",
+      "ask_scope": "Asks for help with one specific component-property error.",
+      "failure_description": "The exact Angular error message is included.",
+      "code_focus": "Relevant module snippets are shown, but the component declaration and input are missing.",
+      "environment_dependent": "The issue concerns module and component code, not the install or deployment setup.",
+      "image_only_evidence": "No image is used."
+    }
+  },
+  "66134202": {
+    "gold_rank": 19,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0002,
+    "usage": {
+      "completion_tokens": 364,
+      "prompt_tokens": 2937,
+      "total_tokens": 3301,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 210,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000239125,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 239,
+      "market_cost": 0.000239125,
+      "gateway_cost": 0.000239125
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "not_applicable",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input-and-desired-output pair is written out.",
+      "ask_scope": "Asks for a specific way to preserve the stated PATH order.",
+      "failure_description": "Reports that `/usr/local/bin` is prepended and the default Python is used.",
+      "code_focus": "Only inline code snippets; no code block or pasted code of two or more lines.",
+      "environment_dependent": "The issue concerns PATH configuration in the asker’s Mac RStudio setup.",
+      "image_only_evidence": "No image is included."
+    }
+  },
+  "62518380": {
+    "gold_rank": 20,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 510,
+      "prompt_tokens": 2892,
+      "total_tokens": 3402,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 359,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.0003065,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 194,
+      "market_cost": 0.0003065,
+      "gateway_cost": 0.0003065
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and literal desired output are written out.",
+      "ask_scope": "Asks one specific question about repeated date-change events and whether they can be disabled.",
+      "failure_description": "The method is called repeatedly with the client system date after receiving the entered date.",
+      "code_focus": "The short template snippet shows the relevant date picker binding.",
+      "environment_dependent": "The question concerns component behavior, not installation, deployment, or a specific machine setup.",
+      "image_only_evidence": "No image is included."
+    }
+  },
+  "52801633": {
+    "gold_rank": 21,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 299,
+      "prompt_tokens": 3285,
+      "total_tokens": 3584,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 152,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000250125,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 587,
+      "market_cost": 0.000250125,
+      "gateway_cost": 0.000250125
+    },
+    "labels": {
+      "worked_example": "yes",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "The input table and desired output table are both written out.",
+      "ask_scope": "Asks for a specific way to delete duplicate rows while keeping the highest id.",
+      "failure_description": "Asks how to perform an operation; no failure is reported.",
+      "code_focus": "The short query directly selects rows matching the stated duplicate columns.",
+      "environment_dependent": "The question concerns a query, with no setup or deployment issue described.",
+      "image_only_evidence": "No images are used."
+    }
+  },
+  "73705863": {
+    "gold_rank": 22,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0002,
+    "usage": {
+      "completion_tokens": 244,
+      "prompt_tokens": 3097,
+      "total_tokens": 3341,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 97,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000199125,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 399,
+      "market_cost": 0.000199125,
+      "gateway_cost": 0.000199125
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "multiple",
+      "failure_description": "not_applicable",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and desired output pair is provided.",
+      "ask_scope": "Asks both for the default controller scope and how multiple ServletContexts can relate to one ApplicationContext.",
+      "failure_description": "The post asks conceptual questions and reports no failed attempt.",
+      "code_focus": "No code block or pasted code of two or more lines.",
+      "environment_dependent": "Asks about Spring concepts, not the asker's own setup.",
+      "image_only_evidence": "No image is referenced."
+    }
+  },
+  "71752411": {
+    "gold_rank": 23,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0002,
+    "usage": {
+      "completion_tokens": 338,
+      "prompt_tokens": 2812,
+      "total_tokens": 3150,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 147,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.0002105,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 114,
+      "market_cost": 0.0002105,
+      "gateway_cost": 0.0002105
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Shows two import syntaxes but gives no literal desired output for a concrete input.",
+      "ask_scope": "Asks one conceptual question about why import aliases use `as`.",
+      "failure_description": "The post asks about syntax design and reports no failed attempt.",
+      "code_focus": "The short code snippets directly show the syntax being discussed.",
+      "environment_dependent": "The question is about language syntax, not the asker's setup.",
+      "image_only_evidence": "No image is included."
+    }
+  },
+  "48989171": {
+    "gold_rank": 24,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0004,
+    "usage": {
+      "completion_tokens": 568,
+      "prompt_tokens": 3491,
+      "total_tokens": 4059,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 417,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000410375,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 793,
+      "market_cost": 0.000410375,
+      "gateway_cost": 0.000410375
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "The test gives input values but only states an equality, not a literal desired output.",
+      "ask_scope": "Asks for a fix to one specific failure in the model save behavior.",
+      "failure_description": "The assertion reports a datetime value where the asset field is None.",
+      "code_focus": "The snippets show the relevant model save method and focused failing test.",
+      "environment_dependent": "No installation, deployment, configuration, or machine-specific setup is described.",
+      "image_only_evidence": "No image is referenced."
+    }
+  },
+  "68297160": {
+    "gold_rank": 25,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 385,
+      "prompt_tokens": 2959,
+      "total_tokens": 3344,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 224,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000252375,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 261,
+      "market_cost": 0.000252375,
+      "gateway_cost": 0.000252375
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "vague",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and literal desired output pair is written out.",
+      "ask_scope": "Asks how to make a black frame appear around the colorbar.",
+      "failure_description": "Says the ax1 frame does not work without describing an observable symptom.",
+      "code_focus": "The code shows the heatmap, separate axes, and spine settings relevant to the frame.",
+      "environment_dependent": "The issue concerns plotting code, not a specific setup or deployment.",
+      "image_only_evidence": "The text and code state the framing issue; the picture only illustrates it."
+    }
+  },
+  "60344916": {
+    "gold_rank": 26,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0002,
+    "usage": {
+      "completion_tokens": 350,
+      "prompt_tokens": 2883,
+      "total_tokens": 3233,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 212,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000225375,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 185,
+      "market_cost": 0.000225375,
+      "gateway_cost": 0.000225375
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "vague",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "The sample data is written out, but no literal desired output is given.",
+      "ask_scope": "One specific filtering operation is requested.",
+      "failure_description": "“I'm not getting anywhere” gives no observable failure symptom.",
+      "code_focus": "The short data-frame code supplies the relevant input.",
+      "environment_dependent": "The question concerns a reproducible data transformation, not the asker’s setup.",
+      "image_only_evidence": "No image is referenced."
+    }
+  },
+  "59995557": {
+    "gold_rank": 27,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 479,
+      "prompt_tokens": 2916,
+      "total_tokens": 3395,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 284,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000294,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 218,
+      "market_cost": 0.000294,
+      "gateway_cost": 0.000294
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "partial",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "URLs are given, but the desired handshake output is described rather than written literally.",
+      "ask_scope": "Asks for a workaround for one specific handshake behavior.",
+      "failure_description": "The server_name extension appears for one hostname but not the other.",
+      "code_focus": "The short snippet is relevant but omits where the URL is defined.",
+      "environment_dependent": "The issue is described as code behavior, not a setup or deployment problem.",
+      "image_only_evidence": "No image is included or referenced."
+    }
+  },
+  "59922861": {
+    "gold_rank": 28,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0002,
+    "usage": {
+      "completion_tokens": 390,
+      "prompt_tokens": 2868,
+      "total_tokens": 3258,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 197,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.0002435,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 170,
+      "market_cost": 0.0002435,
+      "gateway_cost": 0.0002435
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "not_applicable",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and literal desired output are provided.",
+      "ask_scope": "Asks for one specific setting to disable version control for new projects.",
+      "failure_description": "Reports that version control is enabled by default and settings changes do not affect it.",
+      "code_focus": "The post contains no code.",
+      "environment_dependent": "The question concerns configuring IntelliJ's project-creation behavior.",
+      "image_only_evidence": "The text describes the behavior and settings; the image is not essential."
+    }
+  },
+  "67862183": {
+    "gold_rank": 29,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0002,
+    "usage": {
+      "completion_tokens": 366,
+      "prompt_tokens": 2806,
+      "total_tokens": 3172,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 180,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.00022375,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 108,
+      "market_cost": 0.00022375,
+      "gateway_cost": 0.00022375
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "partial",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Shows code but no literal desired output.",
+      "ask_scope": "Asks one specific how-to about dynamically creating a MapQuickItem.",
+      "failure_description": "Names the exact error: “Image is not a type.”",
+      "code_focus": "The relevant creation call is shown, but the snippet is fragmentary.",
+      "environment_dependent": "Describes a QML code issue without mentioning setup or deployment.",
+      "image_only_evidence": "No images are included."
+    }
+  },
+  "60012034": {
+    "gold_rank": 30,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 533,
+      "prompt_tokens": 3099,
+      "total_tokens": 3632,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 383,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000343875,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 401,
+      "market_cost": 0.000343875,
+      "gateway_cost": 0.000343875
+    },
+    "labels": {
+      "worked_example": "yes",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "partial",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "The JSON text is shown, and the expected response is written out literally.",
+      "ask_scope": "A specific filtering condition is asked about.",
+      "failure_description": "The code yields “Nothing here” instead of the stated expected response.",
+      "code_focus": "The snippet is relevant, but relies on undefined inputs and external types.",
+      "environment_dependent": "The stated issue is with the filtering logic, which can be judged from the shown code and data.",
+      "image_only_evidence": "No image is used."
+    }
+  },
+  "55219369": {
+    "gold_rank": 31,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 446,
+      "prompt_tokens": 2954,
+      "total_tokens": 3400,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 300,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.00028225,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 256,
+      "market_cost": 0.00028225,
+      "gateway_cost": 0.00028225
+    },
+    "labels": {
+      "worked_example": "yes",
+      "ask_scope": "narrow",
+      "failure_description": "vague",
+      "code_focus": "not_applicable",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "The option is set to True, and the asker wants it to be False.",
+      "ask_scope": "Asks where to set one specific extension option.",
+      "failure_description": "The YAML change was tried “without success,” with no observable symptom described.",
+      "code_focus": "No code block or pasted code of two or more lines.",
+      "environment_dependent": "The question concerns configuring extensions in the asker's Docker environment.",
+      "image_only_evidence": "No image is included."
+    }
+  },
+  "56799025": {
+    "gold_rank": 32,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0002,
+    "usage": {
+      "completion_tokens": 329,
+      "prompt_tokens": 2834,
+      "total_tokens": 3163,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 191,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.00020875,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 136,
+      "market_cost": 0.00020875,
+      "gateway_cost": 0.00020875
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and desired output pair is written out.",
+      "ask_scope": "One specific layout behavior is requested and could be answered with a focused solution.",
+      "failure_description": "The footer component does not take up space in the hosting page.",
+      "code_focus": "No code is included.",
+      "environment_dependent": "The question concerns CSS layout behavior, not the asker's setup.",
+      "image_only_evidence": "No image is included."
+    }
+  },
+  "63940523": {
+    "gold_rank": 33,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 403,
+      "prompt_tokens": 3000,
+      "total_tokens": 3403,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 262,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.0002665,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 302,
+      "market_cost": 0.0002665,
+      "gateway_cost": 0.0002665
+    },
+    "labels": {
+      "worked_example": "yes",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "The dataframe input and desired filtered rows are both written out.",
+      "ask_scope": "Requests one specific filtering operation; the reading-material request is secondary.",
+      "failure_description": "No failed attempt or malfunction is reported.",
+      "code_focus": "The four relevant data rows directly illustrate the filtering problem.",
+      "environment_dependent": "The question concerns filtering dataframe data, not a specific setup.",
+      "image_only_evidence": "All relevant data and desired output appear in text."
+    }
+  },
+  "71019316": {
+    "gold_rank": 34,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0002,
+    "usage": {
+      "completion_tokens": 253,
+      "prompt_tokens": 2977,
+      "total_tokens": 3230,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 122,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000188625,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 279,
+      "market_cost": 0.000188625,
+      "gateway_cost": 0.000188625
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and desired output are both written out.",
+      "ask_scope": "Asks where an error is in one specific function.",
+      "failure_description": "No failure or incorrect behavior is described.",
+      "code_focus": "The post contains only the function being asked about.",
+      "environment_dependent": "The question concerns code behavior, not a specific setup.",
+      "image_only_evidence": "No image is present."
+    }
+  },
+  "66285712": {
+    "gold_rank": 35,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0004,
+    "usage": {
+      "completion_tokens": 541,
+      "prompt_tokens": 3217,
+      "total_tokens": 3758,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 343,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000362625,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 519,
+      "market_cost": 0.000362625,
+      "gateway_cost": 0.000362625
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "vague",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "The list values are shown, but no literal expected node-count output is given.",
+      "ask_scope": "The post asks why a specific function call does not print its result.",
+      "failure_description": "The only symptom is that the call “doesn't do anything.”",
+      "code_focus": "The function and the linked-list setup needed to understand the call are shown.",
+      "environment_dependent": "The described behavior concerns code that can be assessed without the asker's setup.",
+      "image_only_evidence": "No image is included."
+    }
+  },
+  "64429852": {
+    "gold_rank": 36,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0002,
+    "usage": {
+      "completion_tokens": 382,
+      "prompt_tokens": 2851,
+      "total_tokens": 3233,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 190,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000237375,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 153,
+      "market_cost": 0.000237375,
+      "gateway_cost": 0.000237375
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and literal expected output are both provided.",
+      "ask_scope": "One specific question asks whether a native select can avoid preselecting its first option.",
+      "failure_description": "This is a how-to question and reports no failed attempt.",
+      "code_focus": "No code is provided.",
+      "environment_dependent": "The question concerns native select behavior, not the asker’s setup.",
+      "image_only_evidence": "The text states the desired behavior; images only illustrate it."
+    }
+  },
+  "56776190": {
+    "gold_rank": 37,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 395,
+      "prompt_tokens": 3131,
+      "total_tokens": 3526,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 177,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000278875,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 433,
+      "market_cost": 0.000278875,
+      "gateway_cost": 0.000278875
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "The code and goal are shown, but no literal input/output pair is provided.",
+      "ask_scope": "The post describes one specific issue: the JavaFX window is not visible.",
+      "failure_description": "The app appears in the lower bar, but no window is visible and it cannot be closed normally.",
+      "code_focus": "The short, self-contained JavaFX example directly relates to the window issue.",
+      "environment_dependent": "The issue is described on macOS Mojave using Java 8 and Eclipse.",
+      "image_only_evidence": "The text states the app appears in the lower bar and that no window is visible."
+    }
+  },
+  "54437485": {
+    "gold_rank": 38,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 411,
+      "prompt_tokens": 3631,
+      "total_tokens": 4042,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 256,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000349375,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 933,
+      "market_cost": 0.000349375,
+      "gateway_cost": 0.000349375
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "dump",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "The cells are shown, but no literal expected output is given.",
+      "ask_scope": "Asks for a workaround for one specific behavior: adding multiple ranges in Chrome.",
+      "failure_description": "Reports that Chrome adds only one range, unlike Firefox.",
+      "code_focus": "The post includes the complete HTML page and controls, not just the relevant selection code.",
+      "environment_dependent": "The described behavior can be assessed from the code and browser behavior; no setup issue is mentioned.",
+      "image_only_evidence": "No image is used."
+    }
+  },
+  "71222036": {
+    "gold_rank": 39,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 475,
+      "prompt_tokens": 3348,
+      "total_tokens": 3823,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 277,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000346,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 650,
+      "market_cost": 0.000346,
+      "gateway_cost": 0.000346
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "partial",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete email input or literal expected output is given.",
+      "ask_scope": "The post asks about one specific exception-stubbing test failure.",
+      "failure_description": "The exact error text is provided: “Checked exception is invalid for this method.”",
+      "code_focus": "The test and exception hierarchy are relevant, but the full exception class details are more than needed.",
+      "environment_dependent": "The issue concerns code behavior, not the asker’s installation or deployment setup.",
+      "image_only_evidence": "No image is referenced."
+    }
+  },
+  "48784152": {
+    "gold_rank": 40,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 431,
+      "prompt_tokens": 2772,
+      "total_tokens": 3203,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 293,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000252,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 74,
+      "market_cost": 0.000252,
+      "gateway_cost": 0.000252
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "multiple",
+      "failure_description": "not_applicable",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and desired output are written out.",
+      "ask_scope": "Asks for a package recommendation and separately how to monitor beacon proximity.",
+      "failure_description": "No failure is reported; the post asks for a recommendation and how-to.",
+      "code_focus": "No code is included.",
+      "environment_dependent": "The question asks about package capabilities, not the asker's setup.",
+      "image_only_evidence": "No image is referenced."
+    }
+  },
+  "59527750": {
+    "gold_rank": 41,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0002,
+    "usage": {
+      "completion_tokens": 369,
+      "prompt_tokens": 2954,
+      "total_tokens": 3323,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 216,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.00024375,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 256,
+      "market_cost": 0.00024375,
+      "gateway_cost": 0.00024375
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "The invalid input is given, but no literal desired output is specified.",
+      "ask_scope": "Asks one specific question: how to retain string output while validating choices.",
+      "failure_description": "The serializer accepts vat=\"5.00\" despite it not being an allowed choice.",
+      "code_focus": "The short model and serializer snippets directly show the relevant choices and field.",
+      "environment_dependent": "The question concerns serializer behavior, not installation or the asker’s setup.",
+      "image_only_evidence": "No image is referenced."
+    }
+  },
+  "59328317": {
+    "gold_rank": 42,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 523,
+      "prompt_tokens": 2864,
+      "total_tokens": 3387,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 315,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.0003095,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 166,
+      "market_cost": 0.0003095,
+      "gateway_cost": 0.0003095
+    },
+    "labels": {
+      "worked_example": "yes",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "The logging call includes a concrete count of 20, and the desired message is written as “Record count 20.”",
+      "ask_scope": "The post asks how to keep custom fields out of the message in one specific logging call.",
+      "failure_description": "The message includes the custom field information, which the post describes as making it dirty.",
+      "code_focus": "A single relevant logging call shows the issue.",
+      "environment_dependent": "The question concerns logging behavior in the provided call, not a specific setup.",
+      "image_only_evidence": "No image is included."
+    }
+  },
+  "54324062": {
+    "gold_rank": 43,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0004,
+    "usage": {
+      "completion_tokens": 654,
+      "prompt_tokens": 3178,
+      "total_tokens": 3832,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 493,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.00041425,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 480,
+      "market_cost": 0.00041425,
+      "gateway_cost": 0.00041425
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "partial",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Code is shown, but no literal desired output is provided.",
+      "ask_scope": "Asks for a fix to one specific plotting-output problem.",
+      "failure_description": "The plot opens in a separate window instead of appearing in the output.",
+      "code_focus": "The plotting code is included with related setup and data-loading code, plus unnecessary imports and directory changes.",
+      "environment_dependent": "The problem concerns configuring Python plotting within the asker’s R Markdown-to-PDF workflow.",
+      "image_only_evidence": "The text already describes the missing output and separate-window behavior."
+    }
+  },
+  "62219821": {
+    "gold_rank": 44,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 461,
+      "prompt_tokens": 2812,
+      "total_tokens": 3273,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 312,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000272,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 114,
+      "market_cost": 0.000272,
+      "gateway_cost": 0.000272
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "The input array is shown, but the desired resulting array is left for the reader to infer.",
+      "ask_scope": "Asks how to address one specific unwanted value in the consumed data.",
+      "failure_description": "The unwanted leading value is identified as -95 in the example.",
+      "code_focus": "Only a one-line inline data literal is provided.",
+      "environment_dependent": "No installation, deployment, or specific setup issue is described.",
+      "image_only_evidence": "No image is referenced."
+    }
+  },
+  "53599655": {
+    "gold_rank": 45,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 434,
+      "prompt_tokens": 2839,
+      "total_tokens": 3273,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 229,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000261875,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 141,
+      "market_cost": 0.000261875,
+      "gateway_cost": 0.000261875
+    },
+    "labels": {
+      "worked_example": "yes",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Names the source path and the desired destination file path.",
+      "ask_scope": "Asks for a specific way to ensure one copy operation creates the named file or fails.",
+      "failure_description": "Asks how to handle a possible destination condition; no failed attempt is reported.",
+      "code_focus": "Only an inline command is shown, not a code block or two-line code paste.",
+      "environment_dependent": "The question concerns reproducible Copy-Item behavior, not the asker's setup.",
+      "image_only_evidence": "No image is included."
+    }
+  },
+  "69706877": {
+    "gold_rank": 46,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0004,
+    "usage": {
+      "completion_tokens": 589,
+      "prompt_tokens": 3276,
+      "total_tokens": 3865,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 417,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000394,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 578,
+      "market_cost": 0.000394,
+      "gateway_cost": 0.000394
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "yes"
+    },
+    "reasons": {
+      "worked_example": "Input dataframes are shown, but the desired output values appear only in an image.",
+      "ask_scope": "Asks how to left-merge specific dataframes while keeping one set of columns.",
+      "failure_description": "Reports that the merge produces columns with “_x” and “_y” suffixes.",
+      "code_focus": "The dataframe definitions and merge code are relevant and self-contained.",
+      "environment_dependent": "The question concerns reproducible dataframe merge behavior, not the asker’s setup.",
+      "image_only_evidence": "The desired output dataset is linked as an image, with its values absent from the text."
+    }
+  },
+  "66133661": {
+    "gold_rank": 47,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0004,
+    "usage": {
+      "completion_tokens": 268,
+      "prompt_tokens": 4329,
+      "total_tokens": 4597,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 119,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000365125,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 1631,
+      "market_cost": 0.000365125,
+      "gateway_cost": 0.000365125
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "dump",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Code is provided, but no literal desired output is stated.",
+      "ask_scope": "Asks for a solution to one specific error.",
+      "failure_description": "The post gives the exact TypeError and describes which objects fail to work.",
+      "code_focus": "The post includes the full game implementation and HTML, with much unrelated to the failing loop.",
+      "environment_dependent": "The described issue concerns code behavior, not the asker’s setup.",
+      "image_only_evidence": "No image is used as evidence."
+    }
+  },
+  "51294665": {
+    "gold_rank": 48,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 409,
+      "prompt_tokens": 2991,
+      "total_tokens": 3400,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 255,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000268375,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 293,
+      "market_cost": 0.000268375,
+      "gateway_cost": 0.000268375
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "dump",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "The rectangles are shown, but the desired border result is only described.",
+      "ask_scope": "The specific question asks why the border appears on the children instead of the SVG.",
+      "failure_description": "The post says the child rectangles display the border when hovered.",
+      "code_focus": "The snippet omits the code that applies the border, which is central to the question.",
+      "environment_dependent": "The question concerns SVG event behavior, not a stated setup issue.",
+      "image_only_evidence": "No image is used as evidence."
+    }
+  },
+  "57432557": {
+    "gold_rank": 49,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 576,
+      "prompt_tokens": 2920,
+      "total_tokens": 3496,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 371,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000343,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 222,
+      "market_cost": 0.000343,
+      "gateway_cost": 0.000343
+    },
+    "labels": {
+      "worked_example": "yes",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "The menu is shown, and the code gives the desired response, “2,” for its example.",
+      "ask_scope": "The asker wants one specific operation: find the number for “nice option” and send it.",
+      "failure_description": "This is a how-to request; the current approach works for the example.",
+      "code_focus": "The short Expect snippet directly shows where the response is sent.",
+      "environment_dependent": "The question concerns parsing described script output, not a setup-specific issue.",
+      "image_only_evidence": "No image is included."
+    }
+  },
+  "56575596": {
+    "gold_rank": 50,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0002,
+    "usage": {
+      "completion_tokens": 363,
+      "prompt_tokens": 2947,
+      "total_tokens": 3310,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 149,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000239875,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 249,
+      "market_cost": 0.000239875,
+      "gateway_cost": 0.000239875
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "The formula and threshold are shown, but no concrete input and desired output pair is provided.",
+      "ask_scope": "The post asks how to filter one aggregate column so only values above 10000 appear.",
+      "failure_description": "Running the report results in “no data is available.”",
+      "code_focus": "The aggregate expression is concise and directly relates to the filtering question.",
+      "environment_dependent": "The issue concerns report behavior, not installation, deployment, or a specific setup.",
+      "image_only_evidence": "The text states the expression, attempted filters, and failure; the image is not essential."
+    }
+  },
+  "69353815": {
+    "gold_rank": 51,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 505,
+      "prompt_tokens": 2803,
+      "total_tokens": 3308,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 369,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000292875,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 105,
+      "market_cost": 0.000292875,
+      "gateway_cost": 0.000292875
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "not_applicable",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and desired output are written out.",
+      "ask_scope": "Asks one specific question about invalidating caches across instances.",
+      "failure_description": "No failed attempt or reported problem is described.",
+      "code_focus": "The post contains no code.",
+      "environment_dependent": "The question concerns cache invalidation across the asker’s deployed PCF instances.",
+      "image_only_evidence": "No image is included or referenced."
+    }
+  },
+  "71305015": {
+    "gold_rank": 52,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 490,
+      "prompt_tokens": 2850,
+      "total_tokens": 3340,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 346,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.00029125,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 152,
+      "market_cost": 0.00029125,
+      "gateway_cost": 0.00029125
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "no_clear_ask",
+      "failure_description": "not_applicable",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "The input list is shown, but the expected output is not written out.",
+      "ask_scope": "The body says the asker is struggling but leaves the goal to the title.",
+      "failure_description": "No specific failed behavior or result is reported.",
+      "code_focus": "A short, self-contained function directly addresses the filtering task.",
+      "environment_dependent": "The question concerns Python code, not a particular setup.",
+      "image_only_evidence": "No image is included."
+    }
+  },
+  "62952036": {
+    "gold_rank": 53,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0004,
+    "usage": {
+      "completion_tokens": 467,
+      "prompt_tokens": 3809,
+      "total_tokens": 4276,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 264,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000399625,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 1111,
+      "market_cost": 0.000399625,
+      "gateway_cost": 0.000399625
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "dump",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and literal desired output are paired.",
+      "ask_scope": "The post describes one specific issue: images fail to display in the server-generated PDF.",
+      "failure_description": "It reports images missing on the server and gives the exact error message.",
+      "code_focus": "The full view includes extensive styling and certificate content beyond the image-loading issue.",
+      "environment_dependent": "The failure occurs only on the server after it was changed.",
+      "image_only_evidence": "No image supplies essential evidence; image paths and the error are written in text."
+    }
+  },
+  "52372892": {
+    "gold_rank": 54,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0004,
+    "usage": {
+      "completion_tokens": 694,
+      "prompt_tokens": 3011,
+      "total_tokens": 3705,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 551,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000413375,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 313,
+      "market_cost": 0.000413375,
+      "gateway_cost": 0.000413375
+    },
+    "labels": {
+      "worked_example": "yes",
+      "ask_scope": "broad",
+      "failure_description": "concrete",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "The 45-degree turn is paired with the desired 45-degree marker rotation.",
+      "ask_scope": "Asks for a recommended approach to implement the behavior.",
+      "failure_description": "Moving or flipping the device changes the compass values and disrupts the result.",
+      "code_focus": "No code is included.",
+      "environment_dependent": "The question asks about detecting rotation, not a specific installation or deployment setup.",
+      "image_only_evidence": "No image is referenced."
+    }
+  },
+  "49399160": {
+    "gold_rank": 55,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0008,
+    "usage": {
+      "completion_tokens": 1393,
+      "prompt_tokens": 2990,
+      "total_tokens": 4383,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1205,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.00076025,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 292,
+      "market_cost": 0.00076025,
+      "gateway_cost": 0.00076025
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "partial",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "The backup code is shown, but no literal desired output is given.",
+      "ask_scope": "The single request is to run the backup monthly.",
+      "failure_description": "The post asks how to schedule the code and reports no failed attempt.",
+      "code_focus": "The short backup snippet is relevant but omits surrounding declarations and context.",
+      "environment_dependent": "The request concerns scheduling recurring execution in a server setup.",
+      "image_only_evidence": "No image is included."
+    }
+  },
+  "52487136": {
+    "gold_rank": 56,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 374,
+      "prompt_tokens": 2995,
+      "total_tokens": 3369,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 177,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000251375,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 297,
+      "market_cost": 0.000251375,
+      "gateway_cost": 0.000251375
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "The post gives an error and paths, but no literal desired output for an input.",
+      "ask_scope": "It describes one specific log-directory failure that a focused fix could resolve.",
+      "failure_description": "The exact FileNotFoundException and failed parent-directory creation are stated.",
+      "code_focus": "The short service configuration includes the relevant working directory and launch command.",
+      "environment_dependent": "The problem concerns deploying and configuring a service on the asker's Linux server.",
+      "image_only_evidence": "No image is used."
+    }
+  },
+  "67703011": {
+    "gold_rank": 57,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0004,
+    "usage": {
+      "completion_tokens": 510,
+      "prompt_tokens": 3511,
+      "total_tokens": 4021,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 349,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000383875,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 813,
+      "market_cost": 0.000383875,
+      "gateway_cost": 0.000383875
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "multiple",
+      "failure_description": "not_applicable",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Code snippets are provided, but no concrete input and literal desired output are paired.",
+      "ask_scope": "The post asks three numbered questions about SSR behavior, prerendering, and avoiding the extra client render.",
+      "failure_description": "This is a conceptual how-to question, not a report of an attempt that failed.",
+      "code_focus": "The short code snippets directly illustrate the SSR and client-rendering questions.",
+      "environment_dependent": "The questions concern general code behavior, not a specific installation or setup.",
+      "image_only_evidence": "No images are included."
+    }
+  },
+  "48566824": {
+    "gold_rank": 58,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0002,
+    "usage": {
+      "completion_tokens": 337,
+      "prompt_tokens": 2827,
+      "total_tokens": 3164,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 193,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000211875,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 129,
+      "market_cost": 0.000211875,
+      "gateway_cost": 0.000211875
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "not_applicable",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and desired output are paired.",
+      "ask_scope": "Describes an intermittent 502 symptom, implying a specific fix is sought.",
+      "failure_description": "Reports 502 errors and a half-second period when the server appears down.",
+      "code_focus": "Only a single inline command is included.",
+      "environment_dependent": "The issue concerns a systemd-launched uWSGI server and socket setup.",
+      "image_only_evidence": "No image is referenced."
+    }
+  },
+  "48662916": {
+    "gold_rank": 59,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0002,
+    "usage": {
+      "completion_tokens": 236,
+      "prompt_tokens": 2822,
+      "total_tokens": 3058,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 96,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.00016075,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 124,
+      "market_cost": 0.00016075,
+      "gateway_cost": 0.00016075
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "The code is shown, but no literal desired output is given.",
+      "ask_scope": "Asks for a specific change to resolve the compile error.",
+      "failure_description": "The exact error, “recursive constructor invocation,” is stated.",
+      "code_focus": "The short class includes the constructors causing the error.",
+      "environment_dependent": "The stated issue is in the code, not the IntelliJ setup.",
+      "image_only_evidence": "No image is included."
+    }
+  },
+  "72129652": {
+    "gold_rank": 60,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0004,
+    "usage": {
+      "completion_tokens": 515,
+      "prompt_tokens": 3447,
+      "total_tokens": 3962,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 372,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000378375,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 749,
+      "market_cost": 0.000378375,
+      "gateway_cost": 0.000378375
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "The route call is shown, but no literal desired output is given.",
+      "ask_scope": "Asks how to fix one specific navigation error.",
+      "failure_description": "The exact route-generator assertion is included.",
+      "code_focus": "The relevant route table and navigation call appear in a compact app snippet.",
+      "environment_dependent": "The problem is described in code, with no setup-specific dependency.",
+      "image_only_evidence": "The error and relevant code are provided as text."
+    }
+  },
+  "53494235": {
+    "gold_rank": 61,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 504,
+      "prompt_tokens": 2906,
+      "total_tokens": 3410,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 367,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.00030525,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 208,
+      "market_cost": 0.00030525,
+      "gateway_cost": 0.00030525
+    },
+    "labels": {
+      "worked_example": "yes",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "dump",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Shows input arrays and the literal desired output.",
+      "ask_scope": "Asks for one specific transformation from two arrays into an object.",
+      "failure_description": "No failed attempt or problem is reported.",
+      "code_focus": "Only input/output data literals are shown; the aggregation code is absent.",
+      "environment_dependent": "The question concerns a data transformation, not the asker’s setup.",
+      "image_only_evidence": "No image is referenced."
+    }
+  },
+  "49655697": {
+    "gold_rank": 62,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0004,
+    "usage": {
+      "completion_tokens": 564,
+      "prompt_tokens": 3143,
+      "total_tokens": 3707,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 412,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000364875,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 445,
+      "market_cost": 0.000364875,
+      "gateway_cost": 0.000364875
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "partial",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No literal input and desired output pair is written out.",
+      "ask_scope": "The post asks how to save and render multiple items despite overwriting.",
+      "failure_description": "It says each new item overwrites the previous one.",
+      "code_focus": "Relevant snippets show saving and loading, but omit some surrounding context.",
+      "environment_dependent": "The issue concerns storage behavior reproducible from the posted code, not setup.",
+      "image_only_evidence": "The text describes the one-item result; the screenshot is not essential."
+    }
+  },
+  "55336654": {
+    "gold_rank": 63,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0002,
+    "usage": {
+      "completion_tokens": 340,
+      "prompt_tokens": 2833,
+      "total_tokens": 3173,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 196,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000214125,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 135,
+      "market_cost": 0.000214125,
+      "gateway_cost": 0.000214125
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "not_applicable",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and literal desired output are written out.",
+      "ask_scope": "Asks whether direct point-to-site access to the second VM is possible and what is missing.",
+      "failure_description": "Describes the desired connectivity but does not report a failed attempt.",
+      "code_focus": "No code is included.",
+      "environment_dependent": "The question concerns routing and VPN configuration in the asker's Azure setup.",
+      "image_only_evidence": "No image is referenced."
+    }
+  },
+  "72162103": {
+    "gold_rank": 64,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0002,
+    "usage": {
+      "completion_tokens": 261,
+      "prompt_tokens": 3105,
+      "total_tokens": 3366,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 125,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000208625,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 407,
+      "market_cost": 0.000208625,
+      "gateway_cost": 0.000208625
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "broad",
+      "failure_description": "not_applicable",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and literal desired output are provided.",
+      "ask_scope": "Asks for algorithm recommendations for a broad multi-agent learning setup.",
+      "failure_description": "This is a recommendation request, not a report of a failed attempt.",
+      "code_focus": "The post contains no code.",
+      "environment_dependent": "The question concerns algorithm scalability, not a specific setup.",
+      "image_only_evidence": "No images are referenced."
+    }
+  },
+  "48504766": {
+    "gold_rank": 65,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 520,
+      "prompt_tokens": 2989,
+      "total_tokens": 3509,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 374,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000323625,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 291,
+      "market_cost": 0.000323625,
+      "gateway_cost": 0.000323625
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "vague",
+      "code_focus": "focused",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and literal desired output are paired.",
+      "ask_scope": "The main ask is how to configure one remote repository.",
+      "failure_description": "The project “doesn't seem to be finding it,” with no specific symptom or error.",
+      "code_focus": "The short repository settings shown are directly relevant to the configuration question.",
+      "environment_dependent": "The question concerns configuring Artifactory and its version in the company's setup.",
+      "image_only_evidence": "No image is included."
+    }
+  },
+  "49802367": {
+    "gold_rank": 66,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 455,
+      "prompt_tokens": 3083,
+      "total_tokens": 3538,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 292,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000302875,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 385,
+      "market_cost": 0.000302875,
+      "gateway_cost": 0.000302875
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "partial",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "The post gives context hints and a crash, but no concrete input-output pair.",
+      "ask_scope": "It asks for an explanation or fix for the crash on the first glPushMatrix call.",
+      "failure_description": "It says the program crashes on the first glPushMatrix call and logs an unavailable-function message.",
+      "code_focus": "The relevant context hints are shown, but the code is fragmentary and not runnable.",
+      "environment_dependent": "The post identifies macOS High Sierra and includes OS-specific setup details.",
+      "image_only_evidence": "No images are included."
+    }
+  },
+  "51305452": {
+    "gold_rank": 67,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0004,
+    "usage": {
+      "completion_tokens": 630,
+      "prompt_tokens": 3153,
+      "total_tokens": 3783,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 425,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000399125,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 455,
+      "market_cost": 0.000399125,
+      "gateway_cost": 0.000399125
+    },
+    "labels": {
+      "worked_example": "yes",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "The long-term radio option is paired with the stated desired output: only the Monthly field displayed.",
+      "ask_scope": "One specific request: show different form fields based on the selected radio option.",
+      "failure_description": "This is a how-to request; no failed attempt or malfunction is reported.",
+      "code_focus": "The short radio-button and controller snippets provide relevant context for the selection behavior.",
+      "environment_dependent": "The requested behavior concerns form code, not a setup or deployment issue.",
+      "image_only_evidence": "No image is included or referenced."
+    }
+  },
+  "70191431": {
+    "gold_rank": 68,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 437,
+      "prompt_tokens": 3213,
+      "total_tokens": 3650,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 291,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000310125,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 515,
+      "market_cost": 0.000310125,
+      "gateway_cost": 0.000310125
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "The desired collapse behavior is described, but no literal input/output pair is given.",
+      "ask_scope": "The question asks for one specific change to the group-click behavior.",
+      "failure_description": "It requests a behavior without describing something that went wrong.",
+      "code_focus": "The short JavaScript and group markup are relevant to the requested behavior.",
+      "environment_dependent": "The question concerns JavaScript behavior, not a particular setup.",
+      "image_only_evidence": "No image is included."
+    }
+  },
+  "73414326": {
+    "gold_rank": 69,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0002,
+    "usage": {
+      "completion_tokens": 363,
+      "prompt_tokens": 2907,
+      "total_tokens": 3270,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 184,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000234875,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 209,
+      "market_cost": 0.000234875,
+      "gateway_cost": 0.000234875
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "partial",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "The code shows a list, but no literal desired output is stated.",
+      "ask_scope": "The post asks for a fix to a specific for_each error.",
+      "failure_description": "The exact unsuitable for_each error is quoted.",
+      "code_focus": "The relevant snippets are concise but incomplete.",
+      "environment_dependent": "The issue concerns the shown Terraform code, not setup.",
+      "image_only_evidence": "No image is referenced."
+    }
+  },
+  "53357979": {
+    "gold_rank": 70,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 493,
+      "prompt_tokens": 2883,
+      "total_tokens": 3376,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 298,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000296875,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 185,
+      "market_cost": 0.000296875,
+      "gateway_cost": 0.000296875
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "A sample list is given, but no literal expected output is specified.",
+      "ask_scope": "One specific operation: find a maximum at position x and return it with position 0.",
+      "failure_description": "The post asks how to do something and reports no failed attempt.",
+      "code_focus": "The short list literal is directly relevant to the requested operation.",
+      "environment_dependent": "The question concerns a list operation, not the asker's setup.",
+      "image_only_evidence": "There are no images."
+    }
+  },
+  "57530530": {
+    "gold_rank": 71,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 509,
+      "prompt_tokens": 3226,
+      "total_tokens": 3735,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 354,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.00034775,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 528,
+      "market_cost": 0.00034775,
+      "gateway_cost": 0.00034775
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "partial",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Expected behavior is described, but no concrete input/output pair is written out.",
+      "ask_scope": "The question asks for a specific fix to pass handlers to the form.",
+      "failure_description": "The screen refreshes and returns to the original form; the handlers appear undefined.",
+      "code_focus": "Relevant function and JSX snippets are shown, but the component code is fragmentary.",
+      "environment_dependent": "The issue concerns React code behavior, not the asker’s setup.",
+      "image_only_evidence": "No image is used as evidence."
+    }
+  },
+  "66404888": {
+    "gold_rank": 72,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 475,
+      "prompt_tokens": 3281,
+      "total_tokens": 3756,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 330,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000337625,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 583,
+      "market_cost": 0.000337625,
+      "gateway_cost": 0.000337625
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "partial",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "The post shows sample inputs but no literal desired output.",
+      "ask_scope": "It asks how to send specific SOAP header properties in a request.",
+      "failure_description": "The exact error says the object has no 'TipoDocumento' property.",
+      "code_focus": "The snippets are relevant but omit the client setup and complete request code.",
+      "environment_dependent": "The question concerns constructing a request, not configuring the asker’s setup.",
+      "image_only_evidence": "No image is used."
+    }
+  },
+  "59907596": {
+    "gold_rank": 73,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0007,
+    "usage": {
+      "completion_tokens": 1100,
+      "prompt_tokens": 3433,
+      "total_tokens": 4533,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 902,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000669125,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 735,
+      "market_cost": 0.000669125,
+      "gateway_cost": 0.000669125
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "partial",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and desired output are written out.",
+      "ask_scope": "The post describes one specific insertion problem that could be answered with a fix.",
+      "failure_description": "It says inserted rows are automatically updated.",
+      "code_focus": "The entity mappings are relevant, but the excerpts are lengthy and omit the insertion code.",
+      "environment_dependent": "The described issue concerns entity mappings, not a stated installation or deployment setup.",
+      "image_only_evidence": "The text already states the key symptom: inserted rows are updated automatically."
+    }
+  },
+  "55208667": {
+    "gold_rank": 74,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 468,
+      "prompt_tokens": 2924,
+      "total_tokens": 3392,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 319,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.0002895,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 226,
+      "market_cost": 0.0002895,
+      "gateway_cost": 0.0002895
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "broad",
+      "failure_description": "vague",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "yes"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and literal desired output are both written in the post.",
+      "ask_scope": "The ask is to develop an approach for detecting and identifying a set of symbols.",
+      "failure_description": "The approaches are said to give “proper results,” without a specific observable symptom.",
+      "code_focus": "No code is included.",
+      "environment_dependent": "The question concerns image-processing behavior, not the asker’s setup.",
+      "image_only_evidence": "The symbol samples are shown only in images."
+    }
+  },
+  "66116135": {
+    "gold_rank": 75,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0002,
+    "usage": {
+      "completion_tokens": 256,
+      "prompt_tokens": 2813,
+      "total_tokens": 3069,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 117,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000169625,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 115,
+      "market_cost": 0.000169625,
+      "gateway_cost": 0.000169625
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "not_applicable",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and literal desired output are provided.",
+      "ask_scope": "The question describes one specific visibility problem on Android.",
+      "failure_description": "The placeholder is not visible on Android, unlike iOS and desktop.",
+      "code_focus": "The post contains no code.",
+      "environment_dependent": "The reported behavior is specific to the Android app.",
+      "image_only_evidence": "The text states the visibility problem; the screenshot is not essential."
+    }
+  },
+  "48584531": {
+    "gold_rank": 76,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0002,
+    "usage": {
+      "completion_tokens": 328,
+      "prompt_tokens": 2868,
+      "total_tokens": 3196,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 180,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.0002125,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 170,
+      "market_cost": 0.0002125,
+      "gateway_cost": 0.0002125
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and literal desired output are both written out.",
+      "ask_scope": "Asks how to retrieve and highlight the chart entry at a touch position.",
+      "failure_description": "Asks how to implement behavior; no failed attempt is reported.",
+      "code_focus": "No code is provided.",
+      "environment_dependent": "Asks about chart interaction, not the asker’s setup.",
+      "image_only_evidence": "The image illustrates the desired interaction; the question is clear without it."
+    }
+  },
+  "69437052": {
+    "gold_rank": 77,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 504,
+      "prompt_tokens": 2995,
+      "total_tokens": 3499,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 345,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000316375,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 297,
+      "market_cost": 0.000316375,
+      "gateway_cost": 0.000316375
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "partial",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and literal desired output are both provided.",
+      "ask_scope": "Asks how to replace one specific dropdown icon while preserving functionality.",
+      "failure_description": "Adding endAdornment removes the remove and open/close icon functionality.",
+      "code_focus": "Relevant Autocomplete and TextField code is shown, but the snippet depends on surrounding definitions.",
+      "environment_dependent": "The question concerns component code, not installation or the asker's setup.",
+      "image_only_evidence": "The text states the icon change being requested; the image is not essential evidence."
+    }
+  },
+  "68759793": {
+    "gold_rank": 78,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 386,
+      "prompt_tokens": 3166,
+      "total_tokens": 3552,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 233,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.00027875,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 468,
+      "market_cost": 0.00027875,
+      "gateway_cost": 0.00027875
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "partial",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No specific input and desired output pair is written out.",
+      "ask_scope": "Asks how to change the returned column name.",
+      "failure_description": "The returned JSON column is observably named after the function.",
+      "code_focus": "The full function is relevant context, but much of its query logic is unnecessary to the alias question.",
+      "environment_dependent": "The question concerns the SQL function shown, not the asker’s setup.",
+      "image_only_evidence": "The post states the column name and desired name in text."
+    }
+  },
+  "73650942": {
+    "gold_rank": 79,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0002,
+    "usage": {
+      "completion_tokens": 352,
+      "prompt_tokens": 3034,
+      "total_tokens": 3386,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 156,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.00024525,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 336,
+      "market_cost": 0.00024525,
+      "gateway_cost": 0.00024525
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No literal desired output is paired with a concrete input.",
+      "ask_scope": "Asks why this specific Python API call returns an unauthorized error.",
+      "failure_description": "The post includes the exact 401 response and unauthorized error text.",
+      "code_focus": "A short snippet shows the API setup and failing dataset creation call.",
+      "environment_dependent": "The issue is described as Python code behavior, not setup or deployment.",
+      "image_only_evidence": "The 401 error and its message are also provided in text."
+    }
+  },
+  "69925081": {
+    "gold_rank": 80,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0004,
+    "usage": {
+      "completion_tokens": 685,
+      "prompt_tokens": 3085,
+      "total_tokens": 3770,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 537,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000418125,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 387,
+      "market_cost": 0.000418125,
+      "gateway_cost": 0.000418125
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "vague",
+      "code_focus": "partial",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No literal input and desired output pair is provided.",
+      "ask_scope": "Asks how to connect UI controls to the custom view.",
+      "failure_description": "Says the controls cannot be accessed there, without a specific symptom or error.",
+      "code_focus": "Relevant class and listener snippets are fragmentary.",
+      "environment_dependent": "The question concerns connecting Android code, not a specific setup.",
+      "image_only_evidence": "The text names the controls and explains the issue without relying on the images."
+    }
+  },
+  "55283908": {
+    "gold_rank": 81,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0004,
+    "usage": {
+      "completion_tokens": 639,
+      "prompt_tokens": 2996,
+      "total_tokens": 3635,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 473,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000384,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 298,
+      "market_cost": 0.000384,
+      "gateway_cost": 0.000384
+    },
+    "labels": {
+      "worked_example": "yes",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "dump",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "The `AT RV` command and expected output `>11.9V` are both written out.",
+      "ask_scope": "Asks for a fix for the specific problem of broken, split answers.",
+      "failure_description": "Shows fragmented received values and gives the expected complete result.",
+      "code_focus": "The AT-command list is included, but the app code central to the issue is missing.",
+      "environment_dependent": "The problem concerns communication between the asker’s Android app and a Bluetooth dongle.",
+      "image_only_evidence": "The text already shows the received output and expected result."
+    }
+  },
+  "70514973": {
+    "gold_rank": 82,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 451,
+      "prompt_tokens": 3232,
+      "total_tokens": 3683,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 294,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.0003195,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 534,
+      "market_cost": 0.0003195,
+      "gateway_cost": 0.0003195
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete URL input or literal expected sample output is shown.",
+      "ask_scope": "The specific ask is how to scrape the URL list concurrently and wait for completion.",
+      "failure_description": "The returned list contains only None values after starting the threads.",
+      "code_focus": "The short snippets show the sequential and threaded calls central to the issue.",
+      "environment_dependent": "The question concerns the code’s concurrency behavior, not the Selenium setup.",
+      "image_only_evidence": "The text explains the goal and the None result without relying on the image."
+    }
+  },
+  "64939032": {
+    "gold_rank": 83,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0002,
+    "usage": {
+      "completion_tokens": 316,
+      "prompt_tokens": 2860,
+      "total_tokens": 3176,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 178,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.0002055,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 162,
+      "market_cost": 0.0002055,
+      "gateway_cost": 0.0002055
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and desired output are provided.",
+      "ask_scope": "Asks where to find explanations for documented methods.",
+      "failure_description": "Asks for documentation guidance; no attempt is reported as failing.",
+      "code_focus": "No code is included.",
+      "environment_dependent": "The question concerns finding documentation, not the asker’s setup.",
+      "image_only_evidence": "The text describes the confusing definition references without needing the screenshot."
+    }
+  },
+  "69966579": {
+    "gold_rank": 84,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0002,
+    "usage": {
+      "completion_tokens": 388,
+      "prompt_tokens": 2863,
+      "total_tokens": 3251,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 234,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000241875,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 165,
+      "market_cost": 0.000241875,
+      "gateway_cost": 0.000241875
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "not_applicable",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and desired output are written out.",
+      "ask_scope": "The post describes a specific navigation-bar display problem that a short fix could resolve.",
+      "failure_description": "It names the visible symptoms: empty space under the title and overlap with the scroll view.",
+      "code_focus": "No code is included.",
+      "environment_dependent": "The issue is explicitly tied to upgrading Xcode and iOS.",
+      "image_only_evidence": "The text itself describes the empty space and overlap; the screenshots illustrate those symptoms."
+    }
+  },
+  "64698368": {
+    "gold_rank": 85,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0004,
+    "usage": {
+      "completion_tokens": 745,
+      "prompt_tokens": 2862,
+      "total_tokens": 3607,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 597,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.00042025,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 164,
+      "market_cost": 0.00042025,
+      "gateway_cost": 0.00042025
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "The URL is provided, but no literal desired output is given.",
+      "ask_scope": "Asks how to pass one specific URL in the HTTP connector.",
+      "failure_description": "Reports the observable result as “not found.”",
+      "code_focus": "The request URL and headers shown are directly relevant.",
+      "environment_dependent": "No installation, deployment, or machine-specific setup is described.",
+      "image_only_evidence": "The URL, headers, and “not found” result are stated in text."
+    }
+  },
+  "63628718": {
+    "gold_rank": 86,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 519,
+      "prompt_tokens": 3172,
+      "total_tokens": 3691,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 351,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000346,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 474,
+      "market_cost": 0.000346,
+      "gateway_cost": 0.000346
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "The policy input is shown, but the expected output is described rather than written literally.",
+      "ask_scope": "Asks why this specific policy does not deny access.",
+      "failure_description": "Reports that users with the listed role or ID still do not get access denied.",
+      "code_focus": "The short policy payload is directly relevant to the behavior being asked about.",
+      "environment_dependent": "The post asks about policy behavior, not installation, deployment, or a setup-specific failure.",
+      "image_only_evidence": "The text states the policy is created and access is not denied; screenshots are not essential."
+    }
+  },
+  "71390078": {
+    "gold_rank": 87,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0004,
+    "usage": {
+      "completion_tokens": 615,
+      "prompt_tokens": 2982,
+      "total_tokens": 3597,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 416,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.00037025,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 284,
+      "market_cost": 0.00037025,
+      "gateway_cost": 0.00037025
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "vague",
+      "code_focus": "focused",
+      "environment_dependent": "yes",
+      "image_only_evidence": "yes"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and literal desired output are both provided.",
+      "ask_scope": "Asks one specific question about splitting the dataset with fields.",
+      "failure_description": "The post says an error occurred but gives no text description of the symptom.",
+      "code_focus": "The concise code centers on defining fields and calling the dataset split method.",
+      "environment_dependent": "The asker names a PyTorch version and asks how to do this in the current version.",
+      "image_only_evidence": "The error is shown only in a linked image."
+    }
+  },
+  "50907776": {
+    "gold_rank": 88,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 424,
+      "prompt_tokens": 2909,
+      "total_tokens": 3333,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 274,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000265625,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 211,
+      "market_cost": 0.000265625,
+      "gateway_cost": 0.000265625
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "dump",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No literal input and desired output are both provided.",
+      "ask_scope": "Asks how to highlight the complete bar when clicking it.",
+      "failure_description": "States that the click does not highlight the complete bar.",
+      "code_focus": "The snippet omits the chart structure needed to identify the complete bar.",
+      "environment_dependent": "The issue concerns chart behavior reproducible from code, not the asker’s setup.",
+      "image_only_evidence": "The text describes the incomplete highlighting; the image only illustrates it."
+    }
+  },
+  "73675257": {
+    "gold_rank": 89,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 580,
+      "prompt_tokens": 2892,
+      "total_tokens": 3472,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 422,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.0003415,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 194,
+      "market_cost": 0.0003415,
+      "gateway_cost": 0.0003415
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "vague",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input/output pair; the requested scrollbar appearance is only described generally.",
+      "ask_scope": "One specific how-to: styling the Autocomplete Listbox scrollbar.",
+      "failure_description": "Says prior attempts did not work without describing an observable symptom.",
+      "code_focus": "Short, relevant snippet shows the ListboxProps styling in question.",
+      "environment_dependent": "Asks about CSS styling, not installation, deployment, or a specific setup.",
+      "image_only_evidence": "The image illustrates the desired appearance; the question remains clear without it."
+    }
+  },
+  "73012994": {
+    "gold_rank": 90,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0004,
+    "usage": {
+      "completion_tokens": 528,
+      "prompt_tokens": 3411,
+      "total_tokens": 3939,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 370,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000380375,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 713,
+      "market_cost": 0.000380375,
+      "gateway_cost": 0.000380375
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and literal expected output are both provided.",
+      "ask_scope": "The specific request is to display the clicked row’s telephone and extension.",
+      "failure_description": "The post states a desired behavior but does not describe a failed result.",
+      "code_focus": "The short HTML and JavaScript snippets are centered on the table and click behavior.",
+      "environment_dependent": "The question concerns table interaction in code, not the asker’s setup.",
+      "image_only_evidence": "The text identifies the desired telephone and extension; the image is illustrative."
+    }
+  },
+  "64044429": {
+    "gold_rank": 91,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 420,
+      "prompt_tokens": 3092,
+      "total_tokens": 3512,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 268,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.0002865,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 394,
+      "market_cost": 0.0002865,
+      "gateway_cost": 0.0002865
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and literal desired output are paired.",
+      "ask_scope": "Asks whether this specific request logic runs in parallel or serially.",
+      "failure_description": "Asks about execution behavior; no failed attempt or symptom is reported.",
+      "code_focus": "The compact Redux actions show the request dispatch and Promise.all logic.",
+      "environment_dependent": "The question concerns the posted code, not a specific setup.",
+      "image_only_evidence": "The text describes the queue-like observation; the screenshot only illustrates it."
+    }
+  },
+  "73623911": {
+    "gold_rank": 92,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0005,
+    "usage": {
+      "completion_tokens": 643,
+      "prompt_tokens": 3852,
+      "total_tokens": 4495,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 427,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000493,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 1154,
+      "market_cost": 0.000493,
+      "gateway_cost": 0.000493
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "The post describes the desired paths but does not write out a concrete input/output pair.",
+      "ask_scope": "It asks how to obtain file paths and display dropped files as separate list items.",
+      "failure_description": "It states that multiple dropped files appear together in one row.",
+      "code_focus": "The concise, runnable example centers on the drag-and-drop handlers and list widget.",
+      "environment_dependent": "The issue is about drop-event code, not installation, configuration, or a specific setup.",
+      "image_only_evidence": "The text states the desired full paths and the one-row failure; the images illustrate these."
+    }
+  },
+  "71675281": {
+    "gold_rank": 93,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0004,
+    "usage": {
+      "completion_tokens": 547,
+      "prompt_tokens": 3149,
+      "total_tokens": 3696,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 390,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000357125,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 451,
+      "market_cost": 0.000357125,
+      "gateway_cost": 0.000357125
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "dump",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No literal input-and-desired-output pair is provided.",
+      "ask_scope": "Asks one specific question about fitting patches to parcels.",
+      "failure_description": "States that patches remain square and do not represent the real world.",
+      "code_focus": "The code assigns polygon attributes to patches but omits the patch-fitting operation being asked about.",
+      "environment_dependent": "The question concerns GIS code behavior, not a stated installation or deployment setup.",
+      "image_only_evidence": "The text describes the square-patch issue; the image illustrates the map."
+    }
+  },
+  "53406755": {
+    "gold_rank": 94,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0002,
+    "usage": {
+      "completion_tokens": 382,
+      "prompt_tokens": 2787,
+      "total_tokens": 3169,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 236,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000229375,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 89,
+      "market_cost": 0.000229375,
+      "gateway_cost": 0.000229375
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No literal input and desired output are written out; the desired appearance is shown in an image.",
+      "ask_scope": "One specific how-to question about adding two colors to a navigation bar.",
+      "failure_description": "No failed attempt or problem is reported.",
+      "code_focus": "The post contains no code.",
+      "environment_dependent": "The question asks about a UI implementation, not the asker's setup.",
+      "image_only_evidence": "The image illustrates the desired screen appearance."
+    }
+  },
+  "56504817": {
+    "gold_rank": 95,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 371,
+      "prompt_tokens": 3019,
+      "total_tokens": 3390,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 217,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000252875,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 321,
+      "market_cost": 0.000252875,
+      "gateway_cost": 0.000252875
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input-and-desired-output pair is written out.",
+      "ask_scope": "The specific web-app URL returns 404; a focused fix could resolve it.",
+      "failure_description": "The test page returns an explicitly stated 404.",
+      "code_focus": "The short Host and Context configuration is directly relevant.",
+      "environment_dependent": "The issue concerns migrating the app to another Tomcat server and Linux host.",
+      "image_only_evidence": "The text states the 404 and provides the affected URL; images are not essential."
+    }
+  },
+  "69483166": {
+    "gold_rank": 96,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0004,
+    "usage": {
+      "completion_tokens": 609,
+      "prompt_tokens": 3334,
+      "total_tokens": 3943,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 410,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.00041125,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 636,
+      "market_cost": 0.00041125,
+      "gateway_cost": 0.00041125
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "multiple",
+      "failure_description": "concrete",
+      "code_focus": "dump",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input is paired with a literal desired output.",
+      "ask_scope": "Asks separately about restricting subwindow movement and preserving flags after maximizing.",
+      "failure_description": "Describes subwindows becoming unreachable and flags vanishing after maximizing.",
+      "code_focus": "The code omits the window-flag handling central to one of the problems.",
+      "environment_dependent": "The issues are described as Qt code behavior, not setup or deployment problems.",
+      "image_only_evidence": "The text states both problems without relying on the linked image."
+    }
+  },
+  "59947919": {
+    "gold_rank": 97,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0003,
+    "usage": {
+      "completion_tokens": 493,
+      "prompt_tokens": 2903,
+      "total_tokens": 3396,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 335,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000299375,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 205,
+      "market_cost": 0.000299375,
+      "gateway_cost": 0.000299375
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and desired output are written out.",
+      "ask_scope": "Asks how to use the CodePen code in a Vue component, a specific integration question.",
+      "failure_description": "Reports the webpage shows the code part as blank.",
+      "code_focus": "No code block or pasted code of two or more lines.",
+      "environment_dependent": "The issue is using code in a component, not configuring the asker’s setup.",
+      "image_only_evidence": "The text states the page is blank; the image only illustrates the symptom."
+    }
+  },
+  "57437460": {
+    "gold_rank": 98,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0004,
+    "usage": {
+      "completion_tokens": 691,
+      "prompt_tokens": 3021,
+      "total_tokens": 3712,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 537,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000413125,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 323,
+      "market_cost": 0.000413125,
+      "gateway_cost": 0.000413125
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "The SQL is an attempted query, not a written input/output pair.",
+      "ask_scope": "The ask is how to remove unavailable forms from Form Runner.",
+      "failure_description": "The form still persists in Form Runner after the SQL query.",
+      "code_focus": "The complete SQL query is relevant to the removal problem.",
+      "environment_dependent": "The post names an Orbeon version and concerns forms in the asker’s setup.",
+      "image_only_evidence": "The text already says the form persists; the image only illustrates it."
+    }
+  },
+  "73288048": {
+    "gold_rank": 99,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0005,
+    "usage": {
+      "completion_tokens": 810,
+      "prompt_tokens": 2929,
+      "total_tokens": 3739,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 656,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000461125,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 231,
+      "market_cost": 0.000461125,
+      "gateway_cost": 0.000461125
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No literal input/output pair is given.",
+      "ask_scope": "Asks for one generic way to log errors when debug mode is off.",
+      "failure_description": "Describes the observable behavior: debug-off mode shows only a 500 screen.",
+      "code_focus": "The post contains no code.",
+      "environment_dependent": "Asks about Laravel’s general error-handling behavior, not a specific setup issue.",
+      "image_only_evidence": "The text describes the debug-on and debug-off behavior; the image is illustrative."
+    }
+  },
+  "58762459": {
+    "gold_rank": 100,
+    "rubric_version": "fd79297623f7",
+    "served_by": "openai/gpt-6-luna",
+    "effort": "medium",
+    "usd": 0.0002,
+    "usage": {
+      "completion_tokens": 350,
+      "prompt_tokens": 2855,
+      "total_tokens": 3205,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 148,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 2695,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.000221875,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 157,
+      "market_cost": 0.000221875,
+      "gateway_cost": 0.000221875
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "vague",
+      "code_focus": "not_applicable",
+      "environment_dependent": "yes",
+      "image_only_evidence": "yes"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and desired output are both written out.",
+      "ask_scope": "The post describes one specific Android build failure and seeks a solution.",
+      "failure_description": "The errors are only in the screenshot; the text says only that the build fails.",
+      "code_focus": "There is no code block or pasted code of two or more lines.",
+      "environment_dependent": "The problem concerns building the asker’s Ionic application for Android.",
+      "image_only_evidence": "The build errors the question hinges on are shown only in the screenshot."
+    }
+  }
+}

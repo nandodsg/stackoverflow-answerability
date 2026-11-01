@@ -128,6 +128,17 @@ questions (Opus on the practice set, US$ 0.43); on the 100 scoring questions the
 Gemini and 15 to Grok. Zero changes is the anchoring risk named above, so the reviewed set is reported as the models'
 labels with a human check on the splits, next to the independent blind practice result.
 
+**Labeler and analysis set (decided 2026-11-01).** Three candidates were scored on the 100 reviewed scoring questions
+(Cohen's kappa per label: worked example, ask scope, failure, code, environment, image). TypeSafe Jev: 0.81, 0.87, 0.98,
+0.74, 0.72, 0.71 (mean 0.80). GPT-6 Luna: 0.63, 0.75, 0.83, 0.57, 0.79, 0.79 (0.73). Claude Haiku 5.5: 0.94, 0.61,
+0.67, 0.73, 0.78, 0.40 (0.69). The three runs cost US$ 0.12 in all; Claude Sonnet and Opus were not run. The reviewed set
+started from the reference models' labels, so these scores are optimistic (see above). Jev labels the analysis set:
+30,000 questions drawn at random from the 5% sample, 2018–2022, minus the discovery and gold questions
+(`int_label_analysis_questions`, a view, checked by `tests/assert_label_analysis_questions.sql`), at US$ 3.82. The whole
+sample (~422k) would cost about US$ 400–550, hence the subsample. The draw is not stratified, so label rates describe the
+sample as it is (image-only evidence is about 2% here against 6% in the image-oversampled gold set). Jev answers each
+label with a level and its probabilities, with no reason.
+
 Rule-based features and quality labels are not competing methods. Rule-based features cover every question and
 are reproducible in `queries/q3.sql`; labels cover the sample and are stored as a table. They meet in two checks: a
 label should agree with its rule-based neighbour where one exists (a "reproducible example" mostly has a code

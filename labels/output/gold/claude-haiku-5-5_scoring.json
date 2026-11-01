@@ -1,0 +1,5302 @@
+{
+  "68258046": {
+    "gold_rank": 1,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0007,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4498,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4498,
+          "model": null,
+          "output_tokens": 463,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 463,
+      "output_tokens_details": {
+        "thinking_tokens": 212
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Input object shown, but the desired output object is never written out literally.",
+      "ask_scope": "Single question: how to avoid changing the existing array object when pushing.",
+      "failure_description": "Names a specific symptom: the earlier object's qty value changes.",
+      "code_focus": "Short service and call snippet, all of it bears on the mutation problem.",
+      "environment_dependent": "Problem is plain JavaScript object mutation, reproducible from the post alone.",
+      "image_only_evidence": "No images are referenced; all evidence is in text and code."
+    }
+  },
+  "59720878": {
+    "gold_rank": 2,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0009,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 6200,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 6200,
+          "model": null,
+          "output_tokens": 624,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 624,
+      "output_tokens_details": {
+        "thinking_tokens": 361
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "dump",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input paired with a literal desired output; only error and code shown.",
+      "ask_scope": "Single question: must a Next.js page have a default export, or is the code wrong.",
+      "failure_description": "Exact error text quoted: default export is not a React Component in page.",
+      "code_focus": "Whole page component with large unrelated antd markup, plus package.json and tsconfig pasted.",
+      "environment_dependent": "Problem is about export shape in code, reproducible from the post; gts config is incidental.",
+      "image_only_evidence": "No images are referenced anywhere in the post."
+    }
+  },
+  "70911929": {
+    "gold_rank": 3,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0008,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 5009,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 5009,
+          "model": null,
+          "output_tokens": 653,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 653,
+      "output_tokens_details": {
+        "thinking_tokens": 404
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "yes",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "partial",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Input values and the full expected table output are written out literally.",
+      "ask_scope": "Single ask: why the printf loop doesn't print all three employees properly.",
+      "failure_description": "Actual output is shown as concatenated names with no columns, a described symptom.",
+      "code_focus": "Two complete classes pasted; the problem sits in one printf line within the main method.",
+      "environment_dependent": "Problem is about printf formatting in code any reader can reproduce.",
+      "image_only_evidence": "No images are linked; all evidence is in text."
+    }
+  },
+  "58341888": {
+    "gold_rank": 4,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0006,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4361,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4361,
+          "model": null,
+          "output_tokens": 410,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 410,
+      "output_tokens_details": {
+        "thinking_tokens": 158
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input paired with a literal desired output; only a goal is described.",
+      "ask_scope": "Single specific ask: redirect to dashboard component after a login result.",
+      "failure_description": "A how-to for navigation; no failed attempt or error is reported.",
+      "code_focus": "Short login snippet; the relevant success branch is clearly where the question lives.",
+      "environment_dependent": "Question concerns routing code behaviour, not installs, versions, or deployment setup.",
+      "image_only_evidence": "No images are referenced in the post."
+    }
+  },
+  "73245046": {
+    "gold_rank": 5,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0008,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4458,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4458,
+          "model": null,
+          "output_tokens": 661,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 661,
+      "output_tokens_details": {
+        "thinking_tokens": 412
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No desired output is written out; the input object is given but the expected result is not.",
+      "ask_scope": "Single ask: asks what the issue is with one short function, stated in prose.",
+      "failure_description": "Quotes the exact timeout error text, a concrete observable failure.",
+      "code_focus": "Short, self-contained function where the problem lives, with only a stray log line.",
+      "environment_dependent": "Problem is a code behaviour reproducible from the post, not a setup issue.",
+      "image_only_evidence": "No images are referenced in the post."
+    }
+  },
+  "60077210": {
+    "gold_rank": 6,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0009,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4454,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4454,
+          "model": null,
+          "output_tokens": 981,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 981,
+      "output_tokens_details": {
+        "thinking_tokens": 692
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Input is a dataframe never shown and the shown output is the actual wrong result, not a desired output.",
+      "ask_scope": "Main ask is fixing the loop so each row gets its own result; the 'better way' ask is tied to a stated problem.",
+      "failure_description": "Names an observable symptom: the first output is overwritten for the next nine coordinates.",
+      "code_focus": "Single relevant apply line in a code block, short and self-contained, showing where the problem lives.",
+      "environment_dependent": "Problem is about apply-loop logic in R, reproducible from the post without setup details.",
+      "image_only_evidence": "No images; the output and code are given as text."
+    }
+  },
+  "55104952": {
+    "gold_rank": 7,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0006,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4511,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4511,
+          "model": null,
+          "output_tokens": 250,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 250,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "vague",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No input/output pair; only a desired behaviour is described in words.",
+      "ask_scope": "One specific ask: make a target compile whichever file is named after make.",
+      "failure_description": "Says it couldn't figure it out after trying '$@' and '$<'; no observable symptom given.",
+      "code_focus": "Only a short three-line makefile, all of it relevant to the problem.",
+      "environment_dependent": "Problem is about Makefile variable usage, reproducible from the post.",
+      "image_only_evidence": "No images are referenced in the post."
+    }
+  },
+  "61074096": {
+    "gold_rank": 8,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0009,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4427,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4427,
+          "model": null,
+          "output_tokens": 942,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 942,
+      "output_tokens_details": {
+        "thinking_tokens": 688
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No input data and no literal desired output are written; only a command and a goal.",
+      "ask_scope": "Single ask to reduce CPU and connection load, with the specific problem stated.",
+      "failure_description": "Names observable symptoms: CPU and DB connections rise during archiving.",
+      "code_focus": "One short pt-archiver command, all of it relevant to the problem.",
+      "environment_dependent": "Answerable from general pt-archiver throttling knowledge, though RDS is mentioned.",
+      "image_only_evidence": "No images are present in the post."
+    }
+  },
+  "66295771": {
+    "gold_rank": 9,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0008,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4767,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4767,
+          "model": null,
+          "output_tokens": 637,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 637,
+      "output_tokens_details": {
+        "thinking_tokens": 365
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "partial",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input with a literal expected output is written out; only the goal is described.",
+      "ask_scope": "Single goal: call the city list on link click; 'help me figure it out' is filler.",
+      "failure_description": "Names the exact error text 'ReferenceError: GeoIPModule is not defined'.",
+      "code_focus": "Includes the full loadCities function plus a short click handler; relevant but longer than needed.",
+      "environment_dependent": "Problem is a JavaScript scope error reproducible from the posted code, not the asker's setup.",
+      "image_only_evidence": "No images are referenced in the post."
+    }
+  },
+  "73760417": {
+    "gold_rank": 10,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.001,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 6886,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 6886,
+          "model": null,
+          "output_tokens": 585,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 585,
+      "output_tokens_details": {
+        "thinking_tokens": 335
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "dump",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input with a literal desired output is written out; only code and described behaviour.",
+      "ask_scope": "Single question: why the Awards list comes back null when adding another award.",
+      "failure_description": "Names an observable symptom: the list reaches the controller as null.",
+      "code_focus": "Whole Razor page pasted, with large unrelated form markup alongside the controller and model.",
+      "environment_dependent": "Problem concerns model binding in code, reproducible from the post without setup details.",
+      "image_only_evidence": "The post contains no images."
+    }
+  },
+  "55411003": {
+    "gold_rank": 11,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0009,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4760,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4760,
+          "model": null,
+          "output_tokens": 819,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 819,
+      "output_tokens_details": {
+        "thinking_tokens": 530
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Desired SQL is given as a query shape, with no concrete input data and output values.",
+      "ask_scope": "Single ask: make the EXISTS subquery select query_id; the 'how come' is explained by the same fix.",
+      "failure_description": "Names the wrong output concretely: the generated SQL shows SELECT 1 FROM reviews.",
+      "code_focus": "Short, relevant model and query snippets that bear directly on the EXISTS problem.",
+      "environment_dependent": "Problem is about how SQLAlchemy builds the query, not about the asker's setup.",
+      "image_only_evidence": "No images in the post; all evidence is in text and code."
+    }
+  },
+  "50926788": {
+    "gold_rank": 12,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0009,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4786,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4786,
+          "model": null,
+          "output_tokens": 889,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 889,
+      "output_tokens_details": {
+        "thinking_tokens": 625
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Gives code and a description of the goal but no concrete input paired with a literal expected output.",
+      "ask_scope": "Single ask: how to open a nested zip from a stream, which a short answer could resolve.",
+      "failure_description": "A how-to for an equivalent; no failing behaviour or error is described, only a missing solution.",
+      "code_focus": "Short method, and the code shows the relevant recursive call the question concerns.",
+      "environment_dependent": "Problem is about code and API usage, reproducible from the post alone.",
+      "image_only_evidence": "No images are present in the post."
+    }
+  },
+  "61867164": {
+    "gold_rank": 13,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0006,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4370,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4370,
+          "model": null,
+          "output_tokens": 276,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 276,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input data or literal desired output is written; only a behaviour is described.",
+      "ask_scope": "Single specific fix for one swipe navigation failure; a short answer could resolve it.",
+      "failure_description": "Names the exact spoken message 'heading not found' and the stuck-in-nav-bar symptom.",
+      "code_focus": "Post contains no code block or pasted code.",
+      "environment_dependent": "Problem is about VoiceOver navigation behaviour in code, reproducible from the post, not the asker's setup.",
+      "image_only_evidence": "No image linked; all evidence is in the text."
+    }
+  },
+  "62255052": {
+    "gold_rank": 14,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0006,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4553,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4553,
+          "model": null,
+          "output_tokens": 250,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 250,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "yes"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and literal desired output written out; only described goal.",
+      "ask_scope": "Single question: how to read focused element's background and border colour from HTML.",
+      "failure_description": "No failure reported; it is a how-to about getting computed colours.",
+      "code_focus": "The post contains no code block or pasted code.",
+      "environment_dependent": "Problem is about reading focus styles in the browser, reproducible from general knowledge.",
+      "image_only_evidence": "Before and after states are shown only in linked images, not described in text."
+    }
+  },
+  "69821469": {
+    "gold_rank": 15,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0007,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4333,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4333,
+          "model": null,
+          "output_tokens": 516,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 516,
+      "output_tokens_details": {
+        "thinking_tokens": 264
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "not_applicable",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and literal desired output are written out; only the symptom is described.",
+      "ask_scope": "Single question: why the drag icon does not show up, whether something changed.",
+      "failure_description": "Names an observable symptom: the drag icon does not appear during file drag.",
+      "code_focus": "The post contains no code block or pasted code.",
+      "environment_dependent": "Points to the asker's own Windows 10 build and a copied project as the setting of the problem.",
+      "image_only_evidence": "No image is referenced anywhere in the post."
+    }
+  },
+  "59075482": {
+    "gold_rank": 16,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0007,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4508,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4508,
+          "model": null,
+          "output_tokens": 544,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 544,
+      "output_tokens_details": {
+        "thinking_tokens": 275
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input data or literal desired output is written out, only code and an error.",
+      "ask_scope": "One specific goal: run the existing gRPC-web client call from Node instead of a browser.",
+      "failure_description": "Names the exact error text, 'XMLHttpRequest is not defined', when running node.",
+      "code_focus": "One short client snippet that bears directly on the failing call; nothing unrelated.",
+      "environment_dependent": "Problem is the client library's browser dependency in Node, reproducible from the code and error.",
+      "image_only_evidence": "No images are referenced; the error is given as text."
+    }
+  },
+  "48844194": {
+    "gold_rank": 17,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0008,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4295,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4295,
+          "model": null,
+          "output_tokens": 652,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 652,
+      "output_tokens_details": {
+        "thinking_tokens": 389
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "vague",
+      "code_focus": "not_applicable",
+      "environment_dependent": "yes",
+      "image_only_evidence": "yes"
+    },
+    "reasons": {
+      "worked_example": "No input or desired output written out; only a question and an image.",
+      "ask_scope": "Single specific how-to question about getting highlighting to work in PyCharm.",
+      "failure_description": "Implies bad highlighting but names no symptom in text; only the image shows it.",
+      "code_focus": "No code block or pasted code anywhere in the post.",
+      "environment_dependent": "Asks about configuring the asker's own PyCharm IDE setup for highlighting.",
+      "image_only_evidence": "The text never describes the highlighting problem; the screenshot is the only evidence."
+    }
+  },
+  "66815431": {
+    "gold_rank": 18,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0006,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4943,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4943,
+          "model": null,
+          "output_tokens": 256,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 256,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and literal desired output; only code and an error message are given.",
+      "ask_scope": "Single fix asked for a binding error between a lazy module and a shared module.",
+      "failure_description": "Exact error text quoted naming the unknown 'hub' property binding.",
+      "code_focus": "Short relevant module files showing the lazy-loading and shared-module setup.",
+      "environment_dependent": "Problem is about Angular module declaration and export, reproducible from the code shown.",
+      "image_only_evidence": "No image is referenced; all evidence is in text."
+    }
+  },
+  "66134202": {
+    "gold_rank": 19,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0006,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4527,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4527,
+          "model": null,
+          "output_tokens": 290,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 290,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "not_applicable",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and literal desired output written out; only described in words.",
+      "ask_scope": "Single specific question: how to make RStudio respect the PATH order set in config files.",
+      "failure_description": "Names observable symptom: /usr/local/bin is prepended ahead of the specified Python path.",
+      "code_focus": "Only inline one-liners like Sys.setenv and PATH assignments; no code block of two lines or more.",
+      "environment_dependent": "Problem concerns the asker's Mac setup, RStudio launch and .Renviron/.Rprofile configuration.",
+      "image_only_evidence": "No image referenced anywhere in the post."
+    }
+  },
+  "62518380": {
+    "gold_rank": 20,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0006,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4474,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4474,
+          "model": null,
+          "output_tokens": 262,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 262,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and literal expected output written; only a described repeated call.",
+      "ask_scope": "Asks whether behavior is intended and how to disable it, a single specific question.",
+      "failure_description": "Names observable symptom: setDate repeatedly called with system date instead of entered date.",
+      "code_focus": "Short template snippet containing the single bound event relevant to the problem.",
+      "environment_dependent": "Behavior concerns the bsValueChange binding, reproducible from the snippet, not the asker's setup.",
+      "image_only_evidence": "No images referenced in the post."
+    }
+  },
+  "52801633": {
+    "gold_rank": 21,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0007,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4951,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4951,
+          "model": null,
+          "output_tokens": 446,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 446,
+      "output_tokens_details": {
+        "thinking_tokens": 201
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "yes",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Input table and desired output table both written out literally in text.",
+      "ask_scope": "Single request: delete duplicate rows keeping the highest id.",
+      "failure_description": "Asker wants to write a DELETE; no failed attempt or error is reported.",
+      "code_focus": "Short select query that bears directly on the duplicate-finding problem.",
+      "environment_dependent": "Problem is a SQL query pattern, reproducible from the post alone.",
+      "image_only_evidence": "No images; tables and query are given in text."
+    }
+  },
+  "73705863": {
+    "gold_rank": 22,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0007,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4781,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4781,
+          "model": null,
+          "output_tokens": 438,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 438,
+      "output_tokens_details": {
+        "thinking_tokens": 169
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "multiple",
+      "failure_description": "not_applicable",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input data or desired output is written out; only conceptual descriptions.",
+      "ask_scope": "Two independent questions: default controller scope and how multiple ServletContexts relate to one ApplicationContext.",
+      "failure_description": "Conceptual question about Spring scopes; no attempt is described that went wrong.",
+      "code_focus": "The post contains no code blocks or pasted code.",
+      "environment_dependent": "Asks about Spring framework concepts, not about installing, configuring or deploying the asker's setup.",
+      "image_only_evidence": "The post contains no images."
+    }
+  },
+  "71752411": {
+    "gold_rank": 23,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0006,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4330,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4330,
+          "model": null,
+          "output_tokens": 432,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 432,
+      "output_tokens_details": {
+        "thinking_tokens": 177
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input data with a literal desired output; only import syntax is shown.",
+      "ask_scope": "Single conceptual why-question about import syntax that a paragraph could answer.",
+      "failure_description": "Post asks about syntax design and reports no attempt that went wrong.",
+      "code_focus": "Two short import lines, both directly relevant to the syntax question.",
+      "environment_dependent": "Question concerns language syntax, reproducible from general knowledge, not the asker's setup.",
+      "image_only_evidence": "No images are referenced in the post."
+    }
+  },
+  "48989171": {
+    "gold_rank": 24,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0009,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 5575,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 5575,
+          "model": null,
+          "output_tokens": 653,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 653,
+      "output_tokens_details": {
+        "thinking_tokens": 362
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input with a literal desired output; only a failing assertion and a description of the behaviour.",
+      "ask_scope": "Single question: why the save works outside tests but not in tests; a short explanation could resolve it.",
+      "failure_description": "Names the symptom and the exact AssertionError with values: asset calibration_date_prev stays None.",
+      "code_focus": "Short model save method and one test, all bearing on the stated failure; Asset model elided but not needed.",
+      "environment_dependent": "Problem is about model save logic under the test runner, not installation, deployment or the machine.",
+      "image_only_evidence": "No images are referenced; all evidence is in text and code."
+    }
+  },
+  "68297160": {
+    "gold_rank": 25,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0006,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4573,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4573,
+          "model": null,
+          "output_tokens": 265,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 265,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "yes"
+    },
+    "reasons": {
+      "worked_example": "No concrete input-output pair written out; only code and an image reference.",
+      "ask_scope": "Single fix asked: draw a black frame around the colorbar axes.",
+      "failure_description": "Says the frame works for ax0 but not ax1, a specific observable symptom.",
+      "code_focus": "Short, self-contained snippet where the spine loop is the relevant part.",
+      "environment_dependent": "Problem is about plotting code behavior, not the asker's setup.",
+      "image_only_evidence": "Says 'See picture' and the image shows the frame result, but text gives the symptom."
+    }
+  },
+  "60344916": {
+    "gold_rank": 26,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0007,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4408,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4408,
+          "model": null,
+          "output_tokens": 453,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 453,
+      "output_tokens_details": {
+        "thinking_tokens": 216
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "vague",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Input given, but desired output only described in words, not written out.",
+      "ask_scope": "Single specific ask: select RIDs containing both a 1 and a 3.",
+      "failure_description": "Only says 'not getting anywere' with no observable symptom or output.",
+      "code_focus": "One short, self-contained data.frame line directly relevant to the question.",
+      "environment_dependent": "Problem is about data filtering in R, reproducible from the post.",
+      "image_only_evidence": "No images; data is given as text."
+    }
+  },
+  "59995557": {
+    "gold_rank": 27,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0006,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4496,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4496,
+          "model": null,
+          "output_tokens": 268,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 268,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Inputs given as URLs but no literal expected output is written out.",
+      "ask_scope": "Single question: why SNI is missing for underscore hostname, plus a workaround; narrow.",
+      "failure_description": "Names observable symptom: server_name extension absent in handshake debug output for underscore host.",
+      "code_focus": "Short, relevant snippet of a few lines showing the request.",
+      "environment_dependent": "Problem is library behaviour reproducible from the snippet and hostnames, not the asker's setup.",
+      "image_only_evidence": "No images referenced; all evidence is textual."
+    }
+  },
+  "59922861": {
+    "gold_rank": 28,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0006,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4409,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4409,
+          "model": null,
+          "output_tokens": 283,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 283,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "not_applicable",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input data or literal desired output is written; only a settings question.",
+      "ask_scope": "Single specific question: is there a way to disable version control for new projects.",
+      "failure_description": "Describes a setting that does not take effect, but no error or failure is reported as such; it is a how-to on configuration.",
+      "code_focus": "The post contains no code block or pasted code, only settings paths.",
+      "environment_dependent": "Problem concerns IDE settings and project creation defaults on the asker's own installation.",
+      "image_only_evidence": "Image is a settings screenshot; the text names the settings path, so the question is answerable from text."
+    }
+  },
+  "67862183": {
+    "gold_rank": 29,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0007,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4321,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4321,
+          "model": null,
+          "output_tokens": 540,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 540,
+      "output_tokens_details": {
+        "thinking_tokens": 283
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and literal desired output written out; only code and an error.",
+      "ask_scope": "Single goal: create a MapQuickItem dynamically; a short answer could resolve it.",
+      "failure_description": "Names the exact error text 'Image is not a type'.",
+      "code_focus": "One short relevant code line showing the createQmlObject call and the failing part.",
+      "environment_dependent": "Problem concerns QML object creation in code, reproducible without asker-specific setup.",
+      "image_only_evidence": "No images are referenced; the error and code are given in text."
+    }
+  },
+  "60012034": {
+    "gold_rank": 30,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0008,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4751,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4751,
+          "model": null,
+          "output_tokens": 624,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 624,
+      "output_tokens_details": {
+        "thinking_tokens": 372
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "yes",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Gives JSON input and the exact expected text for variable1.",
+      "ask_scope": "Single problem: why the loop returns 'Nothing here' instead of the long text.",
+      "failure_description": "Names the wrong observed output, 'Nothing here', versus the expected text.",
+      "code_focus": "Short, self-contained loop; all of it bears on the stated problem.",
+      "environment_dependent": "Problem is about Groovy loop logic, reproducible from the post alone.",
+      "image_only_evidence": "No images are referenced in the post."
+    }
+  },
+  "55219369": {
+    "gold_rank": 31,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0006,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4545,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4545,
+          "model": null,
+          "output_tokens": 258,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 258,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "not_applicable",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input or literal output written; only a config option name and default value.",
+      "ask_scope": "Single specific question: where to set the hinterland.enable_at_start option.",
+      "failure_description": "Says editing the hinterland.yaml file had no effect, a named attempt with observable result.",
+      "code_focus": "Post contains no code block or pasted code, only option names and a file path.",
+      "environment_dependent": "Problem concerns the asker's Docker image and where config files are installed and read.",
+      "image_only_evidence": "No images referenced; all information is in text."
+    }
+  },
+  "56799025": {
+    "gold_rank": 32,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0007,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4366,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4366,
+          "model": null,
+          "output_tokens": 498,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 498,
+      "output_tokens_details": {
+        "thinking_tokens": 257
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input or literal desired output is written; only a layout goal in words.",
+      "ask_scope": "One layout question: how a footer can take up space in the host page.",
+      "failure_description": "Names an observable symptom: the footer does not take up any space.",
+      "code_focus": "The post contains no code block or pasted code.",
+      "environment_dependent": "Problem is about CSS layout behaviour, not installing, configuring or deploying.",
+      "image_only_evidence": "No image is linked or referenced in the post."
+    }
+  },
+  "63940523": {
+    "gold_rank": 33,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.001,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4601,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4601,
+          "model": null,
+          "output_tokens": 1063,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 1063,
+      "output_tokens_details": {
+        "thinking_tokens": 800
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "yes",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Input dataframe and the literal expected output table are both written out in text.",
+      "ask_scope": "One specific filtering ask; the reading-material request is brief and clearly secondary.",
+      "failure_description": "A how-to request; the post reports no failed attempt or error.",
+      "code_focus": "Only a short, relevant data block in a code fence; nothing unrelated is pasted.",
+      "environment_dependent": "Problem is about filtering a dataframe's contents, reproducible from the post alone.",
+      "image_only_evidence": "No images are referenced anywhere in the post."
+    }
+  },
+  "71019316": {
+    "gold_rank": 34,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0008,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4536,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4536,
+          "model": null,
+          "output_tokens": 642,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 642,
+      "output_tokens_details": {
+        "thinking_tokens": 382
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "vague",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input paired with a literal desired output appears anywhere in the post.",
+      "ask_scope": "Single question: where an error might be in the code, answerable with a short fix or pointer.",
+      "failure_description": "Only says there may be an error; no symptom, wrong output or error text is given.",
+      "code_focus": "One short self-contained function, nearly all of it relevant to the stated question.",
+      "environment_dependent": "Problem is about the function's logic, reproducible from the post alone.",
+      "image_only_evidence": "No image is referenced; all evidence is in the text and code."
+    }
+  },
+  "66285712": {
+    "gold_rank": 35,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0009,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4922,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4922,
+          "model": null,
+          "output_tokens": 785,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 785,
+      "output_tokens_details": {
+        "thinking_tokens": 488
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "vague",
+      "code_focus": "partial",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input paired with a literal desired output; only printed node data and a described goal.",
+      "ask_scope": "Single question: why the called counting function prints nothing, answerable with a short explanation.",
+      "failure_description": "Symptom is only 'doesn't do anything' / 'doesn't print anything', with no error text or observed wrong value.",
+      "code_focus": "Whole program is pasted; the relevant function and call are there, but a duplicate commented block and setup code add bulk.",
+      "environment_dependent": "Problem is a function call inside the code; no installs, versions, OS or deployment involved.",
+      "image_only_evidence": "No images are linked; all evidence is in the text and code."
+    }
+  },
+  "64429852": {
+    "gold_rank": 36,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0006,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4372,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4372,
+          "model": null,
+          "output_tokens": 253,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 253,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "yes"
+    },
+    "reasons": {
+      "worked_example": "No concrete input data or literal desired output written; only described in words and images.",
+      "ask_scope": "Single specific question: can a native select start with no preselected option.",
+      "failure_description": "Asker wants a behaviour change; no failed attempt or error is described.",
+      "code_focus": "No code block or pasted code present in the post.",
+      "environment_dependent": "Question is about standard select element behaviour, not the asker's setup.",
+      "image_only_evidence": "Desired and current select appearance is shown only in linked screenshots, not described in text."
+    }
+  },
+  "56776190": {
+    "gold_rank": 37,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0008,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4866,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4866,
+          "model": null,
+          "output_tokens": 660,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 660,
+      "output_tokens_details": {
+        "thinking_tokens": 386
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No input and expected output written out; only runnable code and a symptom.",
+      "ask_scope": "One problem stated in prose: window won't appear when launching JavaFX app.",
+      "failure_description": "Observable symptom named: no window visible, a java item sits in the dock.",
+      "code_focus": "Short, self-contained, runnable class where the launch problem lives.",
+      "environment_dependent": "Problem tied to macOS, Java 8 update, Eclipse and JavaFX jars on the build path.",
+      "image_only_evidence": "Screenshots illustrate the dock symptom, which the text already describes in words."
+    }
+  },
+  "54437485": {
+    "gold_rank": 38,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0008,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 5454,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 5454,
+          "model": null,
+          "output_tokens": 593,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 593,
+      "output_tokens_details": {
+        "thinking_tokens": 308
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "partial",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Desired output for the selection is never written as a literal value; only the code and a goal are given.",
+      "ask_scope": "Single specific question: a workaround to add multiple ranges in Chrome.",
+      "failure_description": "Names an observable symptom: Chrome adds only one range while Firefox adds several.",
+      "code_focus": "Whole runnable page with jQuery, table and selects; the copy function is relevant but surrounding markup is extra.",
+      "environment_dependent": "Browser behaviour difference reproducible from the code; no setup, install or deployment involved.",
+      "image_only_evidence": "No image is referenced; everything is in the text and code."
+    }
+  },
+  "71222036": {
+    "gold_rank": 39,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0008,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 5338,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 5338,
+          "model": null,
+          "output_tokens": 588,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 588,
+      "output_tokens_details": {
+        "thinking_tokens": 315
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "partial",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input paired with a literal expected output; only code and an error message.",
+      "ask_scope": "Single fix asked: why thenThrow rejects the checked exception in the test.",
+      "failure_description": "Exact error text quoted: Checked exception is invalid for this method.",
+      "code_focus": "Test method is relevant, but full exception and service classes are pasted with unrelated parts.",
+      "environment_dependent": "Spring Boot and JUnit versions are mentioned, but the problem is Mockito's checked-exception rule.",
+      "image_only_evidence": "No images are referenced anywhere in the post."
+    }
+  },
+  "48784152": {
+    "gold_rank": 40,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0007,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4289,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4289,
+          "model": null,
+          "output_tokens": 551,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 551,
+      "output_tokens_details": {
+        "thinking_tokens": 304
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "broad",
+      "failure_description": "not_applicable",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and no literal desired output are written out.",
+      "ask_scope": "Main ask is a recommendation of a NuGet package, which the rubric treats as broad.",
+      "failure_description": "Mentions trying Plugin.BLE but reports no failure or symptom.",
+      "code_focus": "The post contains no code block or pasted code.",
+      "environment_dependent": "Asks which library to use, not about installing, configuring or deploying.",
+      "image_only_evidence": "No image is referenced anywhere in the post."
+    }
+  },
+  "59527750": {
+    "gold_rank": 41,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0008,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4557,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4557,
+          "model": null,
+          "output_tokens": 675,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 675,
+      "output_tokens_details": {
+        "thinking_tokens": 401
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Input 5.00 is given, but the expected rejection is never written out as a literal output.",
+      "ask_scope": "Single ask for one serializer fix combining string output with choices validation.",
+      "failure_description": "Names an observable wrong result: vat=\"5.00\" is accepted despite the choices list.",
+      "code_focus": "Only the model field and serializer field are shown, both short and directly relevant.",
+      "environment_dependent": "Versions are listed, but the problem is serializer validation behaviour, not installation or deployment.",
+      "image_only_evidence": "No image is linked or referenced anywhere in the post."
+    }
+  },
+  "59328317": {
+    "gold_rank": 42,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0008,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4379,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4379,
+          "model": null,
+          "output_tokens": 771,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 771,
+      "output_tokens_details": {
+        "thinking_tokens": 531
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "yes",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Call with value 20 and the literal wanted message \"Record count 20\" are both written out.",
+      "ask_scope": "Single specific ask: keep custom fields out of the message text.",
+      "failure_description": "Symptom named: the message field gets the custom field info appended.",
+      "code_focus": "One relevant logging line, self-contained and directly on the problem.",
+      "environment_dependent": "Problem is about the logging call's message template, not the asker's setup.",
+      "image_only_evidence": "No images in the post."
+    }
+  },
+  "54324062": {
+    "gold_rank": 43,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0009,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4893,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4893,
+          "model": null,
+          "output_tokens": 758,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 758,
+      "output_tokens_details": {
+        "thinking_tokens": 472
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "partial",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input with a literal desired output; only a plot is wanted.",
+      "ask_scope": "Single ask: make the plot print in the knitted output instead of a separate window.",
+      "failure_description": "Symptom named in observable terms: plot opens in a separate window, not in output.",
+      "code_focus": "Relevant plotting lines plus unrelated chdir and dataset loading; long but mostly on point.",
+      "environment_dependent": "Problem hinges on the asker's R Markdown, reticulate and Windows display setup.",
+      "image_only_evidence": "Text itself describes the separate-window symptom, so the attached image is only illustrative."
+    }
+  },
+  "62219821": {
+    "gold_rank": 44,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0008,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4328,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4328,
+          "model": null,
+          "output_tokens": 749,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 749,
+      "output_tokens_details": {
+        "thinking_tokens": 471
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Input array shown, but the wanted output is only described in words, not written out.",
+      "ask_scope": "Single ask to strip the leading junk byte; the Kafka-or-Event-Hub question is part of the same answer.",
+      "failure_description": "Names an observable symptom: an extra leading -95 value before the count and payload.",
+      "code_focus": "No code block or pasted code; only an inline byte array literal.",
+      "environment_dependent": "Problem concerns the message byte content, not installation, configuration or deployment on the asker's side.",
+      "image_only_evidence": "No image is referenced; all evidence is in the text."
+    }
+  },
+  "53599655": {
+    "gold_rank": 45,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0009,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4378,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4378,
+          "model": null,
+          "output_tokens": 983,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 983,
+      "output_tokens_details": {
+        "thinking_tokens": 703
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "multiple",
+      "failure_description": "not_applicable",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Input is only a file path; desired result is described in words (creates the file or fails), no literal output.",
+      "ask_scope": "Main ask is a safe copy to a path; the race-condition question is a separate ask needing its own answer.",
+      "failure_description": "Unwanted nested-file outcome is hypothetical; no attempt shown that failed.",
+      "code_focus": "Only a single inline command, not a code block of two or more lines.",
+      "environment_dependent": "Problem is about the Copy-Item cmdlet behaviour, reproducible from the post.",
+      "image_only_evidence": "No images are referenced in the post."
+    }
+  },
+  "69706877": {
+    "gold_rank": 46,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0009,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4988,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4988,
+          "model": null,
+          "output_tokens": 854,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 854,
+      "output_tokens_details": {
+        "thinking_tokens": 557
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Input frames are written out, but the desired output is only shown in an image and never written as literal values.",
+      "ask_scope": "Single question: how to merge so Price, Count and shop_id appear once, without suffixes.",
+      "failure_description": "Names an observable symptom: the duplicate columns print with _x and _y suffixes.",
+      "code_focus": "Short data literals and one reduce-merge line; all of it bears on the suffix problem.",
+      "environment_dependent": "Problem is about pandas merge behaviour on code the post fully includes, not the asker's setup.",
+      "image_only_evidence": "Text fully describes the wanted single-column result and the suffix output; images only illustrate."
+    }
+  },
+  "66133661": {
+    "gold_rank": 47,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.001,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 6726,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 6726,
+          "model": null,
+          "output_tokens": 631,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 631,
+      "output_tokens_details": {
+        "thinking_tokens": 349
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "dump",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input paired with a literal desired output; only the error and the symptom are described.",
+      "ask_scope": "Single ask to fix the console error; the rounded-rectangle remark is an aside, not a second request.",
+      "failure_description": "Exact error text quoted: 'Cannot read property show of undefined'.",
+      "code_focus": "Whole game script and HTML page pasted; the error sits in one loop among much unrelated code.",
+      "environment_dependent": "Problem is a runtime JavaScript error in the code itself, reproducible from the post.",
+      "image_only_evidence": "No images are referenced; all evidence is in text and code."
+    }
+  },
+  "51294665": {
+    "gold_rank": 48,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0007,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4597,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4597,
+          "model": null,
+          "output_tokens": 459,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 459,
+      "output_tokens_details": {
+        "thinking_tokens": 209
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input data or literal desired output is written out.",
+      "ask_scope": "Single conceptual 'why' question about why the border lands on children.",
+      "failure_description": "Symptom named: every rect shows the border on hover, not the svg.",
+      "code_focus": "Short svg snippet with the handlers and style, all bearing on the problem.",
+      "environment_dependent": "Behaviour of the component code itself; no setup, install or deployment involved.",
+      "image_only_evidence": "No images are referenced; the problem is fully described in text and code."
+    }
+  },
+  "57432557": {
+    "gold_rank": 49,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0009,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4444,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4444,
+          "model": null,
+          "output_tokens": 857,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 857,
+      "output_tokens_details": {
+        "thinking_tokens": 599
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "yes",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Menu text is given as input and the wanted reply '2' is written in the code.",
+      "ask_scope": "One specific question: choose a menu option by its label instead of a fixed number.",
+      "failure_description": "Only a hypothetical future problem is raised; no failure is reported as happening.",
+      "code_focus": "Short expect snippet that bears directly on the send-by-number problem.",
+      "environment_dependent": "The problem is about parsing script output in expect, not about installing or configuring the setup.",
+      "image_only_evidence": "No images are referenced in the post."
+    }
+  },
+  "56575596": {
+    "gold_rank": 50,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0006,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4542,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4542,
+          "model": null,
+          "output_tokens": 297,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 297,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input data or literal expected output table written; only an MDX-like expression and a filter description.",
+      "ask_scope": "One specific question: how to filter an aggregated column above a threshold in Cognos.",
+      "failure_description": "Names observable symptom: the report shows 'no data is available' when the filter is applied.",
+      "code_focus": "Single short aggregate expression, self-contained and directly tied to the filter problem.",
+      "environment_dependent": "Problem concerns a filter expression and aggregate behaviour, answerable from general knowledge of the query logic.",
+      "image_only_evidence": "Image is a screenshot of the report; the expression and the symptom are both stated in text."
+    }
+  },
+  "69353815": {
+    "gold_rank": 51,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0006,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4317,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4317,
+          "model": null,
+          "output_tokens": 252,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 252,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "not_applicable",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input or literal desired output is written; only the goal is described.",
+      "ask_scope": "One specific question: can a REST call reach every instance to invalidate cache.",
+      "failure_description": "Post asks how to do something; it reports no failed attempt or error.",
+      "code_focus": "The post contains no code block or pasted code.",
+      "environment_dependent": "Problem concerns deployment on PCF with multiple app instances, which is the asker's own platform setup.",
+      "image_only_evidence": "No images are referenced in the post."
+    }
+  },
+  "71305015": {
+    "gold_rank": 52,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0008,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4358,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4358,
+          "model": null,
+          "output_tokens": 750,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 750,
+      "output_tokens_details": {
+        "thinking_tokens": 486
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "no_clear_ask",
+      "failure_description": "vague",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Input given, but desired output only described in words (filter strings out), never written literally.",
+      "ask_scope": "Body has only code and filler ('struggling', 'If you can help!'); the goal lives only in the title.",
+      "failure_description": "Only 'I am struggling' with no error text, wrong output or symptom described.",
+      "code_focus": "Short, self-contained function that is the whole of the relevant code.",
+      "environment_dependent": "Problem is about the code's logic, reproducible from the post alone.",
+      "image_only_evidence": "No image is linked or referenced in the post."
+    }
+  },
+  "62952036": {
+    "gold_rank": 53,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0009,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 5905,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 5905,
+          "model": null,
+          "output_tokens": 531,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 531,
+      "output_tokens_details": {
+        "thinking_tokens": 258
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "partial",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input paired with a literal desired output is written out.",
+      "ask_scope": "Describes one problem, images missing on the server, and asks for a fix.",
+      "failure_description": "Quotes the exact error text 'Image not found or type unknown'.",
+      "code_focus": "Controller and view are both pasted in full; the view is a whole page, but the image lines bear on the problem.",
+      "environment_dependent": "Works on localhost but fails after the server change, so the problem is about the deployed setup.",
+      "image_only_evidence": "No image is linked as evidence; the only URL is a CSS background reference in code."
+    }
+  },
+  "52372892": {
+    "gold_rank": 54,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0006,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4593,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4593,
+          "model": null,
+          "output_tokens": 272,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 272,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "broad",
+      "failure_description": "vague",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input data or literal desired output is written out; only goals described in words.",
+      "ask_scope": "Asks for the best approach to detect rotation, an opinion on method, so broad.",
+      "failure_description": "Failure is only described as plugins not working and values changing, without an exact symptom or error.",
+      "code_focus": "The post contains no code block or pasted code at all.",
+      "environment_dependent": "Problem concerns detecting device rotation via sensor/plugin behaviour, reproducible from general knowledge; no setup or install issue.",
+      "image_only_evidence": "No images are referenced in the post."
+    }
+  },
+  "49399160": {
+    "gold_rank": 55,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.001,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4661,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4661,
+          "model": null,
+          "output_tokens": 1131,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 1131,
+      "output_tokens_details": {
+        "thinking_tokens": 851
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "partial",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and no literal desired output; only code and a goal described in words.",
+      "ask_scope": "Single ask: how to run the backup code monthly in code; a short answer could resolve it.",
+      "failure_description": "Post is a how-to with no reported failing attempt; the filler line asks nothing about a failure.",
+      "code_focus": "Backup code is relevant, but the button markup and folder check are not needed for the scheduling question.",
+      "environment_dependent": "Monthly scheduling depends on how the asker's server and app are deployed and run.",
+      "image_only_evidence": "No images are referenced anywhere in the post."
+    }
+  },
+  "52487136": {
+    "gold_rank": 56,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0006,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4644,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4644,
+          "model": null,
+          "output_tokens": 258,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 258,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and literal desired output written out; only an error and a path.",
+      "ask_scope": "Single specific fix: why the logs folder is not found when launched as a service.",
+      "failure_description": "Exact error text given: FileNotFoundException for logs/myLogs-api.log.",
+      "code_focus": "Short unit file with only the relevant service settings; self-contained.",
+      "environment_dependent": "Problem concerns deploying the jar as a systemd service on the asker's server.",
+      "image_only_evidence": "No image is referenced; all evidence is in text."
+    }
+  },
+  "67703011": {
+    "gold_rank": 57,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0007,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 5279,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 5279,
+          "model": null,
+          "output_tokens": 271,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 271,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "multiple",
+      "failure_description": "vague",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input paired with a literal desired output; only conceptual questions and code snippets.",
+      "ask_scope": "Three separate questions asked, the first two framed as background to the third.",
+      "failure_description": "Flicker and double rendering mentioned, but no concrete error or observed output is named.",
+      "code_focus": "Short, relevant snippets each illustrating one point; no large unrelated code.",
+      "environment_dependent": "Problem concerns React rendering behaviour and hydration, not the asker's setup or deployment.",
+      "image_only_evidence": "No images are linked; all evidence is in text and code."
+    }
+  },
+  "48566824": {
+    "gold_rank": 58,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0007,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4341,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4341,
+          "model": null,
+          "output_tokens": 533,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 533,
+      "output_tokens_details": {
+        "thinking_tokens": 267
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "not_applicable",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input with a literal expected output; only a launch command and a symptom.",
+      "ask_scope": "Single intermittent 502 problem; a short fix or explanation could resolve it.",
+      "failure_description": "Symptom named in observable terms: 502 for about half a second, server seemingly down.",
+      "code_focus": "Only an inline backtick command, no code block or multi-line paste.",
+      "environment_dependent": "Problem hinges on systemd and uwsgi deployment configuration on the asker's server.",
+      "image_only_evidence": "No images are referenced in the post."
+    }
+  },
+  "48662916": {
+    "gold_rank": 59,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0006,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4345,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4345,
+          "model": null,
+          "output_tokens": 249,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 249,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No input and desired output pair; only code and an error message are given.",
+      "ask_scope": "Single fix asked: what to change so it compiles without errors.",
+      "failure_description": "Exact compiler error text 'recursive constructor invocation' is quoted.",
+      "code_focus": "Short, self-contained class where the bad this(...) call is the only issue.",
+      "environment_dependent": "Problem is a code bug reproducible from the post; IDE mention is incidental.",
+      "image_only_evidence": "No image is referenced; error is given in text."
+    }
+  },
+  "72129652": {
+    "gold_rank": 60,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0008,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 5406,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 5406,
+          "model": null,
+          "output_tokens": 507,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 507,
+      "output_tokens_details": {
+        "thinking_tokens": 265
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "partial",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Input arguments shown but no literal desired output or expected result written out.",
+      "ask_scope": "Single fix asked: why the named route isn't found when navigating.",
+      "failure_description": "Exact assertion text from the error is quoted in full.",
+      "code_focus": "Whole file pasted; routing parts relevant, but unrelated helpers and imports included.",
+      "environment_dependent": "Problem is about route registration in code, reproducible from the post.",
+      "image_only_evidence": "No images; error and code are given as text."
+    }
+  },
+  "53494235": {
+    "gold_rank": 61,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0007,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4486,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4486,
+          "model": null,
+          "output_tokens": 489,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 489,
+      "output_tokens_details": {
+        "thinking_tokens": 234
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "yes",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Input document and literal desired JSON output are both written out in the body.",
+      "ask_scope": "Single ask: turn two arrays into one key-value object, a narrow transformation.",
+      "failure_description": "Asks how to build the output; no failed attempt or failure is reported.",
+      "code_focus": "Short sample document with only the two relevant arrays and locale field.",
+      "environment_dependent": "Question concerns a data transformation, not installation, configuration or the asker's setup.",
+      "image_only_evidence": "No images; all data and expected output are in text."
+    }
+  },
+  "49655697": {
+    "gold_rank": 62,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0006,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4799,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4799,
+          "model": null,
+          "output_tokens": 280,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 280,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "partial",
+      "environment_dependent": "no",
+      "image_only_evidence": "yes"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and literal expected output written out; only the overwrite behaviour is described.",
+      "ask_scope": "Asks how to keep an array in AsyncStorage and auto-generate keys; a focused fix is enough.",
+      "failure_description": "Describes concrete symptom: array holds only one object and each add overwrites the previous.",
+      "code_focus": "Two short components with some unneeded parts; relevant but slightly fragmentary.",
+      "environment_dependent": "Problem is about code and state handling, reproducible from the post.",
+      "image_only_evidence": "Console output the question relies on is only shown in an image, not in text."
+    }
+  },
+  "55336654": {
+    "gold_rank": 63,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0008,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4343,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4343,
+          "model": null,
+          "output_tokens": 702,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 702,
+      "output_tokens_details": {
+        "thinking_tokens": 441
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "not_applicable",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input or literal desired output is written out; only a goal is described.",
+      "ask_scope": "Single question: whether point-to-site can reach the second VM and what is missing.",
+      "failure_description": "No failure symptom is described; the post only states a hoped-for connection path.",
+      "code_focus": "The post contains no code, only prose about network setup.",
+      "environment_dependent": "Concerns Azure VPN gateways and vnet-to-vnet network configuration on the asker's own setup.",
+      "image_only_evidence": "No images are referenced in the post."
+    }
+  },
+  "72162103": {
+    "gold_rank": 64,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0007,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4759,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4759,
+          "model": null,
+          "output_tokens": 494,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 494,
+      "output_tokens_details": {
+        "thinking_tokens": 235
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "broad",
+      "failure_description": "not_applicable",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and literal desired output are written out; only the setting is described.",
+      "ask_scope": "Asks for suggested algorithms and techniques to use, a recommendation-style request.",
+      "failure_description": "No attempt that failed is reported; only reasons existing methods seem unsuitable.",
+      "code_focus": "The post contains no code.",
+      "environment_dependent": "Question concerns choice of learning algorithm, not the asker's own setup or deployment.",
+      "image_only_evidence": "No image is referenced as essential evidence; only a paper link."
+    }
+  },
+  "48504766": {
+    "gold_rank": 65,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0009,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4554,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4554,
+          "model": null,
+          "output_tokens": 875,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 875,
+      "output_tokens_details": {
+        "thinking_tokens": 599
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "multiple",
+      "failure_description": "vague",
+      "code_focus": "not_applicable",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input or literal expected output is written out; only the remote repo settings are given.",
+      "ask_scope": "Asks how to configure the remote repo and separately whether Artifactory must be upgraded from 4.9.0.",
+      "failure_description": "Only says the project 'doesn't seem to be finding it'; no error text or observable output given.",
+      "code_focus": "The post contains no code block or pasted code, only repository settings.",
+      "environment_dependent": "Concerns configuring Artifactory on the company server and whether its version must be upgraded.",
+      "image_only_evidence": "No images are referenced in the post."
+    }
+  },
+  "49802367": {
+    "gold_rank": 66,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0008,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4789,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4789,
+          "model": null,
+          "output_tokens": 577,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 577,
+      "output_tokens_details": {
+        "thinking_tokens": 303
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No input and expected output pair; only a crash and a log line are described.",
+      "ask_scope": "Single question: whether the context setup should work, answerable by a short explanation.",
+      "failure_description": "Names a concrete symptom: crash on the first glPushMatrix call, plus the exact log message.",
+      "code_focus": "Short, self-contained block of four window hints that bears directly on the problem.",
+      "environment_dependent": "Problem hinges on macOS High Sierra, OS version and an ATI driver's OpenGL version.",
+      "image_only_evidence": "No image is referenced; all evidence is given in text."
+    }
+  },
+  "51305452": {
+    "gold_rank": 67,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0009,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4788,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4788,
+          "model": null,
+          "output_tokens": 864,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 864,
+      "output_tokens_details": {
+        "thinking_tokens": 592
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "broad",
+      "failure_description": "not_applicable",
+      "code_focus": "partial",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input paired with a literal desired output; only the goal is described in words.",
+      "ask_scope": "Asks whether to create a new view or use JS for a multi-part form feature, so it seeks an approach recommendation.",
+      "failure_description": "Describes a feature to build, not an attempt that went wrong.",
+      "code_focus": "Short radio HTML is relevant, but the controller query code is only loosely related to the question.",
+      "environment_dependent": "Problem concerns view and form behaviour in code, not the asker's installation or deployment.",
+      "image_only_evidence": "The post contains no images at all."
+    }
+  },
+  "70191431": {
+    "gold_rank": 68,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0006,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4900,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4900,
+          "model": null,
+          "output_tokens": 275,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 275,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "vague",
+      "code_focus": "partial",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input data or literal expected output; only a described goal of collapsing groups.",
+      "ask_scope": "Single clear ask: collapse other groups when one is clicked, a narrow jQuery fix.",
+      "failure_description": "Says only 'tried many things', no observable symptom of the failure is named.",
+      "code_focus": "Whole script plus a large HTML markup block; the relevant click handler is only partly the problem.",
+      "environment_dependent": "Problem is about jQuery click behaviour in code, reproducible from the post.",
+      "image_only_evidence": "No images referenced; all evidence is in text and code."
+    }
+  },
+  "73414326": {
+    "gold_rank": 69,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0007,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4486,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4486,
+          "model": null,
+          "output_tokens": 488,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 488,
+      "output_tokens_details": {
+        "thinking_tokens": 232
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Input list shown, but the desired resources per name are never written out as an output.",
+      "ask_scope": "Single fix asked: getting the for_each error to go away with a list input.",
+      "failure_description": "Quotes the exact Terraform error text naming the tuple type.",
+      "code_focus": "Two short blocks, both directly bearing on the for_each and locals problem.",
+      "environment_dependent": "Pure Terraform configuration problem; no installs, versions, or deployment setup described.",
+      "image_only_evidence": "No images in the post; error and code are all in text."
+    }
+  },
+  "53357979": {
+    "gold_rank": 70,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0008,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4402,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4402,
+          "model": null,
+          "output_tokens": 638,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 638,
+      "output_tokens_details": {
+        "thinking_tokens": 403
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Input shown, but desired output only described in words, not written out.",
+      "ask_scope": "One specific operation, max in a position plus position 0; the better-way aside is minor.",
+      "failure_description": "How-to question; no failed attempt or error is reported.",
+      "code_focus": "Single short indented data literal that bears directly on the stated problem.",
+      "environment_dependent": "Problem is about list manipulation, reproducible from the post alone.",
+      "image_only_evidence": "No images in the post."
+    }
+  },
+  "57530530": {
+    "gold_rank": 71,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0009,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4968,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4968,
+          "model": null,
+          "output_tokens": 876,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 876,
+      "output_tokens_details": {
+        "thinking_tokens": 593
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "multiple",
+      "failure_description": "concrete",
+      "code_focus": "partial",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input paired with a literal expected output; only code and described behaviour.",
+      "ask_scope": "Asks why props show undefined, why the page reloads on submit, and how to re-send the API call.",
+      "failure_description": "Names observable symptoms: functions show as undefined in devtools, form reloads on submit.",
+      "code_focus": "Short fragments of relevant code, but the Navbar and Form parts are missing and the full code is in a gist.",
+      "environment_dependent": "Problem is about component props and event handling in code, not the asker's setup.",
+      "image_only_evidence": "No images are referenced; all evidence is in the text and code."
+    }
+  },
+  "66404888": {
+    "gold_rank": 72,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0008,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 5110,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 5110,
+          "model": null,
+          "output_tokens": 613,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 613,
+      "output_tokens_details": {
+        "thinking_tokens": 349
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "partial",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Input 'ES' given, but the desired output for the second service is never written out.",
+      "ask_scope": "Single ask: how to pass SOAP header values from PHP, answerable by a short fix.",
+      "failure_description": "Exact SOAP error text quoted: object has no 'TipoDocumento' property.",
+      "code_focus": "Relevant request code and XML, but includes a working example unrelated to the failure.",
+      "environment_dependent": "Problem is about SOAP request structure in code, not the asker's own setup.",
+      "image_only_evidence": "No images are referenced in the post."
+    }
+  },
+  "59907596": {
+    "gold_rank": 73,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0009,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 5571,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 5571,
+          "model": null,
+          "output_tokens": 719,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 719,
+      "output_tokens_details": {
+        "thinking_tokens": 432
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "partial",
+      "environment_dependent": "no",
+      "image_only_evidence": "yes"
+    },
+    "reasons": {
+      "worked_example": "No concrete input with a literal desired output; only a symptom and entity code are given.",
+      "ask_scope": "Single fix for rows being updated after insert, stated in prose; a short answer could resolve it.",
+      "failure_description": "Observable symptom named: inserted rows get updated automatically, with no error.",
+      "code_focus": "Entity classes are relevant but long and fragmentary, with unrelated fields and missing parts.",
+      "environment_dependent": "Problem concerns JPA entity mapping and cascade behaviour, reproducible from the code.",
+      "image_only_evidence": "The update queries that show the problem appear only in an image, not in text."
+    }
+  },
+  "55208667": {
+    "gold_rank": 74,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0006,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4503,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4503,
+          "model": null,
+          "output_tokens": 271,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 271,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "broad",
+      "failure_description": "vague",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "yes"
+    },
+    "reasons": {
+      "worked_example": "No concrete input or literal desired output written; symbols only shown as images.",
+      "ask_scope": "Asks for a general approach to classify 30+ symbols, a recommendation rather than one fix.",
+      "failure_description": "Only says approaches 'are not giving proper results' with no observable symptom described.",
+      "code_focus": "No code is included in the post at all.",
+      "environment_dependent": "Problem concerns image analysis logic, not the asker's installation or deployment setup.",
+      "image_only_evidence": "Symbols to detect and the thresholding issue are only shown in linked images, not described in text."
+    }
+  },
+  "66116135": {
+    "gold_rank": 75,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0007,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4347,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4347,
+          "model": null,
+          "output_tokens": 521,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 521,
+      "output_tokens_details": {
+        "thinking_tokens": 268
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "not_applicable",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No input or desired output is written out; only the symptom is described.",
+      "ask_scope": "Body states one problem in its own words: placeholder not visible on Android.",
+      "failure_description": "Named symptom: placeholder not visible in the dropdown on Android.",
+      "code_focus": "The post contains no code block or pasted code.",
+      "environment_dependent": "Problem is tied to a specific platform: Android app versus iOS and desktop.",
+      "image_only_evidence": "Screenshot illustrates a symptom that the text already describes in words."
+    }
+  },
+  "48584531": {
+    "gold_rank": 76,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0006,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4411,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4411,
+          "model": null,
+          "output_tokens": 259,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 259,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input data or literal expected output is written in text; only a described goal.",
+      "ask_scope": "One specific question: how to get the chart entry at a touch position.",
+      "failure_description": "No failed attempt or error is reported; it is a how-to question.",
+      "code_focus": "The post contains no code block or pasted code.",
+      "environment_dependent": "Problem concerns getting touch-to-entry mapping in code, not the asker's setup.",
+      "image_only_evidence": "Image is a mockup of the desired interaction; the text describes the goal fully."
+    }
+  },
+  "69437052": {
+    "gold_rank": 77,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0008,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4640,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4640,
+          "model": null,
+          "output_tokens": 615,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 615,
+      "output_tokens_details": {
+        "thinking_tokens": 346
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "partial",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and no literal desired output written; only a goal in words.",
+      "ask_scope": "Single specific ask: swap the dropdown arrow icon while keeping behaviour.",
+      "failure_description": "Names the symptom: remove and open/close functionality disappears when adding endAdornment.",
+      "code_focus": "One relevant component block, but includes unrelated props and is not runnable on its own.",
+      "environment_dependent": "Problem is about component code and icon props, reproducible from the post.",
+      "image_only_evidence": "Image shows the default arrow; the text already states the icon being replaced."
+    }
+  },
+  "68759793": {
+    "gold_rank": 78,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0009,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4978,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4978,
+          "model": null,
+          "output_tokens": 780,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 780,
+      "output_tokens_details": {
+        "thinking_tokens": 491
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "partial",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No literal input data given; the wanted result is only a column name, not an input/output pair.",
+      "ask_scope": "Single question: how to change the returned column name to results.",
+      "failure_description": "Observable symptom named: the column comes back labelled find_classes instead of results.",
+      "code_focus": "Complete function pasted; the problem sits in the final SELECT alias, while sorting and paging code is unrelated.",
+      "environment_dependent": "Problem is about SQL column aliasing in a function, reproducible from the post; no setup or install issue.",
+      "image_only_evidence": "Text itself describes the returned column named find_classes, so the screenshot only illustrates."
+    }
+  },
+  "73650942": {
+    "gold_rank": 79,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0008,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4681,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4681,
+          "model": null,
+          "output_tokens": 631,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 631,
+      "output_tokens_details": {
+        "thinking_tokens": 364
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input paired with a literal expected output; only code and an error.",
+      "ask_scope": "Single fix sought: why the key fails in Python but works in Postman.",
+      "failure_description": "Names the exact 401 error text and the Unauthorized reason in the body.",
+      "code_focus": "Short, self-contained snippet showing only the API call that fails.",
+      "environment_dependent": "Problem is the library call and key handling, reproducible from the code, not an install or deployment issue.",
+      "image_only_evidence": "Error is also quoted in full as text in the exception block, so the image is not needed."
+    }
+  },
+  "69925081": {
+    "gold_rank": 80,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0009,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4714,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4714,
+          "model": null,
+          "output_tokens": 929,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 929,
+      "output_tokens_details": {
+        "thinking_tokens": 646
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "multiple",
+      "failure_description": "vague",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No input and desired output are written out; only code and a goal description appear.",
+      "ask_scope": "Asks how to wire the reset button and also how to drive start, checkbox and slider from GridView.",
+      "failure_description": "Only says it cannot find a way to access the listener; no error or symptom named.",
+      "code_focus": "Two short snippets, the listener and a stub GridView class, both bear on the access problem.",
+      "environment_dependent": "Problem is about Java view and listener wiring, reproducible from the post without setup details.",
+      "image_only_evidence": "Screenshots show layout and component tree; the text describes the controls and the problem stands without them."
+    }
+  },
+  "55283908": {
+    "gold_rank": 81,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.001,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4611,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4611,
+          "model": null,
+          "output_tokens": 1030,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 1030,
+      "output_tokens_details": {
+        "thinking_tokens": 755
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "yes",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Sent command AT RV with the expected output `>11.9V` written literally.",
+      "ask_scope": "Single request for a fix to get clean answers from the ELM.",
+      "failure_description": "Names the symptom: broken, split answers, with the actual output shown in text.",
+      "code_focus": "Only a short list of AT init commands pasted; no app code, which is relevant but not a full dump.",
+      "environment_dependent": "Problem is about how the app handles data received from the dongle, reproducible from the post.",
+      "image_only_evidence": "The screenshot repeats the output already given as text, so the text carries the evidence."
+    }
+  },
+  "70514973": {
+    "gold_rank": 82,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0009,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4927,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4927,
+          "model": null,
+          "output_tokens": 743,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 743,
+      "output_tokens_details": {
+        "thinking_tokens": 461
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input paired with a literal expected output; only code and a goal described in words.",
+      "ask_scope": "One fix sought: why threads return None and how to parallelize; a single answer covers it.",
+      "failure_description": "Names an observable symptom: the returned list contents are all None.",
+      "code_focus": "Short snippets bearing directly on threading; parse body is a stub but the problem lives in call_that_guy.",
+      "environment_dependent": "Problem concerns threading and shared list behaviour, reproducible from the code alone.",
+      "image_only_evidence": "Image is a diagram of the desired flow; the text already states the goal in words."
+    }
+  },
+  "64939032": {
+    "gold_rank": 83,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0007,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4413,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4413,
+          "model": null,
+          "output_tokens": 539,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 539,
+      "output_tokens_details": {
+        "thinking_tokens": 265
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No input and desired output are written out; only a documentation location is asked about.",
+      "ask_scope": "One ask: where the definitions are, which a short explanation resolves; the 'what they do' part follows from it.",
+      "failure_description": "No failed attempt or error is reported; it is a documentation navigation question.",
+      "code_focus": "The post contains no code block or pasted code.",
+      "environment_dependent": "The problem is reading the online docs, not the asker's installation, versions or setup.",
+      "image_only_evidence": "The image shows the docs page; the quoted 'Defined in' text carries the question in words."
+    }
+  },
+  "69966579": {
+    "gold_rank": 84,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0008,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4417,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4417,
+          "model": null,
+          "output_tokens": 705,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 705,
+      "output_tokens_details": {
+        "thinking_tokens": 412
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "not_applicable",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input or literal desired output written out anywhere in the post.",
+      "ask_scope": "Single problem: unwanted empty space and overlap after upgrade, fixable with a short answer.",
+      "failure_description": "Symptoms named in observable terms: empty space under title, navigation bar overlapping scroll view.",
+      "code_focus": "Post contains no code, only screenshots and prose.",
+      "environment_dependent": "Problem follows upgrading Xcode 12 to 13 and iOS 15, a setup and version issue.",
+      "image_only_evidence": "Text itself describes the empty space and overlap; screenshots only illustrate the symptom."
+    }
+  },
+  "64698368": {
+    "gold_rank": 85,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0008,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4411,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4411,
+          "model": null,
+          "output_tokens": 781,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 781,
+      "output_tokens_details": {
+        "thinking_tokens": 509
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Desired Drive output is never written out; only the request URL is given as input.",
+      "ask_scope": "Single how-to ask: how to pass the URL in the Mule 4 HTTP connector.",
+      "failure_description": "Names a specific 'not found' error, so the failure is described in observable terms.",
+      "code_focus": "Short, relevant request block with headers; nothing unrelated is pasted.",
+      "environment_dependent": "The problem is how to set the URL in the connector, reproducible from the post.",
+      "image_only_evidence": "The text states the error as 'not found', so the screenshot is only illustrative."
+    }
+  },
+  "63628718": {
+    "gold_rank": 86,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0008,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4887,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4887,
+          "model": null,
+          "output_tokens": 698,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 698,
+      "output_tokens_details": {
+        "thinking_tokens": 416
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Policy JSON given, but no concrete input data and no literal expected output written out.",
+      "ask_scope": "Single question: why the negative-logic policy does not deny access; a short explanation resolves it.",
+      "failure_description": "Observable symptom named: access is still granted instead of denied, even after switching logic.",
+      "code_focus": "One short JSON policy block, all of it bearing on the stated problem.",
+      "environment_dependent": "Problem is about policy logic behaviour reproducible from the post, not installation or deployment setup.",
+      "image_only_evidence": "Text states the policy JSON and the observed access result, so images only illustrate."
+    }
+  },
+  "71390078": {
+    "gold_rank": 87,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0008,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4611,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4611,
+          "model": null,
+          "output_tokens": 748,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 748,
+      "output_tokens_details": {
+        "thinking_tokens": 486
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "vague",
+      "code_focus": "focused",
+      "environment_dependent": "yes",
+      "image_only_evidence": "yes"
+    },
+    "reasons": {
+      "worked_example": "No input data or literal expected output is written out; only code and an error image.",
+      "ask_scope": "Single specific ask: how to split UDPOS by fields in the current version.",
+      "failure_description": "Only says it gives an error; the error text appears solely in an image.",
+      "code_focus": "Short block; the split call is the core, with minor unrelated seed and import lines.",
+      "environment_dependent": "Post cites PyTorch 1.10.2 and asks about the current version, a versioning issue.",
+      "image_only_evidence": "The error message is only shown in an image with no text describing it."
+    }
+  },
+  "50907776": {
+    "gold_rank": 88,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0006,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4483,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4483,
+          "model": null,
+          "output_tokens": 287,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 287,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "vague",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "yes"
+    },
+    "reasons": {
+      "worked_example": "No concrete input data or literal expected output written; only the goal of highlighting the whole bar.",
+      "ask_scope": "One specific fix: highlight the complete stacked bar instead of one segment.",
+      "failure_description": "Says only 'not highlighting complete bar' with no exact symptom described in text.",
+      "code_focus": "Short click handler snippet containing the relevant highlighting logic, with minimal unrelated code.",
+      "environment_dependent": "Problem is about D3 click-handler code behaviour, reproducible from the post.",
+      "image_only_evidence": "Key visual of the bar highlight problem is only in the linked image, not described in text."
+    }
+  },
+  "73675257": {
+    "gold_rank": 89,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0008,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4484,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4484,
+          "model": null,
+          "output_tokens": 689,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 689,
+      "output_tokens_details": {
+        "thinking_tokens": 403
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "vague",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input or literal desired output is written out anywhere in the post.",
+      "ask_scope": "Single specific ask: how to give the Autocomplete listbox a custom scrollbar style.",
+      "failure_description": "Says only that the research and attempts did not work, with no symptom or error described.",
+      "code_focus": "One short relevant ListboxProps snippet bearing directly on the scrollbar question.",
+      "environment_dependent": "Concerns component styling in code, not installation, deployment or the asker's setup.",
+      "image_only_evidence": "Image illustrates the scrollbar; the text alone states the goal, so nothing essential is only in the image."
+    }
+  },
+  "73012994": {
+    "gold_rank": 90,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0009,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 5259,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 5259,
+          "model": null,
+          "output_tokens": 834,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 834,
+      "output_tokens_details": {
+        "thinking_tokens": 557
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "vague",
+      "code_focus": "partial",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Desired alert output is described only in words; no literal input and output pair is written.",
+      "ask_scope": "One specific ask: show phone and extension in an alert on button click.",
+      "failure_description": "Only 'having trouble getting information' with no concrete symptom or error text.",
+      "code_focus": "Full HTML page plus JS; most of it relates to the click handler, with some unneeded markup.",
+      "environment_dependent": "Problem is JavaScript event handling and DOM logic reproducible from the post, not the asker's setup.",
+      "image_only_evidence": "Image is attached, but the text already states the goal and the code is in text."
+    }
+  },
+  "64044429": {
+    "gold_rank": 91,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0009,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4816,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4816,
+          "model": null,
+          "output_tokens": 852,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 852,
+      "output_tokens_details": {
+        "thinking_tokens": 546
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input paired with a literal desired output; only the goal is described.",
+      "ask_scope": "Single question: whether the requests run in parallel or serially, answerable with a short explanation.",
+      "failure_description": "Observed serial request timing in devtools is named as a concrete symptom, though no error is shown.",
+      "code_focus": "Short, relevant redux actions and year array; all code bears on the parallel-versus-serial question.",
+      "environment_dependent": "Problem concerns how the code's requests are dispatched, reproducible from the post; local testing mention is incidental.",
+      "image_only_evidence": "Devtools screenshot illustrates a symptom that the text already describes as a queue; not essential evidence."
+    }
+  },
+  "73623911": {
+    "gold_rank": 92,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.001,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 6019,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 6019,
+          "model": null,
+          "output_tokens": 785,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 785,
+      "output_tokens_details": {
+        "thinking_tokens": 510
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "partial",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Desired output only shown in an image; no literal expected path text is written out.",
+      "ask_scope": "Single clear ask: get full paths of dropped files into the list; one fix settles it.",
+      "failure_description": "Names observable symptoms: fileName shows only names, and multiple files land in one row.",
+      "code_focus": "Full small files pasted; the relevant dropEvent is one function among boilerplate.",
+      "environment_dependent": "Problem is about Qt drop-event handling in code, reproducible from the post.",
+      "image_only_evidence": "Both wrong and desired results are also described in text; images only illustrate."
+    }
+  },
+  "71675281": {
+    "gold_rank": 93,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.001,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4838,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4838,
+          "model": null,
+          "output_tokens": 1094,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 1094,
+      "output_tokens_details": {
+        "thinking_tokens": 810
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "partial",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input with a literal desired output; only the map image and code are given.",
+      "ask_scope": "Single yes/no feasibility question: can patches be made to fit the parcels.",
+      "failure_description": "Names an observable symptom: patches stay square and do not match the real parcels.",
+      "code_focus": "Moderate-length code that is relevant to attributes, but the square-patch problem lives outside it.",
+      "environment_dependent": "Problem concerns NetLogo code and patch geometry, not the asker's installation or setup.",
+      "image_only_evidence": "Map image illustrates the desired parcel layout; the text describes the problem on its own."
+    }
+  },
+  "53406755": {
+    "gold_rank": 94,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0006,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4288,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4288,
+          "model": null,
+          "output_tokens": 249,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 249,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "yes"
+    },
+    "reasons": {
+      "worked_example": "No concrete input or literal output is written; the desired look exists only in an image.",
+      "ask_scope": "Single question: how to split the navigation bar into two colors, answerable with a short fix.",
+      "failure_description": "No failed attempt is described; it is a how-to question.",
+      "code_focus": "The post contains no code.",
+      "environment_dependent": "The problem is about UI styling in code, not the asker's setup.",
+      "image_only_evidence": "The desired two-color appearance is shown only in the linked image, not described in text."
+    }
+  },
+  "56504817": {
+    "gold_rank": 95,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0008,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4675,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4675,
+          "model": null,
+          "output_tokens": 642,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 642,
+      "output_tokens_details": {
+        "thinking_tokens": 362
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input paired with a literal desired output; only a 404 is described.",
+      "ask_scope": "Single problem: test page returns 404 after migration; a short fix settles it.",
+      "failure_description": "Names an observable symptom: a 404 on the web app test page.",
+      "code_focus": "Only the short Host element config is pasted, and it bears directly on the context path issue.",
+      "environment_dependent": "Concerns migrating between Tomcat versions and hosts, plus Tomcat deployment configuration.",
+      "image_only_evidence": "The 404 and the setup are described in text; the docBase screenshot only illustrates."
+    }
+  },
+  "69483166": {
+    "gold_rank": 96,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0009,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 5287,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 5287,
+          "model": null,
+          "output_tokens": 745,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 745,
+      "output_tokens_details": {
+        "thinking_tokens": 469
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "multiple",
+      "failure_description": "concrete",
+      "code_focus": "partial",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input paired with a literal desired output is written out.",
+      "ask_scope": "Two independent problems plus separate questions about restricting area and window flags.",
+      "failure_description": "Named symptoms: subwindow lost below menu bar, flags vanish after maximizing.",
+      "code_focus": "Short relevant snippets, but header and menu code are unrelated and flag handling is absent.",
+      "environment_dependent": "Problem concerns QMdiSubWindow behaviour in code, reproducible from the post.",
+      "image_only_evidence": "Image illustrates the window moving; the text already describes the same symptom."
+    }
+  },
+  "59947919": {
+    "gold_rank": 97,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0006,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4452,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4452,
+          "model": null,
+          "output_tokens": 283,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 283,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "vague",
+      "code_focus": "not_applicable",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and literal desired output written out; only a Codepen link and a blank display.",
+      "ask_scope": "Single question about how to get the Codepen code working in a component; a short answer resolves it.",
+      "failure_description": "Only says the page shows the code blank; no error text or specific symptom described.",
+      "code_focus": "No code block or pasted code of two lines or more; only described steps.",
+      "environment_dependent": "Problem hinges on how the asker integrates files into their own component and project setup.",
+      "image_only_evidence": "Image is a screenshot of the blank result; the text describes the blank display, so nothing essential is image-only."
+    }
+  },
+  "57437460": {
+    "gold_rank": 98,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0008,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4652,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4652,
+          "model": null,
+          "output_tokens": 685,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 685,
+      "output_tokens_details": {
+        "thinking_tokens": 409
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input and literal desired output are written out; the goal is only described in words.",
+      "ask_scope": "One specific goal: removing unavailable test forms from Form Runner; the closing thanks is filler.",
+      "failure_description": "Names an observable symptom: the form still persists in the form runner after the SQL.",
+      "code_focus": "One self-contained SQL query that bears directly on the stated problem.",
+      "environment_dependent": "Mentions a specific Orbeon version and asks about database rows in their own deployment.",
+      "image_only_evidence": "Screenshot is only illustrative; the text already states the form persists."
+    }
+  },
+  "73288048": {
+    "gold_rank": 99,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0006,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4477,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4477,
+          "model": null,
+          "output_tokens": 287,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 287,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "vague",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "yes"
+    },
+    "reasons": {
+      "worked_example": "No concrete input or literal desired output is written anywhere in the post.",
+      "ask_scope": "Single ask: how to log or email error details generically when debug is off, answerable by a config or handler fact.",
+      "failure_description": "Errors are only shown in an image; text says just that a 500 screen appears, no symptom named.",
+      "code_focus": "The post contains no code blocks or pasted code at all.",
+      "environment_dependent": "The question is about a general Laravel logging mechanism, not installing, deploying or configuring the asker's own setup.",
+      "image_only_evidence": "The actual error details are only in the linked screenshot, not written out in the text."
+    }
+  },
+  "58762459": {
+    "gold_rank": 100,
+    "rubric_version": "fd79297623f7",
+    "served_by": "claude-haiku-5-5",
+    "effort": "medium",
+    "usd": 0.0008,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4387,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4387,
+          "model": null,
+          "output_tokens": 782,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 782,
+      "output_tokens_details": {
+        "thinking_tokens": 508
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "not_applicable",
+      "environment_dependent": "yes",
+      "image_only_evidence": "yes"
+    },
+    "reasons": {
+      "worked_example": "No concrete input or literal desired output is written anywhere in the post.",
+      "ask_scope": "Single build-failure fix sought; the request is one specific problem.",
+      "failure_description": "Exact error text is named in the title, though the body only shows the full errors in an image.",
+      "code_focus": "Post contains no code block or pasted code, only a command and prose.",
+      "environment_dependent": "Problem is a failing Android build via Ionic/Cordova, tied to the asker's build setup and dependencies.",
+      "image_only_evidence": "Full error details are only in the screenshot; the body text does not give them."
+    }
+  }
+}
