@@ -54,14 +54,16 @@ def load_questions() -> list[dict]:
     return rows
 
 
-def review_data(models: list[str], questions: list[dict], gold_set: str, rubric: dict) -> dict:
+def review_data(models: list[str], questions: list[dict], gold_set: str, rubric: dict, partial: bool) -> dict:
     """Both models' level and reason per question and label; every question must be labeled on this rubric."""
     out = {"models": [{"id": m, "short": m.split("/")[-1].split("-")[0]} for m in models], "q": {}}
     runs = [read_json(MODEL_OUT / f"{m.replace('/', '_')}_{gold_set}.json") for m in models]
     for m, run in zip(models, runs):
         missing = [q["question_id"] for q in questions if str(q["question_id"]) not in run]
-        if missing:
+        if missing and not partial:
             sys.exit(f"{m} has not labeled {len(missing)} {gold_set} questions (e.g. {missing[0]}); run it first.")
+    if partial:  # only the questions both models have labeled so far; the rest join on a rebuild
+        questions[:] = [q for q in questions if all(str(q["question_id"]) in run for run in runs)]
         stale = {d["rubric_version"] for d in run.values()} - {rubric["version"]}
         if stale:
             sys.exit(f"{m} labeled on rubric {', '.join(stale)}, not the current {rubric['version']}.")
@@ -76,6 +78,9 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("gold_set", choices=sorted(SETS))
     parser.add_argument("--review", help="two model ids, comma-separated, whose labels the hand labeler reviews")
+    parser.add_argument("--partial", action="store_true",
+                        help="review only: include the questions both models have labeled so far (rebuild later; "
+                             "decisions stay in the browser)")
     args = parser.parse_args()
     gold_set = args.gold_set
     questions = [q for q in load_questions() if q["gold_set"] == gold_set]
@@ -87,7 +92,7 @@ def main() -> None:
         "set": gold_set,
         "rubric_version": rubric["version"],
         "rubric_text": rubric["text"],
-        "review": review_data(models, questions, gold_set, rubric) if models else None,
+        "review": review_data(models, questions, gold_set, rubric, args.partial) if models else None,
         "labels": [{k: l[k] for k in ("key", "title", "levels", "section")} for l in rubric["labels"]],
         "questions": [
             {
@@ -287,6 +292,14 @@ function whyLine(who, level, reason) {
   return d;
 }
 
+// "why" / "rule" sections stay open across redraws (picking a level redraws the panel) until closed by hand.
+const opened = new Set();
+function keepOpen(id, title) {
+  const d = document.createElement('details'); d.innerHTML = `<summary>${title}</summary>`; d.open = opened.has(id);
+  d.addEventListener('toggle', () => { d.open ? opened.add(id) : opened.delete(id); });
+  return d;
+}
+
 function drawLabels() {
   const q = D.questions[cur], e = state[q.id] || {};
   const panel = document.getElementById('labelPanel'); panel.innerHTML = '';
@@ -294,7 +307,8 @@ function drawLabels() {
     const split = R && isSplit(q, l);
     const box = document.createElement('div');
     box.className = 'label' + (i === activeLabel ? ' active' : '') + (R ? (split ? ' split' : ' agree') : '');
-    box.onclick = () => { activeLabel = i; drawLabels(); };
+    // A click inside "why" / "rule" only opens it: redrawing the panel would close it again.
+    box.onclick = ev => { if (ev.target.closest('details')) return; activeLabel = i; drawLabels(); };
     const name = document.createElement('div'); name.className = 'name'; name.textContent = `${i + 1}. ${l.title}`;
     if (R) {
       const st = document.createElement('span'); st.className = 'state';
@@ -316,9 +330,9 @@ function drawLabels() {
       const why = document.createElement('div'); why.className = 'why';
       votes(q, l).forEach(([v, r], k) => why.appendChild(whyLine(R.models[k].short, v, r)));
       if (split) box.appendChild(why);
-      else { const d = document.createElement('details'); d.innerHTML = '<summary>why</summary>'; d.appendChild(why); box.appendChild(d); }
+      else { const d = keepOpen(`${l.key}:why`, 'why'); d.appendChild(why); box.appendChild(d); }
     }
-    const det = document.createElement('details'); det.innerHTML = '<summary>rule</summary>';
+    const det = keepOpen(`${l.key}:rule`, 'rule');
     const rule = document.createElement('div'); rule.className = 'rule'; rule.innerHTML = render(l.section);
     det.appendChild(rule);
     box.append(det); panel.appendChild(box);

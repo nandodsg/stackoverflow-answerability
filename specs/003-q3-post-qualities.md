@@ -122,7 +122,9 @@ each split (`labels/gold_page.py scoring --review ...`, saved as `gold_labels_sc
 `<label>__decision` column). Reviewing anchors the reviewer on the suggestion, so this gold set is human-reviewed model
 labels, not independent hand labels: the share of labels changed is reported with it, and the 20 blind practice labels
 remain the one independent human check. Candidate labelers for the analysis set (Claude models, OpenAI GPT-6 Luna,
-TypeSafe Jev) are scored against the reviewed set.
+TypeSafe Jev) are scored against the reviewed set. The reference runs cost US$ 2.94 for both models on all 120
+questions (Opus on the practice set, US$ 0.43); on the 100 scoring questions the two agree on 567 of 600 labels
+(kappa 0.76 to 0.88 per label, 0.37 on the image label, whose positives are rare), leaving 33 tie-breaks.
 
 Rule-based features and quality labels are not competing methods. Rule-based features cover every question and
 are reproducible in `queries/q3.sql`; labels cover the sample and are stored as a table. They meet in two checks: a
