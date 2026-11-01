@@ -233,15 +233,38 @@ WHERE tag = 'python'
 <section class="chapter p3" id="c7" data-title="P3 · Other qualities">
   <div class="inner stack">
     <p class="eyebrow" data-reveal>{ <span class="label">07 · prompt 3</span> }</p>
-    <h2 data-reveal>What else predicts an <span class="mark">answer</span>?</h2>
-    <p class="placeholder-note" data-reveal>Placeholder: rule-based effects, then the quality labels (blind practice result, reviewed gold set, honest framing). Waits for the final P3 marts.</p>
+    <h2 data-reveal>What else goes with an <span class="mark">answer</span>?</h2>
+    <div class="cols answer">
+    <div class="stack">
+    <p data-reveal>With the tags taken out, the strongest quality is a worked example: a concrete input and the exact output the asker wants, both written out. 60.0% of those questions end with an accepted answer, against 42.8% without (+17.2 points, the same sign in every year 2018–2021). The strongest negative is a question about the asker's own setup (installs, versions, deploys): 32.2% against 47.1%. Among the rules, a code block goes with +11.8 points and an asker with 20+ earlier questions with +16.6; posting time and "thanks in advance" barely matter. The P1 pattern again: what gets accepted can be solved at someone else's desk.</p>
+    <p class="muted" data-reveal>Rules on all 7.16 million questions of 2018–2021, measured on the text as first posted; labels are one model's judgments (TypeSafe Jev) on 30,000 random questions. Correlation, not cause. Full tables and caveats: README, section 3. The panel queries a snapshot of the dbt mart: each label level's accepted rate next to its reference level's. Try <code>l.version = 'never_edited'</code>, then Run.</p>
     <div class="strip" data-reveal>
       <p class="strip-title">{ HOW WE KNOW }</p>
       <div class="chips">
-        <details class="chip" name="know-p3"><summary><span>Evidence</span><span class="tag">EDA</span></summary><div class="chip-body">Placeholder.</div></details>
-        <details class="chip" name="know-p3"><summary><span>Guard</span><span class="tag">tests</span></summary><div class="chip-body">Placeholder.</div></details>
-        <details class="chip" name="know-p3"><summary><span>Cost</span><span class="tag">GB billed</span></summary><div class="chip-body">Placeholder.</div></details>
+        <details class="chip" name="know-p3"><summary><span>Evidence</span><span class="tag">EDA</span></summary><div class="chip-body">Effects must keep their sign in each of 2018, 2019, 2020 and 2021: 37 of the 43 rule effects do, and the other 6 are within 0.2 points of zero. Inside the 20 largest tags they barely move (a code block: +11.8 → +11.3). Against the rules, a worked example keeps +15.5 among questions with the same code and length; image-only evidence falls to −1.7, and 46% of its "yes" labels have no image at all, so I don't lean on it.</div></details>
+        <details class="chip" name="know-p3"><summary><span>Guard</span><span class="tag">tests</span></summary><div class="chip-body">The gold set is the reference models' labels with my check on the ties: I changed 0 of the 567 labels they agreed on, so Jev's kappa (0.71–0.98, mean 0.80) is optimistic. The only blind check is the practice round, 20 questions labeled by hand before any model. Label noise pulls effects towards zero, so they are probably understated. A graph test fails if any model but the scans reads the text; a warn test comparing original and current text raises one warning.</div></details>
+        <details class="chip" name="know-p3"><summary><span>Cost</span><span class="tag">GB billed</span></summary><div class="chip-body">The original text came from one 106 GiB read of <code>post_history.text</code> (plus 35 GiB for the current body), run once into stored tables. <code>queries/q3.sql</code> reads those tables and the label seed: about 38 GiB for its eight results. Labeling 30,000 questions with Jev: US$ 3.82 (about US$ 10.65 for every model call in the project).</div></details>
       </div>
+    </div>
+    </div>
+    <div class="sql-panel" data-reveal data-panel data-render="table" data-table="mart_p3_label_rates">
+      <div class="sql-head"><span>live SQL · DuckDB-WASM</span><span class="sql-status" data-state="loading">loading engine…</span></div>
+      <textarea class="sql-editor" spellcheck="false" aria-label="SQL query for prompt 3">SELECT l.feature || ' · ' || split_part(l.bucket, ': ', 2) AS level,
+       round(r.accepted_rate * 100, 1) AS reference_pct,
+       round(l.accepted_rate * 100, 1) AS accepted_pct
+FROM mart_p3_label_rates l
+JOIN mart_p3_label_rates r USING (version, feature, cohort)
+WHERE r.is_reference_bucket AND NOT l.is_reference_bucket
+  AND l.version = 'original' AND l.cohort = '2018-2021'
+  AND l.n_questions >= 385
+ORDER BY accepted_pct DESC;</textarea>
+      <div class="sql-actions">
+        <button type="button" class="btn primary run">Run</button>
+        <button type="button" class="btn reset">Reset</button>
+        <span class="meta"></span>
+      </div>
+      <div class="sql-out" aria-live="polite"></div>
+    </div>
     </div>
   </div>
 </section>

@@ -482,7 +482,252 @@ Run it yourself: [`queries/q2.sql`](queries/q2.sql) (BigQuery console, about 7 G
 
 ## 3. Non-tag qualities that correlate with answers
 
-_TBD — spec: [`specs/003`](specs/003-q3-post-qualities.md)_
+P1 ended on a hunch: the tags on top are problems you can paste and test in a minute, and the tags at the bottom depend on
+a machine the person answering doesn't have. P3 puts that hunch to the test with the tags taken out. Two kinds of
+qualities go in: the ones a rule can count on every question (a code block, the length, the links, when it was posted,
+who asked it), and the ones only a reader can judge, like "is the output the asker wants actually written out?". For the
+second kind a language model read 30,000 questions under a written rubric, which brings its own doubts (more on them
+below).
+
+### The short answer
+
+- **The strongest quality I found is a worked example**: a concrete input and the exact output the asker wants, both
+  written out. Questions that have one end with an accepted answer **60.0%** of the time, against 42.8% without (**+17.2
+  points**), with the same sign in each year from 2018 to 2021. It barely shrinks inside the same topic (+16.6) or among
+  questions with the same code and length (+15.5), so it is not just "has code" under another name.
+- **The strongest negative is a question about the asker's own setup** (installing or upgrading, versions, deploying, a
+  specific machine or device): 32.2% against 47.1% (**−14.9 points**), also stable every year, and still −12.3 among
+  questions with the same code and length.
+- **Code and experience go with acceptance too.** A code block +11.8 points (36.0% → 47.8%), three or more blocks +14.5,
+  inline code +9.3. An asker with 20 or more earlier questions +16.6 against a first question, an account older than
+  three years +13.0 against one created that day.
+- **Smaller negatives**: a broad ask (a design, "the best way", a recommendation) −9.5, code that is relevant but
+  bloated −7.1, error text in the post −3.4, a title of 80+ characters −3.6, five or more tags −3.1.
+- **Things that barely matter**: when it was posted (every hour and weekday bucket is within 1.8 points, good news for
+  whoever posts at 3 a.m.), a greeting or "thanks in advance" (−1.0), "what I tried" phrases (+1.9), and how the failure
+  is described: "it doesn't work" and the exact symptom get the same accepted rate (−0.1).
+
+For comparison, all 2018–2021 questions together: **44.3%** accepted (3,170,421 out of 7,157,196) and 80.7% answered.
+
+My reading (association, not cause): it is the P1 pattern again, without the tags. What gets accepted is a question
+someone can solve at their own desk: the input is there, the wanted output is there, the code shown is the code that
+matters. What doesn't is a question whose answer lives on the asker's machine. One more thing the three columns show:
+the rule-based qualities move acceptance far more than answering. A code block adds 3.5 points of answer rate and 12.4
+of accepted among answered, so a well-built question doesn't get many more answers, it gets an answer that works for
+the asker. The judged qualities move both (a worked example: +9.4 answered, +13.6 accepted among answered).
+
+### How I measured it
+
+- **Population**: every question created from 2018 to 2021, four full years, 7,157,196 questions. 2022 is computed too
+  (it is in the marts), but it is partial and censored, so no claim here rests on it.
+- **Original text.** Every text feature is measured on the version the asker posted, from `post_history`, not on today's
+  text. Between 8.9% (2022) and 16.7% (2018) of questions had their title or body first edited *after* the first answer
+  arrived, so today's text can be partly the answer's doing (see "Do edits change it?"). Getting the original text
+  meant one read of `post_history.text`, 106 GiB, done once into a stored table (see the architecture section below).
+- **Only what exists at posting time.** Score, views, comments, today's reputation and later edits all happen after the
+  question, partly *because* of the answer, so they are out.
+- **Fixed buckets and a reference.** Each feature is cut into fixed buckets (the full list is in
+  [`specs/003`](specs/003-q3-post-qualities.md)); the first one is the reference (no / zero / shortest / first question
+  / Monday / 00–05 UTC). The **effect** is a bucket's rate minus the reference's rate, in percentage points, with its 95%
+  margin. Same 385-question floor as P1, for every bucket in every year.
+- **Stable** means the same sign in each of 2018, 2019, 2020 and 2021 on its own, stricter than "holds in two cohorts".
+- **Topic-adjusted**: the same difference measured inside each of the 20 most common primary tags (plus "other"), then
+  averaged. It answers "isn't this just Python questions having more code?".
+- **Accepted rate** is over all questions, with **answer rate** and **accepted among answered** beside it, as in P1 and
+  P2: they tell whether a quality helps the question get any answer, or helps the answer get accepted.
+- **Quality labels.** Six labels defined in a written rubric ([`labels/rubric.md`](labels/rubric.md)): worked example,
+  scope of the ask, failure description, code focus, setup dependence, and key evidence only in an image. TypeSafe Jev
+  labeled **30,000 questions** drawn at random from a 5% text sample (25,451 of them from 2018–2021), for US$ 3.82. The
+  labels go through the same method as the rules, plus one more control, **rules-adjusted**: the effect inside groups
+  with the same "has a code block" and body-length bucket, which shows what a label adds beyond what the rules already
+  count. How Jev was picked, and why its scores are generous, is under "How sure can we be?".
+
+### Rule-based features, original text, 2018–2021
+
+Every question of the four years. The 95% margins are ±0.1 to ±0.3 points on every row (millions of questions per
+bucket), so they are left out of the table.
+
+| Feature | Bucket (vs reference) | Questions | Accepted rate | Accepted rate, points | Topic-adjusted | Answer rate, points | Accepted among answered, points | Same sign 2018, 2019, 2020, 2021 |
+|---|---|---:|---:|---:|---:|---:|---:|:---:|
+| Asker's earlier questions | 20+ (vs first question) | 1,702,941 | 34.8% → 51.3% | **+16.6** | +17.1 | +4.8 | +17.4 | yes |
+| Asker's account age | 3+ years (vs under 1 day) | 2,709,624 | 33.2% → 46.2% | **+13.0** | +14.1 | +2.6 | +14.7 | yes |
+| Code blocks | 3+ (vs 0) | 1,189,889 | 36.0% → 50.5% | **+14.5** | +14.1 | +3.6 | +15.7 | yes |
+| Has a code block | yes (vs no) | 5,030,077 | 36.0% → 47.8% | **+11.8** | +11.3 | +3.5 | +12.4 | yes |
+| Has inline code | yes (vs no) | 2,018,519 | 41.7% → 51.0% | **+9.3** | +9.2 | +1.4 | +10.6 | yes |
+| Body length (characters) | 1000–1999 (vs <500) | 1,981,645 | 40.8% → 46.5% | **+5.8** | +5.2 | -1.7 | +8.2 | yes |
+| Has an image | yes (vs no) | 552,473 | 43.9% → 48.6% | **+4.7** | +4.8 | 0.0 | +5.8 | yes |
+| Title ends with "?" | yes (vs no) | 1,563,572 | 43.8% → 46.1% | **+2.4** | +2.3 | +1.8 | +1.7 | yes |
+| "What I tried" phrases | yes (vs no) | 2,431,364 | 43.7% → 45.5% | **+1.9** | +1.4 | +0.2 | +2.2 | yes |
+| Posted on a weekend | yes (vs no) | 1,303,315 | 44.0% → 45.6% | **+1.6** | +1.5 | +1.4 | +1.0 | yes |
+| Greeting or "thanks in advance" | yes (vs no) | 1,369,832 | 44.5% → 43.5% | **-1.0** | -1.3 | -0.7 | -0.8 | yes |
+| Tags | 5+ (vs 1) | 967,053 | 44.5% → 41.4% | **-3.1** | -3.5 | -5.4 | -0.3 | yes |
+| Error or traceback text | yes (vs no) | 979,996 | 44.8% → 41.4% | **-3.4** | -3.2 | -3.4 | -2.0 | yes |
+| Title length (characters) | 80+ (vs <40) | 1,111,827 | 45.0% → 41.4% | **-3.6** | -3.4 | -3.7 | -2.0 | yes |
+| Body length (characters) | 4000+ (vs <500) | 402,673 | 40.8% → 40.8% | **0.0** | +0.1 | -7.3 | +4.8 | no |
+
+<details>
+<summary>All 43 rule-based effects</summary>
+
+The two "unknown" rows are askers whose account was deleted (or created after the question). They are shown, not read
+as a quality: whether an account gets deleted is only known later.
+
+| Feature | Bucket (vs reference) | Questions | Accepted rate | Accepted rate, points | Topic-adjusted | Answer rate, points | Accepted among answered, points | Same sign 2018, 2019, 2020, 2021 |
+|---|---|---:|---:|---:|---:|---:|---:|:---:|
+| Asker's earlier questions | 1–4 (vs first question) | 2,005,919 | 34.8% → 42.5% | **+7.7** | +7.8 | +2.7 | +8.1 | yes |
+| Asker's earlier questions | 5–19 (vs first question) | 1,713,592 | 34.8% → 47.5% | **+12.7** | +13.0 | +3.8 | +13.5 | yes |
+| Asker's earlier questions | 20+ (vs first question) | 1,702,941 | 34.8% → 51.3% | **+16.6** | +17.1 | +4.8 | +17.4 | yes |
+| Asker's earlier questions | unknown (vs first question) | 144,807 | 34.8% → 53.3% | **+18.5** | +17.9 | +9.5 | +16.3 | yes |
+| Asker's account age | 1–29 days (vs under 1 day) | 517,322 | 33.2% → 43.0% | **+9.8** | +9.5 | +3.8 | +10.0 | yes |
+| Asker's account age | 1–12 months (vs under 1 day) | 1,426,132 | 33.2% → 45.1% | **+11.9** | +11.9 | +3.7 | +12.7 | yes |
+| Asker's account age | 1–3 years (vs under 1 day) | 1,510,390 | 33.2% → 45.9% | **+12.7** | +13.1 | +3.0 | +14.1 | yes |
+| Asker's account age | 3+ years (vs under 1 day) | 2,709,624 | 33.2% → 46.2% | **+13.0** | +14.1 | +2.6 | +14.7 | yes |
+| Asker's account age | unknown (vs under 1 day) | 145,390 | 33.2% → 53.3% | **+20.0** | +19.6 | +9.3 | +18.4 | yes |
+| Code blocks | 1 (vs 0) | 2,357,726 | 36.0% → 45.5% | **+9.5** | +9.0 | +3.2 | +9.9 | yes |
+| Code blocks | 2 (vs 0) | 1,482,462 | 36.0% → 49.2% | **+13.2** | +12.7 | +4.1 | +13.8 | yes |
+| Code blocks | 3+ (vs 0) | 1,189,889 | 36.0% → 50.5% | **+14.5** | +14.1 | +3.6 | +15.7 | yes |
+| Has a code block | yes (vs no) | 5,030,077 | 36.0% → 47.8% | **+11.8** | +11.3 | +3.5 | +12.4 | yes |
+| Has inline code | yes (vs no) | 2,018,519 | 41.7% → 51.0% | **+9.3** | +9.2 | +1.4 | +10.6 | yes |
+| Body length (characters) | 500–999 (vs <500) | 2,187,549 | 40.8% → 45.4% | **+4.6** | +4.1 | -0.6 | +6.0 | yes |
+| Body length (characters) | 1000–1999 (vs <500) | 1,981,645 | 40.8% → 46.5% | **+5.8** | +5.2 | -1.7 | +8.2 | yes |
+| Body length (characters) | 2000–3999 (vs <500) | 957,943 | 40.8% → 44.7% | **+3.9** | +3.5 | -4.1 | +7.6 | yes |
+| Body length (characters) | 4000+ (vs <500) | 402,673 | 40.8% → 40.8% | **0.0** | +0.1 | -7.3 | +4.8 | no |
+| Has an image | yes (vs no) | 552,473 | 43.9% → 48.6% | **+4.7** | +4.8 | 0.0 | +5.8 | yes |
+| Title ends with "?" | yes (vs no) | 1,563,572 | 43.8% → 46.1% | **+2.4** | +2.3 | +1.8 | +1.7 | yes |
+| Title starts with how / why / what... | yes (vs no) | 2,072,115 | 44.0% → 45.1% | **+1.2** | +1.2 | +2.2 | -0.1 | yes |
+| "What I tried" phrases | yes (vs no) | 2,431,364 | 43.7% → 45.5% | **+1.9** | +1.4 | +0.2 | +2.2 | yes |
+| Posted on a weekend | yes (vs no) | 1,303,315 | 44.0% → 45.6% | **+1.6** | +1.5 | +1.4 | +1.0 | yes |
+| Hour posted (UTC) | 06–11 (vs 00–05) | 2,073,125 | 43.9% → 43.3% | **-0.5** | -0.1 | -1.2 | +0.2 | yes |
+| Hour posted (UTC) | 12–17 (vs 00–05) | 2,403,040 | 43.9% → 44.6% | **+0.7** | +0.8 | -1.2 | +1.7 | yes |
+| Hour posted (UTC) | 18–23 (vs 00–05) | 1,644,439 | 43.9% → 45.4% | **+1.5** | +1.4 | -0.3 | +2.1 | yes |
+| Weekday posted | Tue (vs Mon) | 1,202,582 | 43.8% → 44.0% | **+0.1** | +0.1 | +0.2 | 0.0 | no |
+| Weekday posted | Wed (vs Mon) | 1,229,155 | 43.8% → 44.0% | **+0.1** | +0.1 | +0.3 | 0.0 | no |
+| Weekday posted | Thu (vs Mon) | 1,216,133 | 43.8% → 43.9% | **0.0** | 0.0 | +0.2 | -0.1 | no |
+| Weekday posted | Fri (vs Mon) | 1,087,414 | 43.8% → 44.4% | **+0.5** | +0.5 | +0.5 | +0.3 | yes |
+| Weekday posted | Sat (vs Mon) | 645,464 | 43.8% → 45.6% | **+1.8** | +1.7 | +1.7 | +1.1 | yes |
+| Weekday posted | Sun (vs Mon) | 657,851 | 43.8% → 45.5% | **+1.7** | +1.5 | +1.5 | +1.0 | yes |
+| Links | 1 (vs 0) | 1,218,623 | 44.1% → 44.9% | **+0.7** | +1.0 | -1.5 | +2.0 | yes |
+| Links | 2+ (vs 0) | 645,867 | 44.1% → 44.8% | **+0.7** | +1.0 | -2.9 | +2.9 | yes |
+| Greeting or "thanks in advance" | yes (vs no) | 1,369,832 | 44.5% → 43.5% | **-1.0** | -1.3 | -0.7 | -0.8 | yes |
+| Error or traceback text | yes (vs no) | 979,996 | 44.8% → 41.4% | **-3.4** | -3.2 | -3.4 | -2.0 | yes |
+| Tags | 2 (vs 1) | 1,891,411 | 44.5% → 45.9% | **+1.4** | +1.1 | -1.2 | +2.5 | yes |
+| Tags | 3 (vs 1) | 1,983,044 | 44.5% → 44.7% | **+0.2** | -0.2 | -2.8 | +2.1 | no |
+| Tags | 4 (vs 1) | 1,319,270 | 44.5% → 43.3% | **-1.2** | -1.6 | -3.9 | +1.2 | yes |
+| Tags | 5+ (vs 1) | 967,053 | 44.5% → 41.4% | **-3.1** | -3.5 | -5.4 | -0.3 | yes |
+| Title length (characters) | 40–59 (vs <40) | 2,891,499 | 45.0% → 45.0% | **0.0** | +0.1 | -1.0 | +0.7 | no |
+| Title length (characters) | 60–79 (vs <40) | 1,824,595 | 45.0% → 44.4% | **-0.6** | -0.5 | -2.0 | +0.7 | yes |
+| Title length (characters) | 80+ (vs <40) | 1,111,827 | 45.0% → 41.4% | **-3.6** | -3.4 | -3.7 | -2.0 | yes |
+
+</details>
+
+### Quality labels, original text, 2018–2021
+
+The 25,451 labeled questions of the four years. "Full years at the floor" counts the years in which the level reached
+385 questions on its own; below 4 of 4 the year-by-year check can't be made, so stability is **not assessable** (which
+is different from "flips"). "No clear ask" had 98 questions and is not reported.
+
+| Label | Level (vs reference) | Questions | Accepted rate | Accepted rate, points (95% margin) | Topic-adjusted | Rules-adjusted | Answer rate, points | Full years at the floor | Same sign every year |
+|---|---|---:|---:|---:|---:|---:|---:|:---:|:---:|
+| Worked example (input and wanted output written out) | yes (vs no) | 2,584 | 42.8% → 60.0% | **+17.2** (±2.0) | +16.6 | +15.5 | +9.4 | 4 of 4 | yes |
+| About the asker's own setup | yes (vs no) | 4,295 | 47.1% → 32.2% | **-14.9** (±1.6) | -13.3 | -12.3 | -10.8 | 4 of 4 | yes |
+| Scope of the ask | broad (vs narrow) | 1,497 | 45.3% → 35.8% | **-9.5** (±2.5) | -8.0 | -6.0 | -7.7 | 2 of 4 | not assessable |
+| Code focus | partial (vs focused) | 3,257 | 49.2% → 42.2% | **-7.1** (±1.9) | -6.1 | -5.7 | -6.1 | 4 of 4 | yes |
+| Key evidence only in an image | yes (vs no) | 573 | 44.7% → 38.2% | **-6.5** (±4.0) | -8.5 | -1.7 | -4.8 | 0 of 4 | not assessable |
+| Code focus | dump (vs focused) | 592 | 49.2% → 42.9% | **-6.3** (±4.1) | -5.0 | -4.9 | -4.3 | 0 of 4 | not assessable |
+| Scope of the ask | multiple (vs narrow) | 1,205 | 45.3% → 41.6% | **-3.8** (±2.9) | -2.1 | -1.9 | -3.2 | 0 of 4 | not assessable |
+| Failure description | vague (vs concrete) | 2,081 | 43.5% → 43.4% | **-0.1** (±2.3) | -0.3 | +0.2 | -0.1 | 4 of 4 | no |
+
+### What the labels add beyond the rules
+
+Each label is checked against the rule closest to it:
+
+- **Worked example vs "has a code block".** 82% of the worked examples have a code block, but only 12% of the questions
+  with a code block are worked examples. The rules take 1.7 points off (+17.2 → +15.5): the label is mostly new
+  information.
+- **Setup dependence vs error text.** Only 27% of the setup questions have error text in them; −14.9 → −12.3.
+- **Code focus vs number of code blocks.** Partial code is spread over one, two and three or more blocks (34%, 27%,
+  34%), so "bloated" is not "many blocks"; −7.1 → −5.7.
+- **Key evidence only in an image vs "has an image"**: the one that doesn't line up. **46%** of the questions labeled
+  "yes" have no image at all in the original text, which the rubric's definition doesn't allow (unless the image hides
+  in a form my rule misses). Inside the same code and length its effect falls from −6.5 to −1.7. I don't know what the
+  model is picking up there, and I wouldn't lean on this label.
+
+### How sure can we be?
+
+- **The rules: sample size is not the problem.** With seven million questions the margins are tenths of a point, and
+  **37 of the 43 effects keep their sign in every year**. The six that don't are all within 0.2 points of zero (Tuesday
+  to Thursday, 40–59-character titles, three tags, bodies of 4,000+ characters on accepted rate). The topic control
+  moves no rule effect by more than 1.2 points (a code block: +11.8 → +11.3).
+- **The labels are one model's reading of the text**, so the question is how well that model reads. I scored candidates
+  on 100 gold questions, and here I need to be upfront about how that gold set was made. Two reference models (Google
+  Gemini 4 Argon and xAI Grok 4.7) labeled every question with a reason per label, and I reviewed every label: keep or
+  change the ones both chose, break the ties. **I changed 0 of the 567 labels they agreed on**, and the 33 ties went 18
+  to Gemini and 15 to Grok. Zero changes is what anchoring looks like (reading a suggestion next to its reason pulls you
+  towards it), so this gold set is **the models' labels with a human check on the ties**, not independent hand labels.
+  Against it Jev scored a Cohen's kappa of 0.71 to 0.98 per label (mean 0.80), the best of the three candidates I ran
+  (GPT-6 Luna 0.73, Claude Haiku 0.69), and **those scores are optimistic** for the same reason.
+- **The one blind human check is the practice round**: 20 questions, all 20 labeled by me by hand before I saw any
+  model's answer. There Claude Opus agreed with me little (kappa 0.14 to 0.75 by label), and in most disagreements the
+  written rubric sided with the model, so I tightened the wording before freezing it. That is a check on the rubric,
+  not a score for Jev: a blind score for Jev doesn't exist.
+- **Label noise makes the effects smaller, not bigger.** Jev never sees whether a question was answered, so a wrong
+  label just mixes some "yes" questions into the "no" group and the other way round, and that pulls the gap towards
+  zero. The +17.2 and −14.9 above are **probably understated**.
+- **Labeled levels are small.** 573 to 4,295 questions per level, margins of ±1.6 to ±4.1 points. A level needs about
+  6% of the questions to reach 385 in a single year, so the rare ones (dump code, multiple asks, image-only evidence) are
+  read on the four years pooled and their stability is not assessable. A broad ask reached the floor in 2 of the 4 years,
+  negative both times (−12.1 in 2018, −9.8 in 2019).
+- **One quality at a time.** A worked example and a 20-question asker can be the same person on the same question, and
+  nothing here nets them out against each other (a regression was in the spec as optional and wasn't built).
+
+### Do edits change it?
+
+Text gets edited, like tags, and an edit after the answer can plant the quality: someone answers "please show your
+code", the asker pastes it, and now an answered question "has a code block". Per feature, the leakage KPI counts the
+questions whose bucket differs between the original and the current text, minus the same share on never-edited
+questions (the format noise between the Markdown the asker typed and the HTML the site stores). In 2018–2021 it is
+5.1% to 7.4% of the questions for "has a code block" (about one in 15), 11.1% to 14.6% for the number of code blocks,
+7.8% to 8.6% for the body-length bucket, and 1.2% to 5.0% for every other feature.
+
+The effects hardly move anyway. A code block is +11.8 on the original text, +11.3 on the current text, +12.0 on
+never-edited questions and +11.3 on questions not edited after their first answer. The biggest move among the rules is
+an image (+4.7 original, +2.3 current). The only effects that change direction in another version are the ones already
+near zero (Wednesday, Thursday, three tags, an image's effect on the answer rate), and the `warn` test raises one
+warning: five or more tags on accepted among answered (−0.3 on the original text, +1.5 on the current one).
+
+The labels judge the original text only, so their check is the two subsets: a worked example is +19.6 on never-edited
+questions and +17.2 on questions not edited after the answer; setup dependence −15.7 and −14.1. A vague failure
+description changes sign there, but stays within about one point of zero.
+
+### And the answers?
+
+Answers are posts too. Among the 423,192 answers to the 2018–2021 questions of the 5% sample, by the answer's own
+original text: an answer with inline code is accepted 44.5% of the time against 31.5% (+13.0), one with a code block
++7.6, one with an image +9.5, and length is the biggest one: 4,000+ characters against under 500, 49.1% against 32.9%
+(+16.2, on 5,585 answers). This lens is about acceptance only, since an unanswered question has no answer to measure.
+The same lens by quality label was not built: it would mean labeling the answers too.
+
+### Assumptions and limitations
+
+- **Correlation, not causation.** This doesn't show that writing out the expected output would get *your* question
+  accepted, only that the questions that do it get accepted more. And the labels are a model's judgments (TypeSafe Jev,
+  mean kappa 0.80 against a lenient reference), not facts about the posts.
+- **Asker experience is about the person, not the post.** It is known at posting time, so it is in, but it says nothing
+  about how the question was written.
+- **Survivorship.** Deleted questions are not in the data, and the deleted ones are mostly unanswered and badly
+  received. The worst-written questions are the most likely to be gone, so the gaps shown here are probably smaller
+  than the real ones.
+- **Hours are UTC**, not the asker's local time, so "posted at night" is not measured.
+- **2022 is out of the claims** (partial, censored). Each comparison is inside one year, which mostly cancels the
+  censoring, so P3 has no 30-day version.
+- **Labels on a random 30,000**, original text only, with no images seen (neither by Jev nor by me on the gold set). The
+  draw is not stratified, so rare levels stay rare (image-only evidence is about 2% of them).
+- **One label to question** (image-only evidence, above) and **one lens not built** (answers by label).
+
+Spec, acceptance criteria and their tests: [`specs/003`](specs/003-q3-post-qualities.md), [`TESTING.md`](TESTING.md).
+Run it yourself: [`queries/q3.sql`](queries/q3.sql), but not as-is like q1 and q2. It reads three stored tables by name
+(the two text scans and the label seed), so they have to be built first and the `YOUR_PROJECT` placeholder replaced; the
+steps are in its header. Its eight results read about 38 GiB in all. The labels cost US$ 3.82; the whole language-model
+bill is under [How this was built](#how-this-was-built).
 
 ## This solution's data architecture
 
