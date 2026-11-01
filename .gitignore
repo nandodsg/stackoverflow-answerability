@@ -17,3 +17,6 @@ CLAUDE.local.md
 
 # Question text pulled from BigQuery by the quality-label scripts (labels/); rebuilt on demand.
 labels/.cache/
+
+# The 34 MB analysis labels JSON is committed gzipped (jev-latest_analysis.json.gz, 1.1 MB, byte-identical when unzipped).
+labels/output/gold/jev-latest_analysis.json
