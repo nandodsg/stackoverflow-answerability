@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stack Overflow answerability</title>
+<meta name="description" content="Three questions on the public Stack Overflow dataset, answered with dbt, MetricFlow and SQL you can edit live in the browser.">
+<script>document.documentElement.className = "js";</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="progress" aria-hidden="true"><div class="progress-fill"></div></div>
+<nav class="rail" aria-label="Chapters"><ol id="rail"></ol></nav>
+<div class="counter" aria-hidden="true"><b id="counter-now">01</b> / <span id="counter-total">10</span><span class="hint">← → space</span></div>
+
+<main>
+
+<!-- Chapters are placeholders: the shell (stepping, rail, motion, SQL panel, strip) is what is built here.
+     Narrative text comes from the README once the numbers are final. -->
+
+<section class="chapter" id="c1" data-title="The three questions">
+  <div class="inner stack">
+    <p class="eyebrow" data-reveal>{ <span class="label">01 · the question</span> }</p>
+    <h1 class="display" data-reveal>Stack Overflow, <span class="mark">answerability</span></h1>
+    <p class="lede" data-reveal>Three questions on the public Stack Overflow dataset: which tags get answers, how Python and dbt compare year over year, and what else about a question predicts an answer.</p>
+    <p class="placeholder-note" data-reveal>Placeholder chapter. Headline figures use count-up: <span class="big-number" style="font-size:34px" data-count="1162" data-decimals="0">1162</span> tags above the floor (invented until the export runs).</p>
+  </div>
+</section>
+
+<section class="chapter" id="c2" data-title="The data and its traps">
+  <div class="inner stack">
+    <p class="eyebrow" data-reveal>{ <span class="label">02 · the data</span> }</p>
+    <h2 data-reveal>Frozen at 2022-09-25, and full of <span class="mark">traps</span></h2>
+    <p class="placeholder-note" data-reveal>Placeholder: edits and leakage, censoring, survivorship.</p>
+  </div>
+</section>
+
+<section class="chapter eng" id="c3" data-title="Decisions made with evidence">
+  <div class="inner stack">
+    <p class="eyebrow" data-reveal>{ <span class="label">03 · decisions</span> }</p>
+    <h2 data-reveal>Decisions made with <span class="mark">evidence</span></h2>
+    <p class="placeholder-note" data-reveal>Placeholder: D1 to D4 as a timeline from the decisions log, each with its EDA chart.</p>
+  </div>
+</section>
+
+<section class="chapter eng" id="c4" data-title="Data architecture">
+  <div class="inner stack">
+    <p class="eyebrow" data-reveal>{ <span class="label">04 · architecture</span> }</p>
+    <h2 data-reveal>From the public dataset to <span class="mark">one number</span></h2>
+    <ol class="flow" data-stagger>
+      <li data-n="1">source</li><li data-n="2">staging</li><li data-n="3">intermediate</li>
+      <li data-n="4">marts</li><li data-n="5">semantic layer</li><li data-n="6">queries</li>
+    </ol>
+    <p class="placeholder-note" data-reveal>Placeholder: nodes appear in order; the real diagram marks where the tests, cost caps and leakage checks attach.</p>
+  </div>
+</section>
+
+<section class="chapter p1" id="c5" data-title="P1 · Tag answerability">
+  <div class="inner stack">
+    <p class="eyebrow" data-reveal>{ <span class="label">05 · prompt 1</span> }</p>
+    <h2 data-reveal>Which tags get <span class="mark">answers</span>?</h2>
+    <p class="muted" data-reveal>PLACEHOLDER DATA: invented numbers in the real mart's shape. Edit the query: try <code>n_questions &gt;= 100</code> or <code>creation_year = 2021</code>, then Run.</p>
+    <div class="sql-panel" data-reveal data-panel data-render="table" data-table="mart_p1_tags">
+      <div class="sql-head"><span>live SQL · DuckDB-WASM</span><span class="sql-status" data-state="loading">loading engine…</span></div>
+      <label class="muted" for="q-p1" hidden>Query</label>
+      <textarea id="q-p1" class="sql-editor" spellcheck="false" aria-label="SQL query for prompt 1">SELECT tag, n_questions,
+       round(accepted_rate_lower, 3) AS lower_bound
+FROM mart_p1_tags
+WHERE creation_year = 2022
+  AND n_questions >= 385
+ORDER BY accepted_rate_lower DESC
+LIMIT 10;</textarea>
+      <div class="sql-actions">
+        <button type="button" class="btn primary run">Run</button>
+        <button type="button" class="btn reset">Reset</button>
+        <span class="meta"></span>
+      </div>
+      <div class="sql-out" aria-live="polite"><noscript>Live SQL needs JavaScript.</noscript></div>
+    </div>
+    <div class="strip" data-reveal>
+      <p class="strip-title">{ HOW WE KNOW }</p>
+      <div class="chips">
+        <details class="chip"><summary><span>Evidence</span><span class="tag">EDA</span></summary><div class="chip-body">Placeholder: D1 sample-size EDA behind the 385 floor.</div></details>
+        <details class="chip"><summary><span>Guard</span><span class="tag">tests</span></summary><div class="chip-body">Placeholder: pass / warn counts for the P1 tests.</div></details>
+        <details class="chip"><summary><span>Cost</span><span class="tag">GB billed</span></summary><div class="chip-body">Placeholder: GB billed to produce the P1 marts.</div></details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter p2" id="c6" data-title="P2 · Python vs dbt">
+  <div class="inner stack">
+    <p class="eyebrow" data-reveal>{ <span class="label">06 · prompt 2</span> }</p>
+    <h2 data-reveal>Python-only vs dbt-only, <span class="mark">year over year</span></h2>
+    <div class="cols">
+      <div class="stack">
+        <p class="muted" data-reveal>PLACEHOLDER DATA. Answers per question for one year, computed by the query beside it. Step 2013 / 2021 / 2022 will go here.</p>
+        <div class="big-number" data-reveal data-bound="p2">…</div>
+        <p class="muted" data-reveal data-bound-label="p2"></p>
+      </div>
+      <div class="sql-panel" data-reveal data-panel data-render="number" data-bind="p2" data-table="mart_p2_python_dbt">
+        <div class="sql-head"><span>live SQL · DuckDB-WASM</span><span class="sql-status" data-state="loading">loading engine…</span></div>
+        <textarea class="sql-editor" spellcheck="false" aria-label="SQL query for prompt 2">SELECT round(answers_per_question, 2)
+         AS python_answers_per_question
+FROM mart_p2_python_dbt
+WHERE tag = 'python'
+  AND creation_year = 2022;</textarea>
+        <div class="sql-actions">
+          <button type="button" class="btn primary run">Run</button>
+          <button type="button" class="btn reset">Reset</button>
+          <span class="meta"></span>
+        </div>
+        <div class="sql-out" aria-live="polite"></div>
+      </div>
+    </div>
+    <div class="strip" data-reveal>
+      <p class="strip-title">{ HOW WE KNOW }</p>
+      <div class="chips">
+        <details class="chip"><summary><span>Evidence</span><span class="tag">EDA</span></summary><div class="chip-body">Placeholder: censoring check on the 2022 drop.</div></details>
+        <details class="chip"><summary><span>Guard</span><span class="tag">tests</span></summary><div class="chip-body">Placeholder: YoY direction warn test.</div></details>
+        <details class="chip"><summary><span>Cost</span><span class="tag">GB billed</span></summary><div class="chip-body">Placeholder: GB billed for the P2 mart.</div></details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter p3" id="c7" data-title="P3 · Other qualities">
+  <div class="inner stack">
+    <p class="eyebrow" data-reveal>{ <span class="label">07 · prompt 3</span> }</p>
+    <h2 data-reveal>What else predicts an <span class="mark">answer</span>?</h2>
+    <p class="placeholder-note" data-reveal>Placeholder: rule-based effects, then the quality labels (blind practice result, reviewed gold set, honest framing). Waits for the final P3 marts.</p>
+    <div class="strip" data-reveal>
+      <p class="strip-title">{ HOW WE KNOW }</p>
+      <div class="chips">
+        <details class="chip"><summary><span>Evidence</span><span class="tag">EDA</span></summary><div class="chip-body">Placeholder.</div></details>
+        <details class="chip"><summary><span>Guard</span><span class="tag">tests</span></summary><div class="chip-body">Placeholder.</div></details>
+        <details class="chip"><summary><span>Cost</span><span class="tag">GB billed</span></summary><div class="chip-body">Placeholder.</div></details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter eng" id="c8" data-title="Quality and cost">
+  <div class="inner stack">
+    <p class="eyebrow" data-reveal>{ <span class="label">08 · quality and cost</span> }</p>
+    <h2 data-reveal>Tests, caps, and what it <span class="mark">cost</span></h2>
+    <p class="placeholder-note" data-reveal>Placeholder: acceptance criterion to test map, test counts and warn tests, scan sizes, real BigQuery and API spend, CI. Cost control in three layers: (1) per-target dbt <code>maximum_bytes_billed</code> caps (dev 20 GiB, full_scan 120 GiB); (2) the EDA scripts' 10 GB dry-run limit (<code>--allow-gb</code> raises it); (3) a local coding-agent hook that dry-runs <code>bq query</code> and asks above 10 GB, always asks before dbt commands that run queries and <code>mf query</code>, and asks whenever it cannot estimate. The hook is described here, never linked or copied.</p>
+  </div>
+</section>
+
+<section class="chapter" id="c9" data-title="Limitations and next">
+  <div class="inner stack">
+    <p class="eyebrow" data-reveal>{ <span class="label">09 · limits</span> }</p>
+    <h2 data-reveal>What this <span class="mark">does not</span> show</h2>
+    <p class="placeholder-note" data-reveal>Placeholder: limitations and what I would do next.</p>
+  </div>
+</section>
+
+<section class="chapter" id="c10" data-title="How this was built">
+  <div class="inner stack">
+    <p class="eyebrow" data-reveal>{ <span class="label">10 · how it was built</span> }</p>
+    <h2 data-reveal>Built with an <span class="mark">AI assistant</span></h2>
+    <p class="placeholder-note" data-reveal>Placeholder: the AI note, in Nando's voice.</p>
+    <p class="muted" data-reveal>Stack Overflow content: (c) Stack Exchange Inc. and its contributors, licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</p>
+  </div>
+</section>
+
+</main>
+
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha384-g4NTh/Iv5PPU4xPyhEWqPcwtNXOvdaDI8LLnyYfyNZOjKJeYQyjzQ9X5275eBjpt" crossorigin="anonymous"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha384-Z3REaz79l2IaAZqJsSABtTbhjgOUYyV3p90XNnAPCSHg3EMTz1fouunq9WZRtj3d" crossorigin="anonymous"></script>
+<script defer src="app.js"></script>
+<script type="module" src="sql-panel.js"></script>
+</body>
+</html>

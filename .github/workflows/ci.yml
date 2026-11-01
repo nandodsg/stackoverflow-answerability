@@ -1,0 +1,36 @@
+# CI without warehouse access: nothing here connects to BigQuery, so it needs no credentials and spends no quota.
+# `dbt parse` reads the project and the dummy profile (a copy of profiles.example.yml, GCP_PROJECT is a made-up id);
+# it never opens a connection. `dbt build`, the compiled queries and tests/semantic/check_semantic_layer.py run
+# against the warehouse and stay manual (see TESTING.md).
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    env:
+      GCP_PROJECT: ci-no-warehouse
+      DBT_PROFILES_DIR: ${{ github.workspace }}/.ci-profiles
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Dummy dbt profile (no credentials)
+        run: |
+          mkdir .ci-profiles
+          cp profiles.example.yml .ci-profiles/profiles.yml
+      - run: dbt deps
+      - name: dbt parse (models, tests, YAML, semantic manifest)
+        run: dbt parse
+      - name: MetricFlow config validation, warehouse skipped
+        run: mf validate-configs --skip-dw
+      - name: Python files compile
+        run: python -m compileall -q labels eda queries tests presentation
+      - name: Presentation data files and export script
+        run: python presentation/check_data.py

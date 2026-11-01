@@ -1,0 +1,44 @@
+# Deploys presentation/ to GitHub Pages. Free Pages needs a public repository, so the job is skipped while the repo is
+# private (it starts working on its own once the repo goes public). The BigQuery export script and the checks are not
+# published: only the page and its data files are copied into the site folder.
+name: Deploy presentation
+
+on:
+  push:
+    branches: [main]
+    paths: ["presentation/**", ".github/workflows/pages.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python presentation/check_data.py
+      - name: Assemble the site folder
+        run: |
+          mkdir _site
+          cp presentation/index.html presentation/style.css presentation/app.js presentation/sql-panel.js _site/
+          cp -r presentation/data _site/data
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4
