@@ -1,0 +1,26 @@
+# Source: Stack Overflow content (bigquery-public-data.stackoverflow), (c) Stack Exchange Inc. and its contributors, licensed CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/). Snapshot of the dbt mart, exported 2026-11-01.
+label,level,rule_feature,rule_value,n_questions,share_of_level,share_of_rule_value
+code_focus,3: dump,code_block_count,1: 0,35,0.05057803468208093,0.01956400223588597
+code_focus,2: partial,code_block_count,1: 0,193,0.050221181368722355,0.10788149804359978
+code_focus,2: partial,code_block_count,4: 3+,1305,0.3395784543325527,0.2715920915712799
+code_focus,1: focused,code_block_count,2: 1,7557,0.44450326451385214,0.8332782004631161
+code_focus,3: dump,code_block_count,3: 2,195,0.2817919075144509,0.03320279243997957
+code_focus,1: focused,code_block_count,4: 3+,3238,0.190459384742074,0.6738813735691987
+code_focus,2: partial,code_block_count,3: 2,1033,0.26880041634139995,0.175889664566661
+code_focus,1: focused,code_block_count,1: 0,1561,0.09181812834539145,0.8725544997205142
+code_focus,1: focused,code_block_count,3: 2,4645,0.2732192223986824,0.7909075429933594
+code_focus,2: partial,code_block_count,2: 1,1312,0.34139994795732503,0.1446686514499945
+code_focus,3: dump,code_block_count,4: 3+,262,0.3786127167630058,0.05452653485952133
+code_focus,3: dump,code_block_count,2: 1,200,0.28901734104046245,0.022053148086889404
+worked_example,1: no,has_code_block,1: no,8522,0.31562962962962965,0.9411374930977361
+worked_example,2: yes,has_code_block,2: yes,2467,0.8223333333333334,0.11778467414657436
+worked_example,2: yes,has_code_block,1: no,533,0.17766666666666667,0.05886250690226394
+worked_example,1: no,has_code_block,2: yes,18478,0.6843703703703704,0.8822153258534257
+environment_dependent,1: no,has_error_text,1: no,22060,0.8880479851857815,0.8549062160905286
+environment_dependent,2: yes,has_error_text,2: yes,1415,0.274277960845125,0.3372259294566254
+environment_dependent,1: no,has_error_text,2: yes,2781,0.11195201481421843,0.6627740705433747
+environment_dependent,2: yes,has_error_text,1: no,3744,0.725722039154875,0.1450937839094714
+image_only_evidence,2: yes,has_image,2: yes,397,0.5438356164383562,0.15982286634460546
+image_only_evidence,1: no,has_image,1: no,27183,0.9286983259309873,0.9878979502834714
+image_only_evidence,1: no,has_image,2: yes,2087,0.07130167406901264,0.8401771336553945
+image_only_evidence,2: yes,has_image,1: no,333,0.45616438356164385,0.012102049716528566

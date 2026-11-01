@@ -23,7 +23,8 @@ OUT_DIR = pathlib.Path(__file__).parent / "data"
 MAX_BYTES = 1024**3  # 1 GiB per query
 
 # mart -> columns the page's SQL relies on (check_data.py verifies the shipped files contain them).
-# P3 marts are added once the quality labels are final.
+# The six P3 marts chapter 7 uses (rule-based rates and effects, then the quality labels: rates, effects, each label
+# against its rule neighbour, and what a label adds beyond the rules); the leakage KPI and the answer lens stay out.
 EXPORTS = {
     "mart_p1_tags": [
         "creation_year", "tag", "n_questions", "answer_rate", "accepted_rate", "accepted_rate_among_answered",
@@ -32,6 +33,29 @@ EXPORTS = {
     ],
     "mart_p2_python_dbt": [
         "tag", "creation_year", "n_questions", "answer_rate", "accepted_rate", "answers_per_question", "tag_exposure",
+    ],
+    "mart_p3_feature_rates": [
+        "version", "feature", "bucket", "cohort", "is_reference_bucket", "n_questions", "answer_rate", "accepted_rate",
+        "accepted_rate_lower", "accepted_rate_upper", "accepted_rate_among_answered",
+    ],
+    "mart_p3_feature_effects": [
+        "version", "feature", "bucket", "cohort", "n_questions", "accepted_rate_effect", "accepted_rate_effect_margin",
+        "accepted_rate_effect_tag_adjusted", "accepted_rate_effect_stable", "answer_rate_effect",
+        "accepted_rate_effect_flips_vs_original",
+    ],
+    "mart_p3_label_rates": [
+        "version", "feature", "bucket", "cohort", "is_reference_bucket", "n_questions", "answer_rate", "accepted_rate",
+        "accepted_rate_lower", "accepted_rate_upper", "accepted_rate_among_answered",
+    ],
+    "mart_p3_label_effects": [
+        "version", "feature", "bucket", "cohort", "n_questions", "accepted_rate_effect", "accepted_rate_effect_margin",
+        "accepted_rate_effect_tag_adjusted", "accepted_rate_effect_stable", "answer_rate_effect", "full_years_with_effect",
+    ],
+    "mart_p3_label_vs_rules": [
+        "label", "level", "rule_feature", "rule_value", "n_questions", "share_of_level", "share_of_rule_value",
+    ],
+    "mart_p3_label_incremental": [
+        "label", "level", "n_questions", "reference_n_questions", "raw_effect", "rules_adjusted_effect", "adjusted_coverage",
     ],
 }
 

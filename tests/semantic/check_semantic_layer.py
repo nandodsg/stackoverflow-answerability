@@ -4,7 +4,8 @@ MetricFlow metrics are not dbt tests, so this script plays that role: it runs `m
 result with the expected number, and prints one PASS / FAIL line per check with the acceptance criterion it covers.
 Exit code 1 if any check fails.
 
-Before running: `dbt build --select path:models/semantic` (the sem_* views) and `dbt parse` (the semantic manifest that
+Before running: `dbt build --select path:models/semantic` (the sem_* views; the two sem_p3_* views need the scan first,
+`dbt build --select tag:needs_full_scan`) and `dbt parse` (the semantic manifest that
 `mf` reads). Each `mf query` is billed (about 0.05-1.7 GB on the sandbox). By default `mf` is called as `mf`; set the
 MF_CMD environment variable to use another command, e.g. MF_CMD="python path/to/mf_wrapper.py".
 
@@ -225,6 +226,61 @@ counts_ok = all(
 ) and set(got) == set(P2_NO_TAG_EDITS)
 check("AC-2.1", "no tag edits: python-only / dbt-only counts of every year match mart_p2_python_dbt_no_tag_edits", counts_ok,
       f"({len(got)} of {len(P2_NO_TAG_EDITS)} rows)")
+
+# 7. P3 (specs/003): the semantic layer rebuilds the rate marts' numbers from the bucket counts. The expected numbers
+#    were read once from mart_p3_feature_rates / mart_p3_label_rates (version original, cohort 2018-2021, which is the
+#    four full years 2018-2021 added up): (questions, answered, accepted) of a few buckets. The metrics sit on the count
+#    tables sem_p3_buckets / sem_p3_label_buckets, so a query always filters `version` and groups by `feature` and
+#    `bucket` (a question appears once per feature). These two views exist only after the one-time scan
+#    (`dbt build --select tag:needs_full_scan`).
+P3_RULES = {
+    ("has_code_block", "1: no"): (2127117, 1664678, 766381),
+    ("has_code_block", "2: yes"): (5030077, 4113868, 2404040),
+    ("title_length", "1: <40"): (1329275, 1092910, 598070),
+    ("title_length", "4: 80+"): (1111827, 873384, 460756),
+}
+P3_LABELS = {
+    ("worked_example", "1: no"): (22867, 18222, 9788),
+    ("worked_example", "2: yes"): (2584, 2303, 1550),
+    ("ask_scope", "2: broad"): (1497, 1101, 536),
+    ("ask_scope", "4: no_clear_ask"): (98, 77, 29),
+}
+for label, family, prefix, expected_rows in (
+    ("rule-based features", "p3_bucket", "p3_", P3_RULES),
+    ("quality labels", "p3_label_bucket", "p3_label_", P3_LABELS),
+):
+    metrics = [prefix + m for m in ("questions", "answered_questions", "accepted_questions", "accepted_rate", "answer_rate", "accepted_rate_among_answered")]
+    rows = mf_query(
+        "--metrics", ",".join(metrics),
+        "--group-by", f"{family}__feature,{family}__bucket",
+        "--where", f"{dim(family + '__version')} = 'original' AND {dim(family + '__creation_year')} BETWEEN 2018 AND 2021",
+    )
+    got = {(r[f"{family}__feature"], r[f"{family}__bucket"]): r for r in rows}
+    counts_ok = all(
+        key in got and [int(float(got[key][prefix + m])) for m in ("questions", "answered_questions", "accepted_questions")] == list(value)
+        for key, value in expected_rows.items()
+    )
+    check("AC-3.5", f"P3 {label}: counts of the original text, 2018-2021, match the rate mart", counts_ok,
+          f"({len(got)} buckets in the result)")
+    rates_ok = all(
+        abs(float(r[prefix + "accepted_rate"]) - int(float(r[prefix + "accepted_questions"])) / int(float(r[prefix + "questions"]))) < 1e-9
+        and abs(float(r[prefix + "accepted_rate"]) - float(r[prefix + "answer_rate"]) * float(r[prefix + "accepted_rate_among_answered"])) < 1e-9
+        for r in got.values() if int(float(r[prefix + "answered_questions"])) > 0
+    )
+    check("AC-0.5", f"P3 {label}: accepted rate = accepted / questions = answer rate x accepted rate among answered, every bucket",
+          rates_ok, f"({len(got)} rows)")
+
+# The README's headline label reading: a worked example goes with +17.2 points of accepted rate (AC-3.8, raw effect).
+worked = {k[1]: float(v) for k, v in (
+    (("worked_example", r["p3_label_bucket__bucket"]), r["p3_label_accepted_rate"]) for r in mf_query(
+        "--metrics", "p3_label_accepted_rate",
+        "--group-by", "p3_label_bucket__feature,p3_label_bucket__bucket",
+        "--where", f"{dim('p3_label_bucket__version')} = 'original' AND {dim('p3_label_bucket__feature')} = 'worked_example' AND {dim('p3_label_bucket__creation_year')} BETWEEN 2018 AND 2021",
+    )
+)}
+effect = (worked["2: yes"] - worked["1: no"]) * 100
+check("AC-3.8", "worked example (yes - no) accepted-rate effect, 2018-2021, original text = +17.2 points", round(effect, 1) == 17.2,
+      f"({effect:.2f})")
 
 failed = results.count(False)
 print(f"\n{len(results) - failed} passed, {failed} failed")

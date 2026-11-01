@@ -6,8 +6,8 @@ version: 2
 #
 # Measures and metrics need globally unique names, so the three models are told apart by prefix:
 # no prefix = whole questions, by_tag_ = one row per (question, tag), by_pair_ = one row per (question, tag pair).
-# P3 (Item 6): add its semantic model(s) in the marked block at the end of this file, its metrics at the end of
-# _semantic__metrics.yml.
+# P3: two semantic models at the end of this file (rule-based buckets, quality-label levels), their metrics at the end of
+# _semantic__metrics.yml; both sit on count tables, not on question rows, and are built only after the one-time scans.
 
 models:
   - name: metricflow_time_spine
@@ -347,4 +347,96 @@ semantic_models:
         expr: answer_count
         create_metric: true
 
-  # --- P3 (Item 6): add the P3 semantic model(s) below this line ---------------------------------------------------
+  # --- P3 (Item 6): semantic models over the bucket counts ----------------------------------------------------------
+  # Both read count tables, one row per version x feature x bucket x year x topic stratum, so their measures SUM counts.
+  # Any query must group by or filter `feature` and `version` (a question appears once per feature).
+  - name: p3_buckets
+    description: Counts per version x feature x bucket x year x topic stratum for the rule-based P3 features (sem_p3_buckets).
+    model: ref('sem_p3_buckets')
+    defaults:
+      agg_time_dimension: period_start
+    entities:
+      - name: p3_bucket
+        type: primary
+        expr: bucket_key
+    dimensions:
+      - name: period_start
+        type: time
+        type_params:
+          time_granularity: day
+      - name: version
+        type: categorical
+        description: original (the headline), current, never_edited, not_edited_after_answer (AC-3.5).
+      - name: feature
+        type: categorical
+        description: The feature (or, for the label model, the quality label). Always group by or filter on it.
+      - name: bucket
+        type: categorical
+        description: The bucket (or label level), numbered so that '1:' is the reference.
+      - name: creation_year
+        type: categorical
+      - name: tag_stratum
+        type: categorical
+        description: The question's primary tag if among the 20 most common, else '(other)' (topic control).
+    measures:
+      - name: p3_questions
+        description: Questions in the bucket.
+        agg: sum
+        expr: n_questions
+        create_metric: true
+      - name: p3_answered_questions
+        description: Answered questions in the bucket.
+        agg: sum
+        expr: n_answered
+        create_metric: true
+      - name: p3_accepted_questions
+        description: Questions with an accepted answer in the bucket.
+        agg: sum
+        expr: n_accepted
+        create_metric: true
+
+  - name: p3_label_buckets
+    description: The same counts for the six quality labels on the 30,000 labeled questions (sem_p3_label_buckets); `feature` is the label, `bucket` its level.
+    model: ref('sem_p3_label_buckets')
+    defaults:
+      agg_time_dimension: period_start
+    entities:
+      - name: p3_label_bucket
+        type: primary
+        expr: bucket_key
+    dimensions:
+      - name: period_start
+        type: time
+        type_params:
+          time_granularity: day
+      - name: version
+        type: categorical
+        description: original (the headline), current, never_edited, not_edited_after_answer (AC-3.5).
+      - name: feature
+        type: categorical
+        description: The feature (or, for the label model, the quality label). Always group by or filter on it.
+      - name: bucket
+        type: categorical
+        description: The bucket (or label level), numbered so that '1:' is the reference.
+      - name: creation_year
+        type: categorical
+      - name: tag_stratum
+        type: categorical
+        description: The question's primary tag if among the 20 most common, else '(other)' (topic control).
+    measures:
+      - name: p3_label_questions
+        description: Questions in the bucket.
+        agg: sum
+        expr: n_questions
+        create_metric: true
+      - name: p3_label_answered_questions
+        description: Answered questions in the bucket.
+        agg: sum
+        expr: n_answered
+        create_metric: true
+      - name: p3_label_accepted_questions
+        description: Questions with an accepted answer in the bucket.
+        agg: sum
+        expr: n_accepted
+        create_metric: true
+

@@ -5,7 +5,7 @@ version: 2
 # rule "a ratio of the group's totals, never an average of per-question ratios". The counts they use are the measures
 # of _semantic__models.yml (each measure is also a metric of the same name).
 # Three families with the same six definitions: no prefix (whole questions), by_tag_, by_pair_.
-# P3 (Item 6): add its metrics at the end of this file.
+# P3: rates per feature bucket (`p3_`) and per label level (`p3_label_`) at the end of this file.
 
 metrics:
   # --- Whole questions ---------------------------------------------------------------------------------------------
@@ -216,4 +216,37 @@ metrics:
     type: ratio
     type_params: {numerator: orig_questions, denominator: orig_answers}
 
-  # --- P3 (Item 6): add the P3 metrics below this line -------------------------------------------------------------
+  # --- P3 (Item 6): rates per feature bucket and per quality-label level -------------------------------------------
+  # Group by `feature` and `bucket` (filter `version` and `creation_year`); the effect of a bucket is the difference
+  # between its rate and the rate of the reference bucket '1:', which the marts compute with margins and controls.
+  - name: p3_answer_rate
+    label: Answer rate, rule-based bucket
+    description: Answered questions / questions, per feature bucket.
+    type: ratio
+    type_params: {numerator: p3_answered_questions, denominator: p3_questions}
+  - name: p3_accepted_rate
+    label: Accepted rate, rule-based bucket
+    description: Questions with an accepted answer / all questions, per feature bucket (D2, AC-0.5).
+    type: ratio
+    type_params: {numerator: p3_accepted_questions, denominator: p3_questions}
+  - name: p3_accepted_rate_among_answered
+    label: Accepted rate among answered, rule-based bucket
+    description: Accepted questions / answered questions, per feature bucket.
+    type: ratio
+    type_params: {numerator: p3_accepted_questions, denominator: p3_answered_questions}
+  - name: p3_label_answer_rate
+    label: Answer rate, quality-label level
+    description: Answered questions / questions, per label level.
+    type: ratio
+    type_params: {numerator: p3_label_answered_questions, denominator: p3_label_questions}
+  - name: p3_label_accepted_rate
+    label: Accepted rate, quality-label level
+    description: Questions with an accepted answer / all questions, per label level (D2, AC-0.5).
+    type: ratio
+    type_params: {numerator: p3_label_accepted_questions, denominator: p3_label_questions}
+  - name: p3_label_accepted_rate_among_answered
+    label: Accepted rate among answered, quality-label level
+    description: Accepted questions / answered questions, per label level.
+    type: ratio
+    type_params: {numerator: p3_label_accepted_questions, denominator: p3_label_answered_questions}
+
