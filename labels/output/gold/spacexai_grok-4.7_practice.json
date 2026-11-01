@@ -1,0 +1,1082 @@
+{
+  "61947450": {
+    "gold_rank": 1,
+    "rubric_version": "fd79297623f7",
+    "served_by": "spacexai/grok-4.7",
+    "effort": "medium",
+    "usd": 0.0224,
+    "usage": {
+      "completion_tokens": 2461,
+      "prompt_tokens": 4658,
+      "total_tokens": 7119,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 2282,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 1152,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.022354,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.022354,
+      "gateway_cost": 0.022354
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "not_applicable",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Traces show the failure, not a stated input and desired output pair.",
+      "ask_scope": "One specific fix: rbenv reads the wrong version file inside tmux.",
+      "failure_description": "Debug traces show home path and 2.5.1 instead of the project version.",
+      "code_focus": "Only debug traces, which are logs not code.",
+      "environment_dependent": "Breaks after Catalina upgrade in the asker's tmux and rbenv setup.",
+      "image_only_evidence": "No images; the traces are written in the post."
+    }
+  },
+  "63470444": {
+    "gold_rank": 2,
+    "rubric_version": "fd79297623f7",
+    "served_by": "spacexai/grok-4.7",
+    "effort": "medium",
+    "usd": 0.0108,
+    "usage": {
+      "completion_tokens": 680,
+      "prompt_tokens": 4239,
+      "total_tokens": 4919,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 548,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 1152,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.01083,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.01083,
+      "gateway_cost": 0.01083
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Thinner result only described, no literal output",
+      "ask_scope": "One specific how-to for indicator height",
+      "failure_description": "Says the linear indicator is very thick",
+      "code_focus": "Two short relevant widget snippets",
+      "environment_dependent": "Widget usage, not the asker's setup",
+      "image_only_evidence": "No images in the post"
+    }
+  },
+  "69088554": {
+    "gold_rank": 3,
+    "rubric_version": "fd79297623f7",
+    "served_by": "spacexai/grok-4.7",
+    "effort": "medium",
+    "usd": 0.0159,
+    "usage": {
+      "completion_tokens": 1446,
+      "prompt_tokens": 4497,
+      "total_tokens": 5943,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1289,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 1152,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.015942,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.015942,
+      "gateway_cost": 0.015942
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Usage snippet and error, but no input with literal expected output.",
+      "ask_scope": "One specific ask: how to use the missing pytester fixture.",
+      "failure_description": "Exact error text: fixture 'pytester' not found.",
+      "code_focus": "Short relevant snippets of the failing pytester usage.",
+      "environment_dependent": "General pytest fixture behavior, answerable without the asker's setup.",
+      "image_only_evidence": "No images in the post."
+    }
+  },
+  "67861346": {
+    "gold_rank": 4,
+    "rubric_version": "fd79297623f7",
+    "served_by": "spacexai/grok-4.7",
+    "effort": "medium",
+    "usd": 0.0109,
+    "usage": {
+      "completion_tokens": 613,
+      "prompt_tokens": 4478,
+      "total_tokens": 5091,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 468,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 1152,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.010906,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.010906,
+      "gateway_cost": 0.010906
+    },
+    "labels": {
+      "worked_example": "yes",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Input string and literal expected output both written out",
+      "ask_scope": "One specific in-CODE tag replacement a short regex could fix",
+      "failure_description": "Attempts only replace the first or last <",
+      "code_focus": "Short input and regex attempts all bear on the replacement",
+      "environment_dependent": "Regex behavior reproducible from the posted text",
+      "image_only_evidence": "No images; input and output are in text"
+    }
+  },
+  "65997173": {
+    "gold_rank": 5,
+    "rubric_version": "fd79297623f7",
+    "served_by": "spacexai/grok-4.7",
+    "effort": "medium",
+    "usd": 0.0177,
+    "usage": {
+      "completion_tokens": 1851,
+      "prompt_tokens": 4148,
+      "total_tokens": 5999,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1679,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 1152,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.017674,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.017674,
+      "gateway_cost": 0.017674
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "vague",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "yes"
+    },
+    "reasons": {
+      "worked_example": "No written input and expected output; the query is only imaged.",
+      "ask_scope": "One specific ask: an alternative for OR inside CASE THEN.",
+      "failure_description": "Only says the OR condition is not supporting, with no error text.",
+      "code_focus": "No code block or multi-line paste; the query is an image.",
+      "environment_dependent": "SQL CASE syntax, not the asker's install, version, or setup.",
+      "image_only_evidence": "The query to achieve is only in the linked screenshot."
+    }
+  },
+  "61686467": {
+    "gold_rank": 6,
+    "rubric_version": "fd79297623f7",
+    "served_by": "spacexai/grok-4.7",
+    "effort": "medium",
+    "usd": 0.0172,
+    "usage": {
+      "completion_tokens": 1514,
+      "prompt_tokens": 4931,
+      "total_tokens": 6445,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1362,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 1152,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.017218,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.017218,
+      "gateway_cost": 0.017218
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Scenario described in words, no literal input-output pair",
+      "ask_scope": "One fix: loop should continue after catch",
+      "failure_description": "Item 2 errors and items 3 and 4 never run",
+      "code_focus": "One relevant try-catch loop, problem easy to locate",
+      "environment_dependent": "About loop control flow, not the asker's setup",
+      "image_only_evidence": "No images; symptom and code are in text"
+    }
+  },
+  "50637167": {
+    "gold_rank": 7,
+    "rubric_version": "fd79297623f7",
+    "served_by": "spacexai/grok-4.7",
+    "effort": "medium",
+    "usd": 0.0129,
+    "usage": {
+      "completion_tokens": 995,
+      "prompt_tokens": 4337,
+      "total_tokens": 5332,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 847,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 1152,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.012916,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.012916,
+      "gateway_cost": 0.012916
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input paired with a literal expected output.",
+      "ask_scope": "One specific question about jti not updating after login.",
+      "failure_description": "States the jti attribute never updates after login.",
+      "code_focus": "Short User model showing only the JWT setup.",
+      "environment_dependent": "About library behavior, not the asker's own setup.",
+      "image_only_evidence": "No images referenced in the post."
+    }
+  },
+  "50901023": {
+    "gold_rank": 8,
+    "rubric_version": "fd79297623f7",
+    "served_by": "spacexai/grok-4.7",
+    "effort": "medium",
+    "usd": 0.0161,
+    "usage": {
+      "completion_tokens": 1573,
+      "prompt_tokens": 4179,
+      "total_tokens": 5752,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1417,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 1152,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.016068,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.016068,
+      "gateway_cost": 0.016068
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "not_applicable",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input paired with a literal desired output",
+      "ask_scope": "One specific how-to for a custom remote build command",
+      "failure_description": "How-to about setup, with no failed attempt described",
+      "code_focus": "Only a one-line command, no code block or multi-line paste",
+      "environment_dependent": "Asks how to configure Visual Studio builds on a remote Linux system",
+      "image_only_evidence": "No image is referenced"
+    }
+  },
+  "67817486": {
+    "gold_rank": 9,
+    "rubric_version": "fd79297623f7",
+    "served_by": "spacexai/grok-4.7",
+    "effort": "medium",
+    "usd": 0.0203,
+    "usage": {
+      "completion_tokens": 2135,
+      "prompt_tokens": 4623,
+      "total_tokens": 6758,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1989,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 1152,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.020328,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.020328,
+      "gateway_cost": 0.020328
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "partial",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input paired with a literal desired output.",
+      "ask_scope": "One specific how-to: mount custom nginx config.",
+      "failure_description": "Exact nginx open() error text is given.",
+      "code_focus": "Full compose; problem is one mount, custom conf omitted.",
+      "environment_dependent": "About container volume deployment and missing host files.",
+      "image_only_evidence": "No images are referenced."
+    }
+  },
+  "57111221": {
+    "gold_rank": 10,
+    "rubric_version": "fd79297623f7",
+    "served_by": "spacexai/grok-4.7",
+    "effort": "medium",
+    "usd": 0.019,
+    "usage": {
+      "completion_tokens": 1959,
+      "prompt_tokens": 4510,
+      "total_tokens": 6469,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1796,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 1152,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.019046,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.019046,
+      "gateway_cost": 0.019046
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "no_clear_ask",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input paired with a literal desired output.",
+      "ask_scope": "Body is filler, pasted component, and compile error; ask only in title.",
+      "failure_description": "Exact compile error text names the missing default export.",
+      "code_focus": "Short carousel component centered on the failing import.",
+      "environment_dependent": "Import error reproducible from the posted code, not the asker's setup.",
+      "image_only_evidence": "No images; error and code are in text."
+    }
+  },
+  "70467797": {
+    "gold_rank": 11,
+    "rubric_version": "fd79297623f7",
+    "served_by": "spacexai/grok-4.7",
+    "effort": "medium",
+    "usd": 0.0148,
+    "usage": {
+      "completion_tokens": 1356,
+      "prompt_tokens": 4199,
+      "total_tokens": 5555,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1197,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 1152,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.014806,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.014806,
+      "gateway_cost": 0.014806
+    },
+    "labels": {
+      "worked_example": "yes",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Input rows and desired result table are both written out.",
+      "ask_scope": "One specific SQL transform from shown input to shown result.",
+      "failure_description": "How-to with a desired result, no failed attempt.",
+      "code_focus": "Only sample data tables, no code or query.",
+      "environment_dependent": "Query result question, not the asker's own setup.",
+      "image_only_evidence": "No images; both tables are written in text."
+    }
+  },
+  "57277785": {
+    "gold_rank": 12,
+    "rubric_version": "fd79297623f7",
+    "served_by": "spacexai/grok-4.7",
+    "effort": "medium",
+    "usd": 0.0121,
+    "usage": {
+      "completion_tokens": 919,
+      "prompt_tokens": 4169,
+      "total_tokens": 5088,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 779,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 1152,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.012124,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.012124,
+      "gateway_cost": 0.012124
+    },
+    "labels": {
+      "worked_example": "yes",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "States -$97.90 should become ($97.90)",
+      "ask_scope": "One specific SQL formatting change a short answer can resolve",
+      "failure_description": "How-to with no failed attempt reported",
+      "code_focus": "One short relevant SELECT statement",
+      "environment_dependent": "Formatting behavior answerable from the posted query",
+      "image_only_evidence": "No images in the post"
+    }
+  },
+  "71703169": {
+    "gold_rank": 13,
+    "rubric_version": "fd79297623f7",
+    "served_by": "spacexai/grok-4.7",
+    "effort": "medium",
+    "usd": 0.0198,
+    "usage": {
+      "completion_tokens": 2206,
+      "prompt_tokens": 4143,
+      "total_tokens": 6349,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 2067,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 1152,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.019794,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.019794,
+      "gateway_cost": 0.019794
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input paired with a literal expected output",
+      "ask_scope": "One specific overlay that must cover the app bar",
+      "failure_description": "Stack did not cover the app bar",
+      "code_focus": "No code block or multi-line pasted code",
+      "environment_dependent": "About widget behavior, not the asker's setup",
+      "image_only_evidence": "No image is referenced"
+    }
+  },
+  "57108044": {
+    "gold_rank": 14,
+    "rubric_version": "fd79297623f7",
+    "served_by": "spacexai/grok-4.7",
+    "effort": "medium",
+    "usd": 0.0093,
+    "usage": {
+      "completion_tokens": 1136,
+      "prompt_tokens": 4223,
+      "total_tokens": 5359,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 992,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 3968,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.00931,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.00931,
+      "gateway_cost": 0.00931
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Example sentence given; expected match never written",
+      "ask_scope": "One how-to: match listed language patterns with spaCy",
+      "failure_description": "How-to with no failed attempt or symptom",
+      "code_focus": "Phrase templates only; no code block",
+      "environment_dependent": "Library matching question, not the asker's setup",
+      "image_only_evidence": "No images in the post"
+    }
+  },
+  "51163418": {
+    "gold_rank": 15,
+    "rubric_version": "fd79297623f7",
+    "served_by": "spacexai/grok-4.7",
+    "effort": "medium",
+    "usd": 0.0149,
+    "usage": {
+      "completion_tokens": 1358,
+      "prompt_tokens": 4250,
+      "total_tokens": 5608,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1198,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 1152,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.01492,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.01492,
+      "gateway_cost": 0.01492
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input paired with a literal expected output.",
+      "ask_scope": "One conceptual why-question a paragraph could answer; article request is secondary.",
+      "failure_description": "Conceptual question with no reported failure or failed attempt.",
+      "code_focus": "No code block or multi-line pasted code.",
+      "environment_dependent": "About language behavior, not the asker's install or setup.",
+      "image_only_evidence": "Diagram illustrates a point the text already states."
+    }
+  },
+  "68229677": {
+    "gold_rank": 16,
+    "rubric_version": "fd79297623f7",
+    "served_by": "spacexai/grok-4.7",
+    "effort": "medium",
+    "usd": 0.0188,
+    "usage": {
+      "completion_tokens": 1941,
+      "prompt_tokens": 4432,
+      "total_tokens": 6373,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1788,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 1152,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.018782,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.018782,
+      "gateway_cost": 0.018782
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No literal input and expected output pair written in text.",
+      "ask_scope": "One specific question about formatting plotly table cells.",
+      "failure_description": "Numbers show too many decimals and are not percentages.",
+      "code_focus": "Short snippet centered on the table format argument.",
+      "environment_dependent": "About plotly formatting behavior, not the asker's setup.",
+      "image_only_evidence": "Symptom and code are in text; image only illustrates."
+    }
+  },
+  "73570903": {
+    "gold_rank": 17,
+    "rubric_version": "fd79297623f7",
+    "served_by": "spacexai/grok-4.7",
+    "effort": "medium",
+    "usd": 0.0148,
+    "usage": {
+      "completion_tokens": 1329,
+      "prompt_tokens": 4275,
+      "total_tokens": 5604,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1176,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 1152,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.014796,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.014796,
+      "gateway_cost": 0.014796
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "partial",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No literal input and expected output pair; goal only described.",
+      "ask_scope": "One specific styling fix: remove the click outline.",
+      "failure_description": "Names observable symptom: light blue outline on click.",
+      "code_focus": "Short but incomplete JSX fragments of the components.",
+      "environment_dependent": "Styling behavior of components, not the asker's setup.",
+      "image_only_evidence": "Image only illustrates the outline already described in text."
+    }
+  },
+  "48124321": {
+    "gold_rank": 18,
+    "rubric_version": "fd79297623f7",
+    "served_by": "spacexai/grok-4.7",
+    "effort": "medium",
+    "usd": 0.017,
+    "usage": {
+      "completion_tokens": 1692,
+      "prompt_tokens": 4280,
+      "total_tokens": 5972,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1526,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 1152,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.016984,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.016984,
+      "gateway_cost": 0.016984
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "broad",
+      "failure_description": "not_applicable",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input paired with a literal expected output.",
+      "ask_scope": "Asks for the best HTML-compatible real-time plotting solution.",
+      "failure_description": "How-to recommendation; tool limits are constraints, not a failed attempt.",
+      "code_focus": "No code blocks or pasted code.",
+      "environment_dependent": "Library choice for web charts, answerable from general knowledge.",
+      "image_only_evidence": "Image is a mockup of desired charts, not essential error or data."
+    }
+  },
+  "51651956": {
+    "gold_rank": 19,
+    "rubric_version": "fd79297623f7",
+    "served_by": "spacexai/grok-4.7",
+    "effort": "medium",
+    "usd": 0.0147,
+    "usage": {
+      "completion_tokens": 1777,
+      "prompt_tokens": 4987,
+      "total_tokens": 6764,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 1618,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 3968,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.014684,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.014684,
+      "gateway_cost": 0.014684
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Sample coordinates shown, but desired plot output is not written literally",
+      "ask_scope": "One specific MemoryError when fitting Rbf to image pixels",
+      "failure_description": "Full MemoryError traceback names the failing Rbf call",
+      "code_focus": "Short relevant script and the changed pixel-extraction snippet",
+      "environment_dependent": "Rbf memory behavior is answerable without the missing image or machine",
+      "image_only_evidence": "Image only illustrates the desired plot; error and code are in text"
+    }
+  },
+  "57286212": {
+    "gold_rank": 20,
+    "rubric_version": "fd79297623f7",
+    "served_by": "spacexai/grok-4.7",
+    "effort": "medium",
+    "usd": 0.0226,
+    "usage": {
+      "completion_tokens": 2451,
+      "prompt_tokens": 4831,
+      "total_tokens": 7282,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 2287,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 1152,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.02264,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.02264,
+      "gateway_cost": 0.02264
+    },
+    "labels": {
+      "worked_example": "yes",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Filters and the exact if-clause to generate are both written",
+      "ask_scope": "One specific dynamic filter-check request; suggestions are secondary",
+      "failure_description": "How-to with eval disabled as a constraint, no failed attempt",
+      "code_focus": "Short relevant PHP showing data, filters, and the missing check",
+      "environment_dependent": "General filter-logic question; eval disabled is only a constraint",
+      "image_only_evidence": "Excel screenshots only illustrate; data and filters are in text"
+    }
+  }
+}

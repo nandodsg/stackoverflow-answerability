@@ -10,3 +10,4 @@ dbt-metricflow==0.15.0
 anthropic==2.3.0
 typesafe-sdk==0.7.5
 python-dotenv==1.2.4
+openai==3.42.0  # OpenAI-compatible client for the Vercel AI Gateway (Google and xAI models)

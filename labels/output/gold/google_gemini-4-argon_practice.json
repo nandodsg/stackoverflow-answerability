@@ -1,0 +1,1082 @@
+{
+  "61947450": {
+    "gold_rank": 1,
+    "rubric_version": "fd79297623f7",
+    "served_by": "google/gemini-4-argon",
+    "effort": "medium",
+    "usd": 0.01,
+    "usage": {
+      "completion_tokens": 249,
+      "prompt_tokens": 3775,
+      "total_tokens": 4024,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.01004,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.01004,
+      "gateway_cost": 0.01004
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "not_applicable",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No input data and literal expected output pair is provided, only command debug traces.",
+      "ask_scope": "Asks to fix one specific problem where rbenv uses the home path inside tmux.",
+      "failure_description": "Shows exact debug traces and outputs where rbenv finds the wrong version and path in tmux.",
+      "code_focus": "The blocks are debug trace output from running a command, not source code or config.",
+      "environment_dependent": "The problem is about the local shell, tmux setup, rbenv versioning, and upgrading to macOS Catalina.",
+      "image_only_evidence": "There are no images in the post."
+    }
+  },
+  "63470444": {
+    "gold_rank": 2,
+    "rubric_version": "fd79297623f7",
+    "served_by": "google/gemini-4-argon",
+    "effort": "medium",
+    "usd": 0.0093,
+    "usage": {
+      "completion_tokens": 251,
+      "prompt_tokens": 3371,
+      "total_tokens": 3622,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.009252,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.009252,
+      "gateway_cost": 0.009252
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "The desired outcome of making the indicator thinner is described in prose, not as literal input/output data.",
+      "ask_scope": "Asks one specific question about how to adjust the height of a single UI widget.",
+      "failure_description": "Shows an attempt with LinearProgressIndicator and states the observable symptom that 'it is very thick'.",
+      "code_focus": "Provides two short, minimal widget snippets directly showing the previous and current progress indicators.",
+      "environment_dependent": "The question is about standard widget styling in code, not a local setup or build issue.",
+      "image_only_evidence": "The post contains no images or links to images."
+    }
+  },
+  "69088554": {
+    "gold_rank": 3,
+    "rubric_version": "fd79297623f7",
+    "served_by": "google/gemini-4-argon",
+    "effort": "medium",
+    "usd": 0.0096,
+    "usage": {
+      "completion_tokens": 236,
+      "prompt_tokens": 3623,
+      "total_tokens": 3859,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.009606,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.009606,
+      "gateway_cost": 0.009606
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Shows test code and an error, not a concrete input/output data pair.",
+      "ask_scope": "Asks how to resolve a specific missing fixture error in pytest.",
+      "failure_description": "Provides the exact error text: \"fixture 'pytester' not found\".",
+      "code_focus": "Includes a short, minimal 6-line test function directly related to the error.",
+      "environment_dependent": "The question is about using a library feature in code, not local setup or installation.",
+      "image_only_evidence": "No images are included in the post."
+    }
+  },
+  "67861346": {
+    "gold_rank": 4,
+    "rubric_version": "fd79297623f7",
+    "served_by": "google/gemini-4-argon",
+    "effort": "medium",
+    "usd": 0.0096,
+    "usage": {
+      "completion_tokens": 240,
+      "prompt_tokens": 3603,
+      "total_tokens": 3843,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.009606,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.009606,
+      "gateway_cost": 0.009606
+    },
+    "labels": {
+      "worked_example": "yes",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Provides both the concrete input string `text` and the literal expected output string.",
+      "ask_scope": "Asks for a specific regex or function to produce the shown expected output from the input.",
+      "failure_description": "Code comment states the attempts \"typically only replace the first or last occurence of <\".",
+      "code_focus": "Short, self-contained Python snippet showing only the sample string and attempted `re.sub` calls.",
+      "environment_dependent": "Pure string and regex question reproducible directly from the pasted code.",
+      "image_only_evidence": "The post contains no images."
+    }
+  },
+  "65997173": {
+    "gold_rank": 5,
+    "rubric_version": "fd79297623f7",
+    "served_by": "google/gemini-4-argon",
+    "effort": "medium",
+    "usd": 0.009,
+    "usage": {
+      "completion_tokens": 251,
+      "prompt_tokens": 3268,
+      "total_tokens": 3519,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.009046,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.009046,
+      "gateway_cost": 0.009046
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "vague",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "yes"
+    },
+    "reasons": {
+      "worked_example": "No concrete input data or literal expected output is provided.",
+      "ask_scope": "Asks a specific question about an alternative for an OR condition inside a CASE statement's THEN clause.",
+      "failure_description": "Only describes the failure with the phrase 'is not supporting' with no specific error or symptom.",
+      "code_focus": "There is no code block or pasted code of two lines or more in the text.",
+      "environment_dependent": "The question is about SQL query syntax, not a specific machine or setup.",
+      "image_only_evidence": "The query referenced by 'as above query' is provided only as an image."
+    }
+  },
+  "61686467": {
+    "gold_rank": 6,
+    "rubric_version": "fd79297623f7",
+    "served_by": "google/gemini-4-argon",
+    "effort": "medium",
+    "usd": 0.0106,
+    "usage": {
+      "completion_tokens": 250,
+      "prompt_tokens": 4058,
+      "total_tokens": 4308,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.010616,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.010616,
+      "gateway_cost": 0.010616
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "partial",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No literal input data or expected output values are written out.",
+      "ask_scope": "Asks how to fix a single loop so it continues after an exception in try-catch.",
+      "failure_description": "Describes a concrete symptom: when item 2 enters catch, it stops and does not run 3 and 4.",
+      "code_focus": "Shows the relevant loop and try-catch block, along with extra array population and file check lines.",
+      "environment_dependent": "About PHP try-catch loop execution behavior in code, not a local setup or deployment issue.",
+      "image_only_evidence": "The post contains no images."
+    }
+  },
+  "50637167": {
+    "gold_rank": 7,
+    "rubric_version": "fd79297623f7",
+    "served_by": "google/gemini-4-argon",
+    "effort": "medium",
+    "usd": 0.0092,
+    "usage": {
+      "completion_tokens": 229,
+      "prompt_tokens": 3461,
+      "total_tokens": 3690,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.009212,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.009212,
+      "gateway_cost": 0.009212
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input data or literal expected output values are written out.",
+      "ask_scope": "Asks one specific question about how to make the gem update the jti attribute.",
+      "failure_description": "States the specific symptom that the gem never updates the jti attribute after login.",
+      "code_focus": "Shows only the short, relevant User model configuration for devise-jwt.",
+      "environment_dependent": "About library behavior and model code, not local installation or deployment setup.",
+      "image_only_evidence": "The post contains no images."
+    }
+  },
+  "50901023": {
+    "gold_rank": 8,
+    "rubric_version": "fd79297623f7",
+    "served_by": "google/gemini-4-argon",
+    "effort": "medium",
+    "usd": 0.009,
+    "usage": {
+      "completion_tokens": 244,
+      "prompt_tokens": 3298,
+      "total_tokens": 3542,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.009036,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.009036,
+      "gateway_cost": 0.009036
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "not_applicable",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input data or literal desired output is written out.",
+      "ask_scope": "Asks one specific question about how to configure a custom build command in Visual Studio.",
+      "failure_description": "Pure how-to question about setting up a build command with no failed attempt reported.",
+      "code_focus": "The post contains only prose and a short inline shell command, with no code blocks.",
+      "environment_dependent": "The question is about configuring build tools (Visual Studio and CMake) with a remote Linux server.",
+      "image_only_evidence": "There are no images in the post."
+    }
+  },
+  "67817486": {
+    "gold_rank": 9,
+    "rubric_version": "fd79297623f7",
+    "served_by": "google/gemini-4-argon",
+    "effort": "medium",
+    "usd": 0.01,
+    "usage": {
+      "completion_tokens": 239,
+      "prompt_tokens": 3796,
+      "total_tokens": 4035,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.009982,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.009982,
+      "gateway_cost": 0.009982
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "partial",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No input data and desired literal output pair is provided.",
+      "ask_scope": "Asks one specific question about how to mount a custom config file without error.",
+      "failure_description": "Quotes the exact nginx emergency error message about the missing file.",
+      "code_focus": "Shows a full docker-compose file when the issue is in one volume mount and an unshown config.",
+      "environment_dependent": "About configuring Docker containers and hinges on the unshown myconf.conf file on the asker's machine.",
+      "image_only_evidence": "There are no images in the post."
+    }
+  },
+  "57111221": {
+    "gold_rank": 10,
+    "rubric_version": "fd79297623f7",
+    "served_by": "google/gemini-4-argon",
+    "effort": "medium",
+    "usd": 0.0098,
+    "usage": {
+      "completion_tokens": 246,
+      "prompt_tokens": 3661,
+      "total_tokens": 3907,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.009782,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.009782,
+      "gateway_cost": 0.009782
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "no_clear_ask",
+      "failure_description": "concrete",
+      "code_focus": "partial",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Post only has component code and an error, no concrete input and desired output pair.",
+      "ask_scope": "Body only contains a 'not working' filler line, pasted code, and an error message.",
+      "failure_description": "Includes the exact compilation error message at the bottom of the post.",
+      "code_focus": "Includes a whole component file when the error sits on a single import line.",
+      "environment_dependent": "The import error is reproducible from the code alone without knowing the local setup.",
+      "image_only_evidence": "No external images; the img tags are inside the pasted JSX code."
+    }
+  },
+  "70467797": {
+    "gold_rank": 11,
+    "rubric_version": "fd79297623f7",
+    "served_by": "google/gemini-4-argon",
+    "effort": "medium",
+    "usd": 0.0089,
+    "usage": {
+      "completion_tokens": 222,
+      "prompt_tokens": 3349,
+      "total_tokens": 3571,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.008918,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.008918,
+      "gateway_cost": 0.008918
+    },
+    "labels": {
+      "worked_example": "yes",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Both the concrete input table and literal desired output table are written out.",
+      "ask_scope": "Asks for a single query to produce the specified result table.",
+      "failure_description": "Pure how-to request with no failed attempt reported.",
+      "code_focus": "The post contains only markdown tables and no SQL or source code.",
+      "environment_dependent": "A general SQL query question not depending on a local setup.",
+      "image_only_evidence": "The post contains no images."
+    }
+  },
+  "57277785": {
+    "gold_rank": 12,
+    "rubric_version": "fd79297623f7",
+    "served_by": "google/gemini-4-argon",
+    "effort": "medium",
+    "usd": 0.009,
+    "usage": {
+      "completion_tokens": 240,
+      "prompt_tokens": 3304,
+      "total_tokens": 3544,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.009008,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.009008,
+      "gateway_cost": 0.009008
+    },
+    "labels": {
+      "worked_example": "yes",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Concrete input `-$97.90` and literal desired output `($97.90)` are both written out.",
+      "ask_scope": "Asks how to format a negative number with parentheses in an Oracle SQL query.",
+      "failure_description": "Pure how-to question asking to change string formatting, with no failed attempt.",
+      "code_focus": "A single-line SQL query block directly relevant to the formatting question.",
+      "environment_dependent": "General Oracle SQL formatting question independent of local setup.",
+      "image_only_evidence": "The post contains no images."
+    }
+  },
+  "71703169": {
+    "gold_rank": 13,
+    "rubric_version": "fd79297623f7",
+    "served_by": "google/gemini-4-argon",
+    "effort": "medium",
+    "usd": 0.0089,
+    "usage": {
+      "completion_tokens": 236,
+      "prompt_tokens": 3263,
+      "total_tokens": 3499,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.008886,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.008886,
+      "gateway_cost": 0.008886
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input data or literal expected output is written out.",
+      "ask_scope": "How-to for one specific UI operation that mentions 'best' only in passing.",
+      "failure_description": "Describes the observable symptom of a prior attempt: 'stack was not covered my App bar'.",
+      "code_focus": "The post contains no code blocks or multi-line pasted code.",
+      "environment_dependent": "The question is about standard widget layout, not local setup or versions.",
+      "image_only_evidence": "There are no images in the post."
+    }
+  },
+  "57108044": {
+    "gold_rank": 14,
+    "rubric_version": "fd79297623f7",
+    "served_by": "google/gemini-4-argon",
+    "effort": "medium",
+    "usd": 0.0091,
+    "usage": {
+      "completion_tokens": 239,
+      "prompt_tokens": 3341,
+      "total_tokens": 3580,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.009072,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.009072,
+      "gateway_cost": 0.009072
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Gives an example input sentence, but the literal expected output is never written out.",
+      "ask_scope": "Asks how to write a spaCy Matcher pattern for a stated set of phrase rules.",
+      "failure_description": "This is a how-to question with no failed attempt or error mentioned.",
+      "code_focus": "The post contains no code blocks or pasted code.",
+      "environment_dependent": "The question is about writing library patterns, not about the asker's machine or setup.",
+      "image_only_evidence": "There are no images in the post."
+    }
+  },
+  "51163418": {
+    "gold_rank": 15,
+    "rubric_version": "fd79297623f7",
+    "served_by": "google/gemini-4-argon",
+    "effort": "medium",
+    "usd": 0.0092,
+    "usage": {
+      "completion_tokens": 240,
+      "prompt_tokens": 3375,
+      "total_tokens": 3615,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.00915,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.00915,
+      "gateway_cost": 0.00915
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Conceptual question with no concrete input and desired output values.",
+      "ask_scope": "Asks a specific conceptual question about why a JavaScript function has a property.",
+      "failure_description": "Purely conceptual question about JavaScript properties with no failing code or attempt.",
+      "code_focus": "The post contains no code blocks or multi-line pasted code.",
+      "environment_dependent": "Conceptual question about general JavaScript language behavior, not a local setup.",
+      "image_only_evidence": "The conceptual question is fully stated in text; the image is just an illustrative diagram."
+    }
+  },
+  "68229677": {
+    "gold_rank": 16,
+    "rubric_version": "fd79297623f7",
+    "served_by": "google/gemini-4-argon",
+    "effort": "medium",
+    "usd": 0.0096,
+    "usage": {
+      "completion_tokens": 247,
+      "prompt_tokens": 3555,
+      "total_tokens": 3802,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.00958,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.00958,
+      "gateway_cost": 0.00958
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input data or literal expected output values are written in text.",
+      "ask_scope": "Asks a specific how-to question about formatting column data types in a plotly table.",
+      "failure_description": "Describes observable symptoms: numbers have very large decimal places and are not in percentage form.",
+      "code_focus": "Provides a short, focused code snippet showing the table creation and format parameter attempt.",
+      "environment_dependent": "The question is about library usage and code, not local setup or environment.",
+      "image_only_evidence": "The image illustrates the table, but the text already explains the decimal and percentage issues."
+    }
+  },
+  "73570903": {
+    "gold_rank": 17,
+    "rubric_version": "fd79297623f7",
+    "served_by": "google/gemini-4-argon",
+    "effort": "medium",
+    "usd": 0.0093,
+    "usage": {
+      "completion_tokens": 249,
+      "prompt_tokens": 3403,
+      "total_tokens": 3652,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.009296,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.009296,
+      "gateway_cost": 0.009296
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No literal input and desired output values are provided, only a visual styling goal.",
+      "ask_scope": "Asks for a single specific CSS/component fix to remove the outline on click.",
+      "failure_description": "Describes the observable symptom clearly: shows a light blue coloured outline around the image when clicked.",
+      "code_focus": "Shows only the short, relevant JSX snippets for the Dropdown and Button components.",
+      "environment_dependent": "The question is about component styling behavior in code, not a machine or deployment setup.",
+      "image_only_evidence": "The image only illustrates the visual symptom already described in text and shown in code."
+    }
+  },
+  "48124321": {
+    "gold_rank": 18,
+    "rubric_version": "fd79297623f7",
+    "served_by": "google/gemini-4-argon",
+    "effort": "medium",
+    "usd": 0.0066,
+    "usage": {
+      "completion_tokens": 231,
+      "prompt_tokens": 3403,
+      "total_tokens": 3634,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 1317,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.0066137,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.0066137,
+      "gateway_cost": 0.0066137
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "broad",
+      "failure_description": "not_applicable",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input data or literal expected output is written out.",
+      "ask_scope": "Asks for a recommendation on the best HTML-compatible solution or tool.",
+      "failure_description": "No failed attempt is reported, only general constraints of current tools.",
+      "code_focus": "The post contains no code at all.",
+      "environment_dependent": "Asks a general tool recommendation question, not about a local setup issue.",
+      "image_only_evidence": "The image is just an illustration of desired plot types, not essential evidence."
+    }
+  },
+  "51651956": {
+    "gold_rank": 19,
+    "rubric_version": "fd79297623f7",
+    "served_by": "google/gemini-4-argon",
+    "effort": "medium",
+    "usd": 0.0085,
+    "usage": {
+      "completion_tokens": 247,
+      "prompt_tokens": 4153,
+      "total_tokens": 4400,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 1209,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.0084789,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.0084789,
+      "gateway_cost": 0.0084789
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "concrete",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Desired output is only shown as a plot image, with no literal expected values in text.",
+      "ask_scope": "Asks how to resolve or understand one specific MemoryError when passing image data to Rbf.",
+      "failure_description": "Includes the exact Python traceback ending with MemoryError.",
+      "code_focus": "Provides short, relevant snippets showing the working example and the failing data-loading change.",
+      "environment_dependent": "The issue is about algorithmic memory usage on image arrays, answerable from general knowledge.",
+      "image_only_evidence": "The linked image only illustrates the desired plot; code and error traceback are in text."
+    }
+  },
+  "57286212": {
+    "gold_rank": 20,
+    "rubric_version": "fd79297623f7",
+    "served_by": "google/gemini-4-argon",
+    "effort": "medium",
+    "usd": 0.0109,
+    "usage": {
+      "completion_tokens": 285,
+      "prompt_tokens": 4008,
+      "total_tokens": 4293,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.010866,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": null,
+        "upstream_inference_prompt_cost": 0,
+        "upstream_inference_completions_cost": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "market_cost": 0.010866,
+      "gateway_cost": 0.010866
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Provides input arrays in code, but the expected output array is only shown in an image, not written out.",
+      "ask_scope": "Asks how to dynamically evaluate an array of filter conditions in PHP; the 'suggestions welcome' line is clearly secondary.",
+      "failure_description": "How-to question with no failed attempt; 'eval is disabled on my PHP' is a constraint, not a failure.",
+      "code_focus": "Short, self-contained PHP snippets showing the input data structures and where the dynamic condition logic needs to go.",
+      "environment_dependent": "Pure programming logic problem reproducible from the provided arrays and code, independent of the server setup.",
+      "image_only_evidence": "The Excel screenshots only illustrate the concept; the actual PHP arrays and rules are written out in code blocks."
+    }
+  }
+}

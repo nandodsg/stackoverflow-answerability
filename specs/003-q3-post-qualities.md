@@ -94,6 +94,36 @@ links to research, polished prose, structure and tone were mixed or favored the 
 API credit (`labels/spend_log.csv`; one call dropped mid-stream and was billed, US$ 0.49, read from the credit balance). The free `count` mode of the
 script gives the exact input tokens before any paid run.
 
+**Rubric and gold set (decided 2026-10-31).** The candidates were curated into six labels in `labels/rubric.md`, the
+single source of the definitions (`labels/rubric.py` parses the keys and levels from it; its version is a hash of the
+file): `worked_example`, `ask_scope` (narrow / broad, including opinion or recommendation requests / multiple / no clear
+ask), `failure_description` (concrete / vague / not applicable), `code_focus` (focused / partial / dump /
+not applicable), `environment_dependent` and `image_only_evidence` (judged from the text alone; nobody sees the
+images). Each label is analyzed level by level against its first level, as the rule-based buckets are; `not_applicable`
+is left out of that label's comparison. The gold set is the view `int_label_gold_questions` (ids only, with a test that
+re-checks it against the sources): 120 questions from the 5% sample, 2018–2022, minus the discovery questions; 20 for a
+**practice** round, whose disagreements with a model may tighten the rubric's wording, and 100 for **scoring** on the
+frozen rubric; a third of each set has an image, so the image label has enough positives to score. Labels are made on
+a local page (`labels/gold_page.py`) that shows the original title, tags, year and body, with no outcome and images as
+placeholders; they are stored in `labels/gold/` with the rubric version on every row. `labels/label_questions.py` asks
+a model for the same labels, one call per question, with a schema built from the rubric's levels and a short reason per
+label (the model gets the definitions only, not the discovery table of which way each label leaned), and
+`labels/agreement.py` scores any two labelers per label (agreement and Cohen's kappa) and lists every disagreement.
+
+**Practice round and reviewed gold set (decided 2026-10-31).** The 20 practice questions were labeled blind by hand and
+by Claude Opus 5.5. Agreement was low (kappa 0.14 to 0.75 by label), and in most disagreements the written rubric sided
+with the model, so the wording was tightened before the scoring set: an input/output pair rather than any example,
+clearer asks, `failure_description` reduced to concrete / vague / not applicable, logs are not code, the setup label
+judged from what the post says, and a "cover the images" test (closing note of `labels/rubric.md`). The 100 scoring
+questions are then labeled by **review**, not from scratch: two models from companies whose models do not compete to
+label the analysis set, Google Gemini 4 Argon and xAI Grok 4.7 (called through the Vercel AI Gateway with one key),
+label every gold question with a reason per label; the hand labeler keeps or changes each level both chose and breaks
+each split (`labels/gold_page.py scoring --review ...`, saved as `gold_labels_scoring_reviewed.csv` with a
+`<label>__decision` column). Reviewing anchors the reviewer on the suggestion, so this gold set is human-reviewed model
+labels, not independent hand labels: the share of labels changed is reported with it, and the 20 blind practice labels
+remain the one independent human check. Candidate labelers for the analysis set (Claude models, OpenAI GPT-6 Luna,
+TypeSafe Jev) are scored against the reviewed set.
+
 Rule-based features and quality labels are not competing methods. Rule-based features cover every question and
 are reproducible in `queries/q3.sql`; labels cover the sample and are stored as a table. They meet in two checks: a
 label should agree with its rule-based neighbour where one exists (a "reproducible example" mostly has a code

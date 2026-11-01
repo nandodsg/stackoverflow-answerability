@@ -93,3 +93,20 @@ models:
               arguments:
                 values: [2018, 2019, 2020, 2021]
                 quote: false
+
+  - name: int_label_gold_questions
+    description: >
+      Gold set of the quality labels (needs_full_scan, a view): 120 questions from the 5% text sample, 2018-2022, minus
+      the discovery questions; 20 practice and 100 scoring, a third of each with an image. Labeled by hand on
+      labels/rubric.md, blind to the outcome, to score the labeling models. Question ids only.
+    columns:
+      - name: question_id
+        data_tests: [unique, not_null]
+      - name: gold_set
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['practice', 'scoring']
+      - name: gold_rank
+        data_tests: [not_null]

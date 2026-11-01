@@ -1,0 +1,1062 @@
+{
+  "61947450": {
+    "gold_rank": 1,
+    "rubric_version": "5102cea87d4f",
+    "served_by": "claude-opus-5-5",
+    "effort": "medium",
+    "usd": 0.0233,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4392,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4392,
+          "model": null,
+          "output_tokens": 285,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 285,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "no_clear_ask",
+      "failure_description": "specific",
+      "code_focus": "not_applicable",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Debug traces show behavior, but no input/desired-output pair is written as a worked example.",
+      "ask_scope": "Only says 'Any help would be appreciated' after describing the symptom; no explicit stated ask.",
+      "failure_description": "States that tmux returns the global version instead of the project's .ruby-version, with debug output.",
+      "code_focus": "Only debug log output is posted; no source code or config.",
+      "environment_dependent": "Depends on the asker's macOS Catalina upgrade and tmux/shell setup, not reproducible from the post.",
+      "image_only_evidence": "No images; all evidence is in text."
+    }
+  },
+  "63470444": {
+    "gold_rank": 2,
+    "rubric_version": "5102cea87d4f",
+    "served_by": "claude-opus-5-5",
+    "effort": "medium",
+    "usd": 0.0206,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 3916,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 3916,
+          "model": null,
+          "output_tokens": 245,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 245,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "partial",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No literal input/output pair; desired thinness only described in words.",
+      "ask_scope": "Single specific ask: how to set LinearProgressIndicator height/thickness.",
+      "failure_description": "Symptom 'very thick' is concrete, but no exact expected value or error.",
+      "code_focus": "Two short snippets showing only the relevant widget usage.",
+      "environment_dependent": "Answerable from general Flutter knowledge; snippet reproducible anywhere.",
+      "image_only_evidence": "No images in the post."
+    }
+  },
+  "69088554": {
+    "gold_rank": 3,
+    "rubric_version": "5102cea87d4f",
+    "served_by": "claude-opus-5-5",
+    "effort": "medium",
+    "usd": 0.0216,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4209,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4209,
+          "model": null,
+          "output_tokens": 236,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 236,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "specific",
+      "code_focus": "focused",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Error and code shown, but no concrete input with literal desired output.",
+      "ask_scope": "Single question: how to use pytester fixture to create files.",
+      "failure_description": "Exact error text 'fixture pytester not found' quoted as text.",
+      "code_focus": "Short test function directly showing the failing fixture usage.",
+      "environment_dependent": "Fixture availability depends on installed pytest version/plugin config, not shown.",
+      "image_only_evidence": "No images; error and code given in text."
+    }
+  },
+  "67861346": {
+    "gold_rank": 4,
+    "rubric_version": "5102cea87d4f",
+    "served_by": "claude-opus-5-5",
+    "effort": "medium",
+    "usd": 0.0215,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4241,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4241,
+          "model": null,
+          "output_tokens": 225,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 225,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "yes",
+      "ask_scope": "narrow",
+      "failure_description": "partial",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Input string and literal expected output are both written out in code blocks.",
+      "ask_scope": "Single specific task: replace < and > only between CODE markers.",
+      "failure_description": "Says attempts only replace first or last occurrence; no exact actual output shown.",
+      "code_focus": "Short self-contained input and list of attempted re.sub calls, all relevant.",
+      "environment_dependent": "no",
+      "image_only_evidence": "No images; all evidence is in text."
+    }
+  },
+  "65997173": {
+    "gold_rank": 5,
+    "rubric_version": "5102cea87d4f",
+    "served_by": "claude-opus-5-5",
+    "effort": "medium",
+    "usd": 0.0195,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 3730,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 3730,
+          "model": null,
+          "output_tokens": 231,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 231,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "partial",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "yes"
+    },
+    "reasons": {
+      "worked_example": "No input data or literal desired output written in text; query only in image.",
+      "ask_scope": "narrow",
+      "failure_description": "Says OR in THEN 'is not supporting' without exact error text or expected behaviour detail.",
+      "code_focus": "No code block or pasted code; the query is only in an image.",
+      "environment_dependent": "General SQL syntax question answerable from general knowledge.",
+      "image_only_evidence": "The query the question hinges on is shown only in an image."
+    }
+  },
+  "61686467": {
+    "gold_rank": 6,
+    "rubric_version": "5102cea87d4f",
+    "served_by": "claude-opus-5-5",
+    "effort": "medium",
+    "usd": 0.0242,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4781,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4781,
+          "model": null,
+          "output_tokens": 254,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 254,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "specific",
+      "code_focus": "partial",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No literal input data and expected output written out; only described in words.",
+      "ask_scope": "Single ask: make the loop continue after an exception is caught.",
+      "failure_description": "States what happens (stops after item 2) and what should happen (run 3 and 4).",
+      "code_focus": "Relevant loop shown but long, with many unrelated map/cache assignment lines.",
+      "environment_dependent": "Depends on the asker's game servers and SourceQuery connections, which cannot be reproduced from the post.",
+      "image_only_evidence": "No images in the post."
+    }
+  },
+  "50637167": {
+    "gold_rank": 7,
+    "rubric_version": "5102cea87d4f",
+    "served_by": "claude-opus-5-5",
+    "effort": "medium",
+    "usd": 0.0203,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 3989,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 3989,
+          "model": null,
+          "output_tokens": 217,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 217,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "specific",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No literal input/output pair; expected jti update only described in words.",
+      "ask_scope": "Single question: whether a manual login callback is needed to update jti.",
+      "failure_description": "States what happens (jti never updates) and what was expected (automatic update after login).",
+      "code_focus": "Short User model snippet directly relevant to the jti revocation strategy.",
+      "environment_dependent": "no",
+      "image_only_evidence": "No images in the post."
+    }
+  },
+  "50901023": {
+    "gold_rank": 8,
+    "rubric_version": "5102cea87d4f",
+    "served_by": "claude-opus-5-5",
+    "effort": "medium",
+    "usd": 0.0198,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 3768,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 3768,
+          "model": null,
+          "output_tokens": 234,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 234,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "not_applicable",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input/output example; a configuration how-to question.",
+      "ask_scope": "Single ask: how to make Visual Studio run a custom build command remotely.",
+      "failure_description": "How-to question; nothing reported as failing.",
+      "code_focus": "Only an inline command, no code block or multi-line code.",
+      "environment_dependent": "Depends on the asker's remote Linux server and Visual Studio setup.",
+      "image_only_evidence": "No images in the post."
+    }
+  },
+  "67817486": {
+    "gold_rank": 9,
+    "rubric_version": "5102cea87d4f",
+    "served_by": "claude-opus-5-5",
+    "effort": "medium",
+    "usd": 0.0223,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4501,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4501,
+          "model": null,
+          "output_tokens": 216,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 216,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "specific",
+      "code_focus": "partial",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input with literal desired output written out.",
+      "ask_scope": "Single ask: how to add a custom config to nginx-proxy.",
+      "failure_description": "Exact nginx emerg error text quoted as text.",
+      "code_focus": "Full compose file with letsencrypt service; relevant volume line is buried but related.",
+      "environment_dependent": "yes",
+      "image_only_evidence": "No images; error and config are given in text."
+    }
+  },
+  "57111221": {
+    "gold_rank": 10,
+    "rubric_version": "5102cea87d4f",
+    "served_by": "claude-opus-5-5",
+    "effort": "medium",
+    "usd": 0.0218,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4273,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4273,
+          "model": null,
+          "output_tokens": 235,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 235,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "no_clear_ask",
+      "failure_description": "specific",
+      "code_focus": "partial",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No literal input with desired output; only a code and error report.",
+      "ask_scope": "Body is only a filler line, pasted code and an error; no stated ask.",
+      "failure_description": "Exact compile error text quoted.",
+      "code_focus": "Single relevant component, but long repetitive carousel markup beyond the import issue.",
+      "environment_dependent": "Import error reproducible by pasting the code into a fresh setup.",
+      "image_only_evidence": "No images; the error is given in text."
+    }
+  },
+  "70467797": {
+    "gold_rank": 11,
+    "rubric_version": "5102cea87d4f",
+    "served_by": "claude-opus-5-5",
+    "effort": "medium",
+    "usd": 0.0195,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 3788,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 3788,
+          "model": null,
+          "output_tokens": 219,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 219,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "yes",
+      "ask_scope": "no_clear_ask",
+      "failure_description": "not_applicable",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Input table and literal desired result table both written out.",
+      "ask_scope": "Body only shows tables; the request lives only in the title.",
+      "failure_description": "No attempt or failure reported; pure how-to.",
+      "code_focus": "Only data tables, no code block or query.",
+      "environment_dependent": "Data given in post; answerable from general SQL knowledge.",
+      "image_only_evidence": "No images in the post."
+    }
+  },
+  "57277785": {
+    "gold_rank": 12,
+    "rubric_version": "5102cea87d4f",
+    "served_by": "claude-opus-5-5",
+    "effort": "medium",
+    "usd": 0.0193,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 3756,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 3756,
+          "model": null,
+          "output_tokens": 213,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 213,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "yes",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Input -$97.90 and desired output ($97.90) both written literally.",
+      "ask_scope": "Single specific formatting operation answerable with a function or format mask.",
+      "failure_description": "How-to question; nothing reported as failing.",
+      "code_focus": "One short relevant query.",
+      "environment_dependent": "Answerable from general Oracle knowledge.",
+      "image_only_evidence": "No images in the post."
+    }
+  },
+  "71703169": {
+    "gold_rank": 13,
+    "rubric_version": "5102cea87d4f",
+    "served_by": "claude-opus-5-5",
+    "effort": "medium",
+    "usd": 0.0195,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 3723,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 3723,
+          "model": null,
+          "output_tokens": 231,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 231,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "broad",
+      "failure_description": "partial",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Desired result described only in words; no input/output written out.",
+      "ask_scope": "Asks for the best way to implement a full-screen loader, a recommendation request.",
+      "failure_description": "Past Stack attempt did not cover the app bar: a concrete symptom, no error.",
+      "code_focus": "No code block or pasted code in the post.",
+      "environment_dependent": "General Flutter UI question answerable from general knowledge.",
+      "image_only_evidence": "No images referenced."
+    }
+  },
+  "57108044": {
+    "gold_rank": 14,
+    "rubric_version": "5102cea87d4f",
+    "served_by": "claude-opus-5-5",
+    "effort": "medium",
+    "usd": 0.0201,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 3822,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 3822,
+          "model": null,
+          "output_tokens": 241,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 241,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Example sentence given but desired output (e.g., 'bengali') never written literally.",
+      "ask_scope": "Single ask: how to match these patterns with spaCy Matcher.",
+      "failure_description": "How-to question with no attempt or failure reported.",
+      "code_focus": "No code block or pasted code; only pattern list in prose.",
+      "environment_dependent": "Answerable from general spaCy knowledge; nothing setup-specific.",
+      "image_only_evidence": "No images in the post."
+    }
+  },
+  "51163418": {
+    "gold_rank": 15,
+    "rubric_version": "5102cea87d4f",
+    "served_by": "claude-opus-5-5",
+    "effort": "medium",
+    "usd": 0.0199,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 3861,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 3861,
+          "model": null,
+          "output_tokens": 224,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 224,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Conceptual question; no input or desired output written out.",
+      "ask_scope": "Single conceptual question why a function has a prototype property.",
+      "failure_description": "No failure reported; purely conceptual question.",
+      "code_focus": "No code block or pasted code in the post.",
+      "environment_dependent": "Answerable from general JavaScript knowledge.",
+      "image_only_evidence": "Image illustrates article diagram; question stated in text with names."
+    }
+  },
+  "68229677": {
+    "gold_rank": 16,
+    "rubric_version": "5102cea87d4f",
+    "served_by": "claude-opus-5-5",
+    "effort": "medium",
+    "usd": 0.0218,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4163,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4163,
+          "model": null,
+          "output_tokens": 256,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 256,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "partial",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Table shown only as image; desired formatting described in words, no literal input/output.",
+      "ask_scope": "Single question: how to specify cell number formats in a plotly table.",
+      "failure_description": "Attempt shown; symptom of too many decimals and non-percentage values, no exact error or literal expected output.",
+      "code_focus": "Short snippet containing just the go.Table call relevant to formatting.",
+      "environment_dependent": "no",
+      "image_only_evidence": "Image shows the symptom, which the text also describes (long decimals, PLF not percentage)."
+    }
+  },
+  "73570903": {
+    "gold_rank": 17,
+    "rubric_version": "5102cea87d4f",
+    "served_by": "claude-opus-5-5",
+    "effort": "medium",
+    "usd": 0.0205,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 3903,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 3903,
+          "model": null,
+          "output_tokens": 242,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 242,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "specific",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No literal input/output pair; desired result only described in words.",
+      "ask_scope": "Single ask: remove the outline that appears on click.",
+      "failure_description": "Names the symptom: a light blue outline appears around the image on click.",
+      "code_focus": "Short JSX snippets of the Dropdown and Button only.",
+      "environment_dependent": "Reproducible with react-bootstrap's default focus styling; no local setup needed.",
+      "image_only_evidence": "Image illustrates the outline, which the text already describes."
+    }
+  },
+  "48124321": {
+    "gold_rank": 18,
+    "rubric_version": "5102cea87d4f",
+    "served_by": "claude-opus-5-5",
+    "effort": "medium",
+    "usd": 0.0205,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 3904,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 3904,
+          "model": null,
+          "output_tokens": 242,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 242,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "broad",
+      "failure_description": "not_applicable",
+      "code_focus": "not_applicable",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "No concrete input data or literal output; desired plots shown only in image.",
+      "ask_scope": "Asks for the best solution/tool for real-time web plotting.",
+      "failure_description": "Tool-recommendation question; no attempt failing with an error or symptom.",
+      "code_focus": "Post contains no code.",
+      "environment_dependent": "Answerable from general knowledge of plotting libraries.",
+      "image_only_evidence": "Image only illustrates the desired chart type, a mockup of the goal."
+    }
+  },
+  "51651956": {
+    "gold_rank": 19,
+    "rubric_version": "5102cea87d4f",
+    "served_by": "claude-opus-5-5",
+    "effort": "medium",
+    "usd": 0.0238,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4843,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4843,
+          "model": null,
+          "output_tokens": 222,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 222,
+      "output_tokens_details": {
+        "thinking_tokens": 0
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "specific",
+      "code_focus": "focused",
+      "environment_dependent": "yes",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Input points given but no literal desired output; result only shown as image.",
+      "ask_scope": "Single question about why MemoryError occurs immediately on new input.",
+      "failure_description": "Full traceback with MemoryError quoted as text.",
+      "code_focus": "Short working script plus small changed input snippet, relevant to error.",
+      "environment_dependent": "yes",
+      "image_only_evidence": "Image is illustration of desired plot; error and code are in text."
+    }
+  },
+  "57286212": {
+    "gold_rank": 20,
+    "rubric_version": "5102cea87d4f",
+    "served_by": "claude-opus-5-5",
+    "effort": "medium",
+    "usd": 0.0304,
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "global",
+      "input_tokens": 4659,
+      "iterations": [
+        {
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 0,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "input_tokens": 4659,
+          "model": null,
+          "output_tokens": 589,
+          "type": "message"
+        }
+      ],
+      "output_tokens": 589,
+      "output_tokens_details": {
+        "thinking_tokens": 290
+      },
+      "service_tier": "standard",
+      "speed": "standard"
+    },
+    "labels": {
+      "worked_example": "no",
+      "ask_scope": "narrow",
+      "failure_description": "not_applicable",
+      "code_focus": "focused",
+      "environment_dependent": "no",
+      "image_only_evidence": "no"
+    },
+    "reasons": {
+      "worked_example": "Input array and filters are in code, but the filtered result is only shown in an image.",
+      "ask_scope": "One specific ask: evaluate a dynamic filter chain without eval; the improvement request is secondary.",
+      "failure_description": "How-to question; no attempt that went wrong is reported, eval being disabled is just a constraint.",
+      "code_focus": "Short, self-contained snippets showing the data, filters and the exact spot needing logic.",
+      "environment_dependent": "Answerable from general PHP knowledge; the posted code is reproducible anywhere.",
+      "image_only_evidence": "Images illustrate an Excel analogy; the essential data and intended condition are given in code."
+    }
+  }
+}

@@ -1,8 +1,9 @@
 """Shared plumbing for the P3 quality-label scripts (specs/003, "Quality labels").
 
-Keys come from the gitignored `.env` at the repo root (ANTHROPIC_API_KEY, TYPESAFE_API_KEY), never from the command
-line. The Anthropic client gets the public API URL explicitly: some tools (Claude Code among them) set
-ANTHROPIC_BASE_URL in their own shell, and the SDK would otherwise send the key there.
+Keys come from the gitignored `.env` at the repo root (ANTHROPIC_API_KEY, TYPESAFE_API_KEY, AI_GATEWAY_API_KEY),
+never from the command line. The Anthropic client gets the public API URL explicitly: some tools (Claude Code among
+them) set ANTHROPIC_BASE_URL in their own shell, and the SDK would otherwise send the key there. Models from other
+companies (Google, xAI) go through the Vercel AI Gateway's OpenAI-compatible API, with one key for all of them.
 
 Every paid call is appended to labels/spend_log.csv (tokens and US$), so the README can state the real spend.
 """
@@ -32,6 +33,14 @@ PRICES = {
     "claude-sonnet-5-5": {"input": 2.00, "output": 10.00, "cache_write": 2.50, "cache_read": 0.20},
     "claude-haiku-5-5": {"input": 0.10, "output": 0.50, "cache_write": 0.125, "cache_read": 0.01},
 }
+# Vercel AI Gateway (ai-gateway.vercel.sh/v1/models, 2026-10-31), US regional prices, which are the higher ones.
+# Reasoning tokens are billed as output.
+GATEWAY_PRICES = {
+    "google/gemini-4-argon": {"input": 2.20, "output": 11.00, "cache_write": 2.20, "cache_read": 0.11},
+    "spacexai/grok-4.7": {"input": 2.20, "output": 6.60, "cache_write": 2.20, "cache_read": 0.55},
+}
+PRICES |= GATEWAY_PRICES
+GATEWAY_URL = "https://ai-gateway.vercel.sh/v1"
 
 load_dotenv(REPO / ".env")  # no override=True: .env never replaces a variable that is already set
 
@@ -42,14 +51,28 @@ def anthropic_client():
     return Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"], base_url="https://api.anthropic.com")
 
 
+def gateway_client():
+    from openai import OpenAI
+
+    return OpenAI(api_key=os.environ["AI_GATEWAY_API_KEY"], base_url=GATEWAY_URL)
+
+
+def tokens(usage) -> tuple[int, int, int, int]:
+    """(input, output, cache write, cache read) from an Anthropic or an OpenAI-shaped usage object."""
+    if hasattr(usage, "prompt_tokens"):  # OpenAI shape: cached tokens are part of prompt_tokens
+        details = getattr(usage, "prompt_tokens_details", None)
+        cached = (getattr(details, "cached_tokens", 0) or 0) if details else 0
+        return (usage.prompt_tokens or 0) - cached, usage.completion_tokens or 0, 0, cached
+    return (usage.input_tokens or 0, usage.output_tokens or 0,
+            getattr(usage, "cache_creation_input_tokens", 0) or 0, getattr(usage, "cache_read_input_tokens", 0) or 0)
+
+
 def usd(model: str, usage) -> float:
+    if getattr(usage, "cost", None) is not None:  # the gateway reports what it billed; prefer it to the price list
+        return float(usage.cost)
     p = PRICES[model]
-    return (
-        (usage.input_tokens or 0) * p["input"]
-        + (usage.output_tokens or 0) * p["output"]
-        + (getattr(usage, "cache_creation_input_tokens", 0) or 0) * p["cache_write"]
-        + (getattr(usage, "cache_read_input_tokens", 0) or 0) * p["cache_read"]
-    ) / 1e6
+    i, o, cw, cr = tokens(usage)
+    return (i * p["input"] + o * p["output"] + cw * p["cache_write"] + cr * p["cache_read"]) / 1e6
 
 
 def log_spend(run: str, step: str, model: str, usage) -> float:
@@ -60,13 +83,8 @@ def log_spend(run: str, step: str, model: str, usage) -> float:
         if new:
             w.writerow(["logged_at_utc", "run", "step", "model", "input_tokens", "output_tokens",
                         "cache_write_tokens", "cache_read_tokens", "usd"])
-        w.writerow([
-            dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"), run, step, model,
-            usage.input_tokens, usage.output_tokens,
-            getattr(usage, "cache_creation_input_tokens", 0) or 0,
-            getattr(usage, "cache_read_input_tokens", 0) or 0,
-            f"{cost:.4f}",
-        ])
+        w.writerow([dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"), run, step, model,
+                    *tokens(usage), f"{cost:.4f}"])
     return cost
 
 
