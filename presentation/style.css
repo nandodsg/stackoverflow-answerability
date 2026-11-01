@@ -16,6 +16,11 @@
   --pink: #fec5fb;
   --radius: 8px;
   --pill: 100px;
+  /* spacing shrinks with the screen's height, so every chapter fits one screen at 1440x900 and up */
+  --gap-text: clamp(16px, 2.5vh, 24px);   /* between text blocks */
+  --gap-panel: clamp(24px, 4vh, 44px);    /* before and after a panel (cards, timeline, diagram, SQL, columns) */
+  --gap-grid: 16px;                       /* between panels in a grid */
+  --pad-y: clamp(24px, 5vh, 72px);        /* chapter top; the bottom keeps at least the fixed counter's 56px */
   --font: Figtree, "Inter Tight", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: ui-monospace, "Cascadia Code", Consolas, Menlo, monospace;
 }
@@ -35,18 +40,31 @@ a { color: inherit; }
 .chapter {
   min-height: 100vh; min-height: 100svh;
   display: flex; align-items: center;
-  padding: 96px 24px; border-bottom: 1px solid var(--hairline);
+  padding: var(--pad-y) 24px max(var(--pad-y), 56px); border-bottom: 1px solid var(--hairline);
 }
 .inner { width: 100%; max-width: 1280px; margin: 0 auto; }
-.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
-.stack > * + * { margin-top: 24px; }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+/* Lists used as panels drop their browser margins at zero specificity, so the stack spacing below always wins
+   (a plain `.cards { margin: 0 }` declared later used to cancel it and glue panels to the text above). */
+:where(.cards, .timeline, .list, .arch-flow, .guards, .chips) { list-style: none; margin: 0; padding: 0; }
+.stack > * + * { margin-top: var(--gap-text); }
+.stack > * + :is(.cards, .timeline, .arch, .sql-panel, .cols, .placeholder-note, .strip),
+.stack > :is(.cards, .timeline, .arch, .sql-panel, .cols, .placeholder-note) + * { margin-top: var(--gap-panel); }
+/* answer chapters: the narrative and "How we know" on the left, the live SQL on the right */
+.cols.answer { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); align-items: stretch; }
+/* the strip sits at the foot of the text column, level with the bottom of the panel beside it */
+.cols.answer > .stack:first-child { display: flex; flex-direction: column; }
+.cols.answer > .stack:first-child > .strip { margin-top: auto; }
+.cols.answer > .stack:first-child > :nth-last-child(2) { margin-bottom: var(--gap-panel); }
+.stack > .sub + * { margin-top: 18px; }
 .p1 { --c: var(--p1); } .p2 { --c: var(--p2); } .p3 { --c: var(--p3); } .eng { --c: var(--eng); }
 
 .eyebrow { font: 600 16px/1 var(--mono); color: var(--c, var(--text)); letter-spacing: .04em; margin-bottom: 24px; }
 .eyebrow .br { display: inline-block; }
-h1.display { font-size: clamp(56px, 12vw, 224px); line-height: .9; letter-spacing: -.02em; font-weight: 600; }
-h2 { font-size: clamp(34px, 5vw, 66px); line-height: 1; letter-spacing: -.02em; font-weight: 600; }
-.lede { font-size: 23px; max-width: 46ch; }
+/* the title is sized by width and height, so it stays on two lines and leaves room for the cards below */
+h1.display { font-size: clamp(56px, min(11vw, 16vh), 176px); line-height: .9; letter-spacing: -.02em; font-weight: 600; padding-bottom: .1em; /* room for the marker under the descenders */ }
+h2 { font-size: clamp(34px, min(5vw, 7vh), 66px); line-height: 1; letter-spacing: -.02em; font-weight: 600; }
+.lede { font-size: 23px; max-width: 60ch; }
 .muted { color: var(--muted); font-size: 16px; }
 .placeholder-note { border: 1px dashed var(--hairline); border-radius: var(--radius); padding: 16px 20px; color: var(--muted); font-size: 16px; }
 .big-number { font-size: clamp(56px, 9vw, 101px); line-height: .95; font-weight: 600; color: var(--c, var(--text)); letter-spacing: -.02em; }
@@ -105,53 +123,76 @@ h2 { font-size: clamp(34px, 5vw, 66px); line-height: 1; letter-spacing: -.02em; 
 .btn.step[aria-pressed="true"] { background: var(--c, var(--text)); border-color: var(--c, var(--text)); color: var(--canvas); }
 
 /* ---------- "How we know" strip ---------- */
-.strip { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--hairline); }
+.strip { padding-top: var(--gap-text); border-top: 1px solid var(--hairline); }
 .strip-title { font: 600 14px/1 var(--mono); color: var(--eng); letter-spacing: .04em; margin-bottom: 16px; }
-.chips { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; align-items: start; }
+/* chips in a row share one height (stretch), so an open chip never leaves its neighbours short */
+.chips { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap-grid); align-items: stretch; }
 .chip { background: var(--panel); border: 1px solid var(--hairline); border-radius: var(--radius); }
 .chip[open] { border-color: var(--eng); }
 .chip summary {
-  list-style: none; cursor: pointer; padding: 14px 20px; display: flex; justify-content: space-between; gap: 12px;
+  list-style: none; cursor: pointer; padding: 18px 24px; display: flex; align-items: baseline; gap: 12px;
   font-weight: 600; font-size: 16px;
 }
 .chip summary::-webkit-details-marker { display: none; }
-.chip summary .tag { color: var(--eng); font-family: var(--mono); font-size: 14px; }
-.chip summary::after { content: "+"; color: var(--muted); font-family: var(--mono); }
+.chip summary .tag { color: var(--eng); font-family: var(--mono); font-size: 14px; margin-left: auto; }
+.chip summary::after { content: "+"; color: var(--muted); font-family: var(--mono); width: 1ch; text-align: center; }
 .chip[open] summary::after { content: "–"; }
-.chip .chip-body { padding: 0 20px 18px; color: var(--muted); font-size: 16px; }
+.chip .chip-body { padding: 4px 24px 24px; color: var(--muted); font-size: 16px; line-height: 1.5; }
+/* Beside a SQL panel there is no room for a chip to grow, so on wide screens its text opens as a card over the
+   narrative above the chips, one at a time (`name` on the <details> makes the group exclusive). */
+@media (min-width: 901px) {
+  .answer .chips { position: relative; }
+  .answer .chip summary { padding: 16px 18px; }
+  .answer .chip-body {
+    position: absolute; left: 0; right: 0; bottom: calc(100% + 10px); z-index: 5;
+    background: var(--panel); border: 1px solid var(--eng); border-radius: var(--radius); padding: 20px 24px;
+  }
+}
 
 /* ---------- cards, timeline, lists (narrative chapters) ---------- */
 .lede.wide { max-width: 70ch; font-size: 21px; }
 h3 { font-size: 23px; line-height: 1.15; font-weight: 600; margin: 0; }
 h3.sub { font: 600 14px/1 var(--mono); color: var(--c, var(--text)); letter-spacing: .04em; text-transform: uppercase; }
-.cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--gap-grid); }
 .cards.cards-1 { grid-template-columns: 1fr; }
-.card { background: var(--panel); border: 1px solid var(--hairline); border-radius: var(--radius); padding: 20px 24px; }
+/* two columns of single-card stacks (chapter 8): the columns share their rows (subgrid), so cards side by side match */
+@media (min-width: 901px) {
+  .cols:has(> .stack > .cards-1) { grid-template-rows: auto repeat(3, auto); row-gap: var(--gap-grid); }
+  .cols:has(> .stack > .cards-1) > .stack { display: grid; grid-row: span 4; grid-template-rows: subgrid; }
+  .cols:has(> .stack > .cards-1) > .stack > * { margin-top: 0; }
+  .cols:has(> .stack > .cards-1) .cards-1 { grid-row: span 3; grid-template-rows: subgrid; }
+}
+.card { background: var(--panel); border: 1px solid var(--hairline); border-radius: var(--radius); padding: 24px 28px; }
 .card.p1, .card.p2, .card.p3 { border-top: 2px solid var(--c); }
-.card-k { font: 600 14px/1 var(--mono); color: var(--c, var(--eng)); letter-spacing: .04em; margin-bottom: 12px; }
-.card-v { font-size: 44px; line-height: 1; font-weight: 600; letter-spacing: -.02em; color: var(--c, var(--text)); margin-bottom: 10px; }
-.card-t { font-size: 16px; color: var(--muted); }
-.questions .card-t { font-size: 19px; color: var(--text); }
-.timeline { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-.tl { border-top: 2px solid var(--eng); padding: 16px 4px 0; }
-.tl > * + * { margin-top: 10px; }
+.card-k { font: 600 14px/1 var(--mono); color: var(--c, var(--eng)); letter-spacing: .04em; margin-bottom: 16px; }
+.card-v { font-size: 44px; line-height: 1; font-weight: 600; letter-spacing: -.02em; color: var(--c, var(--text)); margin-bottom: 14px; }
+.card-t { font-size: 16px; line-height: 1.5; color: var(--muted); }
+.questions .card-t { font-size: 19px; line-height: 1.4; color: var(--text); }
+/* the evidence line sits at the foot of each column, so the four lines start on one row */
+.timeline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+.tl { border-top: 2px solid var(--eng); padding: 20px 0 0; display: flex; flex-direction: column; gap: 14px; }
 .tl-when { font: 600 14px/1 var(--mono); color: var(--eng); }
-.tl p { font-size: 16px; }
-.tl .tl-ev { color: var(--muted); }
-.list { list-style: none; margin: 0; padding: 0; }
-.list li { padding: 12px 0; border-bottom: 1px solid var(--hairline); font-size: 16px; color: var(--muted); }
+.tl p { font-size: 16px; line-height: 1.5; }
+.tl .tl-ev { color: var(--muted); margin-top: auto; padding-top: 14px; border-top: 1px solid var(--hairline); }
+.list li { padding: 14px 0; border-bottom: 1px solid var(--hairline); font-size: 16px; line-height: 1.5; color: var(--muted); }
 .list li b { color: var(--text); font-weight: 600; }
 
 /* ---------- architecture diagram: layers in flow order, guards highlighted by the buttons ---------- */
-.chapter.dense { padding-top: 56px; padding-bottom: 56px; }
-.arch > * + * { margin-top: 16px; }
-.arch-flow { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-.arch-node { min-width: 0; overflow-wrap: anywhere; background: var(--panel); border: 1px solid var(--hairline); border-radius: var(--radius); padding: 14px 16px; transition: opacity .3s; }
-.arch-node > * + * { margin-top: 6px; }
+.chapter.dense { --pad-y: clamp(24px, 3.5vh, 56px); --gap-panel: clamp(20px, 3vh, 44px); }
+.arch > * + * { margin-top: var(--gap-text); }
+.arch-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px 48px; flex-wrap: wrap; }
+.arch-head .lede { flex: 1 1 480px; max-width: 58ch; }
+.arch-head .steps { flex: none; }
+.arch-flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+/* guards sit at the foot of each node, so the badges of a row line up */
+.arch-node {
+  min-width: 0; overflow-wrap: anywhere; background: var(--panel); border: 1px solid var(--hairline); border-radius: var(--radius);
+  padding: 16px 18px; display: flex; flex-direction: column; gap: 6px; transition: opacity .3s;
+}
 .arch-k { font: 600 13px/1 var(--mono); color: var(--eng); }
 .arch-t { font-weight: 600; font-size: 16px; line-height: 1.2; }
-.arch-d { font-size: 14px; line-height: 1.3; color: var(--muted); }
-.guards { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 5px; }
+.arch-d { font-size: 14px; line-height: 1.35; color: var(--muted); }
+.arch-node .guards { margin-top: auto; padding-top: 6px; display: flex; flex-wrap: wrap; gap: 6px; }
 .g { --g: var(--eng); font: 400 12px/1.3 var(--mono); color: var(--muted); border: 1px solid var(--hairline); border-radius: var(--pill); padding: 4px 10px; transition: opacity .3s, color .3s, border-color .3s; }
 .g::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--g); margin-right: 7px; }
 .g.cost { --g: var(--text); }
@@ -165,25 +206,29 @@ h3.sub { font: 600 14px/1 var(--mono); color: var(--c, var(--text)); letter-spac
 .arch[data-show="leak"] .arch-node:not(:has(.g.leak)) { opacity: .4; }
 
 /* ---------- live SQL panel ---------- */
-.sql-panel { background: var(--panel); border: 1px solid var(--hairline); border-radius: var(--radius); padding: 24px; }
+.sql-panel { background: var(--panel); border: 1px solid var(--hairline); border-radius: var(--radius); padding: 24px 28px 28px; }
 .sql-head { display: flex; justify-content: space-between; gap: 12px; font: 600 14px/1 var(--mono); color: var(--muted); margin-bottom: 16px; }
 .sql-head .sql-status[data-state="ready"] { color: var(--c, var(--p1)); }
 .sql-head .sql-status[data-state="error"] { color: var(--p3); }
+/* the editor grows with its query where the browser can (field-sizing); the min-heights fit each default query */
 .sql-editor {
-  width: 100%; min-height: 170px; resize: vertical; background: var(--canvas); color: var(--text);
+  display: block; width: 100%; min-height: 150px; field-sizing: content; resize: vertical; background: var(--canvas); color: var(--text);
   border: 1px solid var(--hairline); border-radius: var(--radius); padding: 16px;
-  font: 400 15px/1.5 var(--mono); tab-size: 2; font-variant-ligatures: none; /* show >= as typed */
+  font: 400 14px/1.45 var(--mono); tab-size: 2; font-variant-ligatures: none; /* show >= as typed */
 }
 .sql-editor:focus { outline: none; border-color: var(--c, var(--p1)); }
-.sql-actions { display: flex; gap: 12px; align-items: center; margin: 16px 0; }
+.sql-panel[data-render="table"] .sql-editor { min-height: 172px; }
+.sql-actions { display: flex; gap: 12px; align-items: center; margin-top: 18px; }
 .sql-actions .meta { margin-left: auto; color: var(--muted); font-size: 14px; font-family: var(--mono); }
-.sql-out { min-height: 80px; }
+/* a number panel draws its result outside the panel, so its output box is empty and takes no room */
+.sql-out:not(:empty) { margin-top: 24px; }
+.sql-panel[data-render="table"] .sql-out { min-height: 80px; }
 .sql-error { color: var(--p3); font: 400 14px/1.4 var(--mono); white-space: pre-wrap; }
 
 .rtable { position: relative; width: 100%; }
 .rrow, .rhead { display: grid; grid-template-columns: 2.2rem minmax(0, 1.6fr) 5.5rem minmax(0, 2fr); gap: 12px; align-items: center; }
 .rhead { color: var(--muted); font-size: 14px; font-family: var(--mono); padding: 0 8px 8px; border-bottom: 1px solid var(--hairline); }
-.rrow { padding: 6px 8px; border-bottom: 1px solid var(--hairline); font-size: 16px; }
+.rrow { padding: 4px 8px; border-bottom: 1px solid var(--hairline); font-size: 15px; line-height: 1.3; }
 .rrow:hover { background: rgba(255, 252, 225, .05); }
 .rrow .rk { color: var(--muted); font-family: var(--mono); }
 .rrow .bar { height: 8px; border-radius: 4px; background: var(--c, var(--p1)); transform-origin: left; }
@@ -193,7 +238,7 @@ h3.sub { font: 600 14px/1 var(--mono); color: var(--c, var(--text)); letter-spac
 
 /* ---------- responsive and accessibility ---------- */
 @media (max-width: 900px) {
-  .cols, .chips, .timeline { grid-template-columns: 1fr; }
+  .cols, .cols.answer, .chips, .timeline { grid-template-columns: 1fr; }
   .arch-flow { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 600px) {
