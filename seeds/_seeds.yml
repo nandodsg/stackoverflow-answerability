@@ -1,0 +1,58 @@
+version: 2
+
+seeds:
+  - name: quality_labels_analysis
+    description: >
+      The quality labels of the P3 analysis set (specs/003, "Quality labels"): one row per question of
+      int_label_analysis_questions, 30,000 in all, labeled by TypeSafe Jev on the frozen rubric (labels/rubric.md).
+      A copy of labels/output/gold/jev-latest_analysis.csv trimmed to the id and the six labels; the labeling script
+      writes that file, this seed only loads it (dbt seed). Re-run dbt seed after any re-labeling. Ids and labels only,
+      never question text, never the outcome.
+    config:
+      column_types:
+        question_id: int64
+        rubric_version: string
+    columns:
+      - name: question_id
+        data_tests: [unique, not_null]
+      - name: rubric_version
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['fd79297623f7']
+      - name: worked_example
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['yes', 'no']
+      - name: ask_scope
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['narrow', 'broad', 'multiple', 'no_clear_ask']
+      - name: failure_description
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['concrete', 'vague', 'not_applicable']
+      - name: code_focus
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['focused', 'partial', 'dump', 'not_applicable']
+      - name: environment_dependent
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['yes', 'no']
+      - name: image_only_evidence
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['yes', 'no']
