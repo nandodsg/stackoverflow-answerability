@@ -49,10 +49,20 @@ async function run(conn, panel) {
     meta.textContent = `${rows.length} row${rows.length === 1 ? "" : "s"} · ${Math.round(performance.now() - t0)} ms`;
     if (panel.dataset.render === "number") drawNumber(panel, out, columns, rows);
     else drawTable(panel, out, columns, rows);
+    syncSteps(panel, sql);
   } catch (err) {
     meta.textContent = "";
     out.replaceChildren(el("div", "sql-error", String(err.message || err)));
   }
+}
+
+/* Year step buttons (data-year, data-for="<panel's data-bind>"): the pressed one is the year the query filters on. */
+const YEAR = /creation_year\s*=\s*(\d{4})/;
+function syncSteps(panel, sql) {
+  if (!panel.dataset.bind) return;
+  const year = (sql.match(YEAR) || [])[1];
+  document.querySelectorAll(`.step[data-for="${panel.dataset.bind}"]`)
+    .forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.year === year)));
 }
 
 function el(tag, cls, text) {
@@ -126,6 +136,14 @@ try {
     panel.querySelector(".reset").addEventListener("click", () => { editor.value = editor.defaultValue; run(conn, panel); });
     editor.addEventListener("keydown", (e) => { if ((e.ctrlKey || e.metaKey) && e.key === "Enter") { e.preventDefault(); run(conn, panel); } });
     run(conn, panel);
+  });
+  document.querySelectorAll(".step").forEach((btn) => {
+    const panel = panels.find((p) => p.dataset.bind === btn.dataset.for);
+    btn.addEventListener("click", () => {
+      const editor = panel.querySelector(".sql-editor");
+      editor.value = editor.value.replace(YEAR, `creation_year = ${btn.dataset.year}`);
+      run(conn, panel);
+    });
   });
 } catch (err) {
   console.error(err);

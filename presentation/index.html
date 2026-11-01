@@ -27,6 +27,7 @@
     <p class="eyebrow" data-reveal>{ <span class="label">01 · the question</span> }</p>
     <h1 class="display" data-reveal>Stack Overflow, <span class="mark">answerability</span></h1>
     <p class="lede" data-reveal>Three questions on the public Stack Overflow dataset: which tags get answers, how Python and dbt compare year over year, and what else about a question predicts an answer.</p>
+    <p data-reveal><a class="btn cta" href="#c2">Start</a></p>
     <p class="placeholder-note" data-reveal>Placeholder chapter. Headline figures use count-up: <span class="big-number" style="font-size:34px" data-count="1162" data-decimals="0">1162</span> tags above the floor (invented until the export runs).</p>
   </div>
 </section>
@@ -98,7 +99,12 @@ LIMIT 10;</textarea>
     <h2 data-reveal>Python-only vs dbt-only, <span class="mark">year over year</span></h2>
     <div class="cols">
       <div class="stack">
-        <p class="muted" data-reveal>PLACEHOLDER DATA. Answers per question for one year, computed by the query beside it. Step 2013 / 2021 / 2022 will go here.</p>
+        <p class="muted" data-reveal>PLACEHOLDER DATA. Answers per question for one year, computed by the query beside it. Step through the years, or edit the query.</p>
+        <div class="steps" data-reveal role="group" aria-label="Year">
+          <button type="button" class="btn step" data-year="2013" data-for="p2">2013</button>
+          <button type="button" class="btn step" data-year="2021" data-for="p2">2021</button>
+          <button type="button" class="btn step" data-year="2022" data-for="p2">2022</button>
+        </div>
         <div class="big-number" data-reveal data-bound="p2">…</div>
         <p class="muted" data-reveal data-bound-label="p2"></p>
       </div>

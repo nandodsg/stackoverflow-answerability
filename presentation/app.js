@@ -97,6 +97,19 @@
   if (!window.gsap || !window.ScrollTrigger || reduced) return;
   gsap.registerPlugin(ScrollTrigger);
 
+  // Wrap the "{" and "}" of each eyebrow in a span, so they can draw in around the typed label.
+  document.querySelectorAll(".chapter .eyebrow").forEach(function (eb) {
+    Array.prototype.slice.call(eb.childNodes).forEach(function (node) {
+      if (node.nodeType !== 3) return;
+      var m = node.textContent.match(/^(\s*)([{}])(\s*)$/);
+      if (!m) return;
+      var span = document.createElement("span");
+      span.className = "br";
+      span.textContent = m[2];
+      node.replaceWith(m[1], span, m[3]);
+    });
+  });
+
   chapters.forEach(function (ch) {
     var items = Array.prototype.slice.call(ch.querySelectorAll("[data-reveal], [data-stagger] > *"));
     var label = ch.querySelector(".eyebrow .label");
@@ -104,7 +117,10 @@
     var marks = ch.querySelectorAll(".mark");
     var counts = ch.querySelectorAll("[data-count]");
 
+    var braces = ch.querySelectorAll(".eyebrow .br");
     gsap.set(items, { opacity: 0, y: 24 });
+    // the eyebrow itself is one of the reveal items; its braces start further out and close in on the label
+    gsap.set(braces, { opacity: 0, x: function (i) { return i === 0 ? -14 : 14; } });
     if (label) label.textContent = "";
     gsap.set(marks, { "--sweep": "0%" });
     counts.forEach(function (c) { c.textContent = "0"; });
@@ -113,6 +129,7 @@
       trigger: ch, start: "top 65%", once: true,
       onEnter: function () {
         gsap.to(items, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out", stagger: 0.08 });
+        gsap.to(braces, { opacity: 1, x: 0, duration: 0.6, ease: "power3.out", delay: 0.15 });
         if (label) {
           var t = { n: 0 };
           gsap.to(t, { n: labelText.length, duration: labelText.length * 0.03, ease: "none", delay: 0.2,

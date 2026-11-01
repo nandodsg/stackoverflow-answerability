@@ -89,6 +89,21 @@ h2 { font-size: clamp(34px, 5vw, 66px); line-height: 1; letter-spacing: -.02em; 
 }
 .btn.primary:hover { background: var(--accent) border-box; color: var(--canvas); }
 
+/* call to action: the gradient stroke turns slowly (an angle registered with @property, so it can be animated) */
+@property --angle { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+.btn.cta {
+  display: inline-block; text-decoration: none; border: 2px solid transparent; padding: 14px 32px;
+  background: linear-gradient(var(--canvas), var(--canvas)) padding-box,
+              conic-gradient(from var(--angle), #0ae448, #abff84, #0ae448) border-box;
+  animation: spin 6s linear infinite;
+}
+.btn.cta:hover { background: conic-gradient(from var(--angle), #0ae448, #abff84, #0ae448) border-box; color: var(--canvas); }
+@keyframes spin { to { --angle: 360deg; } }
+
+/* year steps (chapter 6): a pressed step is filled in the prompt's colour */
+.steps { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn.step[aria-pressed="true"] { background: var(--c, var(--text)); border-color: var(--c, var(--text)); color: var(--canvas); }
+
 /* ---------- "How we know" strip ---------- */
 .strip { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--hairline); }
 .strip-title { font: 600 14px/1 var(--mono); color: var(--eng); letter-spacing: .04em; margin-bottom: 16px; }
@@ -150,6 +165,7 @@ h2 { font-size: clamp(34px, 5vw, 66px); line-height: 1; letter-spacing: -.02em; 
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  *, *::before, *::after { transition-duration: .001ms !important; animation-duration: .001ms !important; }
+  *, *::before, *::after { transition-duration: .001ms !important; }
+  .btn.cta { animation: none; }
 }
 @media print { .rail, .counter, .progress { display: none; } .chapter { min-height: 0; break-after: page; } }
