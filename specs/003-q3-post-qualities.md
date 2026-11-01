@@ -197,6 +197,39 @@ rate (an unanswered question has no answer), so this lens is reported separately
 - Not built: a 30-day window for P3 (each comparison is within one year and stability rests on full years, so
   censoring mostly cancels out) and the optional logistic regression.
 
+## Label analysis models (decided and built 2026-11-01)
+
+- **Labels as data.** The 30,000 labels are a dbt seed (`seeds/quality_labels_analysis.csv`, id + rubric version + six
+  labels; tests: unique ids, allowed levels, and `assert_quality_labels_match_analysis_set` = exactly the analysis set).
+  A view over inline values cannot hold them (about 2 MB of SQL against BigQuery's 1 MB query limit).
+- **Same method as the rule-based features**, on the labeled questions only: `int_p3_label_questions` (view) →
+  `int_p3_label_bucket_counts` → `mart_p3_label_rates` → `mart_p3_label_effects` (copies of the rule-based marts on the
+  label counts). Each label level is compared with the label's reference level (bucket `1:`, the first level in the
+  rubric); `not_applicable` is left out. Versions: `original` (the headline; the labels judge the original text, so no
+  current-text version exists), `never_edited`, `not_edited_after_answer`. Same 385 floor, same stability rule (same
+  sign in each of 2018-2021), same topic control (20 largest primary tags among the labeled questions).
+- **Rare levels (option A).** A level needs more than ~6% of questions to reach 385 in a single year, so rare levels
+  (multiple asks, dump code, image-only evidence, no clear ask) are reported in the pooled 2018-2021 cohort only if they
+  reach the floor, and `full_years_with_effect` (0 to 4) says how many full years did: below 4 their stability is **not
+  assessable** (the `*_stable` flags are false for that reason, not because the effect flips). No clear ask (98
+  questions in 2018-2021) is not reportable.
+- **AC-3.7, label against its rule neighbour** (`mart_p3_label_vs_rules`): worked example ~ has a code block, code focus
+  ~ code-block count, image-only evidence ~ has an image, setup dependence ~ has error text.
+- **AC-3.8, does a label add anything beyond the rules** (`mart_p3_label_incremental`): the accepted-rate effect of each
+  level overall and inside has-a-code-block x body-length strata (strata with fewer than 30 questions on either side are
+  skipped; the coverage is reported).
+- **First reading** (original text, 2018-2021, accepted rate, difference in points against the reference level):
+  worked example yes **+17.2** (tag-adjusted +16.6, rules-adjusted +15.5, stable in all four years); setup-dependent
+  yes **-14.9** (tag-adjusted -13.3, rules-adjusted -12.3, stable); partial code focus -7.1 (stable); broad ask -9.5
+  (rules-adjusted -6.0; floor reached in 2 of 4 years); dump code -6.3, image-only evidence -6.5 (rules-adjusted -1.7)
+  and multiple asks -3.8 are not assessable for stability; a vague failure description is about 0 (-0.1). Rules explain
+  part of each effect (about 1.5 to 4.5 points), but the main ones survive; image-only evidence mostly does not.
+  Labeled "yes" for image-only evidence, 46% of the questions have no image in the original text (the rule finds
+  none), a label to question before the README leans on it.
+- **Caveats.** The labels are one model's judgments (kappa 0.71 to 0.98 against the reviewed set); labeling errors blur
+  effects towards zero, so the effects are probably understated, and the reviewed set's agreement scores are optimistic
+  (see above). The answer lens by label is not built: it would need the sample's answers labeled.
+
 ## Excluded or flagged as post-hoc
 
 `score`, `view_count`, `comment_count`, `favorite_count`, current `users.reputation`, edits after posting — these are
@@ -225,3 +258,7 @@ after the fact", never as a quality of the post.
 - AC-3.5 Each effect is also reported on current text, never-edited and not-edited-after-first-answer subsets.
 - AC-3.6 Text exposure and, per feature, the share of questions whose value changed between original and current text
   are reported; a direction change raises an AC-0.10 warning.
+- AC-3.7 Each quality label is reported against the rule-based feature closest to it; a label that does not line up with
+  its rule neighbour is flagged.
+- AC-3.8 Each label level's accepted-rate effect is reported overall and inside strata of the closest rule-based features,
+  so the README says which labels add something beyond the rules; rare levels carry `full_years_with_effect` < 4.

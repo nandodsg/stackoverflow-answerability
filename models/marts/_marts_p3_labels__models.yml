@@ -1,0 +1,141 @@
+version: 2
+
+# Prompt 3, quality labels (specs/003, "Quality labels"). The 30,000 labeled questions of the analysis set, analyzed
+# level by level against each label's reference level (bucket '1:'), like the rule-based features in _marts_p3__models.yml.
+models:
+  - name: mart_p3_label_rates
+    description: >
+      Rates by quality-label level: one row per version x label (feature) x level (bucket) x cohort, on the 30,000
+      labeled questions. Versions: original (headline), never_edited, not_edited_after_answer; the labels judge the
+      original text, so there is no current-text version. not_applicable is left out of the level-by-level analysis.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [version, feature, bucket, cohort]
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "abs(accepted_rate - answer_rate * coalesce(accepted_rate_among_answered, 0)) < 1e-9"
+          config:
+            meta: {ac: AC-0.5}
+    columns:
+      - name: version
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [original, never_edited, not_edited_after_answer]
+              config:
+                meta: {ac: AC-3.5}
+      - name: feature
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [worked_example, ask_scope, failure_description, code_focus, environment_dependent, image_only_evidence]
+      - name: bucket
+        data_tests:
+          - dbt_utils.not_accepted_values:
+              arguments:
+                values: ['9: unmapped']
+      - name: accepted_rate
+        data_tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                max_value: 1
+
+  - name: mart_p3_label_effects
+    description: >
+      Effects of the quality labels: each non-reference level's rates minus the reference level's, per version and
+      cohort, with the 95% margin, the topic-controlled effect and the AC-3.3 stability flags (same sign in each full
+      year 2018-2021). full_years_with_effect says how many of those four years reach the 385 floor: a rare level
+      (multiple asks, dump code, image-only evidence, no clear ask) has fewer than four, so its stability is not
+      assessable and its *_stable flags are false for that reason, not because the effect flips.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [version, feature, bucket, cohort]
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "n_questions >= 385 and reference_n_questions >= 385"
+          config:
+            meta: {ac: AC-1.1}
+    columns:
+      - name: full_years_with_effect
+        data_tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                max_value: 4
+
+  - name: mart_p3_label_vs_rules
+    description: >
+      AC-3.7. Each label level against the rule-based feature closest to it (worked example ~ has a code block, code
+      focus ~ code-block count, image-only evidence ~ has an image, setup dependence ~ has error text): questions,
+      share of the level with each rule value and share of each rule value with the level.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [label, level, rule_value]
+    columns:
+      - name: share_of_level
+        data_tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                max_value: 1
+      - name: share_of_rule_value
+        data_tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                max_value: 1
+
+  - name: mart_p3_label_incremental
+    description: >
+      AC-3.8. Does a label add anything beyond the rules? Per label level, the accepted-rate difference against the
+      reference level overall (raw_effect) and inside strata of has-a-code-block x body length (rules_adjusted_effect),
+      2018-2021, original text.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [label, level]
+    columns:
+      - name: adjusted_coverage
+        data_tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                max_value: 1
+
+unit_tests:
+  - name: mart_p3_label_effect_stability
+    description: >
+      AC-3.3 on the labels. A level that is clearly positive in all four full years is stable; a level with only three
+      full years above the floor is not stable and shows full_years_with_effect = 3, which marks it not assessable.
+    model: mart_p3_label_effects
+    given:
+      - input: ref('mart_p3_label_rates')
+        rows:
+          - {version: original, feature: ask_scope, bucket: "1: narrow", cohort: "2018", is_reference_bucket: true, is_partial_year: false, n_questions: 1000, n_answered: 600, answer_rate: 0.6, accepted_rate: 0.3, accepted_rate_among_answered: 0.5}
+          - {version: original, feature: ask_scope, bucket: "2: broad", cohort: "2018", is_reference_bucket: false, is_partial_year: false, n_questions: 1000, n_answered: 700, answer_rate: 0.7, accepted_rate: 0.4, accepted_rate_among_answered: 0.57}
+          - {version: original, feature: ask_scope, bucket: "1: narrow", cohort: "2019", is_reference_bucket: true, is_partial_year: false, n_questions: 1000, n_answered: 600, answer_rate: 0.6, accepted_rate: 0.3, accepted_rate_among_answered: 0.5}
+          - {version: original, feature: ask_scope, bucket: "2: broad", cohort: "2019", is_reference_bucket: false, is_partial_year: false, n_questions: 1000, n_answered: 700, answer_rate: 0.7, accepted_rate: 0.4, accepted_rate_among_answered: 0.57}
+          - {version: original, feature: ask_scope, bucket: "1: narrow", cohort: "2020", is_reference_bucket: true, is_partial_year: false, n_questions: 1000, n_answered: 600, answer_rate: 0.6, accepted_rate: 0.3, accepted_rate_among_answered: 0.5}
+          - {version: original, feature: ask_scope, bucket: "2: broad", cohort: "2020", is_reference_bucket: false, is_partial_year: false, n_questions: 1000, n_answered: 700, answer_rate: 0.7, accepted_rate: 0.4, accepted_rate_among_answered: 0.57}
+          - {version: original, feature: ask_scope, bucket: "1: narrow", cohort: "2021", is_reference_bucket: true, is_partial_year: false, n_questions: 1000, n_answered: 600, answer_rate: 0.6, accepted_rate: 0.3, accepted_rate_among_answered: 0.5}
+          - {version: original, feature: ask_scope, bucket: "2: broad", cohort: "2021", is_reference_bucket: false, is_partial_year: false, n_questions: 1000, n_answered: 700, answer_rate: 0.7, accepted_rate: 0.4, accepted_rate_among_answered: 0.57}
+          - {version: original, feature: ask_scope, bucket: "3: multiple", cohort: "2018", is_reference_bucket: false, is_partial_year: false, n_questions: 400, n_answered: 200, answer_rate: 0.5, accepted_rate: 0.2, accepted_rate_among_answered: 0.4}
+          - {version: original, feature: ask_scope, bucket: "3: multiple", cohort: "2019", is_reference_bucket: false, is_partial_year: false, n_questions: 400, n_answered: 200, answer_rate: 0.5, accepted_rate: 0.2, accepted_rate_among_answered: 0.4}
+          - {version: original, feature: ask_scope, bucket: "3: multiple", cohort: "2020", is_reference_bucket: false, is_partial_year: false, n_questions: 400, n_answered: 200, answer_rate: 0.5, accepted_rate: 0.2, accepted_rate_among_answered: 0.4}
+          - {version: original, feature: ask_scope, bucket: "3: multiple", cohort: "2021", is_reference_bucket: false, is_partial_year: false, n_questions: 300, n_answered: 150, answer_rate: 0.5, accepted_rate: 0.2, accepted_rate_among_answered: 0.4}
+      - input: ref('int_p3_label_bucket_counts')
+        rows:
+          - {version: original, feature: ask_scope, bucket: "1: narrow", creation_year: 2018, tag_stratum: python, n_questions: 1000, n_answered: 600, n_accepted: 30}
+    expect:
+      rows:
+        - {bucket: "2: broad", cohort: "2018", full_years_with_effect: 4, accepted_rate_effect_stable: true}
+        - {bucket: "2: broad", cohort: "2019", full_years_with_effect: 4, accepted_rate_effect_stable: true}
+        - {bucket: "2: broad", cohort: "2020", full_years_with_effect: 4, accepted_rate_effect_stable: true}
+        - {bucket: "2: broad", cohort: "2021", full_years_with_effect: 4, accepted_rate_effect_stable: true}
+        - {bucket: "3: multiple", cohort: "2018", full_years_with_effect: 3, accepted_rate_effect_stable: false}
+        - {bucket: "3: multiple", cohort: "2019", full_years_with_effect: 3, accepted_rate_effect_stable: false}
+        - {bucket: "3: multiple", cohort: "2020", full_years_with_effect: 3, accepted_rate_effect_stable: false}
