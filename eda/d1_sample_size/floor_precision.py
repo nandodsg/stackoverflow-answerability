@@ -1,4 +1,5 @@
-"""D1 EDA, follow-up: how precise is a tag's accepted rate at the floor, and what does the confidence level change?
+"""D1 EDA, follow-up: how precise is a tag's accepted rate at the floor, what does the confidence level change, how
+are tag sizes spread, and which tags does the floor leave out?
 
 Reads the cached output/tag_stats_2022.csv written by run_eda.py, so it never queries BigQuery. Writes
 output/09_rate_sampling_distribution.png and output/floor_precision.md.
@@ -6,9 +7,10 @@ output/09_rate_sampling_distribution.png and output/floor_precision.md.
     python eda/d1_sample_size/run_eda.py         # once, to cache the CSV
     python eda/d1_sample_size/floor_precision.py
 
-Each question is a yes/no draw (accepted or not), so a tag's accepted rate is a share of n draws. Drawn again, it
-would land around the tag's true rate, with a spread of SE = sqrt(p(1 - p) / n), the standard error: within +-1.96 SE
-95% of the time, +-2.58 SE 99%, +-3 SE 99.73%. The floor is the smallest n whose worst-case margin meets the target.
+Each question gets an accepted answer or doesn't, like a coin flip weighted by the tag's true accepted rate, so a
+tag's accepted rate is the share of heads in n flips. Measured again, it would land around the true accepted rate,
+with a spread of SE = sqrt(p(1 - p) / n), the standard error: within +-1.96 SE 95% of the time, +-2.58 SE 99%, +-3 SE
+99.73%. The floor is the smallest n whose worst-case margin meets the target.
 """
 
 import math
@@ -24,11 +26,14 @@ SEED = 2022
 SIMULATIONS = 100_000
 # Confidence levels a floor could be built on, with their z (how many standard errors wide the interval is).
 LEVELS = [("90%", 1.645), ("95%", Z95), ("99%", 2.576), ("99.73%", 3.0)]
-MARGIN = 0.05  # the precision target decided in D1: +-5 points in the worst case (rate = 50%)
+MARGIN = 0.05  # the precision target decided in D1: +-5 points in the worst case (accepted rate = 50%)
+# Tag-size bins, the same ones the presentation's D1 chart and the funnel findings use.
+SIZE_EDGES = [1, 7, 30, 100, 500, 2000, math.inf]
+SIZE_NAMES = ["1–6", "7–29", "30–99", "100–499", "500–1,999", "2,000+"]
 
 
 def simulate_rates(n, p, rng):
-    """Accepted rates of SIMULATIONS imaginary tags with n questions and a true rate p."""
+    """Accepted rates of SIMULATIONS imaginary tags with n questions and a true accepted rate p."""
     return rng.binomial(n, p, SIMULATIONS) / n
 
 
@@ -37,7 +42,7 @@ def sampling_check(rng, pooled):
     for p, label in [(0.5, "50% (worst case)"), (pooled, f"{pooled:.1%} (2022 pooled)")]:
         rates = simulate_rates(RANKING_CUTOFF, p, rng)
         se = math.sqrt(p * (1 - p) / RANKING_CUTOFF)
-        row = {"true rate": label, "sd of the simulated rates": f"{100 * rates.std():.2f} pt",
+        row = {"true accepted rate": label, "sd of the simulated rates": f"{100 * rates.std():.2f} pt",
                "standard error formula": f"{100 * se:.2f} pt"}
         for name, z in LEVELS[1:]:
             row[f"within ±{z:g} SE (expect {name})"] = f"{100 * (np.abs(rates - p) <= z * se).mean():.2f}%"
@@ -89,6 +94,30 @@ def bottom_sizes(tags):
     } for name, df in [(f"top {TOP_N}", top), (f"bottom {TOP_N}", bottom)]]
 
 
+def size_spread(tags):
+    """Share of tags and of question-tag links by tag size: half the tags are tiny, a few hold most questions."""
+    bins = pd.cut(tags["n_questions"], SIZE_EDGES, right=False, labels=SIZE_NAMES)
+    groups = tags.groupby(bins, observed=False)["n_questions"].agg(["size", "sum"])
+    return [{
+        "questions per tag": name,
+        "tags": f"{row['size']:,}",
+        "share of tags": f"{row['size'] / groups['size'].sum():.1%}",
+        "question-tag links": f"{row['sum']:,}",
+        "share of links": f"{row['sum'] / groups['sum'].sum():.1%}",
+    } for name, row in groups.iterrows()]
+
+
+def left_out(tags):
+    """Tags under the floor (but with 100+ questions) whose accepted rate beats every ranked tag's."""
+    rate = tags["n_accepted"] / tags["n_questions"]
+    best_ranked = rate[tags["n_questions"] >= RANKING_CUTOFF].max()
+    under = tags[(tags["n_questions"] >= 100) & (tags["n_questions"] < RANKING_CUTOFF) & (rate > best_ranked)]
+    under = under.assign(rate=rate).sort_values("rate", ascending=False)
+    rows = [{"tag": r.tag, "questions": f"{r.n_questions:,}", "accepted rate": f"{r.rate:.1%}"}
+            for r in under.itertuples()]
+    return best_ranked, rows
+
+
 def plot_sampling(rng, path):
     """Simulated accepted rate of one tag with 385 questions and a true rate of 50%: 95% within ±1.96 SE."""
     p = 0.5
@@ -103,7 +132,8 @@ def plot_sampling(rng, path):
         for sign in (-1, 1):
             ax.axvline(100 * (p + sign * z * se), color=ORANGE, linewidth=1.5, linestyle=style,
                        label=name if sign == 1 else None)
-    ax.set_title(f"Accepted rate of one tag with {RANKING_CUTOFF} questions, drawn {SIMULATIONS:,} times (true rate 50%)")
+    ax.set_title(f"Accepted rate of one tag with {RANKING_CUTOFF} questions, simulated {SIMULATIONS:,} times "
+                 "(true accepted rate 50%)")
     ax.set_xlabel("measured accepted rate (%)")
     ax.set_ylabel("simulations")
     ax.legend(loc="upper right")
@@ -121,11 +151,12 @@ def main():
     plot_sampling(rng, OUT_DIR / "09_rate_sampling_distribution.png")
 
     floors_both, floors_split = floors_by_level(tags)
+    best_ranked, left_rows = left_out(tags)
     sections = [
         f"# D1 follow-up — how precise is a tag's accepted rate at the floor? ({YEAR})",
         "Generated by `floor_precision.py` from the cached `tag_stats_2022.csv`; do not edit by hand. "
-        f"{len(tags):,} tags. Simulations: {SIMULATIONS:,} draws, seed {SEED}.",
-        f"## 1. The measured accepted rate of one tag ({RANKING_CUTOFF} questions), drawn again and again",
+        f"{len(tags):,} tags. Simulations: {SIMULATIONS:,} runs, seed {SEED}.",
+        f"## 1. The measured accepted rate of one tag ({RANKING_CUTOFF} questions), simulated again and again",
         md_table(pd.DataFrame(sampling_check(rng, pooled))),
         f"## 2. The floor each confidence level gives, for the same ±{100 * MARGIN:.0f}-point target",
         "Each level ranks with its own Wilson z; overlap counts tags shared with the decided lists "
@@ -137,6 +168,14 @@ def main():
         "changes.",
         md_table(pd.DataFrame(floors_split)),
         md_table(pd.DataFrame(bottom_sizes(tags))),
+        "## 4. How tag sizes are spread",
+        "A question-tag link is one question counted under one of its tags: a question with 3 tags makes 3 links.",
+        md_table(pd.DataFrame(size_spread(tags))),
+        f"## 5. Who the floor leaves out: tags with 100 to {RANKING_CUTOFF - 1} questions above every ranked tag",
+        f"The best ranked tag (≥ {RANKING_CUTOFF} questions) has an accepted rate of {best_ranked:.1%}. These tags beat "
+        "it but are not ranked, because the floor is about how precisely an accepted rate is measured, not how high "
+        "it is.",
+        md_table(pd.DataFrame(left_rows)),
     ]
     (OUT_DIR / "floor_precision.md").write_text("\n\n".join(sections) + "\n", encoding="utf-8")
     print(f"Wrote 09_rate_sampling_distribution.png and floor_precision.md to {OUT_DIR}")

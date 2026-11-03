@@ -2,7 +2,7 @@
 --
 -- Grain: one row per tag. A question with 3 tags counts once for each of its tags.
 -- Reads only id, tags, creation_date, answer_count and accepted_answer_id: title and body are never scanned.
--- answer_count is the question's own counter; reconciling it with posts_answers is AC-0.4 (not done yet).
+-- answer_count is the question's own counter; it matches the joined posts_answers for every question (AC-0.4, a dbt test).
 -- In the BigQuery console, replace @year with a literal (e.g. 2022).
 
 with question_tags as (

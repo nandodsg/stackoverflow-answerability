@@ -44,6 +44,10 @@ accepted rate all have 1–2 questions (rates of exactly 100% and 0%).
   - Cost in 2022: 1,162 tags (2.7% of tags, 76% of question–tag links); 1,026 pairs (27% of pair links).
   - Because the floor is a precision rule, it stays the same in other years (e.g. the 2021 robustness check).
 - **Score: Wilson score interval, 95%.**
+  - Why Wilson rather than the plain rate ± 1.96 × SE: the plain interval breaks near 0% and 100%. At 1 accepted
+    out of 10 it runs from −8.6% to 28.6% (below zero); at 1 of 1 or 0 of 10 its width is zero, as if one question
+    proved a 100% or 0% accepted rate. Wilson stays inside 0–100% and keeps a real width there (1.8%–40.4%,
+    20.7%–100%, 0%–27.8%). Above the floor the two barely differ; Wilson is chosen so one rule holds at every size.
   - "Highest" lists sort by the **lower** bound, descending: a tag ranks high only if its rate is high *and* well
     measured.
   - "Lowest" lists sort by the **upper** bound, ascending: a tag ranks low only if its rate is low and well measured.

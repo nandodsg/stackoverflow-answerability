@@ -48,7 +48,9 @@ browser build, a device on a USB port). P3 looks at this kind of question qualit
 - **Ranking by the interval, not by the rate.** Each group gets a 95% interval (Wilson for the two rates, mean ±
   1.96 × standard error for answers per question). "Highest" lists sort by the **lower** bound, "lowest" lists by the
   **upper** bound, so a group only makes a list if it is high (or low) *and* well measured. That's why `jq` (67.6%,
-  824 questions) ranks above `tidyr` (66.5%, 412 questions) even though their rates are close.
+  824 questions) ranks above `tidyr` (66.5%, 412 questions) even though their rates are close. Wilson rather than the
+  plain rate ± 1.96 × standard error because the plain interval breaks near 0% and 100%: 1 accepted out of 10 gives
+  −8.6% to 28.6%, and 1 out of 1 gives a zero-width 100% to 100%; Wilson gives 1.8% to 40.4% and 20.7% to 100%.
 - **Combinations** are unordered tag pairs: a question tagged `r|dplyr|tidyverse` counts for `dplyr + r`,
   `dplyr + tidyverse` and `r + tidyverse`. Same floor, same rules.
 - **Tag exposure** is the share of the group's questions whose tags were first edited *after* the first answer arrived

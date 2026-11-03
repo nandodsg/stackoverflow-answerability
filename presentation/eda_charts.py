@@ -11,6 +11,7 @@ import math
 from pathlib import Path
 
 import matplotlib
+import matplotlib.patches
 
 matplotlib.use("Agg")
 # Figtree is the page's font, not installed here: matplotlib measures with the fallback, the browser renders Figtree.
@@ -26,7 +27,9 @@ OUT = Path(__file__).resolve().parent / "img" / "eda"
 FLOOR, Z95, TOP_N, SEED = 385, 1.96, 10, 2022
 # Page tokens (style.css): the chart sits on the dialog's panel, so its own background stays transparent.
 TEXT, MUTED, HAIRLINE = "#fffce1", "#7c7c6f", "#42433d"
+CANVAS, PANEL = "#0e100f", "#191919"
 ENG, P1, P2, P3, PINK = "#00bae2", "#abff84", "#9d95ff", "#ff8709", "#fec5fb"
+DARK_GREEN = "#2f9e44"  # D1 funnel's median line: a green apart from P1's, still readable on the dark panel
 plt.rcParams.update({
     "svg.fonttype": "none",  # keep text as text, so the page font renders it
     "font.family": ["Figtree", "Segoe UI", "DejaVu Sans", "sans-serif"],
@@ -93,6 +96,8 @@ def d1_floor(path):
         for sign in (-1, 1):
             funnel.plot(grid, 100 * np.clip(pooled + sign * z * se, 0, 1), color=P3, linewidth=1.5, linestyle=style,
                         label=name if sign == 1 else None)
+    median = n.median()
+    funnel.axvline(median, color=DARK_GREEN, linewidth=1.5, label=f"median tag: {median:,.0f} questions")
     funnel.axvline(FLOOR, color=PINK, linewidth=1, label=f"{FLOOR}-question floor")
     funnel.set_xscale("log")
     funnel.set_ylim(-2, 102)
@@ -116,6 +121,47 @@ def d1_floor(path):
     margin.set_title("Worst-case 95% margin of an accepted rate")
     margin.set_xlabel("questions in the tag (log scale)")
     margin.set_ylabel("± points, at a 50% rate")
+    fig.savefig(path)
+    plt.close(fig)
+
+
+def d1_sizes(path):
+    """Share of tags and of question-tag links by tag size: half the tags are tiny, a few hold most questions."""
+    tags = read(EDA / "d1_sample_size" / "output" / "tag_stats_2022.csv")
+    edges = [1, 7, 30, 100, 500, 2000, math.inf]
+    names = ["1–6", "7–29", "30–99", "100–499", "500–1,999", "2,000+"]
+    bins = pd.cut(tags["n_questions"], edges, right=False, labels=names)
+    groups = tags.groupby(bins, observed=False)["n_questions"].agg(["size", "sum"])
+    rows = [("share of tags", groups["size"] / groups["size"].sum()),
+            ("share of question–tag links", groups["sum"] / groups["sum"].sum())]
+    # Sequential: one hue (ENG), from mixed into the dialog panel for small tags to lifted toward the text for the
+    # biggest, so the six steps stay apart on a dark background.
+    panel, eng, text = (np.array(matplotlib.colors.to_rgb(c)) for c in (PANEL, ENG, TEXT))
+    shades = [panel + w * (eng - panel) for w in np.linspace(0.2, 1, len(names) - 1)] + [eng + 0.45 * (text - eng)]
+
+    fig, ax = plt.subplots(figsize=(10, 1.9))
+    for y, (row, shares) in enumerate(rows):
+        left = 0.0
+        for name, share, shade in zip(names, shares, shades):
+            # The panel-coloured edge is the 2px gap between segments.
+            ax.barh(y, 100 * share, left=100 * left, height=0.62, color=shade, edgecolor=PANEL, linewidth=2)
+            if share >= 0.05:  # label only segments wide enough to hold it
+                ink = CANVAS if shade.mean() > 0.45 else TEXT
+                ax.text(100 * (left + share / 2), y, f"{share:.1%}", ha="center", va="center", color=ink,
+                        fontsize=10)
+            left += share
+    ax.set_yticks(range(len(rows)), [row for row, _ in rows])
+    ax.invert_yaxis()
+    ax.set_xlim(0, 100)
+    ax.set_xlabel("% of 2022 total")
+    ax.grid(False)
+    ax.tick_params(axis="y", length=0, labelcolor=TEXT)
+    ax.spines["left"].set_visible(False)
+    ax.set_title("Tag size, 2022: half the tags are tiny, a few hold most questions")
+    # Own swatches: the bars' 2px panel edge would shrink the legend's to a dash.
+    swatches = [matplotlib.patches.Patch(color=shade, label=f"{name} questions") for name, shade in zip(names, shades)]
+    ax.legend(handles=swatches, loc="upper left", bbox_to_anchor=(0, -0.42), ncol=len(names), fontsize=9,
+              handlelength=1.2, handleheight=1.2)
     fig.savefig(path)
     plt.close(fig)
 
@@ -196,10 +242,11 @@ def d4_leakage(path):
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     d1_floor(OUT / "d1-floor.svg")
+    d1_sizes(OUT / "d1-sizes.svg")
     d2_denominator(OUT / "d2-denominator.svg")
     d3_ratio(OUT / "d3-ratio.svg")
     d4_leakage(OUT / "d4-leakage.svg")
-    print(f"Wrote four SVGs to {OUT}")
+    print(f"Wrote five SVGs to {OUT}")
 
 
 if __name__ == "__main__":
