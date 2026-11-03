@@ -15,30 +15,49 @@
 
 <div class="progress" aria-hidden="true"><div class="progress-fill"></div></div>
 <nav class="rail" aria-label="Chapters"><ol id="rail"></ol></nav>
-<div class="counter" aria-hidden="true"><b id="counter-now">01</b> / <span id="counter-total">10</span><span class="hint">← → space</span></div>
+<div class="counter" aria-hidden="true"><b id="counter-now">01</b> / <span id="counter-total">11</span><span class="hint">← → space</span></div>
 
 <main>
 
 <!-- Chapters are placeholders: the shell (stepping, rail, motion, SQL panel, strip) is what is built here.
      Narrative text comes from the README once the numbers are final. -->
 
-<section class="chapter" id="c1" data-title="The three questions">
+<section class="chapter cover" id="cover" data-title="Title">
+  <div class="q q-out" aria-hidden="true">?</div>
+  <div class="q q-fill" aria-hidden="true">?</div>
+  <div class="inner stack cover-in">
+    <p class="eyebrow" data-reveal>{ <span class="label">01 · analytics engineering exercise</span> }</p>
+    <h1 class="display" aria-label="Stack Overflow, answerability"><span class="line" aria-hidden="true"><span class="line-in">Stack</span></span> <span class="line" aria-hidden="true"><span class="line-in">Overflow,</span></span> <span class="line" aria-hidden="true"><span class="line-in grad">answerability</span></span></h1>
+    <div class="byline" data-reveal>
+      <div class="byline-id">
+        <p class="byline-name">Fernando Carlini Guimarães</p>
+        <p class="byline-role">Lead Analytics Engineer</p>
+      </div>
+      <p class="byline-links">
+        <a class="btn" href="https://www.linkedin.com/in/fernando-carlini-guimaraes/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/nandodsg" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn cta" href="#c1">Start</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" id="c1" data-title="The problem we are solving">
   <div class="inner stack">
-    <p class="eyebrow" data-reveal>{ <span class="label">01 · the question</span> }</p>
-    <h1 class="display" data-reveal>Stack Overflow, <span class="mark">answerability</span></h1>
-    <p class="lede" data-reveal>What makes a Stack Overflow question get answered, and get an accepted answer? Three questions on the public dataset, answered with a dbt project, guarded by tests written from acceptance criteria, and computed again on this page by SQL you can edit.</p>
-    <ol class="cards questions" data-stagger>
-      <li class="card p1"><p class="card-k">P1 · tags</p><p class="card-t">Which tags, and pairs of tags, get the most answers and the highest rate of accepted answers this year?</p></li>
-      <li class="card p2"><p class="card-k">P2 · python vs dbt</p><p class="card-t">Questions tagged only <code>python</code> or only <code>dbt</code>: how does the question-to-answer ratio move year over year, over the last ten years?</p></li>
-      <li class="card p3"><p class="card-k">P3 · beyond tags</p><p class="card-t">Which qualities of a question, other than its tags, go with getting an answer and an accepted one?</p></li>
+    <p class="eyebrow" data-reveal>{ <span class="label">02 · the problem</span> }</p>
+    <h2 data-reveal>The problem we are <span class="mark">solving</span></h2>
+    <p class="lede wide" data-reveal>What makes a Stack Overflow question get answered, and get an accepted answer? Three questions on the public dataset, answered with a dbt project, guarded by tests written from acceptance criteria, and computed again on this page by SQL you can edit.</p>
+    <ol class="cards questions prompts" data-stagger>
+      <li class="card p1"><p class="card-k">1 · tags</p><p class="card-t">What tags on a Stack Overflow question lead to the most answers and the highest rate of approved answers for the current year? What tags lead to the least? How about combinations of tags?</p></li>
+      <li class="card p2"><p class="card-k">2 · python vs dbt</p><p class="card-t">For posts which are tagged with only ‘python’ or ‘dbt’, what is the year over year change of question-to-answer ratio for the last 10 years? How about the rate of approved answers on questions for the same time period? How do posts tagged with only ‘python’ compare to posts only tagged with ‘dbt’?</p></li>
+      <li class="card p3"><p class="card-k">3 · beyond tags</p><p class="card-t">Other than tags, what qualities on a post correlate with the highest rate of answer and approved answer?</p></li>
     </ol>
-    <p data-reveal><a class="btn cta" href="#c2">Start</a></p>
   </div>
 </section>
 
 <section class="chapter" id="c2" data-title="The data and its traps">
   <div class="inner stack">
-    <p class="eyebrow" data-reveal>{ <span class="label">02 · the data</span> }</p>
+    <p class="eyebrow" data-reveal>{ <span class="label">03 · the data</span> }</p>
     <h2 data-reveal>Frozen at 2022-09-25, and full of <span class="mark">traps</span></h2>
     <p class="lede wide" data-reveal>A snapshot that stopped on 2022-09-25 at 05:56 UTC, with 23,020,127 questions since 2008. So "this year" means 2022, and 2022 is a partial year. Four things in this data can fool a ranking, and every answer carries a check for each of them.</p>
     <ul class="cards" data-stagger>
@@ -53,7 +72,7 @@
 
 <section class="chapter eng" id="c3" data-title="Decisions made with evidence">
   <div class="inner stack">
-    <p class="eyebrow" data-reveal>{ <span class="label">03 · decisions</span> }</p>
+    <p class="eyebrow" data-reveal>{ <span class="label">04 · decisions</span> }</p>
     <h2 data-reveal>Decisions made with <span class="mark">evidence</span></h2>
     <p class="lede wide" data-reveal>Four definitions could have gone either way. Before any dbt model, each one got a small EDA on the real data, a written decision and a row in the decisions log.</p>
     <ol class="timeline" data-stagger>
@@ -88,7 +107,7 @@
 
 <section class="chapter eng dense" id="c4" data-title="Data architecture">
   <div class="inner stack">
-    <p class="eyebrow" data-reveal>{ <span class="label">04 · architecture</span> }</p>
+    <p class="eyebrow" data-reveal>{ <span class="label">05 · architecture</span> }</p>
     <h2 data-reveal>From the public dataset to <span class="mark">one number</span></h2>
     <div class="arch" data-arch data-show="">
       <div class="arch-head">
@@ -150,7 +169,7 @@
 
 <section class="chapter p1" id="c5" data-title="P1 · Tag answerability">
   <div class="inner stack">
-    <p class="eyebrow" data-reveal>{ <span class="label">05 · prompt 1</span> }</p>
+    <p class="eyebrow" data-reveal>{ <span class="label">06 · prompt 1</span> }</p>
     <h2 data-reveal>Which tags get <span class="mark">answers</span>?</h2>
     <div class="cols answer">
     <div class="stack">
@@ -188,7 +207,7 @@ LIMIT 10;</textarea>
 
 <section class="chapter p2" id="c6" data-title="P2 · Python vs dbt">
   <div class="inner stack">
-    <p class="eyebrow" data-reveal>{ <span class="label">06 · prompt 2</span> }</p>
+    <p class="eyebrow" data-reveal>{ <span class="label">07 · prompt 2</span> }</p>
     <h2 data-reveal>Python-only vs dbt-only, <span class="mark">year over year</span></h2>
     <div class="cols answer">
       <div class="stack">
@@ -232,7 +251,7 @@ WHERE tag = 'python'
 
 <section class="chapter p3" id="c7" data-title="P3 · Other qualities">
   <div class="inner stack">
-    <p class="eyebrow" data-reveal>{ <span class="label">07 · prompt 3</span> }</p>
+    <p class="eyebrow" data-reveal>{ <span class="label">08 · prompt 3</span> }</p>
     <h2 data-reveal>What else goes with an <span class="mark">answer</span>?</h2>
     <div class="cols answer">
     <div class="stack">
@@ -271,7 +290,7 @@ ORDER BY accepted_pct DESC;</textarea>
 
 <section class="chapter eng" id="c8" data-title="Quality and cost">
   <div class="inner stack">
-    <p class="eyebrow" data-reveal>{ <span class="label">08 · quality and cost</span> }</p>
+    <p class="eyebrow" data-reveal>{ <span class="label">09 · quality and cost</span> }</p>
     <h2 data-reveal>Tests, caps, and what it <span class="mark">cost</span></h2>
     <div class="cols">
       <div class="stack">
@@ -296,7 +315,7 @@ ORDER BY accepted_pct DESC;</textarea>
 
 <section class="chapter" id="c9" data-title="Limitations and next">
   <div class="inner stack">
-    <p class="eyebrow" data-reveal>{ <span class="label">09 · limits</span> }</p>
+    <p class="eyebrow" data-reveal>{ <span class="label">10 · limits</span> }</p>
     <h2 data-reveal>What this <span class="mark">does not</span> show</h2>
     <div class="cols">
       <div class="stack">
@@ -326,7 +345,7 @@ ORDER BY accepted_pct DESC;</textarea>
 
 <section class="chapter" id="c10" data-title="How this was built">
   <div class="inner stack">
-    <p class="eyebrow" data-reveal>{ <span class="label">10 · how it was built</span> }</p>
+    <p class="eyebrow" data-reveal>{ <span class="label">11 · how it was built</span> }</p>
     <h2 data-reveal>Built with an <span class="mark">AI assistant</span></h2>
     <p class="lede wide" data-reveal>I wrote the specs first and built the rest with Claude Code as a pair programmer, which is why every commit carries a co-author line. The choices are mine, and the decisions log shows each one next to the EDA that backed it: D3 (answers per question as the headline) went against the AI's recommendation, for readability and one metric shared by P1 and P2, and the leakage KPI was my idea, born from a simple worry ("what if the tag came <em>after</em> the answer?").</p>
     <p data-reveal>The language-model calls of P3 cost about US$ 10.65 in all, logged call by call in <code>labels/spend_log.csv</code>: US$ 3.86 on Anthropic (out of US$ 100 of promotional credits), US$ 2.96 on the Vercel AI Gateway and US$ 3.83 on TypeSafe Jev (worked out from the logged tokens, because each Jev call rounds to almost nothing in the log). BigQuery ran in the free sandbox, behind the byte caps of chapter 8.</p>

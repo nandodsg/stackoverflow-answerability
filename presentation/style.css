@@ -63,6 +63,43 @@ a { color: inherit; }
 .eyebrow .br { display: inline-block; }
 /* the title is sized by width and height, so it stays on two lines and leaves room for the cards below */
 h1.display { font-size: clamp(56px, min(11vw, 16vh), 176px); line-height: .9; letter-spacing: -.02em; font-weight: 600; padding-bottom: .1em; /* room for the marker under the descenders */ }
+/* cover: a bold typographic title, then the author line */
+/* cover: the title is the page's loudest thing, three huge lines, the last one filled with the accent gradient */
+.cover h1.display { font-size: clamp(56px, min(13vw, 17vh), 210px); line-height: .9; letter-spacing: -.03em; font-weight: 600; padding-bottom: 0; }
+/* each title line sits in a mask; the line rises out of it (app.js). Padding keeps descenders inside the mask. */
+.line { display: block; overflow: hidden; padding-bottom: .14em; margin-bottom: -.14em; }
+.line-in { display: inline-block; }
+.grad { background: var(--accent); -webkit-background-clip: text; background-clip: text; color: transparent; padding: 0 .06em .14em 0; /* the gradient paints only inside the box, so the "y" tail needs room */ }
+/* the one special transition, cover to the first slide: an accent panel wipes across carrying the next title (app.js) */
+.wipe { position: fixed; inset: 0; z-index: 15; pointer-events: none; display: none; align-items: center; padding: 0 6vw;
+  background: var(--accent); color: var(--canvas); clip-path: inset(0 100% 0 0); }
+.wipe-label { font-size: clamp(40px, 8vw, 120px); line-height: .95; font-weight: 600; letter-spacing: -.03em; max-width: 14ch; }
+/* cover layout: the title under the eyebrow, a hairline footer pinned to the bottom (name and role left, pills right);
+   two big question marks sit behind everything, clipped by the section, so there is never a horizontal scroll */
+.cover { position: relative; overflow: hidden; }
+.cover-in { position: relative; z-index: 1; align-self: stretch; display: flex; flex-direction: column; }
+.cover-in > .byline { margin-top: auto; }
+.cover h1.display { margin-top: clamp(8px, 3vh, 36px); margin-bottom: clamp(20px, 4vh, 48px); }
+.q { position: absolute; font-size: min(112vh, 130vw); line-height: 1; font-weight: 600; pointer-events: none; user-select: none; }
+.q-fill { right: -1vw; top: -14vh; background: var(--accent); -webkit-background-clip: text; background-clip: text; color: transparent; opacity: .16; }
+.q-out { right: 14vw; top: -6vh; -webkit-text-stroke: 2px var(--hairline); color: transparent; }
+.byline { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+  border-top: 1px solid var(--hairline); padding-top: clamp(14px, 2.4vh, 24px); }
+.byline-name { font-size: clamp(24px, 2.2vw, 34px); line-height: 1.1; font-weight: 600; letter-spacing: -.01em; }
+.byline-role { font-size: 20px; color: var(--muted); margin-top: 6px; }
+.byline-links { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.byline-links .btn { text-decoration: none; }
+@media (min-width: 901px) { .cover { padding-right: 56px; } } /* clear of the fixed progress rail */
+/* only with motion allowed: the title gradient slides and the question marks drift slowly; otherwise all static */
+@media (prefers-reduced-motion: no-preference) {
+  .cover .grad { background: linear-gradient(114deg, #0ae448, #abff84, #00bae2, #0ae448, #abff84, #00bae2, #0ae448); background-size: 200% 100%;
+    -webkit-background-clip: text; background-clip: text; animation: grad-slide 5s linear infinite; }
+  .q-fill { animation: q-drift-a 19s ease-in-out infinite alternate; }
+  .q-out { animation: q-drift-b 23s ease-in-out infinite alternate; }
+}
+@keyframes grad-slide { to { background-position: -100% 0; } /* the gradient repeats every half of its width, so this loops without a jump */ }
+@keyframes q-drift-a { from { transform: translate3d(0, 0, 0) rotate(0deg); opacity: .12; } to { transform: translate3d(-1.5vw, 3vh, 0) rotate(7deg); opacity: .2; } }
+@keyframes q-drift-b { from { transform: translate3d(0, 0, 0) rotate(0deg); } to { transform: translate3d(2vw, -2.5vh, 0) rotate(-8deg); } }
 h2 { font-size: clamp(34px, min(5vw, 7vh), 66px); line-height: 1; letter-spacing: -.02em; font-weight: 600; }
 .lede { font-size: 23px; max-width: 60ch; }
 .muted { color: var(--muted); font-size: 16px; }
@@ -182,7 +219,7 @@ h3.sub { font: 600 14px/1 var(--mono); color: var(--c, var(--text)); letter-spac
 .arch > * + * { margin-top: var(--gap-text); }
 .arch-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px 48px; flex-wrap: wrap; }
 .arch-head .lede { flex: 1 1 480px; max-width: 58ch; }
-.arch-head .steps { flex: none; }
+.arch-head .steps { flex: 0 1 auto; max-width: 100%; } /* may wrap on a phone instead of widening the page */
 .arch-flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
 /* guards sit at the foot of each node, so the badges of a row line up */
 .arch-node {

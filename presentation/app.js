@@ -57,14 +57,31 @@
   // While a smooth scroll is still travelling, `current` (read from the scroll position) lags behind, so quick key
   // presses count from the chapter we are heading to. The memory expires once the scroll has had time to land.
   var heading = null, headingTimer = null;
+  // set by the motion layer below: the cover-to-first-slide wipe; it calls jump() while the page is covered
+  var transition = null;
   function go(i) {
     i = Math.max(0, Math.min(chapters.length - 1, i));
-    chapters[i].scrollIntoView({ block: "start" });
-    history.replaceState(null, "", "#" + chapters[i].id);
+    var from = here();
+    var special = !!transition && from === 0 && i === 1;
+    var jump = function () {
+      chapters[i].scrollIntoView({ block: "start", behavior: special ? "instant" : "auto" });
+      history.replaceState(null, "", "#" + chapters[i].id);
+    };
     heading = i;
     clearTimeout(headingTimer);
-    headingTimer = setTimeout(function () { heading = null; }, 1200);
+    headingTimer = setTimeout(function () { heading = null; }, special ? 1800 : 1200);
+    if (special) transition(i, jump); else jump();
   }
+  // links to a chapter ("Start", the rail dots) step through the same transition
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a || e.ctrlKey || e.metaKey || e.shiftKey) return;
+    var target = document.getElementById(a.getAttribute("href").slice(1));
+    var idx = chapters.indexOf(target);
+    if (idx < 0) return;
+    e.preventDefault();
+    go(idx);
+  });
   function here() { return heading === null ? current : heading; }
   // Keys keep their normal job where they matter: every key while typing SQL, and Space on a button or chip
   // (it presses them). Arrows still step even when a button was just clicked.
@@ -123,12 +140,40 @@
     });
   });
 
+  /* The one special transition: from the cover to the first slide, an accent-gradient panel wipes across from the
+     left carrying the next slide's title, the scroll jumps underneath, and the panel leaves to the right.
+     Every other step is the plain smooth scroll. A repeated press while it runs is ignored. */
+  var wipe = document.createElement("div");
+  wipe.className = "wipe";
+  wipe.setAttribute("aria-hidden", "true");
+  var wipeLabel = document.createElement("span");
+  wipeLabel.className = "wipe-label";
+  wipe.appendChild(wipeLabel);
+  document.body.appendChild(wipe);
+  var wiping = false;
+
+  transition = function (i, jump) {
+    if (wiping) return;
+    wiping = true;
+    wipeLabel.textContent = chapters[i].dataset.title;
+    gsap.set(wipe, { display: "flex", clipPath: "inset(0% 100% 0% 0%)" });
+    gsap.set(wipeLabel, { opacity: 0, x: -60 });
+    gsap.timeline({ onComplete: function () { gsap.set(wipe, { display: "none" }); wiping = false; } })
+      .to(wipe, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.6, ease: "power4.inOut" })
+      .to(wipeLabel, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, "-=0.25")
+      .add(jump)
+      .to({}, { duration: 0.35 })
+      .to(wipe, { clipPath: "inset(0% 0% 0% 100%)", duration: 0.6, ease: "power4.inOut" });
+  };
+
   chapters.forEach(function (ch) {
     var items = Array.prototype.slice.call(ch.querySelectorAll("[data-reveal], [data-stagger] > *"));
     var label = ch.querySelector(".eyebrow .label");
     var labelText = label ? label.textContent : "";
     var marks = ch.querySelectorAll(".mark");
     var counts = ch.querySelectorAll("[data-count]");
+    var titleLines = ch.querySelectorAll(".line-in");
+    gsap.set(titleLines, { yPercent: 115 });
 
     var braces = ch.querySelectorAll(".eyebrow .br");
     gsap.set(items, { opacity: 0, y: 24 });
@@ -142,6 +187,7 @@
       trigger: ch, start: "top 65%", once: true,
       onEnter: function () {
         gsap.to(items, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out", stagger: 0.08 });
+        gsap.to(titleLines, { yPercent: 0, duration: 1.1, ease: "power4.out", stagger: 0.14, delay: 0.1 });
         gsap.to(braces, { opacity: 1, x: 0, duration: 0.6, ease: "power3.out", delay: 0.15 });
         if (label) {
           var t = { n: 0 };
