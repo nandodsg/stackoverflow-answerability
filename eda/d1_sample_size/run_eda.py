@@ -102,10 +102,6 @@ def describe(freq):
     """Distribution stats of group size, computed from a frequency table (so pairs never need one row each)."""
     n = freq["n_questions"].to_numpy(float)
     w = freq["n_groups"].to_numpy(float)
-    mean = np.average(n, weights=w)
-    std = np.sqrt(np.average((n - mean) ** 2, weights=w))
-    log_n = np.log10(n)
-    log_mean = np.average(log_n, weights=w)
     cum_share = np.cumsum(w) / w.sum()
 
     def quantile(q):
@@ -113,18 +109,12 @@ def describe(freq):
 
     return {
         "groups": w.sum(),
-        "mean": mean,
-        "std": std,
-        "mean - 3 sd": mean - 3 * std,
-        "mean + 3 sd": mean + 3 * std,
+        "mean": np.average(n, weights=w),
         "median": quantile(0.5),
         "p75": quantile(0.75),
         "p90": quantile(0.9),
         "p99": quantile(0.99),
         "max": n.max(),
-        "skewness": np.average(((n - mean) / std) ** 3, weights=w),
-        "log10 mean": log_mean,
-        "log10 sd": np.sqrt(np.average((log_n - log_mean) ** 2, weights=w)),
     }
 
 
@@ -208,8 +198,6 @@ def plot_size_histograms(freq, stats, label, path):
 
     linear.hist(n, bins=60, weights=w, color=BLUE)
     linear.axvline(stats["mean"], color=ORANGE, linewidth=1.5, label=f"mean = {stats['mean']:,.0f}")
-    linear.axvline(stats["mean + 3 sd"], color=ORANGE, linewidth=1.5, linestyle="--",
-                   label=f"mean ± 3 sd = {stats['mean - 3 sd']:,.0f} … {stats['mean + 3 sd']:,.0f}")
     linear.xaxis.set_major_formatter(FuncFormatter(lambda value, _: f"{value / 1000:,.0f}k" if value else "0"))
     linear.set_title(f"Questions per {label}, linear bins")
     linear.set_xlabel(f"questions per {label}")
@@ -217,12 +205,8 @@ def plot_size_histograms(freq, stats, label, path):
     linear.legend()
 
     bins = np.logspace(0, np.log10(n.max()) + 0.01, 40)
-    logged.hist(n, bins=bins, weights=w, color=BLUE, label="observed")
-    log_bin_width = np.log10(bins[1]) - np.log10(bins[0])
-    grid = np.linspace(0, np.log10(n.max()), 200)
-    normal = np.exp(-0.5 * ((grid - stats["log10 mean"]) / stats["log10 sd"]) ** 2)
-    normal *= w.sum() * log_bin_width / (stats["log10 sd"] * np.sqrt(2 * np.pi))
-    logged.plot(10**grid, normal, color=ORANGE, linewidth=2, label="normal fit on log10(n)")
+    logged.hist(n, bins=bins, weights=w, color=BLUE)
+    logged.axvline(stats["median"], color=ORANGE, linewidth=1.5, label=f"median = {stats['median']:,.0f}")
     logged.set_xscale("log")
     logged.set_title(f"Questions per {label}, log bins")
     logged.set_xlabel(f"questions per {label} (log scale)")

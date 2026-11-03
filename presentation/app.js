@@ -89,6 +89,7 @@
   var PRESSABLE = /^(BUTTON|SUMMARY)$/;
   document.addEventListener("keydown", function (e) {
     if (e.ctrlKey || e.metaKey || e.altKey) return;
+    if (document.querySelector("dialog[open]")) return; // an open EDA dialog keeps the keys (Esc closes it)
     if (TYPING.test(e.target.tagName) || e.target.isContentEditable) return;
     var k = e.key;
     if (k === " " && PRESSABLE.test(e.target.tagName)) return;
@@ -121,6 +122,18 @@
         buttons.forEach(function (x) { x.setAttribute("aria-pressed", on && x === b ? "true" : "false"); });
       });
     });
+  });
+
+  /* ---------- EDA details: each decision's button opens its modal dialog ---------- */
+  // Esc closes a dialog natively; the × button and a click on the dimmed backdrop close it too.
+  document.querySelectorAll("[data-dialog]").forEach(function (b) {
+    var dialog = document.getElementById(b.dataset.dialog);
+    if (!dialog || !dialog.showModal) { b.hidden = true; return; }
+    b.addEventListener("click", function () { dialog.showModal(); });
+  });
+  document.querySelectorAll("dialog.eda").forEach(function (dialog) {
+    dialog.querySelector(".eda-close").addEventListener("click", function () { dialog.close(); });
+    dialog.addEventListener("click", function (e) { if (e.target === dialog) dialog.close(); });
   });
 
   /* ---------- motion layer ---------- */

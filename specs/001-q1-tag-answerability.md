@@ -40,8 +40,7 @@ accepted rate all have 1–2 questions (rates of exactly 100% and 0%).
 
 - **Floor: ≥ 385 questions** in the year, for tags and for pairs alike. It comes from a precision target, not from the
   size distribution: 385 is the smallest n whose worst-case (p = 50%) 95% margin of error is within ±5 points,
-  n = (1.96 × 0.5 / 0.05)² = 384.2 → 385. The size distribution is far from normal (2022 tags: median 6, mean 90,
-  sd 1,543, so mean − 3 sd is negative), which rules out a mean ± k·sd cutoff.
+  n = (1.96 × 0.5 / 0.05)² = 384.2 → 385.
   - Cost in 2022: 1,162 tags (2.7% of tags, 76% of question–tag links); 1,026 pairs (27% of pair links).
   - Because the floor is a precision rule, it stays the same in other years (e.g. the 2021 robustness check).
 - **Score: Wilson score interval, 95%.**

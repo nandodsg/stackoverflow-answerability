@@ -36,6 +36,7 @@ jobs:
           mkdir _site
           cp presentation/index.html presentation/style.css presentation/app.js presentation/sql-panel.js _site/
           cp -r presentation/data _site/data
+          cp -r presentation/img _site/img
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
