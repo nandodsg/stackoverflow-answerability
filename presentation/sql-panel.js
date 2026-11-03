@@ -137,8 +137,10 @@ try {
     editor.addEventListener("keydown", (e) => { if ((e.ctrlKey || e.metaKey) && e.key === "Enter") { e.preventDefault(); run(conn, panel); } });
     run(conn, panel);
   });
-  document.querySelectorAll(".step").forEach((btn) => {
+  // only year buttons bound to a panel: chapter 4's buttons also carry .step but have no data-for / data-year
+  document.querySelectorAll(".step[data-for]").forEach((btn) => {
     const panel = panels.find((p) => p.dataset.bind === btn.dataset.for);
+    if (!panel) return;
     btn.addEventListener("click", () => {
       const editor = panel.querySelector(".sql-editor");
       editor.value = editor.value.replace(YEAR, `creation_year = ${btn.dataset.year}`);
