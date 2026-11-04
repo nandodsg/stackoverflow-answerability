@@ -57,12 +57,13 @@
   // While a smooth scroll is still travelling, `current` (read from the scroll position) lags behind, so quick key
   // presses count from the chapter we are heading to. The memory expires once the scroll has had time to land.
   var heading = null, headingTimer = null;
-  // set by the motion layer below: the cover-to-first-slide wipe; it calls jump() while the page is covered
+  // set by the motion layer below: the wipe into a chapter marked data-wipe (slide 2, slide 6), stepping forward one
+  // chapter; it calls jump() while the page is covered
   var transition = null;
   function go(i) {
     i = Math.max(0, Math.min(chapters.length - 1, i));
     var from = here();
-    var special = !!transition && from === 0 && i === 1;
+    var special = !!transition && i === from + 1 && chapters[i].hasAttribute("data-wipe");
     var jump = function () {
       chapters[i].scrollIntoView({ block: "start", behavior: special ? "instant" : "auto" });
       history.replaceState(null, "", "#" + chapters[i].id);
@@ -124,6 +125,28 @@
     });
   });
 
+  /* ---------- slide 9: the view buttons swap tables and pipeline; the key buttons follow one key ---------- */
+  // Without JS both views show (the hiding rule needs html.js). Pressing the active key again clears it.
+  document.querySelectorAll("[data-views]").forEach(function (box) {
+    var buttons = box.querySelectorAll("[data-view-btn]");
+    buttons.forEach(function (b) {
+      b.addEventListener("click", function () {
+        box.dataset.view = b.dataset.viewBtn;
+        buttons.forEach(function (x) { x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+      });
+    });
+  });
+  document.querySelectorAll("[data-dm]").forEach(function (dm) {
+    var buttons = dm.querySelectorAll("[data-key]");
+    buttons.forEach(function (b) {
+      b.addEventListener("click", function () {
+        var on = dm.dataset.show !== b.dataset.key;
+        dm.dataset.show = on ? b.dataset.key : "";
+        buttons.forEach(function (x) { x.setAttribute("aria-pressed", on && x === b ? "true" : "false"); });
+      });
+    });
+  });
+
   /* ---------- EDA details: each decision's button opens its modal dialog ---------- */
   // Esc closes a dialog natively; the × button and a click on the dimmed backdrop close it too.
   document.querySelectorAll("[data-dialog]").forEach(function (b) {
@@ -157,9 +180,10 @@
     });
   });
 
-  /* The one special transition: from the cover to the first slide, an accent-gradient panel wipes across from the
-     left carrying the next slide's title, the scroll jumps underneath, and the panel leaves to the right.
-     Every other step is the plain smooth scroll. A repeated press while it runs is ignored. */
+  /* The wipe, into each chapter that opens a part (the problem, slide 2; how we solved it, slide 6): an
+     accent-gradient panel wipes across from the left carrying that chapter's title, the scroll jumps underneath, and
+     the panel leaves to the right. Every other step is the plain smooth scroll. A repeated press while it runs is
+     ignored. */
   var wipe = document.createElement("div");
   wipe.className = "wipe";
   wipe.setAttribute("aria-hidden", "true");

@@ -1,0 +1,11 @@
+stage,route,model,calls,usd
+1 · discovery: Opus proposes labels from 200 pairs,Anthropic API,claude-opus-5-5,12,3.3513
+"2 · practice round: 20 questions, rubric tightened",Anthropic API,claude-opus-5-5,20,0.4302
+"2 · practice round: 20 questions, rubric tightened",Vercel AI Gateway,google/gemini-4-argon,20,0.1861
+"2 · practice round: 20 questions, rubric tightened",Vercel AI Gateway,spacexai/grok-4.7,20,0.322
+"3 · reference labels: Gemini and Grok, 100 questions",Vercel AI Gateway,google/gemini-4-argon,100,0.938
+"3 · reference labels: Gemini and Grok, 100 questions",Vercel AI Gateway,spacexai/grok-4.7,100,1.4877
+"4 · candidate scoring: Jev, Luna, Haiku",Anthropic API,claude-haiku-5-5,100,0.0767
+"4 · candidate scoring: Jev, Luna, Haiku",TypeSafe API,jev-latest,100,0.012547416
+"4 · candidate scoring: Jev, Luna, Haiku",Vercel AI Gateway,openai/gpt-6-luna,100,0.0309
+"5 · analysis set: Jev, 30,000 questions",TypeSafe API,jev-latest,30000,3.8199532140000003

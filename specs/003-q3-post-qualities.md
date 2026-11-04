@@ -130,12 +130,14 @@ labels with a human check on the splits, next to the independent blind practice 
 
 **Labeler and analysis set (decided 2026-11-01).** Three candidates were scored on the 100 reviewed scoring questions
 (Cohen's kappa per label: worked example, ask scope, failure, code, environment, image). TypeSafe Jev: 0.81, 0.87, 0.98,
-0.74, 0.72, 0.71 (mean 0.80). GPT-6 Luna: 0.63, 0.75, 0.83, 0.57, 0.79, 0.79 (0.73). Claude Haiku 5.5: 0.94, 0.61,
-0.67, 0.73, 0.78, 0.40 (0.69). The three runs cost US$ 0.12 in all; Claude Sonnet and Opus were not run. The reviewed set
+0.74, 0.72, 0.71 (mean 0.80). GPT-6 Luna: 0.63, 0.75, 0.83, 0.57, 0.79, 0.79 (0.72). Claude Haiku 5.5: 0.94, 0.61,
+0.67, 0.73, 0.78, 0.40 (0.68). The three runs cost US$ 0.12 in all; Claude Sonnet and Opus were not run. The reviewed set
 started from the reference models' labels, so these scores are optimistic (see above). Jev labels the analysis set:
 30,000 questions drawn at random from the 5% sample, 2018–2022, minus the discovery and gold questions
-(`int_label_analysis_questions`, a view, checked by `tests/assert_label_analysis_questions.sql`), at US$ 3.82. The whole
-sample (~422k) would cost about US$ 400–550, hence the subsample. The draw is not stratified, so label rates describe the
+(`int_label_analysis_questions`, a view, checked by `tests/assert_label_analysis_questions.sql`), at US$ 3.82. The analysis
+set is sized to a US$ 4 budget; labeling the whole sample (~422k) would cost about US$ 54 at Jev's measured US$ 0.00013
+per question (an estimate before the runs, US$ 400–550, priced Haiku and Luna at an assumed 1,500 output tokens per
+question; `eda/d6_labelers`). The draw is not stratified, so label rates describe the
 sample as it is (image-only evidence is about 2% here against 6% in the image-oversampled gold set). Jev answers each
 label with a level and its probabilities, with no reason.
 

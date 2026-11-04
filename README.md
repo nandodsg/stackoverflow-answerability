@@ -668,7 +668,7 @@ Each label is checked against the rule closest to it:
   to Gemini and 15 to Grok. Zero changes is what anchoring looks like (reading a suggestion next to its reason pulls you
   towards it), so this gold set is **the models' labels with a human check on the ties**, not independent hand labels.
   Against it Jev scored a Cohen's kappa of 0.71 to 0.98 per label (mean 0.80), the best of the three candidates I ran
-  (GPT-6 Luna 0.73, Claude Haiku 0.69), and **those scores are optimistic** for the same reason.
+  (GPT-6 Luna 0.72, Claude Haiku 0.68), and **those scores are optimistic** for the same reason.
 - **The one blind human check is the practice round**: 20 questions, all 20 labeled by me by hand before I saw any
   model's answer. There Claude Opus agreed with me little (kappa 0.14 to 0.75 by label), and in most disagreements the
   written rubric sided with the model, so I tightened the wording before freezing it. That is a check on the rubric,
@@ -878,7 +878,9 @@ hold without a person reading every query first. They sit in layers, from the sp
   default build, never read the text columns outside the two scan models).
 - **The same rules for language-model spend.** [`labels/label_questions.py`](labels/label_questions.py) estimates the
   cost for free before a paid run, refuses to run without `--max-usd` and stops at that cap; no run was allowed more
-  than US$ 10. Labeling the whole 5% sample would have cost US$ 400–550, so 30,000 questions were drawn from it.
+  than US$ 10. The analysis set was sized to a US$ 4 budget: 30,000 questions drawn from the 5% sample (labeling all of
+  it, about 422,000, would cost about US$ 54 at Jev's measured price). How the labeler was chosen, and what each
+  model cost: D6 in the [decisions log](PLAN.md#decisions-log) and [`eda/d6_labelers`](eda/d6_labelers/README.md).
 
 **What it costs a reviewer.** `dbt build` stays on the `dev` target, where no query has billed more than 3.9 GiB;
 `queries/q1.sql` bills about 9 GB and `q2.sql` about 7 GB. Rebuilding P3 from scratch pays the two text reads once

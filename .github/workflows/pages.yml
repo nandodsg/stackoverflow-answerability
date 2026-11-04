@@ -1,12 +1,13 @@
 # Deploys presentation/ to GitHub Pages. Free Pages needs a public repository, so the job is skipped while the repo is
 # private (it starts working on its own once the repo goes public). The BigQuery export script and the checks are not
-# published: only the page and its data files are copied into the site folder.
+# published: only the page and its data files are copied into the site folder, plus the gold-label review page of
+# eda/d6_labelers/ (D6), so it opens as a page rather than as HTML source.
 name: Deploy presentation
 
 on:
   push:
     branches: [main]
-    paths: ["presentation/**", ".github/workflows/pages.yml"]
+    paths: ["presentation/**", "eda/d6_labelers/gold_scoring_review.html", ".github/workflows/pages.yml"]
   workflow_dispatch:
 
 permissions:
@@ -37,6 +38,8 @@ jobs:
           cp presentation/index.html presentation/style.css presentation/app.js presentation/sql-panel.js _site/
           cp -r presentation/data _site/data
           cp -r presentation/img _site/img
+          mkdir _site/eda
+          cp eda/d6_labelers/gold_scoring_review.html _site/eda/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

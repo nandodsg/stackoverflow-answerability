@@ -70,7 +70,7 @@ h1.display { font-size: clamp(56px, min(11vw, 16vh), 176px); line-height: .9; le
 .line { display: block; overflow: hidden; padding-bottom: .14em; margin-bottom: -.14em; }
 .line-in { display: inline-block; }
 .grad { background: var(--accent); -webkit-background-clip: text; background-clip: text; color: transparent; padding: 0 .06em .14em 0; /* the gradient paints only inside the box, so the "y" tail needs room */ }
-/* the one special transition, cover to the first slide: an accent panel wipes across carrying the next title (app.js) */
+/* the wipe, into a chapter that opens a part (slide 2, slide 6): an accent panel crosses carrying its title (app.js) */
 .wipe { position: fixed; inset: 0; z-index: 15; pointer-events: none; display: none; align-items: center; padding: 0 6vw;
   background: var(--accent); color: var(--canvas); clip-path: inset(0 100% 0 0); }
 .wipe-label { font-size: clamp(40px, 8vw, 120px); line-height: .95; font-weight: 600; letter-spacing: -.03em; max-width: 14ch; }
@@ -215,12 +215,10 @@ h3.sub { font: 600 14px/1 var(--mono); color: var(--c, var(--text)); letter-spac
 /* slide 4: traps with no setting to choose (checked, or stated as a limit) read apart from the decisions */
 .tl.trap { border-top-color: var(--pink); }
 .tl.trap .tl-when { color: var(--pink); }
-/* slide 5: the budget decision, in the cost colour of the architecture's guards, across both columns */
+/* slide 7: the budget and language-model decisions, in the cost colour of the architecture's guards */
 .tl.cost { border-top-color: var(--text); }
 .tl.cost .tl-when, .tl.cost .more, .eda.cost .tl-when { color: var(--text); }
 .tl.cost .more:hover { border-color: var(--text); }
-.timeline-2 .tl.wide { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; column-gap: 48px; align-content: start; }
-.tl.wide > .tl-when, .tl.wide > h3, .tl.wide > .tl-ev { grid-column: 1 / -1; }
 .tl p { font-size: 16px; line-height: 1.5; }
 .tl .tl-ev { color: var(--muted); margin-top: auto; padding-top: 14px; border-top: 1px solid var(--hairline); }
 .tl .tl-ev:has(.more) { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
@@ -295,11 +293,66 @@ body:has(dialog[open]) { overflow: hidden; }
 .g.leak { --g: var(--pink); }
 .btn[data-guard="cost"] { --c: var(--text); }
 .btn[data-guard="leak"] { --c: var(--pink); }
+/* each guard button says where the guard lives; picking one swaps the lede for that detail (all variants share one grid cell, so the height never jumps) */
+.step-where { display: block; font: 400 11px/1.2 var(--mono); opacity: .75; margin-top: 3px; }
+.arch-lede { display: grid; }
+.arch-lede > span { grid-area: 1 / 1; visibility: hidden; }
+.arch-lede code { line-height: 1; } /* keeps the code variant at two lines' height */
+.arch:not([data-show="test"]):not([data-show="cost"]):not([data-show="leak"]) .al-none,
+.arch[data-show="test"] .al-test, .arch[data-show="cost"] .al-cost, .arch[data-show="leak"] .al-leak { visibility: visible; }
 .arch[data-show="test"] .g.test, .arch[data-show="cost"] .g.cost, .arch[data-show="leak"] .g.leak { color: var(--text); border-color: var(--g); }
 .arch[data-show="test"] .g:not(.test), .arch[data-show="cost"] .g:not(.cost), .arch[data-show="leak"] .g:not(.leak) { opacity: .25; }
 .arch[data-show="test"] .arch-node:not(:has(.g.test)),
 .arch[data-show="cost"] .arch-node:not(:has(.g.cost)),
 .arch[data-show="leak"] .arch-node:not(:has(.g.leak)) { opacity: .4; }
+
+/* ---------- slide 6, the stack: one card per piece, its cost on the last line ---------- */
+.stack-cards { grid-template-columns: repeat(3, 1fr); }
+.stack-cards .card { display: flex; flex-direction: column; padding: 20px 24px; }
+.stack-t { font-size: 19px; line-height: 1.2; font-weight: 600; margin-bottom: 10px; }
+.stack-c { margin-top: auto; padding-top: 12px; font: 600 13px/1.3 var(--mono); color: var(--text); }
+.stack-c::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--text); margin-right: 8px; }
+
+/* ---------- slide 9: two views (tables and keys, the pipeline); without JS both show, one under the other ---------- */
+.views > * + * { margin-top: var(--gap-text); }
+.js .views[data-view="tables"] [data-view-panel="pipeline"],
+.js .views[data-view="pipeline"] [data-view-panel="tables"] { display: none; }
+.view > * + * { margin-top: 14px; }
+/* data model: tables as cards in four columns; a key keeps its colour everywhere (filled = the table's own key) */
+.dm > * + * { margin-top: 14px; }
+.dm-head { display: flex; align-items: center; justify-content: space-between; gap: 12px 32px; flex-wrap: wrap; }
+.dm-head .muted { flex: 1 1 420px; max-width: 70ch; }
+.dm-cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.dm-col .arch-k { margin-bottom: 10px; }
+:where(.dm-list, .dag-notes) { list-style: none; margin: 0; padding: 0; }
+.dm-list { display: grid; gap: 8px; }
+.dm-t { min-width: 0; background: var(--panel); border: 1px solid var(--hairline); border-radius: var(--radius); padding: 9px 12px; transition: opacity .3s; }
+.dm-n { font: 600 13px/1.3 var(--mono); overflow-wrap: anywhere; }
+.dm-g { font-size: 13px; line-height: 1.3; color: var(--muted); margin-top: 2px; }
+.dm-k { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+.k { --kc: var(--hairline); font: 400 11px/1.4 var(--mono); color: var(--text); border: 1px solid var(--kc); border-radius: var(--pill); padding: 1px 8px; transition: opacity .3s; }
+.k.pk { background: var(--kc); color: var(--canvas); }
+.k:not(.kq, .ka, .ku, .kt).pk { color: var(--text); }
+.kq { --kc: var(--eng); } .ka { --kc: var(--p3); } .ku { --kc: var(--p2); } .kt { --kc: var(--p1); }
+.k-btn.kq { --c: var(--eng); } .k-btn.ka { --c: var(--p3); } .k-btn.ku { --c: var(--p2); } .k-btn.kt { --c: var(--p1); }
+.k-btn { font-family: var(--mono); font-size: 14px; padding: 9px 16px; }
+.dm[data-show="kq"] .dm-t:not([data-keys~="kq"]), .dm[data-show="ka"] .dm-t:not([data-keys~="ka"]),
+.dm[data-show="ku"] .dm-t:not([data-keys~="ku"]), .dm[data-show="kt"] .dm-t:not([data-keys~="kt"]) { opacity: .25; }
+.dm[data-show="kq"] .k:not(.kq), .dm[data-show="ka"] .k:not(.ka),
+.dm[data-show="ku"] .k:not(.ku), .dm[data-show="kt"] .k:not(.kt) { opacity: .3; }
+/* the pipeline: an SVG drawn at 1200 wide; on a phone it keeps its size and scrolls inside its own box */
+.dag-wrap { overflow-x: auto; }
+.dag { display: block; width: 100%; height: auto; }
+.dag text { fill: var(--text); font: 600 15px var(--font); }
+.dag text.s { fill: var(--muted); font: 400 12px var(--font); }
+.dag .lane text { fill: var(--muted); font: 600 13px var(--mono); }
+.dag .n rect { fill: var(--panel); stroke: var(--eng); stroke-width: 1.5; }
+.dag .n.manual rect { stroke: var(--text); stroke-dasharray: 6 4; }
+.dag .edges path { fill: none; stroke: var(--muted); stroke-width: 1.5; marker-end: url(#dag-arr); }
+.dag marker path { fill: var(--muted); }
+.dag-notes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px 32px; }
+.dag-notes li { font-size: 15px; line-height: 1.45; color: var(--muted); }
+.dag-notes b { color: var(--text); font-weight: 600; }
 
 /* ---------- live SQL panel ---------- */
 .sql-panel { background: var(--panel); border: 1px solid var(--hairline); border-radius: var(--radius); padding: 24px 28px 28px; }
@@ -334,11 +387,12 @@ body:has(dialog[open]) { overflow: hidden; }
 
 /* ---------- responsive and accessibility ---------- */
 @media (max-width: 900px) {
-  .cols, .cols.answer, .chips, .timeline, .timeline.timeline-2, .timeline-2 .tl.wide { grid-template-columns: 1fr; }
-  .arch-flow { grid-template-columns: 1fr 1fr; }
+  .cols, .cols.answer, .chips, .timeline, .timeline.timeline-2, .dag-notes { grid-template-columns: 1fr; }
+  .arch-flow, .stack-cards, .dm-cols { grid-template-columns: 1fr 1fr; }
+  .dag { min-width: 860px; }
 }
 @media (max-width: 600px) {
-  .arch-flow { grid-template-columns: 1fr; }
+  .arch-flow, .stack-cards, .dm-cols { grid-template-columns: 1fr; }
   .rail, .counter .hint { display: none; }
   .chapter { padding: 72px 16px; }
   body { font-size: 17px; }

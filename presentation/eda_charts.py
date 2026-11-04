@@ -1,9 +1,9 @@
-"""Draws the EDA charts shown in the presentation's decision details (slides 4 and 5), in the page's colours.
+"""Draws the EDA charts shown in the presentation's decision details (slides 4, 5 and 7), in the page's colours.
 
-Reads only cached CSVs, so it never queries BigQuery: the ones the EDA scripts wrote to eda/*/output (D5's is the
-project's own BigQuery job log), plus the P3 effects mart already exported to presentation/data (D4's
-original-vs-today's-text chart). Writes the SVGs to presentation/img/eda/. Run the EDA scripts first on a fresh clone
-(each README says how).
+Reads only cached CSVs, so it never queries BigQuery or a model API: the ones the EDA scripts wrote to eda/*/output
+(D5's is the project's own BigQuery job log; D6's comes from the language-model spend log and the gold labels), plus
+the P3 effects mart already exported to presentation/data (D4's original-vs-today's-text chart). Writes the SVGs to
+presentation/img/eda/. Run the EDA scripts first on a fresh clone (each README says how).
 
     python presentation/eda_charts.py
 """
@@ -15,6 +15,7 @@ from pathlib import Path
 import matplotlib
 import matplotlib.dates
 import matplotlib.patches
+import matplotlib.ticker
 
 matplotlib.use("Agg")
 # Figtree is the page's font, not installed here: matplotlib measures with the fallback, the browser renders Figtree.
@@ -389,6 +390,57 @@ def d5_budget(path):
     plt.close(fig)
 
 
+def d6_labelers(path):
+    """P3's language-model labeling, from eda/d6_labelers/output. Left: each labeler's agreement with the reviewed
+    gold set against its measured cost per question (log scale), coloured by the route it was called through.
+    Right: every paid call of the project, by stage and route."""
+    labelers = read(EDA / "d6_labelers" / "output" / "labelers.csv")
+    stages = read(EDA / "d6_labelers" / "output" / "spend_by_stage.csv")
+    route_colour = {"Anthropic API": PINK, "Vercel AI Gateway": ENG, "TypeSafe API": TEXT}
+    fig, (dots, bars) = plt.subplots(1, 2, figsize=(10, 3.6), gridspec_kw={"width_ratios": [1, 1], "wspace": 0.95})
+
+    for r in labelers.itertuples():
+        colour = route_colour[r.route]
+        candidate = r.role == "candidate"
+        dots.scatter(r.usd_per_question, r.kappa_mean, s=70, zorder=3, color=colour if candidate else "none",
+                     edgecolor=colour, linewidth=1.5)
+        chosen = r.model == "jev-latest"
+        label = f"{r.name} {r.kappa_mean:.2f}" + (": chosen, best and cheapest" if chosen else "") +             ("" if candidate else " (reference)")
+        # candidates: label to the right of the dot; references (top right): above Gemini, below Grok
+        offset, ha = ((9, -3), "left") if candidate else (((0, 9) if r.name == "Gemini 4 Argon" else (0, -14)), "center")
+        dots.annotate(label, (r.usd_per_question, r.kappa_mean), xytext=offset, textcoords="offset points", ha=ha,
+                      color=TEXT if candidate else MUTED, fontsize=9, fontweight="bold" if chosen else "normal")
+    dots.set_xscale("log")
+    dots.set_xlim(5e-5, 4e-2)
+    dots.set_ylim(0.6, 1.0)
+    dots.xaxis.set_major_formatter(matplotlib.ticker.FuncFormatter(lambda v, _: f"US$ {v:g}"))
+    dots.set_xlabel("measured cost per question (log scale)")
+    dots.set_ylabel("mean kappa vs reviewed gold set")
+    dots.set_title("Agreement against price")
+    handles = [matplotlib.patches.Patch(color=c, label=n) for n, c in route_colour.items()]
+    dots.legend(handles=handles, loc="upper left", fontsize=8, handlelength=1, borderaxespad=0.2)
+
+    order = list(dict.fromkeys(stages["stage"]))
+    left = np.zeros(len(order))
+    for route_name, colour in route_colour.items():
+        part = stages[stages["route"] == route_name].groupby("stage")["usd"].sum().reindex(order, fill_value=0)
+        bars.barh(np.arange(len(order)), part.values, left=left, height=0.6, color=colour)
+        left += part.values
+    for yi, total in enumerate(left):
+        bars.text(total + 0.06, yi, f"US$ {total:.2f}", va="center", fontsize=10, color=TEXT)
+    bars.set_yticks(np.arange(len(order)), [s.split(" · ", 1)[1].split(":")[0] for s in order], fontsize=9)
+    bars.tick_params(axis="y", length=0, labelcolor=TEXT)
+    bars.invert_yaxis()
+    bars.set_xlim(0, 4.6)
+    bars.grid(axis="y", visible=False)
+    bars.set_xlabel("US$")
+    # The README's total adds the three routes rounded to cents (3.86 + 3.83 + 2.96); unrounded it is 10.655.
+    total = sum(round(v, 2) for v in stages.groupby("route")["usd"].sum())
+    bars.set_title(f"What the US$ {total:.2f} went to")
+    fig.savefig(path)
+    plt.close(fig)
+
+
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     d1_floor(OUT / "d1-floor.svg")
@@ -399,7 +451,8 @@ def main():
     d4_leakage(OUT / "d4-leakage.svg")
     d4_p3_versions(OUT / "d4-p3-versions.svg")
     d5_budget(OUT / "d5-budget.svg")
-    print(f"Wrote eight SVGs to {OUT}")
+    d6_labelers(OUT / "d6-labelers.svg")
+    print(f"Wrote nine SVGs to {OUT}")
 
 
 if __name__ == "__main__":
