@@ -4,7 +4,7 @@ What makes a Stack Overflow question get answered, and get an accepted answer? A
 [`bigquery-public-data.stackoverflow`](https://console.cloud.google.com/marketplace/product/stack-exchange/stack-overflow)
 dataset.
 
-> Work in progress. Results land here first; method and limits follow each answer.
+Three answers below, one section per prompt, each with its method, its assumptions and how sure I am. The SQL is in [`queries/`](queries/) (`q1.sql` and `q2.sql` run as they are in the BigQuery console), the same results as a page to step through or scroll are in the [presentation](https://nandodsg.github.io/stackoverflow-answerability/), and [`PLAN.md`](PLAN.md#decisions-log) holds every decision with its evidence.
 
 ## Read this first
 
@@ -899,4 +899,11 @@ month's free quota ([Running on a free tier](#running-on-a-free-tier)).
 ## How this repo is organized
 
 - `specs/` — definitions and acceptance criteria, written before the SQL
+- `models/` — the dbt project: staging views, the question hub, the P1–P3 marts and the MetricFlow semantic layer
+- `tests/` and `TESTING.md` — the singular tests and the check script; `TESTING.md` maps every acceptance criterion to its test
+- `queries/` — `q1.sql`, `q2.sql` and `q3.sql`, compiled from the models by `queries/build_queries.py`, never edited by hand
+- `eda/` — one folder per decision (D1–D6): the question, the script, its cached output and what it showed
+- `labels/` — the P3 quality labels: rubric, discovery and gold sets, labeling scripts and the spend log
+- `presentation/` — the page behind the link above, the export of the marts it queries in the browser and its number check
 - `PLAN.md` — scope, schedule, decisions
+- `AGENTS.md` — setup and BigQuery cost rules for a person or a coding agent working on a clone

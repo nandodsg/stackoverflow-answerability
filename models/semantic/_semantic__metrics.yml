@@ -216,7 +216,7 @@ metrics:
     type: ratio
     type_params: {numerator: orig_questions, denominator: orig_answers}
 
-  # --- P3 (Item 6): rates per feature bucket and per quality-label level -------------------------------------------
+  # --- P3: rates per feature bucket and per quality-label level -------------------------------------------
   # Group by `feature` and `bucket` (filter `version` and `creation_year`); the effect of a bucket is the difference
   # between its rate and the rate of the reference bucket '1:', which the marts compute with margins and controls.
   - name: p3_answer_rate

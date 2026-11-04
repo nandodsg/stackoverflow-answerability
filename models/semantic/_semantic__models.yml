@@ -347,7 +347,7 @@ semantic_models:
         expr: answer_count
         create_metric: true
 
-  # --- P3 (Item 6): semantic models over the bucket counts ----------------------------------------------------------
+  # --- P3: semantic models over the bucket counts ----------------------------------------------------------
   # Both read count tables, one row per version x feature x bucket x year x topic stratum, so their measures SUM counts.
   # Any query must group by or filter `feature` and `version` (a question appears once per feature).
   - name: p3_buckets
