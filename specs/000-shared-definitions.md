@@ -1,6 +1,7 @@
 # 000 — Shared definitions & data profile
 
-Status: **draft**
+Status: **implemented**. Decisions D2, D3 and D4 applied; each acceptance criterion is mapped to its check in
+[TESTING.md](../TESTING.md#shared-definitions-specs000).
 
 ## Source
 
