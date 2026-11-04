@@ -238,12 +238,12 @@ h2 { font-size: clamp(34px, min(5vw, 7vh), 66px); line-height: 1; letter-spacing
 .sql-note { margin-top: 10px; color: var(--muted); font-size: 13px; line-height: 1.4; }
 .sql-note:empty { display: none; }
 /* P2's follow-up tables on a phone: a long column name breaks instead of running into the next one */
-@media (max-width: 900px) { #c7 .rhead span { overflow-wrap: anywhere; } }
+@media (max-width: 900px) { #c11 .rhead span { overflow-wrap: anywhere; } }
 /* P2's left column: room between the answer, its takeaways and the follow-ups */
-#c7 .takeaways { margin-top: 14px; gap: 10px; }
-#c7 .next ol { gap: 10px; }
+#c11 .takeaways { margin-top: 14px; gap: 10px; }
+#c11 .next ol { gap: 10px; }
 /* P3's follow-up queries are longer than its main one: past 11 lines the editor scrolls instead of pushing the slide */
-#c8 .sql-editor { max-height: calc(11 * 1.4em + 26px); overflow-y: auto; }
+#c12 .sql-editor { max-height: calc(11 * 1.4em + 26px); overflow-y: auto; }
 
 /* ---------- cards, timeline, lists (narrative chapters) ---------- */
 .lede.wide { max-width: 70ch; font-size: 21px; }
