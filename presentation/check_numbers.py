@@ -11,8 +11,7 @@ listed, so a number typed by hand shows up for review. It never fails the run.
 Sources: the exported marts (presentation/data/), the EDA caches (eda/*/output/), the BigQuery job log
 (eda/d5_budget/output/jobs.csv), the labeling spend (eda/d6_labelers/output/, built from labels/spend_log.csv), the
 seed of model labels, the dbt profile template, the specs and TESTING.md, and dbt's manifest. The manifest comes from
-`dbt parse`, which needs no warehouse connection: run it first. Slide `#c8` (P3) and its dialog are left out until
-their numbers are tagged.
+`dbt parse`, which needs no warehouse connection: run it first.
 
 Run: dbt parse && python presentation/check_numbers.py
 """
@@ -28,7 +27,7 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 PAGE = ROOT / "presentation" / "index.html"
-EXCLUDED = {"c8", "know-p3"}  # the P3 slide and its dialog: not tagged yet
+EXCLUDED = set()  # ids of slides or dialogs not tagged yet (none now)
 GiB = 2**30
 
 
@@ -91,6 +90,62 @@ def names_ac(node):
     """A test names its acceptance criterion in its meta, description, name or SQL (`AC-x.y`)."""
     fields = {k: node.get(k) for k in ("meta", "config", "description", "name", "raw_code", "tags")}
     return re.search(r"AC-\d", json.dumps(fields)) is not None
+
+
+P3_LABELS = {"worked_example", "environment_dependent", "ask_scope", "code_focus", "failure_description",
+             "image_only_evidence"}
+
+
+@functools.cache
+def p3_rows(mart):
+    return read_csv(f"presentation/data/{mart}.csv")
+
+
+def p3(feature, bucket, col="accepted_rate_effect", version="original", cohort="2018-2021"):
+    """One value of a P3 effects or rates mart: the 2018-2021 pool on the original text, unless told otherwise."""
+    kind = "label" if feature in P3_LABELS else "feature"
+    mart = f"mart_p3_{kind}_{'rates' if col.endswith('rate') else 'effects'}"
+    return float(next(r[col] for r in p3_rows(mart) if r["feature"] == feature and r["bucket"] == bucket
+                      and r["version"] == version and r["cohort"] == cohort))
+
+
+def rule_gaps():
+    return [r for r in p3_rows("mart_p3_feature_effects") if r["version"] == "original" and r["cohort"] == "2018-2021"]
+
+
+def p3_all_questions(col):
+    """All 2018-2021 questions: the two buckets of `has_code_block` (plus its 'unknown') cover every question."""
+    return sum(int(r[col]) for r in p3_rows("mart_p3_feature_rates") if r["feature"] == "has_code_block"
+               and r["version"] == "original" and r["cohort"] == "2018-2021")
+
+
+def incremental(label, level):
+    return next(r for r in p3_rows("mart_p3_label_incremental") if r["label"] == label and r["level"] == level)
+
+
+def vs_rules(label, level, rule, value, col):
+    return float(next(r[col] for r in p3_rows("mart_p3_label_vs_rules") if r["label"] == label and r["level"] == level
+                      and r["rule_feature"] == rule and r["rule_value"] == value))
+
+
+def never_edited_max_move():
+    """Largest move of an accepted-rate gap between the original text and never-edited questions, 2018-2021. The page
+    gives the worked example's move as the difference of the two values it shows (+17.2 -> +19.6), so the gaps are
+    rounded to a tenth of a point first: 2.4 (unrounded it is 2.46)."""
+    moves = []
+    for mart in ("mart_p3_feature_effects", "mart_p3_label_effects"):
+        pool = [r for r in p3_rows(mart) if r["cohort"] == "2018-2021"]
+        never = {(r["feature"], r["bucket"]): r for r in pool if r["version"] == "never_edited"}
+        for r in pool:
+            if r["version"] == "original" and (r["feature"], r["bucket"]) in never:
+                moves.append(abs(round(float(never[r["feature"], r["bucket"]]["accepted_rate_effect"]) * 100, 1)
+                                 - round(float(r["accepted_rate_effect"]) * 100, 1)))
+    return max(moves)
+
+
+def points(x):
+    """A gap in points with its sign, as typeset on the page: 0.1718 -> '+17.2', -0.149 -> '−14.9'."""
+    return f"{x * 100:+.1f}".replace("-", "−")
 
 
 def ranked(rows, col, n):
@@ -273,6 +328,97 @@ NUMBERS = {
         1 for y in range(2013, 2022) if float(p2("python", y + 1)["answers_per_question_upper"])
         < float(p2("python", y)["answers_per_question_lower"])))),
     "p2-mart-gib": ("job log: mart_p2_python_dbt", lambda: num(scan_read("mart_p2_python_dbt"), 2)),
+    # slide 12, P3, and its dialog
+    "p3-worked-accepted-yes": ("mart_p3_label_rates.csv", lambda: pct(p3("worked_example", "2: yes", "accepted_rate"))),
+    "p3-worked-accepted-no": ("mart_p3_label_rates.csv", lambda: pct(p3("worked_example", "1: no", "accepted_rate"))),
+    "p3-setup-accepted-yes": ("mart_p3_label_rates.csv",
+                              lambda: pct(p3("environment_dependent", "2: yes", "accepted_rate"))),
+    "p3-setup-accepted-no": ("mart_p3_label_rates.csv",
+                             lambda: pct(p3("environment_dependent", "1: no", "accepted_rate"))),
+    "p3-worked-gap": ("mart_p3_label_effects.csv", lambda: points(p3("worked_example", "2: yes"))),
+    "p3-code-blocks-3-gap": ("mart_p3_feature_effects.csv", lambda: points(p3("code_block_count", "4: 3+"))),
+    "p3-setup-gap": ("mart_p3_label_effects.csv", lambda: points(p3("environment_dependent", "2: yes"))),
+    "p3-broad-ask-gap": ("mart_p3_label_effects.csv", lambda: points(p3("ask_scope", "2: broad"))),
+    "p3-partial-code-gap": ("mart_p3_label_effects.csv", lambda: points(p3("code_focus", "2: partial"))),
+    "p3-worked-answer-gap": ("mart_p3_label_effects.csv",
+                             lambda: points(p3("worked_example", "2: yes", "answer_rate_effect"))),
+    "p3-setup-answer-gap": ("mart_p3_label_effects.csv",
+                            lambda: points(p3("environment_dependent", "2: yes", "answer_rate_effect"))),
+    "p3-timing-max-gap": ("mart_p3_feature_effects.csv: hour, weekday, greeting", lambda: pct(max(
+        abs(float(r["accepted_rate_effect"])) for r in rule_gaps()
+        if r["feature"] in ("hour_posted_utc", "weekday_posted", "has_greeting_or_thanks")))),
+    "p3-labeled-2018-2021": ("mart_p3_label_rates.csv, both levels of one label", lambda: num(sum(
+        int(r["n_questions"]) for r in p3_rows("mart_p3_label_rates") if r["feature"] == "worked_example"
+        and r["version"] == "original" and r["cohort"] == "2018-2021"))),
+    "p3-questions": ("mart_p3_feature_rates.csv", lambda: num(p3_all_questions("n_questions"))),
+    "p3-accepted-questions": ("mart_p3_feature_rates.csv", lambda: num(p3_all_questions("n_accepted"))),
+    "p3-accepted-rate": ("mart_p3_feature_rates.csv",
+                         lambda: pct(p3_all_questions("n_accepted") / p3_all_questions("n_questions"))),
+    "p3-answer-rate": ("mart_p3_feature_rates.csv",
+                       lambda: pct(p3_all_questions("n_answered") / p3_all_questions("n_questions"))),
+    "p3-rule-gaps": ("mart_p3_feature_effects.csv", lambda: num(len(rule_gaps()))),
+    "p3-rule-gaps-stable": ("mart_p3_feature_effects.csv", lambda: num(sum(
+        r["accepted_rate_effect_stable"] == "True" for r in rule_gaps()))),
+    "p3-rule-gaps-unstable": ("mart_p3_feature_effects.csv", lambda: num(sum(
+        r["accepted_rate_effect_stable"] != "True" for r in rule_gaps()))),
+    "p3-rule-gaps-unstable-max": ("mart_p3_feature_effects.csv", lambda: pct(max(
+        abs(float(r["accepted_rate_effect"])) for r in rule_gaps() if r["accepted_rate_effect_stable"] != "True"))),
+    "p3-floor-share-of-year": ("385 / a quarter of the labeled 2018-2021 questions", lambda: pct(
+        math.ceil((1.96 * 0.5 / 0.05) ** 2) / (int(NUMBERS["p3-labeled-2018-2021"][1]().replace(",", "")) / 4), 0)),
+    "p3-broad-ask-full-years": ("mart_p3_label_effects.csv", lambda: num(
+        p3("ask_scope", "2: broad", "full_years_with_effect"))),
+    "p3-worked-gap-inside-tags": ("mart_p3_label_effects.csv",
+                                  lambda: points(p3("worked_example", "2: yes", "accepted_rate_effect_tag_adjusted"))),
+    "p3-setup-gap-inside-tags": ("mart_p3_label_effects.csv", lambda: points(
+        p3("environment_dependent", "2: yes", "accepted_rate_effect_tag_adjusted"))),
+    "p3-code-block-gap": ("mart_p3_feature_effects.csv", lambda: points(p3("has_code_block", "2: yes"))),
+    "p3-code-block-gap-inside-tags": ("mart_p3_feature_effects.csv",
+                                      lambda: points(p3("has_code_block", "2: yes", "accepted_rate_effect_tag_adjusted"))),
+    "p3-inside-tags-max-move": ("mart_p3_feature_effects.csv, rule gaps", lambda: pct(max(
+        abs(float(r["accepted_rate_effect_tag_adjusted"]) - float(r["accepted_rate_effect"]))
+        for r in rule_gaps() if r["accepted_rate_effect_tag_adjusted"]))),
+    "p3-worked-with-code-block": ("mart_p3_label_vs_rules.csv", lambda: pct(
+        vs_rules("worked_example", "2: yes", "has_code_block", "2: yes", "share_of_level"), 0)),
+    "p3-code-block-worked": ("mart_p3_label_vs_rules.csv", lambda: pct(
+        vs_rules("worked_example", "2: yes", "has_code_block", "2: yes", "share_of_rule_value"), 0)),
+    "p3-setup-with-error-text": ("mart_p3_label_vs_rules.csv", lambda: pct(
+        vs_rules("environment_dependent", "2: yes", "has_error_text", "2: yes", "share_of_level"), 0)),
+    "p3-image-only-without-image": ("mart_p3_label_vs_rules.csv", lambda: pct(
+        vs_rules("image_only_evidence", "2: yes", "has_image", "1: no", "share_of_level"), 0)),
+    **{f"p3-kept-{key}": ("mart_p3_label_incremental.csv: rules-adjusted / raw gap", (lambda lab, lev: lambda: pct(
+        float(incremental(lab, lev)["rules_adjusted_effect"]) / float(incremental(lab, lev)["raw_effect"]), 0))(
+        lab, lev)) for key, lab, lev in [("worked", "worked_example", "2: yes"),
+                                         ("setup", "environment_dependent", "2: yes"),
+                                         ("partial-code", "code_focus", "2: partial"),
+                                         ("broad-ask", "ask_scope", "2: broad"),
+                                         ("multiple-asks", "ask_scope", "3: multiple"),
+                                         ("image-only", "image_only_evidence", "2: yes")]},
+    "p3-worked-gap-same-rules": ("mart_p3_label_incremental.csv",
+                                 lambda: points(float(incremental("worked_example", "2: yes")["rules_adjusted_effect"]))),
+    "p3-setup-gap-same-rules": ("mart_p3_label_incremental.csv", lambda: points(
+        float(incremental("environment_dependent", "2: yes")["rules_adjusted_effect"]))),
+    "p3-image-only-gap": ("mart_p3_label_effects.csv", lambda: points(p3("image_only_evidence", "2: yes"))),
+    "p3-image-only-gap-same-rules": ("mart_p3_label_incremental.csv", lambda: points(
+        float(incremental("image_only_evidence", "2: yes")["rules_adjusted_effect"]))),
+    # The page gives the worked example's move as the difference of the two values it shows (+17.2 -> +19.6), so the
+    # largest move is taken between rounded gaps: 2.4 (unrounded it is 2.46).
+    "p3-never-edited-max-move": ("mart_p3_*_effects.csv, never-edited vs original, rounded gaps",
+                                 lambda: num(never_edited_max_move(), 1)),
+    "p3-worked-gap-never-edited": ("mart_p3_label_effects.csv",
+                                   lambda: points(p3("worked_example", "2: yes", version="never_edited"))),
+    "p3-code-block-gap-today": ("mart_p3_feature_effects.csv, current text",
+                                lambda: points(p3("has_code_block", "2: yes", version="current"))),
+    "p3-image-gap": ("mart_p3_feature_effects.csv", lambda: points(p3("has_image", "2: yes"))),
+    "p3-image-gap-today": ("mart_p3_feature_effects.csv, current text",
+                           lambda: points(p3("has_image", "2: yes", version="current"))),
+    "p3-five-tags-among-answered": ("mart_p3_feature_effects.csv", lambda: points(
+        p3("tag_count", "5: 5+", "accepted_rate_among_answered_effect"))),
+    "p3-five-tags-among-answered-today": ("mart_p3_feature_effects.csv, current text", lambda: points(
+        p3("tag_count", "5: 5+", "accepted_rate_among_answered_effect", version="current"))),
+    "jev-kappa-label-low": ("labelers.csv, Jev's per-label kappas", lambda: num(min(
+        float(v) for k, v in labeler("jev-latest").items() if k.startswith("kappa_") and k != "kappa_mean"), 2)),
+    "jev-kappa-label-high": ("labelers.csv, Jev's per-label kappas", lambda: num(max(
+        float(v) for k, v in labeler("jev-latest").items() if k.startswith("kappa_") and k != "kappa_mean"), 2)),
     # slide 13, quality and cost
     "dbt-tests": ("manifest: data tests + unit tests", lambda: num(len(dbt_tests()) + len(manifest()["unit_tests"]))),
     "dbt-tests-generic": ("manifest", lambda: num(sum(1 for n in dbt_tests() if n.get("test_metadata")))),
