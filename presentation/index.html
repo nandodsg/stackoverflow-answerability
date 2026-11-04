@@ -645,7 +645,7 @@ ORDER BY tag_exposure DESC;</template>
           <li><b>Ratio</b> python-only <span data-num="p2-python-apq-2013">2.31</span> → <span data-num="p2-python-apq-2021">1.52</span> answers per question, 2013 → 2021</li>
           <li><b>Accepted rate</b> python-only <span data-num="p2-python-accepted-2013">65.2</span>% → <span data-num="p2-python-accepted-2021">43.0</span>%, 2013 → 2021</li>
           <li><b>python vs dbt</b> dbt-only got fewer answers in 2021 and 2022</li>
-          <li><b>2022, to Sep 25</b> <span data-num="p2-python-apq-2022">1.26</span> and <span data-num="p2-python-accepted-2022">35.4</span>%, mostly questions not answered yet</li>
+          <li><b>2022, to 2022-09-25</b> <span data-num="p2-python-apq-2022">1.26</span> and <span data-num="p2-python-accepted-2022">35.4</span>%, mostly questions not answered yet</li>
         </ul>
         <p class="muted" data-reveal>Ratio = answers per question, questions per answer = 1 ÷ it (<button type="button" class="ref" data-dialog="eda-d3">D3</button>); accepted rate = accepted ÷ all questions (<button type="button" class="ref" data-dialog="eda-d2">D2</button>); “only” = that one tag; 95% intervals, no floor (<button type="button" class="ref" data-dialog="eda-d1">D1</button>).</p>
         <div class="next" data-reveal>
@@ -666,7 +666,7 @@ ORDER BY tag_exposure DESC;</template>
           </div>
         </div>
       </div>
-      <div class="sql-panel" data-reveal data-panel data-render="range" data-note="Dot: answers per question · line: its 95% interval (mean ± 1.96 standard errors) · 2022 partial: to Sep 25" data-table="mart_p2_python_dbt">
+      <div class="sql-panel" data-reveal data-panel data-render="range" data-note="Dot: answers per question · line: its 95% interval (mean ± 1.96 standard errors); python-only's interval is narrower than its dot · 2022 partial: to 2022-09-25" data-table="mart_p2_python_dbt">
         <div class="sql-head"><span>live SQL · DuckDB-WASM</span><span class="sql-status" data-state="loading">loading engine…</span></div>
         <div class="qchips" role="group" aria-label="Query">
           <button type="button" class="qchip" data-q="" aria-pressed="true">Answers/question</button>
@@ -691,7 +691,7 @@ ORDER BY tag DESC, creation_year;</textarea>
         </div>
         <div class="sql-out" aria-live="polite"><noscript>Live SQL needs JavaScript.</noscript></div>
         <p class="sql-note"></p>
-        <template id="p2-accepted" data-render="range" data-scale="pct" data-note="Dot: accepted rate · line: its 95% interval (Wilson) · 2022 partial: to Sep 25">SELECT CAST(creation_year AS VARCHAR)
+        <template id="p2-accepted" data-render="range" data-scale="pct" data-note="Dot: accepted rate · line: its 95% interval (Wilson); python-only's interval is narrower than its dot · 2022 partial: to 2022-09-25">SELECT CAST(creation_year AS VARCHAR)
          || if(is_partial_year, ' partial', '') AS year,
        accepted_rate,
        accepted_rate_lower AS low,
@@ -717,7 +717,7 @@ ORDER BY creation_year;</template>
 FROM mart_p2_python_dbt
 WHERE tag = 'python' AND creation_year &gt;= 2020
 ORDER BY creation_year;</template>
-        <template id="p2-dbt-accepted" data-render="range" data-scale="pct" data-note="In 2021: dbt-only 25.9% (16.3–38.4%) against python-only 43.0% (42.2–43.8%), intervals apart. In 2020 and 2022 the intervals overlap, so no difference is claimed.">SELECT tag || '-only' AS tag,
+        <template id="p2-dbt-accepted" data-render="range" data-scale="pct" data-note="In 2021: dbt-only 25.9% (16.3–38.4%) against python-only 43.0% (42.2–43.8%), intervals apart. In 2020 and 2022 the intervals overlap, so no difference is claimed. python-only's interval is there but only ±0.8 points (12,800 to 16,300 questions a year), shorter than its dot; dbt-only's is ±10 to ±16 (31 to 79 questions).">SELECT tag || '-only' AS tag,
        accepted_rate,
        accepted_rate_lower AS low,
        accepted_rate_upper AS high,
