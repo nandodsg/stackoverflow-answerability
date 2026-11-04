@@ -242,6 +242,8 @@ h2 { font-size: clamp(34px, min(5vw, 7vh), 66px); line-height: 1; letter-spacing
 /* P2's left column: room between the answer, its takeaways and the follow-ups */
 #c7 .takeaways { margin-top: 14px; gap: 10px; }
 #c7 .next ol { gap: 10px; }
+/* P3's follow-up queries are longer than its main one: past 11 lines the editor scrolls instead of pushing the slide */
+#c8 .sql-editor { max-height: calc(11 * 1.4em + 26px); overflow-y: auto; }
 
 /* ---------- cards, timeline, lists (narrative chapters) ---------- */
 .lede.wide { max-width: 70ch; font-size: 21px; }

@@ -75,6 +75,23 @@ models:
       - name: bucket
         data_tests: [not_null]
 
+  - name: int_p3_label_questions
+    description: >
+      The 30,000 labeled questions of the analysis set (needs_full_scan, a view): int_p3_questions with the six quality
+      labels as bucket columns.
+    columns:
+      - name: question_id
+        data_tests: [unique, not_null]
+
+  - name: int_p3_label_bucket_counts
+    description: >
+      Question counts per version x label x level x year x tag stratum for the labeled questions (needs_full_scan), as
+      int_p3_bucket_counts is for the rule-based features.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [version, feature, bucket, creation_year, tag_stratum]
+
   - name: int_label_discovery_pairs
     description: >
       Discovery set of the quality labels (needs_full_scan): ~200 pairs from the 5% text sample, 2018-2021, same primary

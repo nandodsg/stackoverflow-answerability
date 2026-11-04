@@ -164,15 +164,20 @@ function drawTable(panel, out, allColumns, allRows) {
 
 /* Dots with interval lines. Columns: first = label; "low" and "high" = the interval; the first other column = the dot.
    Rates (data-scale "pct") run on a 0-100% axis, anything else from 0 to just above the largest value. A
-   data-baseline value draws a dashed line down every row (e.g. the accepted rate of all questions). */
+   data-baseline value draws a dashed line down every row (e.g. the accepted rate of all questions).
+   Gaps between two rates (data-scale "pts", or "pts:0.2" for a fixed ±20-point axis) run on an axis centred on zero,
+   shown as signed points; pair it with data-baseline "0" for the zero line. */
 function drawRange(panel, out, allColumns, allRows) {
   const { columns, groups } = splitByList(allColumns, allRows);
   const lo = columns.indexOf("low"), hi = columns.indexOf("high");
   const val = columns.findIndex((c, k) => k > 0 && k !== lo && k !== hi);
-  const pct = panel.dataset.scale === "pct";
+  const [scale, fixed] = (panel.dataset.scale || "").split(":");
+  const pct = scale === "pct", pts = scale === "pts";
   const top = pct ? 1 : Math.max(...groups.flatMap((g) => g.rows.map((r) => Number(r[hi >= 0 ? hi : val]) || 0)), 0) * 1.1 || 1;
-  const x = (v) => `${Math.max(0, Math.min(1, Number(v) / top)) * 100}%`;
-  const show = (v) => (v === null || v === undefined ? "–" : pct ? `${(Number(v) * 100).toFixed(1)}%` : Number(v).toFixed(2));
+  const span = !pts ? 0 : Number(fixed) || Math.max(...groups.flatMap((g) => g.rows.flatMap((r) => [lo, hi, val].map((k) => Math.abs(Number(r[k])) || 0))), 0) * 1.1 || 1;
+  const x = (v) => `${Math.max(0, Math.min(1, pts ? (Number(v) + span) / (2 * span) : Number(v) / top)) * 100}%`;
+  const signed = (v) => { const p = (v * 100).toFixed(1); return Number(p) === 0 ? "0.0" : `${v > 0 ? "+" : ""}${p}`.replace("-", "−"); };
+  const show = (v) => (v === null || v === undefined ? "–" : pct ? `${(Number(v) * 100).toFixed(1)}%` : pts ? signed(Number(v)) : Number(v).toFixed(2));
   const base = panel.dataset.baseline;
   const { wrap, add } = blocks(groups, true);
   const marks = [];
