@@ -1,6 +1,7 @@
 # 001 — Tag answerability (prompt 1)
 
-Status: **draft** — ranking rules (D1) and accepted-rate denominator (D2) decided
+Status: **implemented**. Ranking rules (D1) and accepted-rate denominator (D2) applied; each acceptance criterion is
+mapped to its test in [TESTING.md](../TESTING.md#prompt-1-specs001).
 
 > What tags on a Stack Overflow question lead to the most answers and the highest rate of approved answers for the
 > current year? What tags lead to the least? How about combinations of tags?
@@ -69,10 +70,12 @@ accepted rate all have 1–2 questions (rates of exactly 100% and 0%).
     both methods; pairs 9–10 of 10 at the top, 8 of 10 at the bottom.
 - Report top and bottom 10 for each metric.
 
-## Open questions
+## Questions answered
 
-- Does "lead to" invite any causal language? Plan: no — describe association, note confounders (tag popularity, age).
-- Pairs only, or also triples / exact sets?
+- Does "lead to" invite any causal language? No: the answer describes an association and names the confounders (tag
+  popularity, age).
+- Pairs only, or also triples / exact sets? Pairs only: at a 385-question floor very few triples or exact sets
+  qualify (README, P1 limitations).
 
 ## Acceptance criteria
 

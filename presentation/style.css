@@ -237,6 +237,8 @@ h2 { font-size: clamp(34px, min(5vw, 7vh), 66px); line-height: 1; letter-spacing
 .sql-panel:has(.qchips) .rhead { font-size: 12px; padding-bottom: 4px; }
 .sql-note { margin-top: 10px; color: var(--muted); font-size: 13px; line-height: 1.4; }
 .sql-note:empty { display: none; }
+/* P2's follow-up tables on a phone: a long column name breaks instead of running into the next one */
+@media (max-width: 900px) { #c7 .rhead span { overflow-wrap: anywhere; } }
 /* P3's follow-up queries are longer than its main one: past 11 lines the editor scrolls instead of pushing the slide */
 #c8 .sql-editor { max-height: calc(11 * 1.4em + 26px); overflow-y: auto; }
 
@@ -326,6 +328,9 @@ body:has(dialog[open]) { overflow: hidden; }
 .ac-spec { margin: 0; color: var(--muted); }
 .ac-spec + .ac-list { margin-top: 10px; }
 .ac-list + .ac-spec { margin-top: 14px; }
+/* why the spec exists, between its links line and its criteria */
+.ac-intro { margin: 8px 0 0; }
+.ac-intro + .ac-list { margin-top: 12px; }
 .ac-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
 .ac-list li { display: grid; grid-template-columns: 4.5rem 1fr; column-gap: 12px; }
 .ac-id { grid-row: span 2; font: 600 13px/1.85 var(--mono); color: var(--eng); }

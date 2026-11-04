@@ -11,6 +11,8 @@ Every acceptance criterion (AC) in [`specs/`](specs/) points to the test that co
   (MetricFlow) and compares the results with the numbers quoted in the README.
 - **Compiled query**: each file in [`queries/`](queries/) is run in the BigQuery console and must return the README
   numbers (section "Compiled queries" below).
+- **Page check**: [`presentation/check_numbers.py`](presentation/check_numbers.py) recomputes the presentation's
+  headline numbers from committed files (no warehouse) and runs in CI and before every Pages deploy.
 
 A test with severity `warn` is an impact check: it flags rows for the README to discuss and does not fail the build.
 
@@ -22,6 +24,7 @@ dbt build                                 # models + tests, everything except th
 dbt build --select tag:needs_full_scan    # after the one-time scan: the original-tags impact checks
 dbt test --select mart_p1_tags            # the tests of one model
 python tests/semantic/check_semantic_layer.py
+dbt parse && python presentation/check_numbers.py   # the presentation's numbers; no warehouse, runs in CI
 ```
 
 The text scans (`dbt run --target full_scan --select tag:full_scan`) read ~145 GB and are never part of the default
@@ -42,6 +45,7 @@ tier"](README.md#running-on-a-free-tier).
 | AC-0.8 | Exposure on every result row, all questions as denominator | Column `tag_exposure` on the P1 and P2 marts, built from [`int_question_exposure`](models/intermediate/int_question_exposure.sql); the semantic layer defines it as a metric. Tests: `not_null` on `tag_exposure` in `mart_p1_tags` and `mart_p1_pairs`, `accepted_range` 0–1 in `mart_p1_tags`; `not_null` on `tags_exposed` and `text_exposed` in `int_question_exposure`. The P2 mart's column has none | model + metric + generic |
 | AC-0.9 | Exposure counts only edits after the first answer, of the right type | Unit test `exposure_counts_only_edits_after_the_first_answer` | unit |
 | AC-0.10 | Impact checks run as `severity: warn` tests | [`assert_p1_original_tags_stable`](tests/assert_p1_original_tags_stable.sql), [`assert_p2_original_tags_stable`](tests/assert_p2_original_tags_stable.sql) (P1 and P2); P3's is in the P3 section | singular (warn) |
+| AC-0.11 | Every headline number on the presentation equals its source | [`presentation/check_numbers.py`](presentation/check_numbers.py): each number tagged `data-num` in `presentation/index.html` is recomputed from the exported marts, the EDA results, the job and spend logs and dbt's manifest; a mismatch fails CI and the Pages deploy. It also lists, as a warning, every other page number found in no source and not in the README. The P3 slide is not tagged yet | page check (+ warn list) |
 
 ## Prompt 1 ([`specs/001`](specs/001-q1-tag-answerability.md))
 

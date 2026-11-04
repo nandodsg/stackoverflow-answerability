@@ -76,9 +76,19 @@ models:
 
   - name: int_question_tags_30d
     description: int_question_tags with 30-day-window outcomes, full-window questions only.
+    data_tests:
+      - unique:
+          arguments:
+            column_name: "concat(cast(question_id as string), '|', tag)"
+    columns:
+      - name: tag
+        data_tests: [not_null]
   - name: int_question_tag_pairs_30d
     description: int_question_tag_pairs with 30-day-window outcomes, full-window questions only.
     data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [question_id, tag_a, tag_b]
       - dbt_utils.expression_is_true:
           arguments:
             expression: "tag_a < tag_b"
@@ -87,18 +97,40 @@ models:
     description: >
       int_questions with the ORIGINAL tags from the one-time text scan (needs_full_scan). Before 2018 only originally
       python-only / dbt-only questions have tags; from 2018 a question with no history row keeps its current tags.
+    columns:
+      - name: question_id
+        data_tests: [unique, not_null]
+  - name: int_question_original_tags
+    description: One row per (question, original tag) for 2021-2022 (needs_full_scan).
     data_tests:
       - unique:
           arguments:
-            column_name: question_id
-  - name: int_question_original_tags
-    description: One row per (question, original tag) for 2021-2022 (needs_full_scan).
+            column_name: "concat(cast(question_id as string), '|', tag)"
+    columns:
+      - name: tag
+        data_tests: [not_null]
   - name: int_question_original_tag_pairs
     description: One row per (question, unordered original tag pair) for 2021-2022 (needs_full_scan).
     data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [question_id, tag_a, tag_b]
       - dbt_utils.expression_is_true:
           arguments:
             expression: "tag_a < tag_b"
+
+  # The two one-time text scans (full_scan). Their key tests read only the id column of the stored tables, never the
+  # source text, so they cost a few MB; they run with the scan models, outside the default build.
+  - name: int_post_history_scan
+    description: One row per post (questions and the text sample's answers) from the one-time post_history text scan.
+    columns:
+      - name: post_id
+        data_tests: [unique, not_null]
+  - name: int_question_body_scan
+    description: One row per 2018-2022 question from the one-time posts_questions body scan.
+    columns:
+      - name: question_id
+        data_tests: [unique, not_null]
 
 unit_tests:
   - name: exposure_counts_only_edits_after_the_first_answer

@@ -26,7 +26,7 @@ Same setup as [`d1_sample_size`](../d1_sample_size/README.md) (venv, application
 2. **python-only answers per question falls steadily**: 2.31 (2013) → 1.52 (2021) → 1.26 (2022, partial), with
    intervals of about ±0.02–0.04.
 3. **About ¾ of python's 2022 drop is censoring.** Answers per question = answer rate × answers per answered question:
-   the answer rate fell 85% → 73% while answers per answered question only went 1.80 → 1.71. Same story as the
+   the answer rate fell 85% → 73% while answers per answered question only went 1.79 → 1.71. Same story as the
    accepted rate in [`d2_denominator`](../d2_denominator/README.md).
 4. **dbt-only cannot support a trend**: 1.39 / 1.14 / 1.06 answers per question (2020–2022, 31 / 58 / 79 questions),
    with 95% intervals overlapping year to year.
