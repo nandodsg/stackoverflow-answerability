@@ -1,6 +1,7 @@
 # 003 — Non-tag qualities of a post (prompt 3)
 
-Status: **draft**
+Status: **implemented**. The D1 floor, D2 and D4 applied; each acceptance criterion is mapped to its test in
+[TESTING.md](../TESTING.md#prompt-3-specs003).
 
 > Other than tags, what qualities on a post correlate with the highest rate of answer and approved answer? Feel free to
 > get creative.
