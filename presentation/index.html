@@ -903,8 +903,8 @@ ORDER BY o.accepted_rate_effect DESC;</template>
         </ul></dd>
         <dt id="know-p3-cost">Cost</dt><dd>The original text came from one <span data-num="post-history-read-gib">106</span> GiB read of <code>post_history.text</code>, plus <span data-num="body-read-gib">35</span> GiB for today's <code>body</code>, each run once into a stored table on its own target, capped at <span data-num="full-scan-cap-gib">120</span> GiB a query; every other model runs on the everyday target, capped at <span data-num="dev-cap-gib">20</span> GiB (<button type="button" class="ref" data-dialog="eda-d5">D5</button>). <code>queries/q3.sql</code> reads those stored tables and the label seed, about 38 GiB for its eight results, so it is not as-is like q1 and q2: the tables have to be built first (steps in its header). Labeling <span data-num="labeled-questions">30,000</span> questions with Jev cost US$ <span data-num="jev-labels-usd">3.82</span>, about US$ <span data-num="llm-usd-total">10.65</span> for every model call in the project (<button type="button" class="ref" data-dialog="eda-d6">D6</button>). This page reads 0 bytes from BigQuery: the six marts were exported to CSV on 2026-11-01, and DuckDB-WASM runs the SQL in the browser (<a href="#stack">stack</a>).</dd>
         <dt>Limitations</dt><dd><ul class="eda-list">
-          <li><b>Association, not cause.</b> Writing out the expected output would not by itself get a question accepted; the questions that do it get accepted more.</li>
-          <li><b>One quality at a time.</b> A worked example and an asker with 20 earlier questions can be the same question, and nothing here nets them out against each other (a regression was optional in the spec and wasn't built).</li>
+          <li><b>Association, not cause.</b> This is observational data: nobody assigned the qualities at random, and the askers who write a worked example also differ in other ways (more experience, more care, a problem that is easier to show). The 95% margins say a gap is not noise, and with millions of questions nearly every gap clears that bar; they say nothing about whether the quality causes the acceptance. So writing out the expected output would not by itself get a question accepted; the questions that do it get accepted more. What it would take to get closer to cause: <a href="#c10">limits slide</a>, “A causality study”.</li>
+          <li><b>One quality at a time.</b> A worked example and an asker with 20 earlier questions can be the same question, and nothing here nets them out against each other. A logistic regression would (optional in <code>specs/003</code>, not built), but its result would still be an association.</li>
           <li><b>Asker experience is about the person,</b> not how the question is written; it is known at posting time, so it is in.</li>
           <li><b>Survivorship.</b> Deleted questions are not in the data, and the worst-written ones are the most likely to be gone, so the gaps are probably smaller than the real ones (<a href="#c2">the traps</a>).</li>
           <li><b>Hours are UTC,</b> not the asker's local time; <b>2022 is out of the claims</b>; each gap is inside one year, which mostly cancels censoring, so P3 has no 30-day version.</li>
@@ -949,7 +949,7 @@ ORDER BY o.accepted_rate_effect DESC;</template>
       <div class="stack">
         <h3 class="sub" data-reveal>Limits</h3>
         <ul class="list" data-stagger>
-          <li><b>Association, not cause.</b> A tag or a quality goes with answers; nothing here shows that adding it to a question would help.</li>
+          <li><b>Association, not cause.</b> A tag or a quality goes with answers; nothing here shows that adding it to a question would help (what it would take: next column).</li>
           <li><b>2022 is partial and censored.</b> The 30-day window and accepted among answered are the checks, not a fix.</li>
           <li><b>Survivorship.</b> Deleted questions are missing, so every rate reads high, older years more, by an amount this data can't size.</li>
           <li><b>Literal populations.</b> "Only python" means exactly one tag, and dbt-only is <span data-num="dbt-only-questions">168</span> questions in 2.7 years: read its intervals, not its points.</li>
@@ -960,6 +960,7 @@ ORDER BY o.accepted_rate_effect DESC;</template>
       <div class="stack">
         <h3 class="sub" data-reveal>What I'd do next</h3>
         <ul class="list" data-stagger>
+          <li><b>A causality study.</b> Every gap here is an association. A logistic regression with tag, year and asker experience as controls would net the qualities against each other, but it can't rule out what isn't measured. Comparing questions from the same asker is stronger, and only a randomized test, which only Stack Overflow could run, shows cause.</li>
           <li><b>CI with the warehouse.</b> <code>dbt build</code> on every push needs a cloud identity on the runner and a byte budget per run; left out on purpose.</li>
           <li><b>Orchestration.</b> Dagster, once the source is live instead of frozen, with source freshness back in place of the snapshot test.</li>
           <li><b>A blind gold set.</b> Hand labels made without the models' suggestions, as the independent check on the labeler.</li>
