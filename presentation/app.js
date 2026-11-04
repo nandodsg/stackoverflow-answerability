@@ -22,6 +22,7 @@
     var a = document.createElement("a");
     a.href = "#" + ch.id;
     a.setAttribute("aria-label", pad(i + 1) + " " + ch.dataset.title);
+    a.style.setProperty("--sec", getComputedStyle(ch).getPropertyValue("--sec"));
     li.appendChild(a);
     // hover / focus label: the chapter's eyebrow text in the eyebrow's own colour (a sibling of the dot, so the
     // current dot's scale doesn't grow it)
@@ -65,7 +66,7 @@
   // While a smooth scroll is still travelling, `current` (read from the scroll position) lags behind, so quick key
   // presses count from the chapter we are heading to. The memory expires once the scroll has had time to land.
   var heading = null, headingTimer = null;
-  // set by the motion layer below: the wipe into a chapter marked data-wipe (slides 2, 6 and 10), stepping forward one
+  // set by the motion layer below: the wipe into a chapter marked data-wipe (slides 2, 6, 10 and 13), stepping forward one
   // chapter; it calls jump() while the page is covered
   var transition = null;
   function go(i) {
@@ -201,7 +202,7 @@
   });
 
   /* The wipe, into each chapter that opens a part (the problem, slide 2; how we solved it, slide 6; the answers,
-     slide 10): an accent-gradient panel wipes across from the left carrying the part's name, the scroll jumps
+     slide 10; the final remarks, slide 13): a panel in the part's colour wipes across from the left carrying the part's name, the scroll jumps
      underneath, and the panel leaves to the right. The name is the value of data-wipe when it has one (slide 10,
      whose title stays "P1 · …" for the rail), otherwise the chapter's title. Every other step is the plain smooth
      scroll. A repeated press while it runs is ignored. */
@@ -218,6 +219,7 @@
     if (wiping) return;
     wiping = true;
     wipeLabel.textContent = chapters[i].dataset.wipe || chapters[i].dataset.title;
+    wipe.style.background = getComputedStyle(chapters[i]).getPropertyValue("--sec");
     gsap.set(wipe, { display: "flex", clipPath: "inset(0% 100% 0% 0%)" });
     gsap.set(wipeLabel, { opacity: 0, x: -60 });
     gsap.timeline({ onComplete: function () { gsap.set(wipe, { display: "none" }); wiping = false; } })

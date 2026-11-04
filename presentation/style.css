@@ -59,7 +59,14 @@ a { color: inherit; }
 .stack > .sub + * { margin-top: 18px; }
 .p1 { --c: var(--p1); } .p2 { --c: var(--p2); } .p3 { --c: var(--p3); } .eng { --c: var(--eng); }
 
-.eyebrow { font: 600 16px/1 var(--mono); color: var(--c, var(--text)); letter-spacing: .04em; margin-bottom: 24px; }
+/* the part's colour (--sec) drives the eyebrows, the wipe into the part and the navigation dots: slide 1 white, 2-5 green,
+   6-9 blue, 10-12 pink, 13-15 orange */
+#c1 { --sec: var(--text); }
+#c2, #c3, #c4, #c5 { --sec: var(--p1); }
+#c6, #c7, #c8, #c9 { --sec: var(--eng); }
+#c10, #c11, #c12 { --sec: var(--pink); }
+#c13, #c14, #c15 { --sec: var(--p3); }
+.eyebrow { font: 600 16px/1 var(--mono); color: var(--sec, var(--text)); letter-spacing: .04em; margin-bottom: 24px; }
 .eyebrow .br { display: inline-block; }
 /* the title is sized by width and height, so it stays on two lines and leaves room for the cards below */
 h1.display { font-size: clamp(56px, min(11vw, 16vh), 176px); line-height: .9; letter-spacing: -.02em; font-weight: 600; padding-bottom: .1em; /* room for the marker under the descenders */ }
@@ -70,7 +77,7 @@ h1.display { font-size: clamp(56px, min(11vw, 16vh), 176px); line-height: .9; le
 .line { display: block; overflow: hidden; padding-bottom: .14em; margin-bottom: -.14em; }
 .line-in { display: inline-block; }
 .grad { background: var(--accent); -webkit-background-clip: text; background-clip: text; color: transparent; padding: 0 .06em .14em 0; /* the gradient paints only inside the box, so the "y" tail needs room */ }
-/* the wipe, into a chapter that opens a part (slide 2, slide 6): an accent panel crosses carrying its title (app.js) */
+/* the wipe, into a chapter that opens a part (slides 2, 6, 10 and 13): a panel in the part's colour crosses carrying its title (app.js) */
 .wipe { position: fixed; inset: 0; z-index: 15; pointer-events: none; display: none; align-items: center; padding: 0 6vw;
   background: var(--accent); color: var(--canvas); clip-path: inset(0 100% 0 0); }
 .wipe-label { font-size: clamp(40px, 8vw, 120px); line-height: .95; font-weight: 600; letter-spacing: -.03em; max-width: 14ch; }
@@ -120,10 +127,10 @@ h2 { font-size: clamp(34px, min(5vw, 7vh), 66px); line-height: 1; letter-spacing
 .rail ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
 .rail a {
   display: block; width: 10px; height: 10px; border-radius: 50%;
-  border: 1px solid var(--muted); transition: transform .2s, background-color .2s, border-color .2s;
+  border: 1px solid var(--sec, var(--muted)); transition: transform .2s, background-color .2s, border-color .2s;
 }
-.rail a:hover { border-color: var(--text); }
-.rail a[aria-current="true"] { background: var(--text); border-color: var(--text); transform: scale(1.5); }
+.rail a:hover { background: var(--sec, var(--text)); }
+.rail a[aria-current="true"] { background: var(--sec, var(--text)); border-color: var(--sec, var(--text)); transform: scale(1.5); }
 .rail li { position: relative; }
 .rail-tip {
   position: absolute; right: 22px; top: 50%; transform: translateY(-50%); white-space: nowrap; pointer-events: none;
