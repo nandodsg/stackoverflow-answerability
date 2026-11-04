@@ -6,6 +6,20 @@ dataset.
 
 Three answers below, one section per prompt, each with its method, its assumptions and how sure I am. The SQL is in [`queries/`](queries/) (`q1.sql` and `q2.sql` run as they are in the BigQuery console), the same results as a page to step through or scroll are in the [presentation](https://nandodsg.github.io/stackoverflow-answerability/), and [`PLAN.md`](PLAN.md#decisions-log) holds every decision with its evidence.
 
+## The three prompts
+
+The take-home asks three questions about the dataset. Their exact wording is below; the rest of this repo, the
+presentation and the decisions log call them **P1**, **P2** and **P3**.
+
+- **P1** — “What tags on a Stack Overflow question lead to the most answers and the highest rate of approved answers for the current year? What tags lead to the least? How about combinations of tags?”
+  [Answer](#1-which-tags-get-the-most-answers-and-accepted-answers) · [`queries/q1.sql`](queries/q1.sql) · [spec](specs/001-q1-tag-answerability.md) · [slide](https://nandodsg.github.io/stackoverflow-answerability/#c10)
+- **P2** — “For posts which are tagged with only ‘python’ or ‘dbt’, what is the year over year change of question-to-answer ratio for the last 10 years? How about the rate of approved answers on questions for the same time period? How do posts tagged with only ‘python’ compare to posts only tagged with ‘dbt’?”
+  [Answer](#2-python-only-vs-dbt-only-year-over-year) · [`queries/q2.sql`](queries/q2.sql) · [spec](specs/002-q2-python-vs-dbt.md) · [slide](https://nandodsg.github.io/stackoverflow-answerability/#c11)
+- **P3** — “Other than tags, what qualities on a post correlate with the highest rate of answer and approved answer? Feel free to get creative.”
+  [Answer](#3-non-tag-qualities-that-correlate-with-answers) · [`queries/q3.sql`](queries/q3.sql) · [spec](specs/003-q3-post-qualities.md) · [slide](https://nandodsg.github.io/stackoverflow-answerability/#c12)
+
+The “read this first” note below applies to all three.
+
 ## Read this first
 
 The public snapshot ends on **2022-09-25**. "Current year" in this analysis means **2022** (partial year). Details in
