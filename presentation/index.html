@@ -678,42 +678,156 @@ WHERE tag = 'python'
   </div>
 </section>
 
-<section class="chapter p3" id="c8" data-title="P3 · Other qualities">
+<section class="chapter p3 dense" id="c8" data-title="P3 · Other qualities">
   <div class="inner stack">
     <p class="eyebrow" data-reveal>{ <span class="label">12 · prompt 3</span> }</p>
     <h2 data-reveal>What else goes with an <span class="mark">answer</span>?</h2>
     <div class="cols answer">
     <div class="stack">
-    <p data-reveal>With the tags taken out, the strongest quality is a worked example: a concrete input and the exact output the asker wants, both written out. 60.0% of those questions end with an accepted answer, against 42.8% without (+17.2 points, the same sign in every year 2018–2021). The strongest negative is a question about the asker's own setup (installs, versions, deploys): 32.2% against 47.1%. Among the rules, a code block goes with +11.8 points and an asker with 20+ earlier questions with +16.6; posting time and "thanks in advance" barely matter. The P1 pattern again: what gets accepted can be solved at someone else's desk.</p>
-    <p class="muted" data-reveal>Rules on all 7.16 million questions of 2018–2021, measured on the text as first posted (D4: 9–17% of questions a year were first edited after the first answer; a code block is +11.8 on that text, +11.3 on today's); labels are one model's judgments (TypeSafe Jev) on 30,000 random questions. Correlation, not cause. Groups under 385 questions are not reported (D1's floor). README, section 3. The panel queries a snapshot of the dbt mart: each label level's accepted rate next to its reference level's. Try <code>l.version = 'never_edited'</code>, then Run.</p>
+    <p data-reveal><b class="exec-q">“Other than tags, what qualities of a question go with an answer and an accepted answer?”</b> A worked example (input and wanted output, both written out): 60.0% of the labeled 2018–2021 questions with one got an accepted answer, against 42.8% of those without. One about the asker's own setup (installs, versions): 32.2%, against 47.1%. The pattern is P1's, without the tags: problems anyone can reproduce from the question get solved; problems tied to the asker's own setup don't (an association, not a cause).</p>
+    <ul class="takeaways" data-reveal>
+      <li><b>Highest accepted rate</b> worked example +17.2 points, 3+ code blocks +14.5</li>
+      <li><b>Lowest</b> own setup −14.9, a broad ask −9.5, bloated code −7.1</li>
+      <li><b>Answer rate moves less</b> worked example +9.4, own setup −10.8</li>
+      <li><b>Barely matter</b> posting hour, weekday, “thanks in advance”: within 1.8</li>
+    </ul>
+    <p class="muted" data-reveal>Accepted rate = accepted ÷ all questions (<button type="button" class="ref" data-dialog="eda-d2">D2</button>); points = a group's accepted rate minus its reference group's; text as first posted (<button type="button" class="ref" data-dialog="eda-d4">D4</button>); groups of 385+ (<button type="button" class="ref" data-dialog="eda-d1">D1</button>); labels: one model, 25,451 questions (<button type="button" class="ref" data-dialog="eda-d6">D6</button>).</p>
+    <div class="next" data-reveal>
+      <h3 class="sub">Next questions</h3>
+      <ol>
+        <li><span class="nq">Is it the tags in disguise?</span> No. <button type="button" class="sql-ref" data-q="p3-tags">SQL</button></li>
+        <li><span class="nq">Do the labels add anything beyond the rules?</span> Mostly. <button type="button" class="sql-ref" data-q="p3-rules">SQL</button></li>
+        <li><span class="nq">Did edits after the answer plant them?</span> Barely (<button type="button" class="ref" data-dialog="eda-d4">D4</button>). <button type="button" class="sql-ref" data-q="p3-edits">SQL</button></li>
+      </ol>
+    </div>
     <div class="strip" data-reveal>
       <p class="strip-title">{ HOW WE KNOW }</p>
-      <div class="chips">
-        <details class="chip" name="know-p3"><summary><span>Evidence</span><span class="tag">EDA</span></summary><div class="chip-body">Effects must keep their sign in each of 2018, 2019, 2020 and 2021: 37 of the 43 rule effects do, and the other 6 are within 0.2 points of zero. Inside the 20 largest tags they barely move (a code block: +11.8 → +11.3). Against the rules, a worked example keeps +15.5 among questions with the same code and length; image-only evidence falls to −1.7, and 46% of its "yes" labels have no image at all, so I don't lean on it.</div></details>
-        <details class="chip" name="know-p3"><summary><span>Guard</span><span class="tag">tests</span></summary><div class="chip-body">The gold set is the reference models' labels with my check on the ties: I changed 0 of the 567 labels they agreed on, so Jev's kappa (0.71–0.98, mean 0.80) is optimistic. The only blind check is the practice round, 20 questions labeled by hand before any model. Label noise pulls effects towards zero, so they are probably understated. A graph test fails if any model but the scans reads the text; a warn test comparing original and current text raises one warning.</div></details>
-        <details class="chip" name="know-p3"><summary><span>Cost</span><span class="tag">GB billed</span></summary><div class="chip-body">The original text came from one 106 GiB read of <code>post_history.text</code> (plus 35 GiB for the current body), run once into stored tables. <code>queries/q3.sql</code> reads those tables and the label seed: about 38 GiB for its eight results. Labeling 30,000 questions with Jev: US$ 3.82 (about US$ 10.65 for every model call in the project).</div></details>
+      <div class="know">
+        <button type="button" class="know-btn" data-dialog="know-p3" data-row="know-p3-method"><span>Method</span><span class="tag">gaps</span></button>
+        <button type="button" class="know-btn" data-dialog="know-p3" data-row="know-p3-evidence"><span>Evidence</span><span class="tag">checks</span></button>
+        <button type="button" class="know-btn" data-dialog="know-p3" data-row="know-p3-guard"><span>Guard</span><span class="tag">tests</span></button>
+        <button type="button" class="know-btn" data-dialog="know-p3" data-row="know-p3-cost"><span>Cost</span><span class="tag">GiB</span></button>
       </div>
     </div>
     </div>
-    <div class="sql-panel" data-reveal data-panel data-render="table" data-table="mart_p3_label_rates">
+    <div class="sql-panel" data-reveal data-panel data-render="range" data-scale="pts:0.2" data-baseline="0" data-note="Dot: accepted rate minus the reference group's, in points · line: its 95% margin (rules on 7.16M questions, so their lines are hairs; labels on 25,451) · the strongest level of each quality, 3+ points" data-table="mart_p3_feature_effects mart_p3_label_effects mart_p3_label_rates mart_p3_label_incremental">
       <div class="sql-head"><span>live SQL · DuckDB-WASM</span><span class="sql-status" data-state="loading">loading engine…</span></div>
-      <textarea class="sql-editor" spellcheck="false" aria-label="SQL query for prompt 3">SELECT l.feature || ' · ' || split_part(l.bucket, ': ', 2) AS level,
-       round(r.accepted_rate * 100, 1) AS reference_pct,
-       round(l.accepted_rate * 100, 1) AS accepted_pct
-FROM mart_p3_label_rates l
-JOIN mart_p3_label_rates r USING (version, feature, cohort)
-WHERE r.is_reference_bucket AND NOT l.is_reference_bucket
-  AND l.version = 'original' AND l.cohort = '2018-2021'
-  AND l.n_questions >= 385
-ORDER BY accepted_pct DESC;</textarea>
+      <div class="qchips" role="group" aria-label="Query">
+        <button type="button" class="qchip" data-q="" aria-pressed="true">Accepted rate</button>
+        <button type="button" class="qchip" data-q="p3-answer">Answer rate</button>
+        <button type="button" class="qchip" data-q="p3-rates">By label</button>
+        <button type="button" class="qchip next-q" data-q="p3-tags">1 · tags</button>
+        <button type="button" class="qchip next-q" data-q="p3-rules">2 · rules</button>
+        <button type="button" class="qchip next-q" data-q="p3-edits">3 · edits</button>
+      </div>
+      <textarea id="q-p3" class="sql-editor" spellcheck="false" aria-label="SQL query for prompt 3">SELECT feature || ' · ' || split_part(bucket, ': ', 2) AS quality,
+       accepted_rate_effect AS gap, accepted_rate_effect_margin AS m,
+       gap - m AS low, gap + m AS high,
+       if(gap &gt; 0, 'higher accepted rate', 'lower accepted rate') AS list
+FROM (FROM mart_p3_feature_effects
+      UNION ALL BY NAME FROM mart_p3_label_effects)
+WHERE version = 'original' AND cohort = '2018-2021'
+  AND bucket NOT LIKE '%unknown' AND abs(gap) &gt;= 0.03
+QUALIFY abs(gap) = max(abs(gap)) OVER (PARTITION BY feature)
+ORDER BY gap DESC;</textarea>
       <div class="sql-actions">
         <button type="button" class="btn primary run">Run</button>
         <button type="button" class="btn reset">Reset</button>
         <span class="meta"></span>
       </div>
-      <div class="sql-out" aria-live="polite"></div>
+      <div class="sql-out" aria-live="polite"><noscript>Live SQL needs JavaScript.</noscript></div>
+      <p class="sql-note"></p>
+      <template id="p3-answer" data-render="range" data-scale="pts:0.2" data-baseline="0" data-note="Same qualities, same axis: answer rate (answered ÷ all questions) minus the reference group's. Most gaps are smaller than in accepted rate; an image is 0.0.">SELECT feature || ' · ' || split_part(bucket, ': ', 2) AS quality,
+       answer_rate_effect AS gap, answer_rate_effect_margin AS m,
+       gap - m AS low, gap + m AS high, accepted_rate_effect AS acc,
+       if(acc &gt; 0, 'higher accepted rate', 'lower accepted rate') AS list
+FROM (FROM mart_p3_feature_effects
+      UNION ALL BY NAME FROM mart_p3_label_effects)
+WHERE version = 'original' AND cohort = '2018-2021'
+  AND bucket NOT LIKE '%unknown' AND abs(acc) &gt;= 0.03
+QUALIFY abs(acc) = max(abs(acc)) OVER (PARTITION BY feature)
+ORDER BY acc DESC;</template>
+      <template id="p3-rates" data-render="table" data-note="Labeled 2018–2021 questions: the accepted rate of each label level against its reference level (worked example: no, own setup: no, …). Levels under 385 questions left out.">SELECT l.feature || ' · ' || split_part(l.bucket, ': ', 2) AS level,
+       printf('%.1f', r.accepted_rate * 100) AS reference_pct,
+       printf('%.1f', l.accepted_rate * 100) AS accepted_pct
+FROM mart_p3_label_rates l
+JOIN mart_p3_label_rates r USING (version, feature, cohort)
+WHERE r.is_reference_bucket AND NOT l.is_reference_bucket
+  AND l.version = 'original' AND l.cohort = '2018-2021'
+  AND l.n_questions &gt;= 385
+ORDER BY l.accepted_rate DESC;</template>
+      <template id="p3-tags" data-render="range" data-scale="pts:0.2" data-baseline="0" data-note="No. Dot: the gap inside each of the 20 largest tags, averaged; line: from the headline gap. Each keeps 84% to 131% of it: worked example +17.2 → +16.6, own setup −14.9 → −13.3.">SELECT feature || ' · ' || split_part(bucket, ': ', 2) AS quality,
+       accepted_rate_effect_tag_adjusted AS in_tags,
+       accepted_rate_effect AS gap,
+       least(gap, in_tags) AS low, greatest(gap, in_tags) AS high,
+       if(gap &gt; 0, 'higher accepted rate', 'lower accepted rate') AS list
+FROM (FROM mart_p3_feature_effects
+      UNION ALL BY NAME FROM mart_p3_label_effects)
+WHERE version = 'original' AND cohort = '2018-2021'
+  AND bucket NOT LIKE '%unknown' AND abs(gap) &gt;= 0.03
+QUALIFY abs(gap) = max(abs(gap)) OVER (PARTITION BY feature)
+ORDER BY gap DESC;</template>
+      <template id="p3-rules" data-render="range" data-scale="pts:0.2" data-baseline="0" data-note="Mostly. Dot: the gap among questions with the same code-block flag and body length. Worked example keeps 90%, own setup 83%, partial code 81%; image-only evidence 26% (−6.5 → −1.7).">SELECT label || ' · ' || split_part(level, ': ', 2) AS quality,
+       rules_adjusted_effect AS same_rules,
+       least(raw_effect, same_rules) AS low,
+       greatest(raw_effect, same_rules) AS high,
+       if(raw_effect &gt; 0, 'higher accepted rate', 'lower accepted rate') AS list
+FROM mart_p3_label_incremental
+WHERE n_questions &gt;= 385 AND abs(raw_effect) &gt;= 0.03
+ORDER BY raw_effect DESC;</template>
+      <template id="p3-edits" data-render="range" data-scale="pts:0.2" data-baseline="0" data-note="Barely. Dot: the gap on never-edited questions, where no edit could plant anything. Same sign everywhere, at most 2.4 points apart (worked example +17.2 → +19.6); image-only: too few.">WITH e AS (FROM mart_p3_feature_effects
+           UNION ALL BY NAME FROM mart_p3_label_effects)
+SELECT o.feature || ' · ' || split_part(o.bucket, ': ', 2) AS quality,
+       n.accepted_rate_effect AS never_edited,
+       least(o.accepted_rate_effect, never_edited) AS low,
+       greatest(o.accepted_rate_effect, never_edited) AS high,
+       if(o.accepted_rate_effect &gt; 0, 'higher accepted rate', 'lower accepted rate') AS list
+FROM e o JOIN e n ON n.feature = o.feature AND n.bucket = o.bucket
+  AND n.cohort = o.cohort AND n.version = 'never_edited'
+WHERE o.version = 'original' AND o.cohort = '2018-2021'
+  AND o.bucket NOT LIKE '%unknown' AND abs(o.accepted_rate_effect) &gt;= 0.03
+QUALIFY abs(o.accepted_rate_effect)
+      = max(abs(o.accepted_rate_effect)) OVER (PARTITION BY o.feature)
+ORDER BY o.accepted_rate_effect DESC;</template>
     </div>
     </div>
+    <dialog class="eda" id="know-p3" aria-labelledby="know-p3-t">
+      <div class="eda-head"><div><p class="tl-when">P3 · how we know</p><h3 id="know-p3-t">How the qualities were measured and checked</h3></div><button class="eda-close" type="button" aria-label="Close">×</button></div>
+      <dl class="eda-facts">
+        <dt>Question</dt><dd>“Other than tags, what qualities on a post correlate with the highest rate of answer and approved answer? Feel free to get creative.”</dd>
+        <dt>Data</dt><dd>Every question created from 2018 to 2021, four full years: 7,157,196 questions. 2022 is computed too, but it is partial (to 09-25) and censored, so no claim rests on it. Every text feature is measured on the text <b>as the asker first posted it</b>, from <code>post_history</code>, not on today's text (<button type="button" class="ref" data-dialog="eda-d4">D4</button>): one read of <code>post_history.text</code> into <code>int_post_history_scan</code>, plus one of today's <code>body</code> into <code>int_question_body_scan</code> for the comparison. Everything else is known at posting time: when it was posted, and the asker's account age and earlier questions. Score, views, comments and later edits are out, because they partly happen <i>because</i> of the answer. The labels cover 30,000 questions drawn at random from a 5% text sample, 25,451 of them from 2018–2021. Rules: <code>int_p3_questions</code> → <code>mart_p3_feature_rates</code> and <code>mart_p3_feature_effects</code>; labels: a seed → <code>int_p3_label_questions</code> → <code>mart_p3_label_rates</code>, <code>mart_p3_label_effects</code>, <code>mart_p3_label_vs_rules</code>, <code>mart_p3_label_incremental</code> (<a href="#model">data model</a>).</dd>
+        <dt id="know-p3-method">Method</dt><dd>Two kinds of quality. <b>Rules</b> count something on every question: code blocks, inline code, length, links, images, error text, a greeting, “what I tried” phrases, the title, the number of tags, the hour and weekday (UTC), the asker's account age and earlier questions. <b>Labels</b> are what only a reader can judge, defined in a written rubric: worked example, scope of the ask, failure description, code focus, setup dependence, and key evidence only in an image. One model, TypeSafe Jev, read the 30,000 questions under that rubric; how it was picked over two other models, and its cost: <button type="button" class="ref" data-dialog="eda-d6">D6</button>. Each quality is cut into fixed buckets, and the first is the <b>reference</b> (no, zero, shortest, a first question, Monday, 00–05 UTC). The <b>gap</b> is a bucket's accepted rate (or answer rate) minus the reference's, in points, with its 95% margin. Three measures, as in P1 (<button type="button" class="ref" data-dialog="eda-d2">D2</button>): <b>accepted rate</b> = accepted ÷ all questions, <b>answer rate</b> = answered ÷ all questions, and accepted among answered, so each gap shows whether a quality helps a question get an answer or get one accepted. For comparison, all 2018–2021 questions: <b>44.3%</b> accepted (3,170,421 of 7,157,196), 80.7% answered. Same 385-question floor as P1 for every bucket (<button type="button" class="ref" data-dialog="eda-d1">D1</button>). <b>Stable</b> = the same sign in each of 2018, 2019, 2020 and 2021 on its own. Two controls: <b>inside tags</b>, the gap within each of the 20 most common primary tags (plus “other”), averaged by the bucket's questions; and for labels, <b>same rules</b>, the gap within groups with the same “has a code block” and body-length bucket, which shows what a label adds beyond what the rules already count.</dd>
+        <dt id="know-p3-evidence">Evidence</dt><dd><ul class="eda-list">
+          <li><b>Every year.</b> The question: does a gap hold in each year, or only when the four are pooled? <code>mart_p3_feature_effects</code> and <code>mart_p3_label_effects</code> recompute every gap per year. 37 of the 43 rule gaps keep their sign in all four; the other 6 are within 0.2 points of zero (Tuesday to Thursday, 40–59-character titles, three tags, 4,000+-character bodies). Worked example, own setup and partial code are stable in all four years. A level needs about 6% of the questions to reach 385 in a single year, so a broad ask reached the floor in 2 of 4 (negative both times), and dump code, multiple asks and image-only evidence only on the four years pooled: their stability is not assessable, which is not the same as “flips”. So no claim on the slide rests on a gap that changes direction.</li>
+          <li><b>Is it the tags in disguise?</b> The question: is “has code” just “is a Python question”? The same marts carry each gap inside the 20 largest primary tags. Every quality keeps 84% to 131% of its gap (worked example +17.2 → +16.6, own setup −14.9 → −13.3, a code block +11.8 → +11.3), and no rule gap moves by more than 1.2 points. So the qualities are not the tags under another name, which is what the prompt asks for.</li>
+          <li><b>Beyond the rules.</b> The question: does a label add anything a rule doesn't already count? <code>mart_p3_label_vs_rules</code> sets each label beside its closest rule, and <code>mart_p3_label_incremental</code> recomputes its gap among questions with the same code-block flag and body length. 82% of worked examples have a code block, but only 12% of questions with a code block are worked examples, and it keeps 90% of its gap (+15.5). Own setup keeps 83% (−12.3; only 27% of those questions have error text), partial code 81%, a broad ask 63%, multiple asks 50%. Image-only evidence keeps 26% (−6.5 → −1.7), and 46% of its “yes” questions have no image at all in the original text, which the rubric doesn't allow. So the two headline labels are mostly new information; image-only evidence is the one label not to lean on.</li>
+          <li><b>Did edits plant them?</b> The question: did an edit after the answer add the quality (someone asks “please show your code”, the asker pastes it)? Every gap is also computed on today's text, on never-edited questions and on questions not edited after their first answer (<code>mart_p3_leakage</code> measures how often a bucket changed). On never-edited questions every quality keeps its sign and moves at most 2.4 points (a worked example grows to +19.6). A code block is +11.8 on the original text and +11.3 on today's, where about one question in 15 changed bucket; the biggest move among the rules is an image, +4.7 → +2.3. The <code>warn</code> test raises one warning: five or more tags on accepted among answered (−0.3 original, +1.5 today). So reading the original text changed little here, but it is the version that can't be the answer's doing (<button type="button" class="ref" data-dialog="eda-d4">D4</button>).</li>
+          <li><b>How good are the labels?</b> Jev was scored on 100 reference questions labeled by two other models, with my review of every label: I changed 0 of the 567 labels they agreed on and broke the 33 ties. That is the models' labels with a human check on the ties, not independent hand labels, so Jev's kappa (0.71 to 0.98 by label, mean 0.80) is optimistic. The one blind human check is a 20-question practice round labeled by hand before any model, which checked the rubric, not Jev. Jev never sees whether a question was answered, so a wrong label mixes the groups and pulls the gap towards zero: the +17.2 and −14.9 are probably understated (<button type="button" class="ref" data-dialog="eda-d6">D6</button>).</li>
+          <li><b>And the answers?</b> Answers are posts too: among the 423,192 answers to the sample's 2018–2021 questions, by the answer's own original text, inline code goes with +13.0 points of acceptance and 4,000+ characters against under 500 with +16.2. That mart (<code>mart_p3_answer_rates</code>) is not exported to this page, so it is stated here, not queryable.</li>
+        </ul></dd>
+        <dt id="know-p3-guard">Guard</dt><dd>The eight acceptance criteria of <a href="https://github.com/nandodsg/stackoverflow-answerability/blob/main/specs/003-q3-post-qualities.md" target="_blank" rel="noopener"><code>specs/003</code></a>, each checked by a test; each in plain words with its test: <button type="button" class="ref" data-dialog="specs" data-row="specs-003">specs, P3</button>. Where the tests run: <a href="#c5">architecture</a>.<ul class="eda-list">
+          <li><b>AC-3.1:</b> every feature is known at posting time: account age and earlier questions come from posting-time metadata (<code>int_question_posting_context</code>), with a <code>warn</code> range test on the account age.</li>
+          <li><b>AC-3.2:</b> the text columns are read once: <code>assert_text_columns_read_once</code> reads dbt's project graph and fails if any model other than the staging view and the one-time scans reads them.</li>
+          <li><b>AC-3.3:</b> a gap that doesn't point the same way every full year is labeled unstable: the stability flags on both effects marts, and two unit tests (a level with only 3 full years at the floor reads “not stable”).</li>
+          <li><b>AC-3.4:</b> text features come from the original text, read once, its size stated: the two scan models behind the <code>full_scan</code> tag, never in a default build, and two tests with hand-written examples of every rule.</li>
+          <li><b>AC-3.5:</b> every gap is also reported on today's text, never-edited and not-edited-after-the-answer questions: the four versions on <code>mart_p3_feature_rates</code> and <code>mart_p3_label_rates</code>, a flips-vs-original column, and the check script.</li>
+          <li><b>AC-3.6:</b> text exposure and the share of changed values are reported, and a direction change warns: <code>mart_p3_leakage</code> and the <code>warn</code> test <code>assert_p3_original_text_stable</code> (the one warning above).</li>
+          <li><b>AC-3.7:</b> each label is set beside its closest rule, and one that doesn't line up is flagged: <code>mart_p3_label_vs_rules</code> (image-only evidence).</li>
+          <li><b>AC-3.8:</b> each label level's gap is reported overall and inside the rules' groups, and rare levels say how many full years reached the floor: <code>mart_p3_label_incremental</code>, <code>full_years_with_effect</code>, a unit test, and the check script (worked example +17.2, rebuilt through the semantic layer).</li>
+          <li><b>The labels themselves:</b> the seed covers exactly the 30,000-question analysis set, every level is one the rubric allows, and the label layer accounts for every labeled question.</li>
+        </ul></dd>
+        <dt id="know-p3-cost">Cost</dt><dd>The original text came from one 106 GiB read of <code>post_history.text</code>, plus 35 GiB for today's <code>body</code>, each run once into a stored table on its own target, capped at 120 GiB a query; every other model runs on the everyday target, capped at 20 GiB (<button type="button" class="ref" data-dialog="eda-d5">D5</button>). <code>queries/q3.sql</code> reads those stored tables and the label seed, about 38 GiB for its eight results, so it is not as-is like q1 and q2: the tables have to be built first (steps in its header). Labeling 30,000 questions with Jev cost US$ 3.82, about US$ 10.65 for every model call in the project (<button type="button" class="ref" data-dialog="eda-d6">D6</button>). This page reads 0 bytes from BigQuery: the six marts were exported to CSV on 2026-11-01, and DuckDB-WASM runs the SQL in the browser (<a href="#stack">stack</a>).</dd>
+        <dt>Limitations</dt><dd><ul class="eda-list">
+          <li><b>Association, not cause.</b> Writing out the expected output would not by itself get a question accepted; the questions that do it get accepted more.</li>
+          <li><b>One quality at a time.</b> A worked example and an asker with 20 earlier questions can be the same question, and nothing here nets them out against each other (a regression was optional in the spec and wasn't built).</li>
+          <li><b>Asker experience is about the person,</b> not how the question is written; it is known at posting time, so it is in.</li>
+          <li><b>Survivorship.</b> Deleted questions are not in the data, and the worst-written ones are the most likely to be gone, so the gaps are probably smaller than the real ones (<a href="#c2">the traps</a>).</li>
+          <li><b>Hours are UTC,</b> not the asker's local time; <b>2022 is out of the claims</b>; each gap is inside one year, which mostly cancels censoring, so P3 has no 30-day version.</li>
+          <li><b>Labels:</b> a random 30,000, original text only, no images seen (neither by Jev nor in the review), not stratified, so rare levels stay rare; the answers were not labeled. The rest of the limits: <a href="#c10">limits slide</a>.</li>
+        </ul></dd>
+        <dt>GitHub repo</dt><dd><ul class="eda-links"><li><a href="https://github.com/nandodsg/stackoverflow-answerability/blob/main/README.md#3-non-tag-qualities-that-correlate-with-answers" target="_blank" rel="noopener">README, section 3</a></li><li><a href="https://github.com/nandodsg/stackoverflow-answerability/blob/main/specs/003-q3-post-qualities.md" target="_blank" rel="noopener"><code>specs/003</code></a></li><li><a href="https://github.com/nandodsg/stackoverflow-answerability/blob/main/TESTING.md#prompt-3-specs003" target="_blank" rel="noopener"><code>TESTING.md</code>, prompt 3</a></li><li><a href="https://github.com/nandodsg/stackoverflow-answerability/blob/main/queries/q3.sql" target="_blank" rel="noopener"><code>queries/q3.sql</code></a></li><li><a href="https://github.com/nandodsg/stackoverflow-answerability/blob/main/labels/rubric.md" target="_blank" rel="noopener"><code>labels/rubric.md</code></a></li><li><a href="https://github.com/nandodsg/stackoverflow-answerability/blob/main/models/intermediate/int_post_history_scan.sql" target="_blank" rel="noopener"><code>int_post_history_scan.sql</code></a></li><li><a href="https://github.com/nandodsg/stackoverflow-answerability/blob/main/models/marts/mart_p3_feature_effects.sql" target="_blank" rel="noopener"><code>mart_p3_feature_effects.sql</code></a></li><li><a href="https://github.com/nandodsg/stackoverflow-answerability/blob/main/models/marts/mart_p3_label_effects.sql" target="_blank" rel="noopener"><code>mart_p3_label_effects.sql</code></a></li><li><a href="https://github.com/nandodsg/stackoverflow-answerability/blob/main/models/marts/mart_p3_label_incremental.sql" target="_blank" rel="noopener"><code>mart_p3_label_incremental.sql</code></a></li><li><a href="https://github.com/nandodsg/stackoverflow-answerability/blob/main/models/marts/mart_p3_leakage.sql" target="_blank" rel="noopener"><code>mart_p3_leakage.sql</code></a></li><li><a href="https://github.com/nandodsg/stackoverflow-answerability/blob/main/tests/assert_text_columns_read_once.sql" target="_blank" rel="noopener"><code>assert_text_columns_read_once.sql</code></a></li><li><a href="https://github.com/nandodsg/stackoverflow-answerability/blob/main/tests/assert_p3_original_text_stable.sql" target="_blank" rel="noopener"><code>assert_p3_original_text_stable.sql</code></a></li><li><a href="https://github.com/nandodsg/stackoverflow-answerability/blob/main/eda/d6_labelers/README.md" target="_blank" rel="noopener"><code>eda/d6_labelers</code></a></li></ul></dd>
+      </dl>
+    </dialog>
   </div>
 </section>
 
