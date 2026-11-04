@@ -124,6 +124,13 @@ h2 { font-size: clamp(34px, min(5vw, 7vh), 66px); line-height: 1; letter-spacing
 }
 .rail a:hover { border-color: var(--text); }
 .rail a[aria-current="true"] { background: var(--text); border-color: var(--text); transform: scale(1.5); }
+.rail li { position: relative; }
+.rail-tip {
+  position: absolute; right: 22px; top: 50%; transform: translateY(-50%); white-space: nowrap; pointer-events: none;
+  font: 600 13px/1 var(--mono); letter-spacing: .04em; padding: 6px 10px; border-radius: 6px;
+  background: var(--canvas); border: 1px solid var(--hairline); opacity: 0; transition: opacity .15s;
+}
+.rail li:hover .rail-tip, .rail a:focus-visible + .rail-tip { opacity: 1; }
 .counter {
   position: fixed; left: 24px; bottom: 20px; z-index: 20;
   font: 600 16px/1 var(--mono); color: var(--muted); background: var(--canvas); padding: 6px 0;
@@ -185,6 +192,51 @@ h2 { font-size: clamp(34px, min(5vw, 7vh), 66px); line-height: 1; letter-spacing
     background: var(--panel); border: 1px solid var(--eng); border-radius: var(--radius); padding: 20px 24px;
   }
 }
+
+/* ---------- prompt answers (P1 first): the executive answer, its takeaways, the next questions ---------- */
+.exec-q { font-weight: 600; }
+.takeaways { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: 16px; line-height: 1.4; }
+.takeaways b { font: 600 13px/1 var(--mono); color: var(--c, var(--text)); margin-right: 6px; }
+/* a word that opens a decision's detail: reads as a link, behaves as a button (the dialog opens over this slide) */
+.ref {
+  font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer;
+  text-decoration: underline; text-decoration-color: var(--eng); text-underline-offset: 3px;
+}
+.ref:hover { color: var(--eng); }
+.eda-facts a { text-decoration-color: var(--eng); text-underline-offset: 3px; }
+/* the follow-ups: smaller and muted, each with a button that loads its query into the panel */
+.next ol { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 8px; }
+.next li { font-size: 15px; line-height: 1.4; color: var(--muted); }
+.next .nq { color: var(--text); font-weight: 600; }
+.sql-ref, .qchip {
+  font: 600 12px/1 var(--mono); color: var(--c, var(--p1)); background: none; cursor: pointer;
+  border: 1px solid var(--hairline); border-radius: var(--pill); padding: 4px 10px;
+}
+.sql-ref:hover, .qchip:hover { border-color: var(--c, var(--p1)); }
+/* "How we know" as four buttons into one dialog, each opening it at its row */
+.know { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.know-btn {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 8px; cursor: pointer;
+  font: 600 16px/1 var(--font); color: var(--text); background: var(--panel);
+  border: 1px solid var(--hairline); border-radius: var(--radius); padding: 14px 14px;
+}
+.know-btn .tag { color: var(--eng); font: 400 12px/1 var(--mono); }
+.know-btn:hover { border-color: var(--eng); }
+/* query chips on the panel: the pressed one is filled; the follow-ups' chips are dashed, a step back */
+.qchips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.qchip { font-size: 11px; padding: 6px 8px; color: var(--text); }
+.qchip.next-q { border-style: dashed; color: var(--muted); }
+.qchip[aria-pressed="true"] { background: var(--c, var(--p1)); border-color: var(--c, var(--p1)); border-style: solid; color: var(--canvas); }
+.sql-panel:has(.qchips) { padding: 20px 24px 22px; }
+.sql-panel:has(.qchips) .sql-editor { min-height: 0; font-size: 13px; line-height: 1.4; padding: 12px 14px; }
+.sql-panel:has(.qchips) .sql-actions { margin-top: 12px; }
+.sql-panel:has(.qchips) .sql-actions .btn { padding: 9px 20px; }
+.sql-panel:has(.qchips) .sql-out:not(:empty) { margin-top: 16px; }
+/* tables under query chips run compact, so a follow-up's result fits where the main chart was */
+.sql-panel:has(.qchips) .rrow { padding: 2px 8px; font-size: 13px; line-height: 1.25; }
+.sql-panel:has(.qchips) .rhead { font-size: 12px; padding-bottom: 4px; }
+.sql-note { margin-top: 10px; color: var(--muted); font-size: 13px; line-height: 1.4; }
+.sql-note:empty { display: none; }
 
 /* ---------- cards, timeline, lists (narrative chapters) ---------- */
 .lede.wide { max-width: 70ch; font-size: 21px; }
@@ -268,6 +320,24 @@ body:has(dialog[open]) { overflow: hidden; }
 .eda-exec ul { margin: 16px 0 0; padding-left: 20px; }
 .eda-exec li:last-child { margin-bottom: 0; }
 .eda-exec li b { font-weight: 600; }
+/* the specs dialog: each acceptance criterion as id | plain words over how it is checked, with the test kinds as tags */
+.ac-spec { margin: 0; color: var(--muted); }
+.ac-spec + .ac-list { margin-top: 10px; }
+.ac-list + .ac-spec { margin-top: 14px; }
+.ac-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.ac-list li { display: grid; grid-template-columns: 4.5rem 1fr; column-gap: 12px; }
+.ac-id { grid-row: span 2; font: 600 13px/1.85 var(--mono); color: var(--eng); }
+.ac-what, .ac-how { margin: 0; min-width: 0; }
+#specs code { overflow-wrap: anywhere; } /* long test names would push the dialog sideways at phone width */
+.ac-how { color: var(--muted); font-size: 15px; }
+.ac-how a { color: var(--text); }
+.ac-k {
+  display: inline-block; margin-right: 6px; font: 600 11px/1 var(--mono); color: var(--text); white-space: nowrap;
+  border: 1px solid var(--hairline); border-radius: var(--pill); padding: 3px 7px; vertical-align: 1px;
+}
+.ac-k.warn { color: var(--pink); border-color: var(--pink); }
+.ac-k.scan { color: var(--muted); border-style: dashed; }
+.ac-k.gap { color: var(--canvas); background: var(--pink); border-color: var(--pink); }
 .list li { padding: 14px 0; border-bottom: 1px solid var(--hairline); font-size: 16px; line-height: 1.5; color: var(--muted); }
 .list li b { color: var(--text); font-weight: 600; }
 
@@ -384,6 +454,23 @@ body:has(dialog[open]) { overflow: hidden; }
 .rrow .bar-cell { display: flex; align-items: center; gap: 10px; }
 .rrow .bar-cell span { font-family: var(--mono); font-size: 14px; color: var(--muted); min-width: 4.5ch; }
 .rrow:hover .bar { filter: brightness(1.15); }
+.rtable.two :is(.rrow, .rhead) { grid-template-columns: 2.2rem minmax(0, 1.4fr) 0 minmax(0, 1fr); }
+/* a result split by its "list" column: blocks side by side, the second (lowest, fewest) in cream instead of the prompt colour */
+.rgroups { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.rgroups .rblock + .rblock { --c: var(--text); }
+.rblock-t { font: 600 13px/1 var(--mono); color: var(--c, var(--p1)); margin: 0 0 6px; }
+.rgroups .rrow, .rgroups .rhead { gap: 8px; font-size: 14px; }
+/* a range chart keeps one wide axis: its blocks stack instead of sitting side by side */
+.rgroups.stacked { grid-template-columns: 1fr; gap: 8px; }
+.rgroups.stacked .rblock-t { margin-bottom: 2px; }
+/* range chart: label, value, then a track with the interval line, the dot and an optional dashed baseline */
+.rg-row { display: grid; grid-template-columns: minmax(0, 1fr) 3.4rem minmax(0, 1.6fr); gap: 10px; align-items: center; height: 13px; }
+.rg-label { font: 400 12px/1 var(--mono); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rg-v { font: 400 12px/1 var(--mono); color: var(--muted); text-align: right; }
+.rg-track { position: relative; height: 100%; background: linear-gradient(var(--hairline), var(--hairline)) left center / 100% 1px no-repeat; }
+.rg-track[style*="--b"]::before { content: ""; position: absolute; top: 0; bottom: -1px; left: var(--b); border-left: 1px dashed color-mix(in srgb, var(--text) 55%, transparent); }
+.rg-line { position: absolute; top: 50%; height: 2px; margin-top: -1px; background: var(--c, var(--p1)); opacity: .5; border-radius: 1px; }
+.rg-dot { position: absolute; top: 50%; width: 8px; height: 8px; margin: -4px 0 0 -4px; border-radius: 50%; background: var(--c, var(--p1)); }
 
 /* ---------- responsive and accessibility ---------- */
 @media (max-width: 900px) {
@@ -397,9 +484,15 @@ body:has(dialog[open]) { overflow: hidden; }
   .chapter { padding: 72px 16px; }
   body { font-size: 17px; }
   .rrow, .rhead { grid-template-columns: 1.6rem minmax(0, 1.5fr) 4.5rem minmax(0, 1.5fr); gap: 8px; }
+  .rgroups { grid-template-columns: 1fr; }
+  .know { grid-template-columns: 1fr 1fr; }
+  .takeaways { grid-template-columns: 1fr; gap: 2px; }
+  .takeaways dd { margin-bottom: 6px; }
   .eda { padding: 20px 16px; }
   .eda-facts { grid-template-columns: 1fr; gap: 4px; }
   .eda-facts dd { margin-bottom: 10px; }
+  .ac-list li { grid-template-columns: 1fr; }
+  .ac-id { grid-row: auto; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

@@ -40,6 +40,11 @@ the query text or the user. On a fresh clone it returns that clone's own jobs, n
 5. **The month boundary helped.** Inside a single month the same work would have used half the quota (511 of 1,024
    GiB): still under, with less room for a third full read.
 
+**Since this read.** On 2026-11-04 the tag-pair mart was exported for the presentation (P1's combinations): one query,
+0.6 MB processed, 10 MiB billed (BigQuery's minimum per query). The same day, the new unit test for AC-1.10 ran twice
+(once as written, once with a wrong expected value to see it fail): four jobs, 0 bytes billed, since a unit test reads
+only the rows written into it. No total above changes at the GiB they are reported in.
+
 How the read was planned and guarded, including the rules for working with an AI coding agent:
 [README, "Running on a free tier"][readme].
 

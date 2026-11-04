@@ -22,8 +22,16 @@
     var a = document.createElement("a");
     a.href = "#" + ch.id;
     a.setAttribute("aria-label", pad(i + 1) + " " + ch.dataset.title);
-    a.title = ch.dataset.title;
     li.appendChild(a);
+    // hover / focus label: the chapter's eyebrow text in the eyebrow's own colour (a sibling of the dot, so the
+    // current dot's scale doesn't grow it)
+    var eyebrow = ch.querySelector(".eyebrow");
+    var tip = document.createElement("span");
+    tip.className = "rail-tip";
+    tip.setAttribute("aria-hidden", "true");
+    tip.textContent = eyebrow ? eyebrow.querySelector(".label").textContent : ch.dataset.title;
+    if (eyebrow) tip.style.color = getComputedStyle(eyebrow).color;
+    li.appendChild(tip);
     rail.appendChild(li);
   });
   var dots = rail.querySelectorAll("a");
@@ -57,7 +65,7 @@
   // While a smooth scroll is still travelling, `current` (read from the scroll position) lags behind, so quick key
   // presses count from the chapter we are heading to. The memory expires once the scroll has had time to land.
   var heading = null, headingTimer = null;
-  // set by the motion layer below: the wipe into a chapter marked data-wipe (slide 2, slide 6), stepping forward one
+  // set by the motion layer below: the wipe into a chapter marked data-wipe (slides 2, 6 and 10), stepping forward one
   // chapter; it calls jump() while the page is covered
   var transition = null;
   function go(i) {
@@ -148,18 +156,30 @@
   });
 
   /* ---------- EDA details: each decision's button opens its modal dialog ---------- */
-  // Esc closes a dialog natively; the × button and a click on the dimmed backdrop close it too.
+  // Esc closes a dialog natively; the × button and a click on the dimmed backdrop close it too. A trigger inside an
+  // open dialog (P1's "How we know" → D2) opens the new one on top, so closing it goes back to the first; a dialog
+  // already open further down is reopened on top. data-row opens the dialog at that row (P1's Method, Evidence,
+  // Guard and Cost buttons).
   document.querySelectorAll("[data-dialog]").forEach(function (b) {
     var dialog = document.getElementById(b.dataset.dialog);
     if (!dialog || !dialog.showModal) { b.hidden = true; return; }
-    b.addEventListener("click", function () { dialog.showModal(); });
+    b.addEventListener("click", function () {
+      if (dialog.open) dialog.close();
+      dialog.showModal();
+      var row = b.dataset.row && document.getElementById(b.dataset.row);
+      dialog.scrollTop = row ? row.offsetTop - 16 : 0;
+    });
   });
   document.querySelectorAll("dialog.eda").forEach(function (dialog) {
     dialog.querySelector(".eda-close").addEventListener("click", function () { dialog.close(); });
     dialog.addEventListener("click", function (e) { if (e.target === dialog) dialog.close(); });
-    // A link to another slide (D4 → D5) closes the dialog first, so the page can scroll there.
+    // A link to another slide (D4 → D5) closes every open dialog first, so the page can scroll there; Ctrl/Cmd or
+    // Shift + click opens it in a new tab or window and leaves the dialogs as they are.
     dialog.querySelectorAll('a[href^="#"]').forEach(function (a) {
-      a.addEventListener("click", function () { dialog.close(); });
+      a.addEventListener("click", function (e) {
+        if (e.ctrlKey || e.metaKey || e.shiftKey) return;
+        document.querySelectorAll("dialog[open]").forEach(function (d) { d.close(); });
+      });
     });
   });
 
@@ -180,10 +200,11 @@
     });
   });
 
-  /* The wipe, into each chapter that opens a part (the problem, slide 2; how we solved it, slide 6): an
-     accent-gradient panel wipes across from the left carrying that chapter's title, the scroll jumps underneath, and
-     the panel leaves to the right. Every other step is the plain smooth scroll. A repeated press while it runs is
-     ignored. */
+  /* The wipe, into each chapter that opens a part (the problem, slide 2; how we solved it, slide 6; the answers,
+     slide 10): an accent-gradient panel wipes across from the left carrying the part's name, the scroll jumps
+     underneath, and the panel leaves to the right. The name is the value of data-wipe when it has one (slide 10,
+     whose title stays "P1 · …" for the rail), otherwise the chapter's title. Every other step is the plain smooth
+     scroll. A repeated press while it runs is ignored. */
   var wipe = document.createElement("div");
   wipe.className = "wipe";
   wipe.setAttribute("aria-hidden", "true");
@@ -196,7 +217,7 @@
   transition = function (i, jump) {
     if (wiping) return;
     wiping = true;
-    wipeLabel.textContent = chapters[i].dataset.title;
+    wipeLabel.textContent = chapters[i].dataset.wipe || chapters[i].dataset.title;
     gsap.set(wipe, { display: "flex", clipPath: "inset(0% 100% 0% 0%)" });
     gsap.set(wipeLabel, { opacity: 0, x: -60 });
     gsap.timeline({ onComplete: function () { gsap.set(wipe, { display: "none" }); wiping = false; } })

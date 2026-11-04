@@ -170,6 +170,54 @@ def d1_sizes(path):
     plt.close(fig)
 
 
+def d1_ranges(path):
+    """Left: the plain ± range and the Wilson range of a 10% accepted rate at four sizes (formula only, no data).
+    Right: the 2022 top five by the Wilson low end, the order the "highest" list uses."""
+    fig, (sizes, ranked) = plt.subplots(1, 2, figsize=(10, 3.2), gridspec_kw={"width_ratios": [1.1, 1], "wspace": 0.5})
+
+    rate, ns = 0.10, [10, 30, 100, FLOOR]
+    for y, n in enumerate(ns):
+        half = Z95 * math.sqrt(rate * (1 - rate) / n)
+        low, high = wilson_bounds(rate * n, n)
+        sizes.plot([100 * (rate - half), 100 * (rate + half)], [y + 0.17] * 2, color=P3, linewidth=3,
+                   solid_capstyle="butt", label="plain ±" if y == 0 else None)
+        sizes.plot([100 * low, 100 * high], [y - 0.17] * 2, color=ENG, linewidth=3, solid_capstyle="butt",
+                   label="Wilson" if y == 0 else None)
+        sizes.scatter([100 * rate] * 2, [y + 0.17, y - 0.17], s=16, color=TEXT, zorder=3)
+        if n == 10:  # the worked example in the text: 1 accepted of 10
+            sizes.annotate(f"{100 * (rate - half):.1f}% to {100 * (rate + half):.1f}%", (100 * (rate + half), y + 0.17),
+                           xytext=(6, -3), textcoords="offset points", color=P3, fontsize=9)
+            sizes.annotate(f"{100 * low:.1f}% to {100 * high:.1f}%", (100 * high, y - 0.17), xytext=(6, -3),
+                           textcoords="offset points", color=ENG, fontsize=9)
+    sizes.axvline(0, color=PINK, linewidth=1)
+    sizes.text(0.6, len(ns) - 0.55, "below 0%: impossible", color=PINK, fontsize=9)
+    sizes.set_yticks(range(len(ns)), [f"{n:,} questions" for n in ns])
+    sizes.set_ylim(-0.6, len(ns) - 0.3)
+    sizes.set_xlim(-15, 55)
+    sizes.grid(axis="y", visible=False)
+    sizes.tick_params(axis="y", length=0, labelcolor=TEXT)
+    sizes.set_title("A 10% accepted rate: 95% range by group size")
+    sizes.set_xlabel("accepted rate (%)")
+    sizes.legend(loc="upper right", fontsize=9)
+
+    tags = ranked_tags().sort_values("a_lower", ascending=False).head(5).iloc[::-1]
+    for y, (_, t) in enumerate(tags.iterrows()):
+        ranked.plot([100 * t["a_lower"], 100 * t["a_upper"]], [y, y], color=ENG, linewidth=3, solid_capstyle="butt")
+        ranked.scatter([100 * t["rate_a"]], [y], s=22, color=TEXT, zorder=3)
+        ranked.scatter([100 * t["a_lower"]], [y], s=60, marker="|", color=PINK, linewidths=2, zorder=4)
+        ranked.annotate(f"{t['rate_a']:.1%}", (100 * t["a_upper"], y), xytext=(6, -3), textcoords="offset points",
+                        color=MUTED, fontsize=9)
+    labels = [f"#{len(tags) - y} {t['tag']} · {t['n_questions']:,}" for y, (_, t) in enumerate(tags.iterrows())]
+    ranked.set_yticks(range(len(tags)), labels)
+    ranked.set_xlim(60, 74)
+    ranked.grid(axis="y", visible=False)
+    ranked.tick_params(axis="y", length=0, labelcolor=TEXT)
+    ranked.set_title("2022 top five: ranked by the low end (pink)")
+    ranked.set_xlabel("accepted rate (%) · beside each tag: its questions")
+    fig.savefig(path)
+    plt.close(fig)
+
+
 def d2_denominator(path):
     """Each ranked tag by A (accepted / all questions) and B (accepted / answered); the two bottom 10 lists marked."""
     tags = ranked_tags()
@@ -445,6 +493,7 @@ def main():
     OUT.mkdir(parents=True, exist_ok=True)
     d1_floor(OUT / "d1-floor.svg")
     d1_sizes(OUT / "d1-sizes.svg")
+    d1_ranges(OUT / "d1-ranges.svg")
     d2_denominator(OUT / "d2-denominator.svg")
     d3_ratio(OUT / "d3-ratio.svg")
     d4_edits(OUT / "d4-edits.svg")
@@ -452,7 +501,7 @@ def main():
     d4_p3_versions(OUT / "d4-p3-versions.svg")
     d5_budget(OUT / "d5-budget.svg")
     d6_labelers(OUT / "d6-labelers.svg")
-    print(f"Wrote nine SVGs to {OUT}")
+    print(f"Wrote ten SVGs to {OUT}")
 
 
 if __name__ == "__main__":

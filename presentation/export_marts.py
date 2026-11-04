@@ -30,6 +30,14 @@ EXPORTS = {
         "creation_year", "tag", "n_questions", "answer_rate", "accepted_rate", "accepted_rate_among_answered",
         "accepted_rate_lower", "accepted_rate_upper", "answers_per_question", "answers_per_question_lower",
         "answers_per_question_upper", "answers_interval_reliable", "tag_exposure",
+        "rank_accepted_top", "rank_accepted_bottom", "rank_answers_top", "rank_answers_bottom",
+    ],
+    # the same rules on unordered tag pairs (tag_a < tag_b), for the "combinations of tags" part of P1
+    "mart_p1_pairs": [
+        "creation_year", "tag_a", "tag_b", "n_questions", "answer_rate", "accepted_rate",
+        "accepted_rate_among_answered", "accepted_rate_lower", "accepted_rate_upper", "answers_per_question",
+        "answers_per_question_lower", "answers_per_question_upper", "tag_exposure",
+        "rank_accepted_top", "rank_accepted_bottom", "rank_answers_top", "rank_answers_bottom",
     ],
     "mart_p2_python_dbt": [
         "tag", "creation_year", "n_questions", "answer_rate", "accepted_rate", "answers_per_question", "tag_exposure",
