@@ -43,7 +43,10 @@ the query text or the user. On a fresh clone it returns that clone's own jobs, n
 **Since this read.** On 2026-11-04 the tag-pair mart was exported for the presentation (P1's combinations): one query,
 0.6 MB processed, 10 MiB billed (BigQuery's minimum per query). The same day, the new unit test for AC-1.10 ran twice
 (once as written, once with a wrong expected value to see it fail): four jobs, 0 bytes billed, since a unit test reads
-only the rows written into it. No total above changes at the GiB they are reported in.
+only the rows written into it. No total above changes at the GiB they are reported in. Later that day, 15 key tests
+(unique and not null on what one row means) were added to the ten models that lacked one, priced first with a dry run
+(6.1 GB) and run once: 15 jobs, 5.7 GiB billed, all passed. Most of it is six views whose test re-runs the view's
+query; the three on the 30-day views (about 2.4 GiB) now run in every default `dbt build`. This read predates them.
 
 How the read was planned and guarded, including the rules for working with an AI coding agent:
 [README, "Running on a free tier"][readme].

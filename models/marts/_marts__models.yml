@@ -310,6 +310,10 @@ models:
 
   - name: mart_p1_rank_flips
     description: Tags and pairs that enter or leave a top / bottom 10 between 2021 and 2022 (AC-1.4). Empty when nothing changes.
+    data_tests:
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns: [grain, group_name, metric]
     columns:
       - name: metric
         data_tests:
