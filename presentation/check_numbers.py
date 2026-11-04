@@ -197,6 +197,16 @@ NUMBERS = {
         int(r["n_questions"]) for r in read_csv("eda/d1_sample_size/output/tag_stats_2022.csv")))),
     "edited-2022": ("eda/d4_edits/output/edit_profile.csv",
                     lambda: pct(int(edits_2022()["n_edited"]) / int(edits_2022()["n_questions"]), 0)),
+    "edit-check-differences": ("eda/d4_edits/output/edit_profile.csv, n_edited - n_last_edit_date over every row",
+                               lambda: num(sum(int(r["n_edited"]) - int(r["n_last_edit_date"])
+                                               for r in read_csv("eda/d4_edits/output/edit_profile.csv")))),
+    "edit-check-edited": ("eda/d4_edits/output/edit_profile.csv, n_edited over every row", lambda: num(sum(
+        int(r["n_edited"]) for r in read_csv("eda/d4_edits/output/edit_profile.csv")))),
+    "questions-in-snapshot": ("tests/assert_snapshot_unchanged.sql, expected posts_questions rows", lambda: num(int(
+        re.search(r"'posts_questions' as source_table, (\d+)",
+                  (ROOT / "tests/assert_snapshot_unchanged.sql").read_text(encoding="utf-8")).group(1)))),
+    "q1-fresh-run-gib": ("TESTING.md, q1.sql row: run as delivered in a fresh sandbox", lambda: re.search(
+        r"\| `q1\.sql` \|.*?\((\d+\.\d+) GiB billed", (ROOT / "TESTING.md").read_text(encoding="utf-8")).group(1)),
     "text-edit-after-answer-2022": ("eda/d4_edits/output/edit_profile.csv", lambda: pct(
         int(edits_2022()["n_text_edit_after_first_answer"]) / int(edits_2022()["n_questions"]), 0)),
     "tag-edit-after-answer-2022": ("eda/d4_edits/output/edit_profile.csv", lambda: pct(
