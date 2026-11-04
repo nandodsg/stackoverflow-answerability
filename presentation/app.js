@@ -42,6 +42,7 @@
     current = i;
     dots.forEach(function (d, k) { d.setAttribute("aria-current", k === i ? "true" : "false"); });
     counterNow.textContent = pad(i + 1);
+    document.documentElement.style.setProperty("--sec-now", getComputedStyle(chapters[i]).getPropertyValue("--sec"));
   }
 
   var ticking = false;
@@ -219,7 +220,7 @@
     if (wiping) return;
     wiping = true;
     wipeLabel.textContent = chapters[i].dataset.wipe || chapters[i].dataset.title;
-    wipe.style.background = getComputedStyle(chapters[i]).getPropertyValue("--sec");
+    wipe.style.background = getComputedStyle(chapters[i]).getPropertyValue("--accent");
     gsap.set(wipe, { display: "flex", clipPath: "inset(0% 100% 0% 0%)" });
     gsap.set(wipeLabel, { opacity: 0, x: -60 });
     gsap.timeline({ onComplete: function () { gsap.set(wipe, { display: "none" }); wiping = false; } })
