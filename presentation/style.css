@@ -215,6 +215,12 @@ h3.sub { font: 600 14px/1 var(--mono); color: var(--c, var(--text)); letter-spac
 /* slide 4: traps with no setting to choose (checked, or stated as a limit) read apart from the decisions */
 .tl.trap { border-top-color: var(--pink); }
 .tl.trap .tl-when { color: var(--pink); }
+/* slide 5: the budget decision, in the cost colour of the architecture's guards, across both columns */
+.tl.cost { border-top-color: var(--text); }
+.tl.cost .tl-when, .tl.cost .more, .eda.cost .tl-when { color: var(--text); }
+.tl.cost .more:hover { border-color: var(--text); }
+.timeline-2 .tl.wide { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; column-gap: 48px; align-content: start; }
+.tl.wide > .tl-when, .tl.wide > h3, .tl.wide > .tl-ev { grid-column: 1 / -1; }
 .tl p { font-size: 16px; line-height: 1.5; }
 .tl .tl-ev { color: var(--muted); margin-top: auto; padding-top: 14px; border-top: 1px solid var(--hairline); }
 .tl .tl-ev:has(.more) { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
@@ -328,7 +334,7 @@ body:has(dialog[open]) { overflow: hidden; }
 
 /* ---------- responsive and accessibility ---------- */
 @media (max-width: 900px) {
-  .cols, .cols.answer, .chips, .timeline, .timeline.timeline-2 { grid-template-columns: 1fr; }
+  .cols, .cols.answer, .chips, .timeline, .timeline.timeline-2, .timeline-2 .tl.wide { grid-template-columns: 1fr; }
   .arch-flow { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 600px) {

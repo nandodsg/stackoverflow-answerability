@@ -1,7 +1,9 @@
-"""Draws the four EDA charts shown in the presentation's decision details (chapter 4), in the page's colours.
+"""Draws the EDA charts shown in the presentation's decision details (slides 4 and 5), in the page's colours.
 
-Reads only the CSVs the EDA scripts cached in eda/*/output, so it never queries BigQuery. Writes one SVG per decision
-to presentation/img/eda/. Run the EDA scripts first on a fresh clone (each README says how).
+Reads only cached CSVs, so it never queries BigQuery: the ones the EDA scripts wrote to eda/*/output (D5's is the
+project's own BigQuery job log), plus the P3 effects mart already exported to presentation/data (D4's
+original-vs-today's-text chart). Writes the SVGs to presentation/img/eda/. Run the EDA scripts first on a fresh clone
+(each README says how).
 
     python presentation/eda_charts.py
 """
@@ -11,6 +13,7 @@ import math
 from pathlib import Path
 
 import matplotlib
+import matplotlib.dates
 import matplotlib.patches
 
 matplotlib.use("Agg")
@@ -215,6 +218,61 @@ def d3_ratio(path):
     plt.close(fig)
 
 
+def d4_edits(path):
+    """All 2022 questions. Left: what gets edited, and whether the first edit came after the first answer.
+    Right: edited vs never-edited questions, answer and accepted rates (why a never-edited filter is biased)."""
+    profile = read(EDA / "d4_edits" / "output" / "edit_profile.csv")
+    row = profile[(profile["segment"] == "all") & (profile["creation_year"] == 2022)].iloc[0]
+    n = row["n_questions"]
+    fig, (bars, rates) = plt.subplots(1, 2, figsize=(10, 2.9), gridspec_kw={"width_ratios": [3, 2]})
+
+    parts = [("first edited after the first answer", P3), ("first edited earlier, or never answered", ENG),
+             ("never edited", HAIRLINE)]
+    for y, kind in [(0, "tag"), (1, "text")]:
+        after = row[f"n_{kind}_edit_after_first_answer"] / n
+        other = row[f"n_{kind}_edit"] / n - after
+        left = 0.0
+        for (name, colour), share in zip(parts, [after, other, 1 - after - other]):
+            bars.barh(y, 100 * share, left=100 * left, height=0.5, color=colour, edgecolor=PANEL, linewidth=2,
+                      label=name if y == 0 else None)
+            centre = 100 * (left + share / 2)
+            if share >= 0.08:
+                bars.text(centre, y, f"{share:.1%}", ha="center", va="center", fontsize=10,
+                          color=CANVAS if colour in (P3, ENG) else TEXT)
+            else:  # too narrow to hold its label: write it just above the segment
+                bars.text(centre, y - 0.3, f"{share:.1%}", ha="center", va="bottom", fontsize=10, color=TEXT)
+            left += share
+    bars.set_yticks([0, 1], ["tags", "title or body"])
+    bars.set_xlim(0, 100)
+    bars.grid(False)
+    bars.tick_params(axis="y", length=0, labelcolor=TEXT)
+    bars.spines["left"].set_visible(False)
+    bars.set_xlabel("% of 2022 questions")
+    bars.set_title("What gets edited, and when")
+    bars.set_ylim(1.5, -0.75)  # room above the tags bar for its outside labels (y axis inverted)
+    bars.legend(loc="upper left", bbox_to_anchor=(0, -0.3), ncol=3, fontsize=9, handlelength=1.2, handleheight=1.2)
+
+    edited = n - row["n_never_edited"]
+    groups = [("answer rate", (row["n_answered"] - row["n_answered_never_edited"]) / edited,
+               row["n_answered_never_edited"] / row["n_never_edited"]),
+              ("accepted rate", (row["n_accepted"] - row["n_accepted_never_edited"]) / edited,
+               row["n_accepted_never_edited"] / row["n_never_edited"])]
+    x = np.arange(len(groups))
+    for offset, index, colour, name in [(-0.18, 1, ENG, "edited"), (0.18, 2, MUTED, "never edited")]:
+        values = [100 * group[index] for group in groups]
+        rates.bar(x + offset, values, width=0.34, color=colour, label=name)
+        for xi, value in zip(x + offset, values):
+            rates.text(xi, value + 1.5, f"{value:.1f}%", ha="center", fontsize=10, color=TEXT)
+    rates.set_xticks(x, [group[0] for group in groups])
+    rates.tick_params(axis="x", length=0, labelcolor=TEXT)
+    rates.set_ylim(0, 80)
+    rates.set_ylabel("% of the group's questions")
+    rates.set_title("Edited questions do better")
+    rates.legend(loc="upper right", fontsize=9)
+    fig.savefig(path)
+    plt.close(fig)
+
+
 def d4_leakage(path):
     """Each ranked tag by accepted rate and tag exposure (tags first edited after the first answer)."""
     tags = ranked_tags().merge(read(EDA / "d4_edits" / "output" / "leakage_by_tag.csv")[["tag", "n_tag_exposed"]],
@@ -228,13 +286,105 @@ def d4_leakage(path):
     ax.scatter(100 * top["rate_a"], 100 * top["exposure"], s=28, color=P1, linewidths=0, label="top 10")
     ax.scatter(100 * bottom["rate_a"], 100 * bottom["exposure"], s=28, color=P3, linewidths=0, label="bottom 10")
     ax.axhline(10, color=MUTED, linewidth=1, linestyle="--")
+    for name, offset in [("webdriverwait", (8, -4)), ("jq", (8, 4))]:
+        tag = tags[tags["tag"] == name].iloc[0]
+        if name == "webdriverwait":  # not in a top / bottom 10: drawn again so the labelled dot stands out
+            ax.scatter([100 * tag["rate_a"]], [100 * tag["exposure"]], s=28, color=TEXT, linewidths=0, zorder=3)
+        ax.annotate(f"{name}: {tag['exposure']:.0%}", (100 * tag["rate_a"], 100 * tag["exposure"]), xytext=offset,
+                    textcoords="offset points", color=TEXT, fontsize=10)
     ax.set_yscale("log")
     ax.set_yticks([0.3, 1, 3, 10, 30, 60])
     ax.set_yticklabels(["0.3%", "1%", "3%", "10%", "30%", "60%"])
-    ax.set_title(f"2022 tags with ≥ {FLOOR} questions: leakage rises with accepted rate (rank correlation {rho:.2f})")
-    ax.set_xlabel("accepted / all questions (%)")
-    ax.set_ylabel("tags edited after the first answer")
+    ax.set_title(f"2022 tags with ≥ {FLOOR} questions: tag exposure rises with accepted rate "
+                 f"(rank correlation {rho:.2f})")
+    ax.set_xlabel("accepted rate (%)")
+    ax.set_ylabel("tag exposure (log scale)")
     ax.legend(loc="lower right", fontsize=9)
+    fig.savefig(path)
+    plt.close(fig)
+
+
+def d4_p3_versions(path):
+    """P3, 2018-2021: each text feature's accepted-rate effect on the text as first posted vs today's text."""
+    effects = pd.read_csv(ROOT / "presentation" / "data" / "mart_p3_feature_effects.csv", comment="#",
+                          keep_default_na=False)
+    effects = effects[(effects["cohort"] == "2018-2021") & effects["version"].isin(["original", "current"])]
+    wide = effects.pivot_table(index=["feature", "bucket"], columns="version", values="accepted_rate_effect")
+    # Features not read from the text (asker, posting time) are identical in both versions by construction.
+    wide = wide[(wide["original"] - wide["current"]).abs() > 1e-9].sort_values("original")
+    labels = [f"{feature.replace('_', ' ')}: {bucket.split(': ', 1)[1]}" for feature, bucket in wide.index]
+    y = np.arange(len(wide))
+
+    fig, ax = plt.subplots(figsize=(10, 0.27 * len(wide) + 1.2))
+    ax.hlines(y, 100 * wide["original"], 100 * wide["current"], color=MUTED, linewidth=1.5)
+    ax.scatter(100 * wide["original"], y, s=30, color=P3, zorder=3, label="text as first posted (the headline)")
+    ax.scatter(100 * wide["current"], y, s=30, color=TEXT, zorder=3, label="today's text")
+    ax.axvline(0, color=MUTED, linewidth=1)
+    ax.set_yticks(y, labels, fontsize=9)
+    ax.tick_params(axis="y", length=0, labelcolor=TEXT)
+    ax.grid(axis="y", visible=False)
+    ax.set_xlabel("accepted-rate effect against the reference bucket (points)")
+    ax.set_title("P3, 2018–2021: each text feature's effect barely moves between the original and today's text")
+    ax.legend(loc="lower right", fontsize=9)
+    fig.savefig(path)
+    plt.close(fig)
+
+
+def d5_budget(path):
+    """Every BigQuery query job of the project. Left: GiB billed so far in each month against the free sandbox's
+    1 TB a month. Right: what the GiB went to."""
+    jobs = read(EDA / "d5_budget" / "output" / "jobs.csv")
+    jobs["time"] = pd.to_datetime(jobs["creation_time"], utc=True, format="ISO8601")
+    jobs["gib"] = jobs["bytes_billed"].astype(float) / 1024**3
+    jobs = jobs.sort_values("time")
+    jobs["month"] = jobs["time"].dt.strftime("%Y-%m")
+    jobs["running"] = jobs.groupby("month")["gib"].cumsum()
+    text_node = jobs["dbt_node"].str.contains("int_post_history_scan|int_question_body_scan")
+    full = text_node & (jobs["dbt_target"] == "full_scan")
+    kinds = [
+        ("post_history.text, full reads", jobs.loc[full & jobs["dbt_node"].str.contains("post_history"), "gib"]),
+        ("posts_questions.body, full read", jobs.loc[full & jobs["dbt_node"].str.contains("body"), "gib"]),
+        ("2% samples of both", jobs.loc[text_node & ~full, "gib"]),
+        ("rest of dbt (dev target)", jobs.loc[~text_node & (jobs["from_dbt"].astype(str) == "True"), "gib"]),
+        ("EDA, exports and checks", jobs.loc[jobs["from_dbt"].astype(str) != "True", "gib"]),
+    ]
+    fig, (line, bars) = plt.subplots(1, 2, figsize=(10, 3.4), gridspec_kw={"width_ratios": [3, 2], "wspace": 0.75})
+
+    for month, group in jobs.groupby("month"):
+        start = group["time"].min().floor("D") if month != "2026-11" else pd.Timestamp("2026-11-01", tz="UTC")
+        times = [start] + list(group["time"])
+        line.step(times, [0] + list(group["running"]), where="post", color=TEXT, linewidth=1.8)
+        end = group["running"].iloc[-1]
+        name = group["time"].iloc[0].strftime("%B")
+        line.annotate(f"{name}: {end:,.0f} GiB ({end / 1024:.0%})", (group["time"].iloc[-1], end), xytext=(6, 4),
+                      textcoords="offset points", color=TEXT, fontsize=10)
+    line.axhline(1024, color=MUTED, linewidth=1, linestyle="--")
+    line.text(jobs["time"].min(), 1024, "free quota: 1 TB a month", va="bottom", color=MUTED, fontsize=10)
+    reads = jobs[full]  # three full reads within 12 minutes on Oct 31: one label for the jump
+    line.annotate("Oct 31: the text reads\n106 + 35 + 106 GiB", (reads["time"].iloc[0], reads["running"].iloc[1]),
+                  xytext=(-8, 0), textcoords="offset points", ha="right", va="center", color=TEXT, fontsize=9)
+    line.set_ylim(0, 1150)
+    # Room on the right for the month labels, so they stay inside this panel; ticks only on the days with jobs.
+    line.set_xlim(pd.Timestamp("2026-10-29", tz="UTC"), pd.Timestamp("2026-11-03 06:00", tz="UTC"))
+    line.set_xticks(pd.date_range("2026-10-29", "2026-11-01", freq="D", tz="UTC"))
+    line.xaxis.set_major_formatter(matplotlib.dates.DateFormatter("%b %d"))
+    line.set_ylabel("GiB billed so far this month")
+    line.set_title("Billed against the free monthly quota")
+
+    y = np.arange(len(kinds))
+    values = [series.sum() for _, series in kinds]
+    bars.barh(y, values, height=0.6, color=[TEXT, TEXT, PINK, ENG, MUTED])
+    for yi, (name, series), value in zip(y, kinds, values):
+        jobs_word = "job" if len(series) == 1 else "jobs"
+        bars.text(value + 6, yi, f"{value:,.0f} GiB · {len(series)} {jobs_word}", va="center", fontsize=10,
+                  color=TEXT)
+    bars.set_yticks(y, [name for name, _ in kinds], fontsize=9)
+    bars.tick_params(axis="y", length=0, labelcolor=TEXT)
+    bars.invert_yaxis()
+    bars.set_xlim(0, 330)
+    bars.grid(axis="y", visible=False)
+    bars.set_xlabel("GiB billed")
+    bars.set_title(f"What the {jobs['gib'].sum():,.0f} GiB went to")
     fig.savefig(path)
     plt.close(fig)
 
@@ -245,8 +395,11 @@ def main():
     d1_sizes(OUT / "d1-sizes.svg")
     d2_denominator(OUT / "d2-denominator.svg")
     d3_ratio(OUT / "d3-ratio.svg")
+    d4_edits(OUT / "d4-edits.svg")
     d4_leakage(OUT / "d4-leakage.svg")
-    print(f"Wrote five SVGs to {OUT}")
+    d4_p3_versions(OUT / "d4-p3-versions.svg")
+    d5_budget(OUT / "d5-budget.svg")
+    print(f"Wrote eight SVGs to {OUT}")
 
 
 if __name__ == "__main__":

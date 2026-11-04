@@ -82,7 +82,7 @@ metadata columns are read; `body` and `post_history.text` never are.
   edited (13.5% tags, 40% title/body; 9% had their title/body first edited after the first answer). Edited questions do
   better (2022 accepted rate 34% vs 28% never edited), so filtering to never-edited questions is biased and is used
   only as a robustness check. `post_history` keeps every version (types 1/2/3 = original title/body/tags); reading its
-  text scans ~110 GB once. Rules: P1/P2 use current tags (the prompt's "are tagged"), with a check that drops
+  text takes one 106 GiB read. Rules: P1/P2 use current tags (the prompt's "are tagged"), with a check that drops
   tag-edited questions; P3 features come from the original title/body. EDA: [`eda/d4_edits`](../eda/d4_edits/README.md).
 - **Leakage**: an edit made after a question was answered can be caused by the answer, so a tag or a text feature
   read from the current version may be an effect of the outcome rather than a quality of the question. Measured by
@@ -107,6 +107,9 @@ after the question's first answer:
   exposure is partly tied to answer rate; the README says so.
 - Exposure on current tags misses questions that **left** a group after the answer (e.g. posted as `python`,
   retagged `python|pandas`), which is why the impact layer uses the original tags.
+- Exposure is a lower bound: it looks at the **first** edit of the field, so a question edited before and again after
+  its first answer counts as not exposed. The impact layer compares the original version with the current one, so it
+  catches those questions.
 
 **Impact** (one check per prompt). The headline recomputed on the original version from `post_history` (type 3 for
 tags, types 1/2 for title/body, read in the same one-time text scan as AC-3.4) and compared with the current version.

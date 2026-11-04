@@ -1,0 +1,139 @@
+"""D5 EDA: what this project actually billed in BigQuery, against the free sandbox's 1 TB a month.
+
+Runs sql/jobs.sql against BigQuery's own job log (cached as output/jobs.csv), then writes output/summary.md: bytes
+billed per month and per kind of work (the two one-time text reads, the rest of dbt by target, everything else), the
+largest jobs, and the running total day by day. The query is dry-run first, so the bytes it scans are printed before it
+runs, and it stops above --allow-gb.
+
+    python eda/d5_budget/run_eda.py              # reuses the cached CSV when present
+    python eda/d5_budget/run_eda.py --refresh    # requeries BigQuery
+"""
+
+import argparse
+import math
+import sys
+from pathlib import Path
+
+import pandas as pd
+from google.cloud import bigquery
+
+PROJECT = "so-answerability"
+HERE = Path(__file__).resolve().parent
+SQL_DIR = HERE / "sql"
+OUT_DIR = HERE / "output"
+GIB = 1024**3
+FREE_TIB_A_MONTH = 1024  # GiB: the sandbox's free query quota, 1 TB a month
+
+
+def query(client, name, refresh, max_gb):
+    """Run sql/<name>.sql, caching the result as a CSV."""
+    path = OUT_DIR / f"{name}.csv"
+    if path.exists() and not refresh:
+        return pd.read_csv(path, keep_default_na=False)
+
+    sql = (SQL_DIR / f"{name}.sql").read_text(encoding="utf-8")
+    dry_run = client.query(sql, job_config=bigquery.QueryJobConfig(dry_run=True, use_query_cache=False))
+    gb = dry_run.total_bytes_processed / 1e9
+    print(f"{name}: scans {gb:.2f} GB")
+    if gb > max_gb:
+        sys.exit(f"{name}: stopped, {gb:.2f} GB is over the {max_gb:g} GB limit; rerun with --allow-gb {math.ceil(gb)}")
+    max_bytes = int(max_gb * 1e9)  # BigQuery itself refuses the real run past this
+
+    job_config = bigquery.QueryJobConfig(maximum_bytes_billed=max_bytes)
+    df = client.query(sql, job_config=job_config).to_dataframe(create_bqstorage_client=False)
+    df.to_csv(path, index=False)
+    return pd.read_csv(path, keep_default_na=False)  # same types as a cached run
+
+
+def kind(row):
+    """What a job was for: the two one-time text reads, the rest of dbt by target, everything else."""
+    node = row["dbt_node"]
+    if "int_post_history_scan" in node:
+        return "text read: post_history.text"
+    if "int_question_body_scan" in node:
+        return "text read: posts_questions.body"
+    if row["from_dbt"]:
+        return f"dbt, {row['dbt_target'] or 'unknown'} target"
+    return "EDA, exports and checks"
+
+
+def prepare(jobs):
+    df = jobs.copy()
+    for col in ["cache_hit", "from_dbt", "reads_post_history", "reads_posts_questions"]:
+        df[col] = df[col].astype(str).str.lower() == "true"
+    df["creation_time"] = pd.to_datetime(df["creation_time"], utc=True, format="ISO8601")
+    df["month"] = df["creation_time"].dt.strftime("%Y-%m")
+    df["day"] = df["creation_time"].dt.strftime("%Y-%m-%d")
+    df["gib_billed"] = df["bytes_billed"].astype(float) / GIB
+    df["kind"] = df.apply(kind, axis=1)
+    return df
+
+
+# --- Markdown ------------------------------------------------------------------------------------------------
+
+def fmt(value):
+    if isinstance(value, float):
+        return f"{value:,.2f}"
+    if isinstance(value, int):
+        return f"{value:,}"
+    return str(value)
+
+
+def md_table(df):
+    lines = ["| " + " | ".join(df.columns) + " |", "|" + "---|" * len(df.columns)]
+    lines += ["| " + " | ".join(fmt(v) for v in row) + " |" for row in df.itertuples(index=False)]
+    return "\n".join(lines)
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument("--refresh", action="store_true", help="requery BigQuery instead of using the cached CSV")
+    parser.add_argument("--allow-gb", type=float, default=1, help="largest dry-run estimate a query may scan, in GB")
+    args = parser.parse_args()
+
+    OUT_DIR.mkdir(exist_ok=True)
+    client = bigquery.Client(project=PROJECT)
+    df = prepare(query(client, "jobs", args.refresh, args.allow_gb))
+
+    def totals(keys):
+        out = df.groupby(keys).agg(jobs=("job_id", "size"), gib_billed=("gib_billed", "sum")).reset_index()
+        out["jobs"] = out["jobs"].astype(int)
+        return out
+
+    by_month = totals(["month"])
+    by_month["share_of_free_month"] = by_month["gib_billed"] / FREE_TIB_A_MONTH
+    by_kind = totals(["month", "kind"]).sort_values(["month", "gib_billed"], ascending=[True, False])
+    by_day = totals(["day"])
+    by_day["running_gib"] = by_day["gib_billed"].cumsum()
+    largest = df.sort_values("gib_billed", ascending=False).head(15)
+    largest = largest.assign(created=largest["creation_time"].dt.strftime("%Y-%m-%d %H:%M"))
+    text_reads = df[df["kind"].str.startswith("text read")]
+    text_reads = text_reads.assign(created=text_reads["creation_time"].dt.strftime("%Y-%m-%d %H:%M"))
+
+    summary = [
+        "# D5 EDA — what this project billed in BigQuery",
+        "Generated by `run_eda.py`; do not edit by hand. Source: BigQuery's job log for the project "
+        "(`INFORMATION_SCHEMA.JOBS_BY_PROJECT`, query jobs since 2026-10-01). GiB = 1024³ bytes. The free sandbox "
+        f"allows 1 TB of queries a month ({FREE_TIB_A_MONTH:,} GiB); dry runs bill nothing and are not in the log.",
+        f"Jobs: {len(df):,}, of which {int(df['cache_hit'].sum()):,} served from cache (billed 0). "
+        f"Billed in all: {df['gib_billed'].sum():,.2f} GiB.",
+        "## Per month",
+        md_table(by_month),
+        "## Per month and kind of work",
+        "\"Text read\" = the two one-time dbt models that read a text column. dbt names its target in every query.",
+        md_table(by_kind),
+        "## Running total by day",
+        md_table(by_day),
+        "## Every run of the two text-read models",
+        "The small runs are the 2% samples that tested the text rules before the full reads (a sample reads whole "
+        "storage blocks, so it bills a share of the column).",
+        md_table(text_reads[["created", "kind", "dbt_target", "state", "gib_billed"]]),
+        "## The 15 largest jobs",
+        md_table(largest[["created", "kind", "dbt_node", "statement_type", "gib_billed"]]),
+    ]
+    (OUT_DIR / "summary.md").write_text("\n\n".join(summary) + "\n", encoding="utf-8")
+    print(f"wrote {OUT_DIR / 'summary.md'}")
+
+
+if __name__ == "__main__":
+    main()

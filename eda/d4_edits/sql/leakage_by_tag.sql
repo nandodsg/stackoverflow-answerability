@@ -5,7 +5,7 @@
 -- been changed because of the answer. Tag exposure matters for P1/P2 (group membership), text exposure for P3
 -- (title/body features).
 -- post_history types: 4/5/6 = title/body/tags edited, 7/8/9 = title/body/tags rolled back.
--- Reads only ids, types and dates: the post_history text column (~110 GB) is never scanned.
+-- Reads only ids, types and dates: the post_history text column (106 GiB) is never scanned.
 
 with questions as (
     select q.id, q.tags

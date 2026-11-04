@@ -1,9 +1,11 @@
 """D4 EDA: questions are edited after posting, and the snapshot keeps only the latest title, body and tags.
 
-Runs sql/edit_profile.sql against BigQuery (cached as a CSV in ./output), then writes output/summary.md: how many
-questions were edited, what was edited (tags vs title/body), by whom, whether after the first answer, and how answer and
-accepted rates differ between edited and never-edited questions. The query is dry-run first, so the bytes it scans are
-printed before it runs.
+Runs sql/edit_profile.sql and sql/leakage_by_tag.sql against BigQuery (each cached as a CSV in ./output), then writes
+output/summary.md: how many questions were edited, what was edited (tags vs title/body), by whom, whether after the first
+answer, how answer and accepted rates differ between edited and never-edited questions, and each ranked 2022 tag's
+exposure (tags or title/body first edited after the first answer) next to its D1 accepted rate
+(../d1_sample_size/output/tag_stats_2022.csv). Each query is dry-run first, so the bytes it scans are printed before it
+runs, and it stops above --allow-gb.
 
     python eda/d4_edits/run_eda.py              # reuses the cached CSV when present
     python eda/d4_edits/run_eda.py --refresh    # requeries BigQuery
@@ -143,7 +145,7 @@ def main():
     rank_corr = lambda a, b: ranked[a].rank().corr(ranked[b].rank())
     ranked_cols = ["tag", "n_questions", "answer_rate", "accepted_rate", "share_tag_exposed", "share_text_exposed"]
     summary += [
-        f"## Leakage exposure by tag (2022, {len(tags):,} tags with ≥ 385 questions)",
+        f"## Exposure by tag (2022, {len(tags):,} tags with ≥ 385 questions)",
         "\"Exposed\" = the first edit of that kind came after the first answer. Pooled over question–tag links: "
         f"tags {pooled['n_tag_exposed']:.3f}, text {pooled['n_text_exposed']:.3f}.",
         md_table(quantiles.reset_index().rename(columns={"index": "quantile"})),
@@ -151,7 +153,7 @@ def main():
         md_table(by_tag.head(10)[["tag", "n_questions", "share_tag_exposed", "share_text_exposed"]]),
         "Lowest tag exposure:",
         md_table(by_tag.tail(10)[["tag", "n_questions", "share_tag_exposed", "share_text_exposed"]]),
-        "## Leakage exposure vs the P1 accepted-rate ranking (2022, D1 rule)",
+        "## Exposure vs the P1 accepted-rate ranking (2022, D1 rule)",
         "Accepted rates from the D1 EDA (`../d1_sample_size/output/tag_stats_2022.csv`), ranked by the Wilson bound. "
         "Rank correlation with accepted rate: tag exposure "
         f"{rank_corr('share_tag_exposed', 'accepted_rate'):.2f}, tag exposure among answered questions "

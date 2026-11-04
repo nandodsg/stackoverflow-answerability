@@ -4,7 +4,7 @@
 -- Grain: one row per (segment, creation year). Segments: 'python-only' and 'dbt-only' (tags exactly 'python' / 'dbt',
 -- 2013-2022) and 'all' (every question created in 2022). 2022 is partial (data ends 2022-09-25).
 -- post_history types: 4/5/6 = title/body/tags edited, 7/8/9 = title/body/tags rolled back.
--- Reads only ids, types, dates and user ids: the post_history text column (~110 GB) is never scanned.
+-- Reads only ids, types, dates and user ids: the post_history text column (106 GiB) is never scanned.
 
 with questions as (
     select

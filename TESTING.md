@@ -25,7 +25,8 @@ python tests/semantic/check_semantic_layer.py
 ```
 
 The text scans (`dbt run --target full_scan --select tag:full_scan`) read ~145 GB and are never part of the default
-build. See [`PLAN.md`](PLAN.md) for the cost guardrails.
+build. The cost guardrails, and what the project billed: [README, "Running on a free
+tier"](README.md#running-on-a-free-tier).
 
 ## Shared definitions ([`specs/000`](specs/000-shared-definitions.md))
 

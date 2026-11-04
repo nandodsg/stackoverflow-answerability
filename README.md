@@ -373,7 +373,8 @@ The single-tag answer above holds on the original tags; the pair list is softer 
 - **Survivorship.** Deleted questions are not in the data, and Stack Overflow deletes mostly unanswered, low-score ones.
   So every rate here is biased upward, probably more for the tags at the bottom, which means the real gap between top
   and bottom is likely a bit wider than shown.
-- **Current tags**, with the exposure column and the original-tags check above as the measure of the edit problem.
+- **Current tags**, because the prompt asks how a question is tagged and today's tags are what a reader sees; the
+  exposure column and the original-tags check above measure the edit problem.
 - **Pairs only.** Triples and exact tag sets were left out: at a 385-question floor very few of them qualify.
 
 Spec, acceptance criteria and their tests: [`specs/001`](specs/001-q1-tag-answerability.md),
@@ -436,7 +437,7 @@ an interval.
 | 2021 | 58 | 1.14 (0.94–1.34) | -0.25 (-18%) | 25.9% (16.3–38.4) | -16.1 | 84.5% | 30.6% | 0.0% |
 | 2022 (to 09-25) | 79 | 1.06 (0.91–1.21) | -0.07 (-7%) | 27.8% (19.2–38.6) | +2.0 | 84.8% | 32.8% | 0.0% |
 
-For the record, Q÷A = 1 / this gives dbt-only 0.72, 0.88 and 0.94 questions per answer (2020 to 2022).
+For the record, questions per answer (1 ÷ answers per question) is 0.72, 0.88 and 0.94 for dbt-only (2020 to 2022).
 
 ### How sure can we be?
 
@@ -525,7 +526,8 @@ the asker. The judged qualities move both (a worked example: +9.4 answered, +13.
 - **Original text.** Every text feature is measured on the version the asker posted, from `post_history`, not on today's
   text. Between 8.9% (2022) and 16.7% (2018) of questions had their title or body first edited *after* the first answer
   arrived, so today's text can be partly the answer's doing (see "Do edits change it?"). Getting the original text
-  meant one read of `post_history.text`, 106 GiB, done once into a stored table (see the architecture section below).
+  meant one read of `post_history.text`, 106 GiB, done once into a stored table (see
+  [Running on a free tier](#running-on-a-free-tier)).
 - **Only what exists at posting time.** Score, views, comments, today's reputation and later edits all happen after the
   question, partly *because* of the answer, so they are out.
 - **Fixed buckets and a reference.** Each feature is cut into fixed buckets (the full list is in
@@ -793,9 +795,10 @@ acceptance criterion in [`specs/`](specs/); the full map is in [`TESTING.md`](TE
 
 - **Sources and staging.** The four tables come in as dbt sources and get one staging view each. Views store nothing
   (the BigQuery sandbox has 10 GB of storage), and they leave out `posts_questions.body` and `post_history.text`, the
-  two columns that cost real money: reading them scans 36 GB and 109 GB. Source freshness makes no sense on a snapshot
-  frozen in 2022, so a test warns if its row counts or newest dates ever change instead, because that would make every
-  number in this README stale.
+  two columns that cost real money: reading them scans 36 GB and 109 GB (see
+  [Running on a free tier](#running-on-a-free-tier)). Source freshness makes no sense on a snapshot frozen in 2022, so
+  a test warns if its row counts or newest dates ever change instead, because that would make every number in this
+  README stale.
 - **The hub.** `int_questions` holds one row per question with what the three prompts share (answer count, accepted
   answer, tags), stored as a table partitioned by creation year: a 2022 query reads 0.05 GB instead of 0.84. Tags,
   tag pairs, the 30-day window and the tag exposure are thin models on top of it.
@@ -804,7 +807,8 @@ acceptance criterion in [`specs/`](specs/); the full map is in [`TESTING.md`](TE
   features and a 5% sample of the raw text, and are tagged so the default `dbt build` never runs them. They run only on
   the `full_scan` target, capped at 120 GiB per query. Everything else runs on the `dev` target, capped at 20 GiB, so
   an accidental read of a text column fails before it reads a byte. And in case someone tries anyway, a test reads the
-  project graph and fails if any other model touches the source text tables.
+  project graph and fails if any other model touches the source text tables. Why they are shaped this way, and what
+  they billed: [Running on a free tier](#running-on-a-free-tier).
 - **Original versions and leakage.** The scans also keep the tags as the asker first posted them. P1 and P2 are
   rebuilt on those tags, and `warn` tests list every result that moves (P1: 46 tags and 65 pairs; P2: 3 rows). They
   don't fail the build; they feed the "Do tag edits change it?" part of each answer. Exposure, the share of a group's
@@ -822,17 +826,73 @@ acceptance criterion in [`specs/`](specs/); the full map is in [`TESTING.md`](TE
 
 How to build and test it, step by step: [`TESTING.md`](TESTING.md#how-to-run).
 
+## Running on a free tier
+
+The whole project ran in BigQuery's free sandbox: 1 TB of queries a month and 10 GB of storage, no billing. Past the
+quota, queries stop until the next month. Most queries here read 1–7 GB of metadata. Two columns are different:
+`post_history.text` (109 GB) and `posts_questions.body` (36 GB). BigQuery bills every column a query touches, in full,
+and these tables have no partition, so no `WHERE` clause makes them cheaper: keeping only the three revision kinds D4
+needs still reads all of `post_history.text`. One read is about a tenth of the month. This is decision D5 in the
+[decisions log](PLAN.md#decisions-log).
+
+**How the read was planned.**
+
+1. **Priced first.** A dry run is free and returns what a query would bill; both columns were priced before anything
+   ran.
+2. **Proved worth it on metadata.** D4's two EDA queries (6.9 + 5.2 GB, about a tenth of the read) showed that edits
+   are common, that edited questions behave differently, and that they sit where P1's headline is
+   ([`eda/d4_edits`](eda/d4_edits/README.md)).
+3. **Designed once, in the spec.** The acceptance criteria say the text is read once and its size is stated (AC-3.2,
+   AC-3.4 in [`specs/003`](specs/003-q3-post-qualities.md#feature-table-decided-2026-10-30)). The stored table keeps
+   everything later steps need: the text features, the original titles and tags (P1 and P2 need them too) and a 5%
+   sample of the raw text, about 3 GB of the 10 GB of storage. The body is a separate read: together they would bill
+   about 145 GB, over the cap.
+4. **Tested cheap.** 2% samples of both models (8 GiB in all) found two rule bugs before the full reads.
+5. **Read on purpose.** On 2026-10-31, on the `full_scan` target: `post_history.text` (106 GiB), `posts_questions.body`
+   (35 GiB), and `post_history.text` again after a question-by-question comparison of the stored texts found three
+   more rule bugs.
+
+**What it billed.** BigQuery's own job log ([`eda/d5_budget`](eda/d5_budget/README.md)) shows 685 query jobs and
+511 GiB billed in all: 460 GiB in October (45% of the month) and 50 GiB in November (5%). The full text reads are
+247 GiB of it; the `full_scan` target ran those three queries and nothing else. The bill was US$ 0; at the on-demand
+list price (US$ 6.25 per TiB) it would have been about US$ 3.
+
+**Working with an AI coding agent.** The code was written with Claude Code as a pair programmer, so the limits had to
+hold without a person reading every query first. They sit in layers, from the spec to the shell:
+
+- **Spec first.** The cost rules are acceptance criteria, written before any SQL, and
+  [`assert_text_columns_read_once`](tests/assert_text_columns_read_once.sql) checks them on dbt's project graph without
+  reading a table: a new model that reads a text column fails the build before a byte is billed.
+- **Caps BigQuery enforces.** `maximum_bytes_billed` per dbt target ([`profiles.example.yml`](profiles.example.yml):
+  `dev` 20 GiB, `full_scan` 120 GiB per query), so BigQuery refuses an oversized query whoever wrote it; the default
+  build skips the scan models ([`selectors.yml`](selectors.yml)); every EDA script dry-runs and stops over 10 GB unless
+  run with `--allow-gb`; the mart export caps each query at 1 GiB; CI runs with no credentials.
+- **A gate in the agent's shell.** A local hook (machine-specific, so not in the repo) checks every shell command
+  before the agent runs it: it dry-runs a `bq query` and asks above 10 GB, always asks before a dbt run, an
+  `mf query`, an EDA run with `--allow-gb` or inline Python that touches BigQuery, and asks whenever it can't
+  estimate. Only a person can answer. All three full reads were approved there, one at a time. The hook was tested
+  with a 13-check script, including prompts declined in a live agent session.
+- **A hook, not an instruction.** An instruction or a skill is advice an agent can misread or skip; a hook runs before
+  every command, so it holds when the agent gets it wrong. The instructions still carry the why:
+  [`AGENTS.md`](AGENTS.md#bigquery-cost-rules) gives any agent on a clone the same rules (dry-run first, keep the
+  default build, never read the text columns outside the two scan models).
+- **The same rules for language-model spend.** [`labels/label_questions.py`](labels/label_questions.py) estimates the
+  cost for free before a paid run, refuses to run without `--max-usd` and stops at that cap; no run was allowed more
+  than US$ 10. Labeling the whole 5% sample would have cost US$ 400–550, so 30,000 questions were drawn from it.
+
+**What it costs a reviewer.** `dbt build` stays on the `dev` target, where no query has billed more than 3.9 GiB;
+`queries/q1.sql` bills about 9 GB and `q2.sql` about 7 GB. Rebuilding P3 from scratch pays the two text reads once
+(141 GiB), and again after 60 days, when sandbox tables expire.
+
 ## How this was built
 
 I wrote the specs first and built the rest with Claude Code as a pair programmer, which is why every commit carries a
 co-author line. The choices are mine, and the [decisions log](PLAN.md#decisions-log) shows each one next to the EDA that
-backed it: D3 (answers per question as the headline) went against the AI's recommendation, for readability and one
-metric shared by P1 and P2, and the leakage KPI was my idea, born from a simple worry ("what if the tag came *after*
-the answer?"). The language-model calls of P3 cost about US$ 10.65 in all, logged call by call in
+backed it. The language-model calls of P3 cost about US$ 10.65 in all, logged call by call in
 [`labels/spend_log.csv`](labels/spend_log.csv): US$ 3.86 on Anthropic (out of US$ 100 of promotional credits),
 US$ 2.96 on the Vercel AI Gateway and US$ 3.83 on TypeSafe Jev (worked out from the logged tokens, because each Jev call
-rounds to almost nothing in the log). BigQuery ran in the free sandbox, behind the byte caps
-described above.
+rounds to almost nothing in the log). BigQuery ran in the free sandbox and billed 511 GiB in all, under half of one
+month's free quota ([Running on a free tier](#running-on-a-free-tier)).
 
 ## How this repo is organized
 

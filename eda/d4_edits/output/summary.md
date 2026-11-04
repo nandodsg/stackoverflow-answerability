@@ -44,7 +44,7 @@ Questions counted as edited by post_history minus those with a last_edit_date, s
 | python-only | 2021 | 15,811 | 0.816 | 0.875 | 0.427 | 0.433 | 0.430 |
 | python-only | 2022 | 12,809 | 0.682 | 0.784 | 0.344 | 0.364 | 0.354 |
 
-## Leakage exposure by tag (2022, 1,162 tags with ≥ 385 questions)
+## Exposure by tag (2022, 1,162 tags with ≥ 385 questions)
 
 "Exposed" = the first edit of that kind came after the first answer. Pooled over question–tag links: tags 0.050, text 0.095.
 
@@ -88,7 +88,7 @@ Lowest tag exposure:
 | cordova | 703 | 0.003 | 0.034 |
 | tableau-desktop | 404 | 0.002 | 0.032 |
 
-## Leakage exposure vs the P1 accepted-rate ranking (2022, D1 rule)
+## Exposure vs the P1 accepted-rate ranking (2022, D1 rule)
 
 Accepted rates from the D1 EDA (`../d1_sample_size/output/tag_stats_2022.csv`), ranked by the Wilson bound. Rank correlation with accepted rate: tag exposure 0.67, tag exposure among answered questions 0.49 (unanswered questions cannot be edited after an answer), text exposure 0.83.
 

@@ -134,6 +134,10 @@
   document.querySelectorAll("dialog.eda").forEach(function (dialog) {
     dialog.querySelector(".eda-close").addEventListener("click", function () { dialog.close(); });
     dialog.addEventListener("click", function (e) { if (e.target === dialog) dialog.close(); });
+    // A link to another slide (D4 → D5) closes the dialog first, so the page can scroll there.
+    dialog.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener("click", function () { dialog.close(); });
+    });
   });
 
   /* ---------- motion layer ---------- */
