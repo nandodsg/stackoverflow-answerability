@@ -326,6 +326,9 @@ body:has(dialog[open]) { overflow: hidden; }
 .ac-spec { margin: 0; color: var(--muted); }
 .ac-spec + .ac-list { margin-top: 10px; }
 .ac-list + .ac-spec { margin-top: 14px; }
+/* why the spec exists, between its links line and its criteria */
+.ac-intro { margin: 8px 0 0; }
+.ac-intro + .ac-list { margin-top: 12px; }
 .ac-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
 .ac-list li { display: grid; grid-template-columns: 4.5rem 1fr; column-gap: 12px; }
 .ac-id { grid-row: span 2; font: 600 13px/1.85 var(--mono); color: var(--eng); }

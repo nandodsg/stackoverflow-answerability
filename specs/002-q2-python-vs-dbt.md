@@ -1,6 +1,7 @@
 # 002 — python-only vs dbt-only, year over year (prompt 2)
 
-Status: **draft**
+Status: **implemented**. Decisions D2, D3 and D4 applied; each acceptance criterion is mapped to its test in
+[TESTING.md](../TESTING.md#prompt-2-specs002).
 
 > For posts which are tagged with only 'python' or 'dbt', what is the year over year change of question-to-answer ratio
 > for the last 10 years? How about the rate of approved answers on questions for the same time period? How do posts

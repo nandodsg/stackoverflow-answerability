@@ -442,7 +442,7 @@ For the record, questions per answer (1 ÷ answers per question) is 0.72, 0.88 a
 ### How sure can we be?
 
 - **Censoring explains most of the 2022 drop.** Answers per question = answer rate × answers per answered question.
-  From 2021 to 2022 the answer rate fell from 84.8% to 73.5% while answers per *answered* question barely moved (1.80 →
+  From 2021 to 2022 the answer rate fell from 84.8% to 73.5% while answers per *answered* question barely moved (1.79 →
   1.71): about **three quarters** of the drop is questions that had not been answered yet when the data stops. Same
   thing on acceptance: accepted rate fell 7.6 points, accepted among answered only 2.6 (50.7% → 48.1%).
   ([`eda/d3_ratio`](eda/d3_ratio/README.md), [`eda/d2_denominator`](eda/d2_denominator/README.md))

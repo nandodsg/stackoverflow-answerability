@@ -34,3 +34,5 @@ jobs:
         run: python -m compileall -q labels eda queries tests presentation
       - name: Presentation data files and export script
         run: python presentation/check_data.py
+      - name: Presentation headline numbers equal their sources (AC-0.11; reads the manifest from dbt parse)
+        run: python presentation/check_numbers.py
