@@ -11,8 +11,8 @@ listed, so a number typed by hand shows up for review. It never fails the run.
 Sources: the exported marts (presentation/data/), the EDA caches (eda/*/output/), the BigQuery job log
 (eda/d5_budget/output/jobs.csv), the labeling spend (eda/d6_labelers/output/, built from labels/spend_log.csv), the
 seed of model labels, the dbt profile template, the specs and TESTING.md, and dbt's manifest. The manifest comes from
-`dbt parse`, which needs no warehouse connection: run it first. Slides `#c7` (P2) and `#c8` (P3) and their dialogs
-are left out until their numbers are tagged.
+`dbt parse`, which needs no warehouse connection: run it first. Slide `#c8` (P3) and its dialog are left out until
+their numbers are tagged.
 
 Run: dbt parse && python presentation/check_numbers.py
 """
@@ -28,7 +28,7 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 PAGE = ROOT / "presentation" / "index.html"
-EXCLUDED = {"c7", "c8", "know-p2", "know-p3"}  # P2 / P3 slides and their dialogs: not tagged yet
+EXCLUDED = {"c8", "know-p3"}  # the P3 slide and its dialog: not tagged yet
 GiB = 2**30
 
 
@@ -107,7 +107,7 @@ def billed(pred=lambda j: True):
 
 
 def scan_read(node):
-    """GiB billed by one read of a full-scan model (every run of it bills the same)."""
+    """GiB billed by one build of a model (every run of it bills the same)."""
     return max(int(j["bytes_billed"]) for j in jobs() if j["dbt_node"] == f"model.so_answerability.{node}") / GiB
 
 
@@ -230,6 +230,49 @@ NUMBERS = {
     "p1-bottom1-answers": ("mart_p1_tags.csv, bottom rank 1 by answers per question", lambda: "{tag} {v}".format(
         tag=ranked(p1_tags_2022(), "rank_answers_bottom", 1)[0]["tag"],
         v=num(ranked(p1_tags_2022(), "rank_answers_bottom", 1)[0]["answers_per_question"], 2))),
+    # slide 11, P2, and its dialog
+    "p2-python-apq-2013": ("mart_p2_python_dbt.csv", lambda: num(p2("python", 2013)["answers_per_question"], 2)),
+    "p2-python-apq-2021": ("mart_p2_python_dbt.csv", lambda: num(p2("python", 2021)["answers_per_question"], 2)),
+    "p2-python-apq-2022": ("mart_p2_python_dbt.csv", lambda: num(p2("python", 2022)["answers_per_question"], 2)),
+    "p2-dbt-apq-2022": ("mart_p2_python_dbt.csv", lambda: num(p2("dbt", 2022)["answers_per_question"], 2)),
+    "p2-python-apq-drop-per-year": ("mart_p2_python_dbt.csv, (2013 - 2021) / 8", lambda: num(
+        (float(p2("python", 2013)["answers_per_question"]) - float(p2("python", 2021)["answers_per_question"])) / 8, 2)),
+    "p2-python-accepted-2013": ("mart_p2_python_dbt.csv", lambda: pct(p2("python", 2013)["accepted_rate"])),
+    "p2-python-accepted-2021": ("mart_p2_python_dbt.csv", lambda: pct(p2("python", 2021)["accepted_rate"])),
+    "p2-python-accepted-2022": ("mart_p2_python_dbt.csv", lambda: pct(p2("python", 2022)["accepted_rate"])),
+    "p2-python-accepted-drop-per-year": ("mart_p2_python_dbt.csv, (2013 - 2021) / 8, in points", lambda: pct(
+        (float(p2("python", 2013)["accepted_rate"]) - float(p2("python", 2021)["accepted_rate"])) / 8)),
+    "p2-python-accepted-drop-2022": ("mart_p2_python_dbt.csv, 2021 - 2022, in points", lambda: pct(
+        float(p2("python", 2021)["accepted_rate"]) - float(p2("python", 2022)["accepted_rate"]))),
+    "p2-python-among-answered-2021": ("mart_p2_python_dbt.csv",
+                                      lambda: pct(p2("python", 2021)["accepted_rate_among_answered"])),
+    "p2-python-among-answered-2022": ("mart_p2_python_dbt.csv",
+                                      lambda: pct(p2("python", 2022)["accepted_rate_among_answered"])),
+    "p2-python-among-answered-drop-2022": ("mart_p2_python_dbt.csv, 2021 - 2022, in points", lambda: pct(
+        float(p2("python", 2021)["accepted_rate_among_answered"])
+        - float(p2("python", 2022)["accepted_rate_among_answered"]))),
+    "p2-python-questions-min": ("mart_p2_python_dbt.csv, python years", lambda: num(min(
+        int(p2("python", y)["n_questions"]) for y in range(2013, 2023)))),
+    "p2-python-questions-max": ("mart_p2_python_dbt.csv, python years", lambda: num(max(
+        int(p2("python", y)["n_questions"]) for y in range(2013, 2023)))),
+    "p2-dbt-questions-2020": ("mart_p2_python_dbt.csv", lambda: num(p2("dbt", 2020)["n_questions"])),
+    "p2-dbt-questions-2021": ("mart_p2_python_dbt.csv", lambda: num(p2("dbt", 2021)["n_questions"])),
+    "p2-dbt-questions-2022": ("mart_p2_python_dbt.csv", lambda: num(p2("dbt", 2022)["n_questions"])),
+    "p2-rows": ("mart_p2_python_dbt.csv rows", lambda: num(len(read_csv("presentation/data/mart_p2_python_dbt.csv")))),
+    "p2-python-qpa-2013": ("mart_p2_python_dbt.csv", lambda: num(p2("python", 2013)["questions_per_answer"], 2)),
+    "p2-python-qpa-2022": ("mart_p2_python_dbt.csv", lambda: num(p2("python", 2022)["questions_per_answer"], 2)),
+    "p2-python-apq-change-2022": ("mart_p2_python_dbt.csv", lambda: f'{float(
+        p2("python", 2022)["answers_per_question_yoy_abs"]):+.2f}'.replace("-", "−")),
+    "p2-python-exposure-low": ("mart_p2_python_dbt.csv, python years", lambda: pct(min(
+        float(p2("python", y)["tag_exposure"]) for y in range(2013, 2023)))),
+    "p2-python-exposure-high": ("mart_p2_python_dbt.csv, python years", lambda: pct(max(
+        float(p2("python", y)["tag_exposure"]) for y in range(2013, 2023)))),
+    "p2-dbt-exposure-high": ("mart_p2_python_dbt.csv, dbt years", lambda: pct(max(
+        float(p2("dbt", y)["tag_exposure"]) for y in (2020, 2021, 2022)))),
+    "p2-python-steps-down": ("mart_p2_python_dbt.csv: yearly steps whose intervals don't touch", lambda: num(sum(
+        1 for y in range(2013, 2022) if float(p2("python", y + 1)["answers_per_question_upper"])
+        < float(p2("python", y)["answers_per_question_lower"])))),
+    "p2-mart-gib": ("job log: mart_p2_python_dbt", lambda: num(scan_read("mart_p2_python_dbt"), 2)),
     # slide 13, quality and cost
     "dbt-tests": ("manifest: data tests + unit tests", lambda: num(len(dbt_tests()) + len(manifest()["unit_tests"]))),
     "dbt-tests-generic": ("manifest", lambda: num(sum(1 for n in dbt_tests() if n.get("test_metadata")))),
