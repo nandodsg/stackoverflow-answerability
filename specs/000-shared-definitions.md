@@ -146,3 +146,8 @@ sits where P1's headline is, so the impact check matters most there.
   not exposed; a rollback after the first answer is).
 - AC-0.10 Each impact check of P1–P3 runs as a `severity: warn` dbt test with the thresholds above, and every warning
   is listed in the README.
+- AC-0.11 Every headline number on the presentation page is tagged with its source. A headline number is a finding,
+  count or cost that a slide or dialog states. Its value equals what is recomputed from committed files, at the
+  rounding shown. Those files are the exported mart CSVs, the EDA caches, the BigQuery job log, the labeling spend log
+  and dbt's manifest. A mismatch fails CI and blocks the Pages deploy. Any other number on the page that matches no
+  source and is not in the README is listed as a warning.
