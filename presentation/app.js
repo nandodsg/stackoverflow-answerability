@@ -219,11 +219,12 @@
   transition = function (i, jump) {
     if (wiping) return;
     wiping = true;
+    document.body.classList.add("wiping");
     wipeLabel.textContent = chapters[i].dataset.wipe || chapters[i].dataset.title;
     wipe.style.background = getComputedStyle(chapters[i]).getPropertyValue("--accent");
     gsap.set(wipe, { display: "flex", clipPath: "inset(0% 100% 0% 0%)" });
     gsap.set(wipeLabel, { opacity: 0, x: -60 });
-    gsap.timeline({ onComplete: function () { gsap.set(wipe, { display: "none" }); wiping = false; } })
+    gsap.timeline({ onComplete: function () { gsap.set(wipe, { display: "none" }); wiping = false; document.body.classList.remove("wiping"); } })
       .to(wipe, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.6, ease: "power4.inOut" })
       .to(wipeLabel, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, "-=0.25")
       .add(jump)

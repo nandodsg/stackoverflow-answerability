@@ -73,6 +73,11 @@ a { color: inherit; }
   --accent: linear-gradient(114deg, var(--s1), var(--s2)); }
 #c13, #c14, #c15 { --s1: var(--orange-1); --s2: var(--orange-2); --s3: var(--orange-3); --s4: var(--orange-4); --sec: var(--s1);
   --accent: linear-gradient(114deg, var(--s1), var(--s2)); }
+/* slide 13's cost column and each column of slide 14 take their own shade of the part's orange */
+#c13 .cols > .stack:last-child { --c: var(--s3); }
+#c14 .cols > .stack:first-child { --c: var(--s1); }
+#c14 .cols > .stack:last-child { --c: var(--s3); }
+#c14 .list li b { color: var(--c, var(--text)); }
 .eyebrow { font: 600 16px/1 var(--mono); color: var(--sec, var(--text)); letter-spacing: .04em; margin-bottom: 24px; }
 .eyebrow .br { display: inline-block; }
 /* the title is sized by width and height, so it stays on two lines and leaves room for the cards below */
@@ -106,8 +111,9 @@ h1.display { font-size: clamp(56px, min(11vw, 16vh), 176px); line-height: .9; le
 @media (min-width: 901px) { .cover { padding-right: 56px; } } /* clear of the fixed progress rail */
 /* only with motion allowed: the title gradient slides and the question marks drift slowly; otherwise all static */
 @media (prefers-reduced-motion: no-preference) {
-  .cover .grad { background: linear-gradient(114deg, var(--s1), var(--s2), var(--s3), var(--s1), var(--s2), var(--s3), var(--s1)); background-size: 200% 100%;
-    -webkit-background-clip: text; background-clip: text; animation: grad-slide 5s linear infinite; }
+  /* the title passes through every part's colour (the five run twice so the slide loops without a jump) */
+  .cover .grad { background: linear-gradient(114deg, var(--white-1), var(--green-1), var(--blue-1), var(--pink-1), var(--orange-1), var(--white-1), var(--green-1), var(--blue-1), var(--pink-1), var(--orange-1), var(--white-1)); background-size: 200% 100%;
+    -webkit-background-clip: text; background-clip: text; animation: grad-slide 14s linear infinite; }
   .q-fill { animation: q-drift-a 19s ease-in-out infinite alternate; }
   .q-out { animation: q-drift-b 23s ease-in-out infinite alternate; }
 }
@@ -129,6 +135,7 @@ h2 { font-size: clamp(34px, min(5vw, 7vh), 66px); line-height: 1; letter-spacing
 
 /* ---------- progress rail ---------- */
 .progress { position: fixed; inset: 0 0 auto 0; height: 3px; background: transparent; z-index: 20; pointer-events: none; }
+body.wiping .progress-fill { background: var(--canvas); transition: none; } /* black while a wipe crosses */
 .progress-fill { height: 100%; background: var(--sec-now, var(--text)); transition: background-color .4s; transform: scaleX(0); transform-origin: left; }
 .rail { position: fixed; right: 20px; top: 50%; transform: translateY(-50%); z-index: 20; }
 .rail ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
@@ -296,9 +303,6 @@ h3.sub { font: 600 14px/1 var(--mono); color: var(--c, var(--text)); letter-spac
 .tl.trap { border-top-color: var(--s2); }
 .tl.trap .tl-when { color: var(--s2); }
 /* slide 7: the budget and language-model decisions, in the cost colour of the architecture's guards */
-.tl.cost { border-top-color: var(--text); }
-.tl.cost .tl-when, .tl.cost .more, .eda.cost .tl-when { color: var(--text); }
-.tl.cost .more:hover { border-color: var(--text); }
 .tl p { font-size: 16px; line-height: 1.5; }
 .tl .tl-ev { color: var(--muted); margin-top: auto; padding-top: 14px; border-top: 1px solid var(--hairline); }
 .tl .tl-ev:has(.more) { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
