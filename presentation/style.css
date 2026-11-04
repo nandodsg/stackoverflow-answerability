@@ -237,6 +237,8 @@ h2 { font-size: clamp(34px, min(5vw, 7vh), 66px); line-height: 1; letter-spacing
 .sql-panel:has(.qchips) .rhead { font-size: 12px; padding-bottom: 4px; }
 .sql-note { margin-top: 10px; color: var(--muted); font-size: 13px; line-height: 1.4; }
 .sql-note:empty { display: none; }
+/* P2's follow-up tables on a phone: a long column name breaks instead of running into the next one */
+@media (max-width: 900px) { #c7 .rhead span { overflow-wrap: anywhere; } }
 
 /* ---------- cards, timeline, lists (narrative chapters) ---------- */
 .lede.wide { max-width: 70ch; font-size: 21px; }

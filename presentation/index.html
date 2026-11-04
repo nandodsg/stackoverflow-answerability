@@ -634,47 +634,132 @@ ORDER BY tag_exposure DESC;</template>
   </div>
 </section>
 
-<section class="chapter p2" id="c7" data-title="P2 · Python vs dbt">
+<section class="chapter p2 dense" id="c7" data-title="P2 · Python vs dbt">
   <div class="inner stack">
     <p class="eyebrow" data-reveal>{ <span class="label">11 · prompt 2</span> }</p>
     <h2 data-reveal>Python-only vs dbt-only, <span class="mark">year over year</span></h2>
     <div class="cols answer">
       <div class="stack">
-        <p data-reveal>python-only answers per question fell from 2.31 (2013) to 1.52 (2021), and the accepted rate from 65.2% to 43.0%. The 1.26 of 2022 is mostly censoring: questions not answered yet when the data stops. dbt-only has 31, 58 and 79 questions (2020–2022) at 1.39, 1.14 and 1.06. P2 ranks nothing, so D1's floor doesn't apply, but its ±1.96 standard-error math gives every year a 95% interval, and with so few dbt questions they overlap: no dbt trend is claimed. Still, in 2021 and 2022 dbt-only got fewer answers per question than python-only. Tags edited after the answer barely touch P2 (D4): 3.6–5.1% of python-only questions a year, and on the original tags no conclusion changes. The ratio shown is answers per question; Q÷A = 1 / this (python 2022: 0.79 questions per answer).</p>
-        <p class="muted" data-reveal>Answers per question for one year, computed by the query beside it from a snapshot of the dbt mart (full table in the README, section 2). Step through the years, or edit the query.</p>
+        <p data-reveal><b class="exec-q">“How did the answer ratio and accepted rate of python-only and dbt-only questions change, 2013 to 2022, and how do they compare?”</b> python-only questions from 2013 got 2.31 answers each, those from 2021 got 1.52 (0.10 fewer a year); their accepted rate fell from 65.2% to 43.0% (2.8 points a year). dbt-only questions, from 2020 on, got fewer answers in 2021 and 2022 (1.06 vs python's 1.26 per 2022 question). The pattern: a slow, steady python decline, with dbt below it wherever the data can tell.</p>
+        <ul class="takeaways" data-reveal>
+          <li><b>Ratio</b> python-only 2.31 → 1.52 answers per question, 2013 → 2021</li>
+          <li><b>Accepted rate</b> python-only 65.2% → 43.0%, 2013 → 2021</li>
+          <li><b>python vs dbt</b> dbt-only got fewer answers in 2021 and 2022</li>
+          <li><b>2022, to Sep 25</b> 1.26 and 35.4%, mostly questions not answered yet</li>
+        </ul>
+        <p class="muted" data-reveal>Ratio = answers per question, questions per answer = 1 ÷ it (<button type="button" class="ref" data-dialog="eda-d3">D3</button>); accepted rate = accepted ÷ all questions (<button type="button" class="ref" data-dialog="eda-d2">D2</button>); “only” = that one tag; 95% intervals, no floor (<button type="button" class="ref" data-dialog="eda-d1">D1</button>).</p>
+        <div class="next" data-reveal>
+          <h3 class="sub">Next questions</h3>
+          <ol>
+            <li><span class="nq">Did python-only fall every year?</span> Mostly. <button type="button" class="sql-ref" data-q="p2-yoy">SQL</button></li>
+            <li><span class="nq">Is 2022's drop real?</span> Mostly not. <button type="button" class="sql-ref" data-q="p2-2022">SQL</button></li>
+            <li><span class="nq">Is dbt's accepted rate lower too?</span> In 2021. <button type="button" class="sql-ref" data-q="p2-dbt-accepted">SQL</button></li>
+          </ol>
+        </div>
         <div class="strip" data-reveal>
           <p class="strip-title">{ HOW WE KNOW }</p>
-          <div class="chips">
-            <details class="chip" name="know-p2"><summary><span>Evidence</span><span class="tag">EDA</span></summary><div class="chip-body">2021 → 2022, python-only: answer rate 84.8% → 73.5%, answers per answered question 1.80 → 1.71. About three quarters of the drop is questions not answered yet (censoring). <code>eda/d3_ratio</code>, <code>eda/d2_denominator</code>.</div></details>
-            <details class="chip" name="know-p2"><summary><span>Guard</span><span class="tag">tests</span></summary><div class="chip-body">A unit test pins the exact-match filter (<code>python</code>, <code>python|pandas</code>, <code>python-3.x</code>, <code>dbt</code>, <code>dbt|sql</code>); empty dbt years stay as rows. A warn test on the original tags flags 3 rows: python 2019 (a near-zero YoY change switches sign), python 2021 (1.52 vs 1.50), dbt 2022 (accepted YoY +2.0 vs −0.6 points).</div></details>
-            <details class="chip" name="know-p2"><summary><span>Cost</span><span class="tag">GB billed</span></summary><div class="chip-body"><code>queries/q2.sql</code> bills about 7 GB, metadata columns only, never <code>body</code>.</div></details>
+          <div class="know">
+            <button type="button" class="know-btn" data-dialog="know-p2" data-row="know-p2-method"><span>Method</span><span class="tag">rules</span></button>
+            <button type="button" class="know-btn" data-dialog="know-p2" data-row="know-p2-evidence"><span>Evidence</span><span class="tag">checks</span></button>
+            <button type="button" class="know-btn" data-dialog="know-p2" data-row="know-p2-guard"><span>Guard</span><span class="tag">tests</span></button>
+            <button type="button" class="know-btn" data-dialog="know-p2" data-row="know-p2-cost"><span>Cost</span><span class="tag">GiB</span></button>
           </div>
         </div>
       </div>
-      <div class="stack">
-        <div class="steps" data-reveal role="group" aria-label="Year">
-          <button type="button" class="btn step" data-year="2013" data-for="p2">2013</button>
-          <button type="button" class="btn step" data-year="2021" data-for="p2">2021</button>
-          <button type="button" class="btn step" data-year="2022" data-for="p2">2022</button>
+      <div class="sql-panel" data-reveal data-panel data-render="range" data-note="Dot: answers per question · line: its 95% interval (mean ± 1.96 standard errors) · 2022 partial: to Sep 25" data-table="mart_p2_python_dbt">
+        <div class="sql-head"><span>live SQL · DuckDB-WASM</span><span class="sql-status" data-state="loading">loading engine…</span></div>
+        <div class="qchips" role="group" aria-label="Query">
+          <button type="button" class="qchip" data-q="" aria-pressed="true">Answers/question</button>
+          <button type="button" class="qchip" data-q="p2-accepted">Accepted rate</button>
+          <button type="button" class="qchip next-q" data-q="p2-yoy">1 · each year</button>
+          <button type="button" class="qchip next-q" data-q="p2-2022">2 · 2022</button>
+          <button type="button" class="qchip next-q" data-q="p2-dbt-accepted">3 · dbt accepted</button>
         </div>
-        <div class="big-number" data-reveal data-bound="p2">…</div>
-        <p class="muted" data-reveal data-bound-label="p2"></p>
-        <div class="sql-panel" data-reveal data-panel data-render="number" data-bind="p2" data-table="mart_p2_python_dbt">
-          <div class="sql-head"><span>live SQL · DuckDB-WASM</span><span class="sql-status" data-state="loading">loading engine…</span></div>
-          <textarea class="sql-editor" spellcheck="false" aria-label="SQL query for prompt 2">SELECT round(answers_per_question, 2)
-         AS python_answers_per_question
+        <textarea id="q-p2" class="sql-editor" spellcheck="false" aria-label="SQL query for prompt 2">SELECT CAST(creation_year AS VARCHAR)
+         || if(is_partial_year, ' partial', '') AS year,
+       answers_per_question,
+       answers_per_question_lower AS low,
+       answers_per_question_upper AS high,
+       tag || '-only' AS list
+FROM mart_p2_python_dbt
+WHERE n_questions &gt; 0
+ORDER BY tag DESC, creation_year;</textarea>
+        <div class="sql-actions">
+          <button type="button" class="btn primary run">Run</button>
+          <button type="button" class="btn reset">Reset</button>
+          <span class="meta"></span>
+        </div>
+        <div class="sql-out" aria-live="polite"><noscript>Live SQL needs JavaScript.</noscript></div>
+        <p class="sql-note"></p>
+        <template id="p2-accepted" data-render="range" data-scale="pct" data-note="Dot: accepted rate · line: its 95% interval (Wilson) · 2022 partial: to Sep 25">SELECT CAST(creation_year AS VARCHAR)
+         || if(is_partial_year, ' partial', '') AS year,
+       accepted_rate,
+       accepted_rate_lower AS low,
+       accepted_rate_upper AS high,
+       tag || '-only' AS list
+FROM mart_p2_python_dbt
+WHERE n_questions &gt; 0
+ORDER BY tag DESC, creation_year;</template>
+        <template id="p2-yoy" data-render="table" data-note="Mostly. Down in 7 of 9 yearly steps (accepted fall in points); 2018 and 2019 flat, under half a point and 0.01 answers either way. Biggest: 2013 → 2014, 0.34 fewer answers per question, and 2021 → 2022, 0.26 fewer, mostly censoring (question 2).">SELECT CAST(creation_year AS VARCHAR) AS year,
+       round(-accepted_rate_yoy_pp * 100, 1)
+         AS accepted_fall,
+       round(lag(answers_per_question)
+               OVER (ORDER BY creation_year)
+             - answers_per_question, 2) AS answers_fall
 FROM mart_p2_python_dbt
 WHERE tag = 'python'
-  AND creation_year = 2022;</textarea>
-          <div class="sql-actions">
-            <button type="button" class="btn primary run">Run</button>
-            <button type="button" class="btn reset">Reset</button>
-            <span class="meta"></span>
-          </div>
-          <div class="sql-out" aria-live="polite"></div>
-        </div>
+QUALIFY creation_year &gt; 2013  -- 2013 has no year before
+ORDER BY creation_year;</template>
+        <template id="p2-2022" data-render="table" data-note="Mostly not. From 2021 to 2022 the share of python-only questions answered fell from 84.8% to 73.5%, but answers per answered question barely moved, 1.79 → 1.71: about three quarters of the drop is questions not answered yet when the data stops. Accepted among answered: 50.7% → 48.1%.">SELECT CAST(creation_year AS VARCHAR)
+         || if(is_partial_year, ' partial', '') AS year,
+       round(answer_rate * 100, 1) AS answered_pct,
+       round(n_answers / n_answered, 2) AS per_answered
+FROM mart_p2_python_dbt
+WHERE tag = 'python' AND creation_year &gt;= 2020
+ORDER BY creation_year;</template>
+        <template id="p2-dbt-accepted" data-render="range" data-scale="pct" data-note="In 2021: dbt-only 25.9% (16.3–38.4%) against python-only 43.0% (42.2–43.8%), intervals apart. In 2020 and 2022 the intervals overlap, so no difference is claimed.">SELECT tag || '-only' AS tag,
+       accepted_rate,
+       accepted_rate_lower AS low,
+       accepted_rate_upper AS high,
+       CAST(creation_year AS VARCHAR)
+         || if(is_partial_year, ' partial', '') AS list
+FROM mart_p2_python_dbt
+WHERE creation_year &gt;= 2020
+ORDER BY creation_year, tag DESC;</template>
       </div>
     </div>
+    <dialog class="eda" id="know-p2" aria-labelledby="know-p2-t">
+      <div class="eda-head"><div><p class="tl-when">P2 · how we know</p><h3 id="know-p2-t">How the python and dbt years were built and checked</h3></div><button class="eda-close" type="button" aria-label="Close">×</button></div>
+      <dl class="eda-facts">
+        <dt>Question</dt><dd>“For posts which are tagged with only 'python' or 'dbt', what is the year over year change of question-to-answer ratio for the last 10 years? How about the rate of approved answers on questions for the same time period? How do posts tagged with only 'python' compare to posts only tagged with 'dbt'?”</dd>
+        <dt>Data</dt><dd>Questions created 2013 to 2022 (2022 runs to 2022-09-25, a partial year), metadata only (tags, creation date, <code>answer_count</code>, accepted answer id), never title or body. “Only” is read literally: the question's tags today are exactly <code>python</code> or exactly <code>dbt</code>, one tag and nothing else, so <code>python|pandas</code> and <code>python-3.x</code> are out. That leaves 7,819 to 16,256 python-only questions a year and 31, 58 and 79 dbt-only ones (2020 to 2022; none before), 168 in total. Each answer counts in its question's creation year. The questions come from <code>int_questions</code>; the answer is <code>mart_p2_python_dbt</code>, one row per tag and year, 20 rows (<a href="#model">data model</a>).</dd>
+        <dt id="know-p2-method">Method</dt><dd>The <b>question-to-answer ratio</b> is shown as <b>answers per question</b> = answers ÷ questions (<button type="button" class="ref" data-dialog="eda-d3">D3</button>), for three reasons: higher reads as more answers, it is the same metric as P1's “most answers”, and it splits like the accepted rate does (answer rate × answers per answered question). The literal ratio is its inverse: questions per answer = 1 ÷ answers per question (python-only 0.43 in 2013, 0.79 in 2022). Each year gets a 95% interval, mean ± 1.96 standard errors. The <b>accepted rate</b> = questions with an accepted answer ÷ all questions (<button type="button" class="ref" data-dialog="eda-d2">D2</button>), with a Wilson interval, and the answer rate and accepted among answered beside it, so a fall can be read as “fewer answered” or “fewer accepted”. <b>Year over year</b>: answers per question as an absolute change (−0.26 for python 2021 → 2022), the relative change beside it; relative changes don't survive the inversion (the same step is −17% in answers per question and +21% in questions per answer). Accepted-rate changes are in percentage points. Nothing is ranked, so D1's 385-question floor does not apply, but every year carries the same kind of 95% interval, and a difference is claimed only where the intervals don't touch (<button type="button" class="ref" data-dialog="eda-d1" data-row="eda-d1-ranges">D1, how the ranges work</button>). Every row also carries its <b>tag exposure</b> (<button type="button" class="ref" data-dialog="eda-d4">D4</button>), the share of its questions whose tags were first edited after the first answer: python-only 3.6–5.1% a year, dbt-only 0–3.2%. One macro, <code>p2_python_dbt</code>, builds the mart and its three check versions, so their rules cannot drift apart.</dd>
+        <dt id="know-p2-evidence">Evidence</dt><dd><ul class="eda-list">
+          <li><b>Censoring in 2022.</b> A question from late September 2022 had only days to collect answers before the snapshot (<a href="#c3">trap 3</a>). The question: is the 2021 → 2022 drop a real change? Answers per question = answer rate × answers per answered question, both on <code>mart_p2_python_dbt</code>: for python-only the answer rate fell from 84.8% to 73.5% while answers per answered question barely moved, 1.79 → 1.71, so about three quarters of the drop is questions not answered yet. Same on acceptance: the accepted rate fell 7.6 points, accepted among answered only 2.6 (50.7% → 48.1%) (<code>eda/d3_ratio</code>, <code>eda/d2_denominator</code>). So the last yearly step is mostly timing, not a trend, and the slide quotes 2013 → 2021 for the decline.</li>
+          <li><b>Survivorship.</b> Deleted questions are not in the data, Stack Overflow deletes mostly unanswered ones, and older years have had longer to be cleaned up (<a href="#c2">the traps</a>). So 2013's 2.31 and 65.2% are inflated more than 2021's. The direction holds: 7 of the 9 yearly steps go down with intervals that don't overlap, and 2018 and 2019 are flat. The size of the decline is less sure than its direction, and this data cannot size the bias.</li>
+          <li><b>dbt among other tags.</b> With 31 to 79 questions a year, dbt-only's accepted-rate intervals are 19 to 33 points wide. The question: is the small sample a fluke? <code>mart_p2_dbt_any_position</code> applies the same rules to every question tagged <code>dbt</code> among other tags (96, 224 and 351 questions): 1.46 → 1.17 → 0.93 answers per question and 49.0% → 41.5% → 32.5% accepted, the same direction. So the dbt-only numbers are not an accident of size, but this is a different population and does not replace the literal answer.</li>
+          <li><b>Tag edits.</b> The question: would the answer change on the tags as first posted? <code>mart_p2_python_dbt_original</code> rebuilds both groups on the original tags, and a <code>warn</code> test lists 3 rows that move: python 2019 (a near-zero yearly change, +0.01 vs −0.02, switches sign), python 2021 (1.52 vs 1.50; 17,104 questions instead of 15,811, posted as python-only and retagged later), dbt 2022 (accepted change +2.0 vs −0.6 points, inside its interval either way). <code>mart_p2_python_dbt_no_tag_edits</code> drops every question whose tags were ever edited: python 2022 reads 1.25 instead of 1.26 and 35.2% instead of 35.4%. So no conclusion on the slide changes.</li>
+        </ul></dd>
+        <dt id="know-p2-guard">Guard</dt><dd>The six acceptance criteria of <a href="https://github.com/nandodsg/stackoverflow-answerability/blob/main/specs/002-q2-python-vs-dbt.md" target="_blank" rel="noopener"><code>specs/002</code></a>, each checked by a dbt test or the check script; each in plain words with its test: <button type="button" class="ref" data-dialog="specs" data-row="specs-002">specs, P2</button>. Where the tests run: <a href="#c5">architecture</a>.<ul class="eda-list">
+          <li><b>AC-2.1:</b> only questions tagged exactly <code>python</code> or <code>dbt</code> count; a unit test, <code>mart_p2_exact_tag_match</code>, feeds in <code>python</code>, <code>python|pandas</code>, <code>python-3.x</code>, <code>dbt</code> and <code>dbt|sql</code> and expects only the first and the fourth.</li>
+          <li><b>AC-2.2:</b> one row per tag and year, 2013 to 2022, with the empty dbt years kept as rows, on the mart and its three versions.</li>
+          <li><b>AC-2.3:</b> every dbt rate comes with its question count and an interval.</li>
+          <li><b>AC-2.4:</b> 2022 is marked partial, on the mart and its three versions.</li>
+          <li><b>AC-2.5:</b> answers per question is the charted ratio and questions per answer is exactly 1 ÷ it; the check script asks the semantic layer (MetricFlow) for the README's numbers and compares them.</li>
+          <li><b>AC-2.6:</b> tag exposure on every row, and the original-tags check as a <code>warn</code> test that lists the 3 rows above without failing the build.</li>
+        </ul></dd>
+        <dt id="know-p2-cost">Cost</dt><dd><code>queries/q2.sql</code>, the whole answer in one script for the BigQuery console, bills about 7 GB: metadata columns only, never <code>body</code>. In dbt the mart reads the question table and billed 1.15 GiB, on the everyday target, where each query is capped at 20 GiB. The original-tags version reads a stored table from the one-time 106 GiB read of <code>post_history.text</code>, shared with P1 and P3 (<button type="button" class="ref" data-dialog="eda-d5">D5</button>). This page reads 0 bytes from BigQuery: the mart was exported to CSV on 2026-11-01 and DuckDB-WASM runs the SQL in the browser (<a href="#stack">stack</a>).</dd>
+        <dt>Limitations</dt><dd><ul class="eda-list">
+          <li><b>“Only” read literally.</b> Most Python questions carry more than one tag, so python-only is a small, particular group; “python among other tags” would answer a different question.</li>
+          <li><b>2022 is partial</b> (to 09-25) and its newest questions are censored, so its yearly step is mostly not a trend (Evidence).</li>
+          <li><b>Survivorship</b> inflates older years more than recent ones; the decline's size is less sure than its direction.</li>
+          <li><b>Today's tags,</b> because the prompt asks how a post is tagged; exposure and the original-tags check measure the edits, they don't remove them.</li>
+          <li><b>dbt has 2.7 years, not ten,</b> on 168 questions in total: read its intervals, not its single values; no dbt trend is claimed.</li>
+          <li><b>A trend, not a cause.</b> The data shows that python-only questions get fewer answers each year, not why. The rest of the limits: <a href="#c10">limits slide</a>.</li>
+        </ul></dd>
+        <dt>GitHub repo</dt><dd><ul class="eda-links"><li><a href="https://github.com/nandodsg/stackoverflow-answerability/blob/main/README.md#2-python-only-vs-dbt-only-year-over-year" target="_blank" rel="noopener">README, section 2</a></li><li><a href="https://github.com/nandodsg/stackoverflow-answerability/blob/main/specs/002-q2-python-vs-dbt.md" target="_blank" rel="noopener"><code>specs/002</code></a></li><li><a href="https://github.com/nandodsg/stackoverflow-answerability/blob/main/TESTING.md#prompt-2-specs002" target="_blank" rel="noopener"><code>TESTING.md</code>, prompt 2</a></li><li><a href="https://github.com/nandodsg/stackoverflow-answerability/blob/main/queries/q2.sql" target="_blank" rel="noopener"><code>queries/q2.sql</code></a></li><li><a href="https://github.com/nandodsg/stackoverflow-answerability/blob/main/models/marts/mart_p2_python_dbt.sql" target="_blank" rel="noopener"><code>mart_p2_python_dbt.sql</code></a></li><li><a href="https://github.com/nandodsg/stackoverflow-answerability/blob/main/macros/p2_python_dbt.sql" target="_blank" rel="noopener"><code>macros/p2_python_dbt.sql</code></a></li><li><a href="https://github.com/nandodsg/stackoverflow-answerability/blob/main/models/marts/mart_p2_python_dbt_original.sql" target="_blank" rel="noopener"><code>mart_p2_python_dbt_original.sql</code></a></li><li><a href="https://github.com/nandodsg/stackoverflow-answerability/blob/main/models/marts/mart_p2_python_dbt_no_tag_edits.sql" target="_blank" rel="noopener"><code>mart_p2_python_dbt_no_tag_edits.sql</code></a></li><li><a href="https://github.com/nandodsg/stackoverflow-answerability/blob/main/models/marts/mart_p2_dbt_any_position.sql" target="_blank" rel="noopener"><code>mart_p2_dbt_any_position.sql</code></a></li><li><a href="https://github.com/nandodsg/stackoverflow-answerability/blob/main/tests/assert_p2_original_tags_stable.sql" target="_blank" rel="noopener"><code>assert_p2_original_tags_stable.sql</code></a></li><li><a href="https://github.com/nandodsg/stackoverflow-answerability/blob/main/eda/d3_ratio/README.md" target="_blank" rel="noopener"><code>eda/d3_ratio</code></a></li><li><a href="https://github.com/nandodsg/stackoverflow-answerability/blob/main/eda/d2_denominator/README.md" target="_blank" rel="noopener"><code>eda/d2_denominator</code></a></li></ul></dd>
+      </dl>
+    </dialog>
   </div>
 </section>
 
