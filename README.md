@@ -35,7 +35,7 @@ Sort every 2022 tag by accepted rate and the top 10 is ten tags with one or two 
 
 In 2022 the tags whose questions get answered and accepted are **text processing and data wrangling**: `jq`, `awk`,
 `sed`, `regex`, R's `dplyr` / `tidyr` / `data.table`, `pandas-groupby`. Between 58% and 68% of their questions end with
-an accepted answer, and `awk` and `sed` collect more than two answers per question. At the other end sit
+an accepted answer, and `awk` and `sed` collect more than two answers per question. At the other end sit, mostly,
 **platforms and integrations**: `magento2`, `appium`, `facebook` and its Graph API, `ckeditor`, `elementor`, Chrome
 extensions, `webview`, `cpanel`, `usb`. About one in ten of their questions gets an accepted answer, and most of them
 never get any answer at all. For comparison, the whole of 2022 sits at **30.5%** (386,683 accepted out of 1,268,788

@@ -166,7 +166,9 @@ function drawTable(panel, out, allColumns, allRows) {
    Rates (data-scale "pct") run on a 0-100% axis, anything else from 0 to just above the largest value. A
    data-baseline value draws a dashed line down every row (e.g. the accepted rate of all questions).
    Gaps between two rates (data-scale "pts", or "pts:0.2" for a fixed ±20-point axis) run on an axis centred on zero,
-   shown as signed points; pair it with data-baseline "0" for the zero line. */
+   shown as signed points; pair it with data-baseline "0" for the zero line.
+   data-figures (column names, space-separated) shows those columns as figures beside the label, under one header row,
+   in place of the dot's value alone (e.g. the headline gap, the adjusted gap and how much it changes). */
 function drawRange(panel, out, allColumns, allRows) {
   const { columns, groups } = splitByList(allColumns, allRows);
   const lo = columns.indexOf("low"), hi = columns.indexOf("high");
@@ -179,11 +181,22 @@ function drawRange(panel, out, allColumns, allRows) {
   const signed = (v) => { const p = (v * 100).toFixed(1); return Number(p) === 0 ? "0.0" : `${v > 0 ? "+" : ""}${p}`.replace("-", "−"); };
   const show = (v) => (v === null || v === undefined ? "–" : pct ? `${(Number(v) * 100).toFixed(1)}%` : pts ? signed(Number(v)) : Number(v).toFixed(2));
   const base = panel.dataset.baseline;
+  const figs = (panel.dataset.figures || "").split(" ").map((c) => columns.indexOf(c)).filter((k) => k >= 0);
+  const cells = figs.length ? figs : [val];
+  const grid = figs.length ? `minmax(0, 1.3fr) repeat(${figs.length}, 3.8rem) minmax(0, 0.9fr)` : "";
+  const figure = (v) => (typeof v === "string" ? v : show(v));
   const { wrap, add } = blocks(groups, true);
   const marks = [];
 
-  groups.forEach((g) => {
+  groups.forEach((g, i) => {
     const list = el("div", "rg");
+    if (figs.length && i === 0) { // the blocks are stacked with the same columns: one header, over the first
+      const head = el("div", "rg-row rg-head");
+      head.style.gridTemplateColumns = grid;
+      head.style.gap = "8px";
+      head.append(el("span", ""), ...figs.map((k) => el("span", "rg-v", columns[k])), el("span", ""));
+      list.append(head);
+    }
     g.rows.forEach((r) => {
       const row = el("div", "rg-row");
       const label = el("span", "rg-label", String(r[0]));
@@ -203,7 +216,8 @@ function drawRange(panel, out, allColumns, allRows) {
         track.append(dot);
         marks.push(dot);
       }
-      row.append(label, el("span", "rg-v", show(r[val])), track);
+      if (grid) { row.style.gridTemplateColumns = grid; row.style.gap = "8px"; }
+      row.append(label, ...cells.map((k) => el("span", "rg-v", figure(r[k]))), track);
       list.append(row);
     });
     add(g, list);
@@ -219,13 +233,13 @@ try {
   panels.forEach((panel) => {
     const editor = panel.querySelector(".sql-editor");
     // the panel's own settings belong to the chip without a template (the default query in the textarea)
-    const own = { render: panel.dataset.render, baseline: panel.dataset.baseline, scale: panel.dataset.scale, note: panel.dataset.note };
+    const own = { render: panel.dataset.render, baseline: panel.dataset.baseline, scale: panel.dataset.scale, note: panel.dataset.note, figures: panel.dataset.figures };
     let current = () => editor.defaultValue;
     const chips = panel.querySelectorAll(".qchip");
     chips.forEach((chip) => {
       chip.addEventListener("click", () => {
         const tpl = chip.dataset.q ? document.getElementById(chip.dataset.q) : null;
-        const set = tpl ? { render: tpl.dataset.render, baseline: tpl.dataset.baseline, scale: tpl.dataset.scale, note: tpl.dataset.note } : own;
+        const set = tpl ? { render: tpl.dataset.render, baseline: tpl.dataset.baseline, scale: tpl.dataset.scale, note: tpl.dataset.note, figures: tpl.dataset.figures } : own;
         Object.entries(set).forEach(([k, v]) => { if (v === undefined) delete panel.dataset[k]; else panel.dataset[k] = v; });
         current = () => (tpl ? tpl.content.textContent : editor.defaultValue);
         editor.value = current();

@@ -508,6 +508,7 @@ body:has(dialog[open]) { overflow: hidden; }
 .rg-row { display: grid; grid-template-columns: minmax(0, 1fr) 3.4rem minmax(0, 1.6fr); gap: 10px; align-items: center; height: 13px; }
 .rg-label { font: 400 12px/1 var(--mono); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .rg-v { font: 400 12px/1 var(--mono); color: var(--muted); text-align: right; }
+.rg-head .rg-v { font-size: 10px; color: var(--c, var(--s1)); }
 .rg-track { position: relative; height: 100%; background: linear-gradient(var(--hairline), var(--hairline)) left center / 100% 1px no-repeat; }
 .rg-track[style*="--b"]::before { content: ""; position: absolute; top: 0; bottom: -1px; left: var(--b); border-left: 1px dashed color-mix(in srgb, var(--text) 55%, transparent); }
 .rg-line { position: absolute; top: 50%; height: 2px; margin-top: -1px; background: var(--c, var(--s1)); opacity: .5; border-radius: 1px; }

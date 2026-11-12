@@ -41,6 +41,7 @@ EXPORTS = {
     ],
     "mart_p2_python_dbt": [
         "tag", "creation_year", "n_questions", "answer_rate", "accepted_rate", "answers_per_question", "tag_exposure",
+        "accepted_rate_yoy_pp", "answers_per_question_yoy_abs",
     ],
     "mart_p3_feature_rates": [
         "version", "feature", "bucket", "cohort", "is_reference_bucket", "n_questions", "answer_rate", "accepted_rate",

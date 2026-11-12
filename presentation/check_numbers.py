@@ -275,6 +275,9 @@ NUMBERS = {
     # slide 8, tests and safeguards
     "body-read-gib": ("job log: int_question_body_scan", lambda: num(scan_read("int_question_body_scan"))),
     # slide 10, P1
+    "p1-ranked-tags": ("mart_p1_tags.csv, 2022 rows (385+ questions)", lambda: num(len(p1_tags_2022()))),
+    "p1-ranked-pairs": ("mart_p1_pairs.csv, 2022 rows (385+ questions)", lambda: num(sum(
+        1 for r in read_csv("presentation/data/mart_p1_pairs.csv") if r["creation_year"] == "2022"))),
     "p1-top10-accepted-low": ("mart_p1_tags.csv, 2022 top 10", lambda: pct(min(
         float(r["accepted_rate"]) for r in ranked(p1_tags_2022(), "rank_accepted_top", 10)))),
     "p1-top10-accepted-high": ("mart_p1_tags.csv, 2022 top 10", lambda: pct(max(
