@@ -38,7 +38,7 @@ because the text is Stack Overflow content, (c) Stack Exchange Inc. and its cont
 [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), and the copy carries that line at the top. Labels
 picked on the page stay in the browser; "Save CSV" downloads them.
 
-[review-page]: https://nandodsg.github.io/stackoverflow-answerability/eda/gold_scoring_review.html
+[review-page]: https://stackoverflow.fernandocarliniguimaraes.com/eda/gold_scoring_review.html
 
 ## What it found
 
