@@ -51,6 +51,7 @@ jobs:
         run: |
           mkdir _site
           cp presentation/index.html presentation/style.css presentation/app.js presentation/sql-panel.js _site/
+          cp presentation/favicon.svg presentation/favicon.ico presentation/apple-touch-icon.png _site/
           cp -r presentation/data _site/data
           cp -r presentation/img _site/img
           mkdir _site/eda
